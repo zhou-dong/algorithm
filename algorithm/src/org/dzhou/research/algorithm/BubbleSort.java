@@ -22,6 +22,10 @@ public class BubbleSort {
 	public static void main(String[] args) {
 		int[] input = { 8, 7, 15, 9, 5, 4, 6, 3, 5, 1, 6, 2, 0 };
 		sort(input);
+		print(input);
+	}
+
+	private static void print(int[] input) {
 		for (int i : input)
 			System.out.println(i);
 	}
