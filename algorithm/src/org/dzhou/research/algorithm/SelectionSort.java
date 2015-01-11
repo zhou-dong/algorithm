@@ -34,7 +34,17 @@ public class SelectionSort {
 
 	public static void main(String[] args) {
 		int[] input = { 8, 7, 15, 9, 5, 4, 6, 3, 5, 1, 6, 2, 0 };
-		sortFromBack(input);
+		switch (1) {
+		case 0:
+			sort(input);
+			break;
+		case 1:
+			sortFromBack(input);
+			break;
+		default:
+			System.out.println("No this option, r u kidding?");
+			return;
+		}
 		print(input);
 	}
 
