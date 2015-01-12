@@ -67,8 +67,9 @@ public class HeapSort {
 			return;
 		if (tree[parentIndex] >= biggerChildValue(parentIndex))
 			return;
-		swap(parentIndex, biggerChildIndex(parentIndex));
-		recursiveDescentSort(biggerChildIndex(parentIndex));
+		int biggerChildIndex = biggerChildIndex(parentIndex);
+		swap(parentIndex, biggerChildIndex);
+		recursiveDescentSort(biggerChildIndex);
 	}
 
 	private static boolean isChildExist(int parentIndex) {
@@ -118,7 +119,7 @@ public class HeapSort {
 	}
 
 	public static void main(String[] args) {
-		int[] input = { 6, 5, 3, 1, 8, 7, 2, 4 };
+		int[] input = { 6, 5, 3, 1, 8, 7, 2, 4, 9, 15, 44, 2, 11, 9, 8 };
 		tree = new int[input.length];
 		result = new int[tree.length];
 		// phase one: create binary tree
