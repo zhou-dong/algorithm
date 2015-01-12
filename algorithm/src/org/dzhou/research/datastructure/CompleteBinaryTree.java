@@ -1,6 +1,6 @@
 package org.dzhou.research.datastructure;
 
-public class BinaryTree {
+public class CompleteBinaryTree {
 
 	private static int[] tree = null;
 	private static int index = 0;
