@@ -6,7 +6,7 @@ public class HeapSort {
 	private static int[] tree;
 	private static int[] result;
 
-	// phase one: create Binary Tree
+	// phase one: create Complete Binary Tree
 	public static void insertIntoTree(int value) {
 		tree[index] = value;
 		recursiveAscentSort(index);
@@ -122,7 +122,7 @@ public class HeapSort {
 		int[] input = { 6, 5, 3, 1, 8, 7, 2, 4, 9, 15, 44, 2, 11, 9, 8 };
 		tree = new int[input.length];
 		result = new int[tree.length];
-		// phase one: create binary tree
+		// phase one: create Complete Binary Tree
 		for (int i : input)
 			insertIntoTree(i);
 		print(tree);
