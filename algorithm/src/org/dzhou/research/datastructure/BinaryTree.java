@@ -47,7 +47,7 @@ public class BinaryTree {
 	}
 
 	public static void main(String args[]) {
-		int[] input = { 5, 6, 9, 13, 12, 26, 0, 3, 1, 8, 7, 2, 4 };
+		int[] input = { 5, 6, 9, 13, 12, 26 };
 		tree = new int[input.length];
 		for (int i : input)
 			insert(i);
