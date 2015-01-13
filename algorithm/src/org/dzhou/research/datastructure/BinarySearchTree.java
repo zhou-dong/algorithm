@@ -16,7 +16,20 @@ public class BinarySearchTree {
 	}
 
 	// TODO
-	static void traversal(int index) {
+	static void preTraversal(int index) {
+	}
+
+	// TODO
+	static void inorderTraversal(int index) {
+	}
+
+	// TODO
+	static void postTraversal(int index) {
+	}
+
+	// TODO finish traversal first then to this
+	public static void delete(int value) {
+
 	}
 
 	public static void find(int value) {
