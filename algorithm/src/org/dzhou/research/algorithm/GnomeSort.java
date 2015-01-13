@@ -18,5 +18,4 @@ public class GnomeSort {
 		for (int i : input)
 			System.out.println(i);
 	}
-
 }

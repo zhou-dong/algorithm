@@ -15,6 +15,10 @@ public class BinarySearchTree {
 		System.out.println("[" + findIndex + ": " + testNumber + "] ");
 	}
 
+	// TODO
+	static void traversal(int index) {
+	}
+
 	public static void find(int value) {
 		findIndex = -1;
 		recursiveFind(0, value);

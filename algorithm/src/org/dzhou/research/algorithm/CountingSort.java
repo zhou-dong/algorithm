@@ -15,5 +15,4 @@ public class CountingSort {
 		array[i] = array[j];
 		array[j] = temp;
 	}
-
 }
