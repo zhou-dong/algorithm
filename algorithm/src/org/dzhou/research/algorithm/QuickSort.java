@@ -6,9 +6,7 @@ public class QuickSort {
 		int pivot = input[0];
 		int i = 1;
 		int j = input.length - 1;
-
 		while (i != j) {
-
 			if (input[j] > pivot)
 				j--;
 			if (input[i] < pivot)

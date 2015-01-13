@@ -7,6 +7,8 @@ public class GnomeSort {
 	}
 
 	static void swap(int[] input, int i, int j) {
+		if (i == j)
+			return;
 		int temp = input[i];
 		input[i] = input[j];
 		input[j] = temp;
