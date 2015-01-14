@@ -5,23 +5,22 @@ public class QuickSort {
 	private static int[] array = null;
 
 	private static void sort(int[] input) {
-		int pivot = array[0];
-		int pivotIndex = 0;
-		int frontIndex = 1;
-		int backIndex = array.length - 1;
-
-		if (backIndex == frontIndex) {
-
-		}
-
+		array = input;
+		recursiveSort(0, 1, array.length - 1);
 	}
 
 	private static void recursiveSort(int pivotIndex, int frontIndex,
 			int backIndex) {
 		if (frontIndex == backIndex)
 			return;
+		if (frontIndex < 0 || backIndex < 0)
+			return;
+		if (backIndex == array.length || frontIndex == array.length)
+			return;
 		int pivotValue = array[pivotIndex];
 		while (true) {
+			if (backIndex < 0)
+				return;
 			int backValue = array[backIndex];
 			int frontValue = array[frontIndex];
 			if (backIndex == frontIndex) {
@@ -35,6 +34,8 @@ public class QuickSort {
 				break;
 		}
 		while (true) {
+			if (frontIndex == pivotIndex)
+				return;
 			int frontValue = array[frontIndex];
 			int backValue = array[backIndex];
 			if (frontIndex == backIndex) {
@@ -49,6 +50,8 @@ public class QuickSort {
 		}
 		if (backIndex != frontIndex)
 			swap(backIndex, frontIndex);
+		leftRecursiveSort(pivotIndex, frontIndex, backIndex);
+		rightRecursiveSort(pivotIndex, frontIndex, backIndex);
 	}
 
 	private static void leftRecursiveSort(int pivotIndex, int frontIndex,
@@ -61,9 +64,10 @@ public class QuickSort {
 
 	private static void rightRecursiveSort(int pivotIndex, int frontIndex,
 			int backIndex) {
-		int nextRightFrontIndex = pivotIndex + 1;
-		int nextRightBackIndex = backIndex;
-
+		int nextPivotIndex = pivotIndex + 1;
+		int nextFrontIndex = pivotIndex + 2;
+		int nextBackIndex = backIndex;
+		recursiveSort(nextPivotIndex, nextFrontIndex, nextBackIndex);
 	}
 
 	private static void swap(int i, int j) {
@@ -77,11 +81,11 @@ public class QuickSort {
 	public static void main(String args[]) {
 		int[] input = { 6, 8, 5, 3, 7, 9, 1, 4, 2 };
 		sort(input);
-		print(input);
+		print();
 	}
 
-	private static void print(int[] input) {
-		for (int i : input)
-			System.out.println(i);
+	private static void print() {
+		for (int i : array)
+			System.out.println(i + " ");
 	}
 }
