@@ -15,12 +15,16 @@ public class CountingSort {
 	}
 
 	public static void sort(int[] array) {
-		input = array;
-		result = new int[input.length];
-		bucket = new int[getBucketSize()];
+		prepared(array);
 		insertIntoBucket();
 		addWithAboveInBucket();
 		translationFromBucket();
+	}
+
+	private static void prepared(int[] array) {
+		input = array;
+		result = new int[input.length];
+		bucket = new int[getBucketSize()];
 	}
 
 	// 3: translation from bucket
