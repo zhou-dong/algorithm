@@ -1,21 +1,41 @@
 package org.dzhou.research.algorithm;
 
+// Similar with insertion sort
 public class GnomeSort {
 
-	public static void main(String[] args) {
+	private static int[] array;
 
+	public static int[] sort(int[] input) {
+		array = input;
+		for (int i = 1; i < array.length; i++)
+			recursiveSort(i);
+		return array;
 	}
 
-	static void swap(int[] input, int i, int j) {
+	private static void recursiveSort(int i) {
+		if (i == 0)
+			return;
+		if (array[i] >= array[i - 1])
+			return;
+		swap(i, i - 1);
+		recursiveSort(i - 1);
+	}
+
+	private static void swap(int i, int j) {
 		if (i == j)
 			return;
-		int temp = input[i];
-		input[i] = input[j];
-		input[j] = temp;
+		int temp = array[i];
+		array[i] = array[j];
+		array[j] = temp;
 	}
 
-	static void print(int[] input) {
-		for (int i : input)
-			System.out.println(i);
+	public static void main(String[] args) {
+		sort(new int[] { 6, 5, 3, 7, 8, 1, 2, 4, 4, 9, 1 });
+		print();
+	}
+
+	private static void print() {
+		for (int i : array)
+			System.out.print(i + " ");
 	}
 }
