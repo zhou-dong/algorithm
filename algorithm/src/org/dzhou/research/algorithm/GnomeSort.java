@@ -15,17 +15,10 @@ public class GnomeSort {
 	private static void recursiveSort(int i) {
 		if (i == 0)
 			return;
-		if (biggerOrEqualThenAbove(i))
+		if (array[i] >= array[i - 1])
 			return;
 		swap(i, i - 1);
 		recursiveSort(i - 1);
-	}
-
-	private static boolean biggerOrEqualThenAbove(int i) {
-		if (array[i] >= array[i - 1])
-			return true;
-		else
-			return false;
 	}
 
 	private static void swap(int i, int j) {
