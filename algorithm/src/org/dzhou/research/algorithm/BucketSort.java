@@ -2,6 +2,7 @@ package org.dzhou.research.algorithm;
 
 public class BucketSort {
 
+	private static int[] array = null;
 	private static int[] buckets = null;
 	private static int[] sortedArray = null;
 
@@ -11,23 +12,24 @@ public class BucketSort {
 	}
 
 	public static int[] sort(int[] input) {
-		sortedArray = new int[input.length];
-		buckets = new int[findbucketSize(input)];
-		insertIntoBucket(input);
+		array = input;
+		sortedArray = new int[array.length];
+		buckets = new int[findbucketSize()];
+		insertIntoBucket();
 		buildSortedArray();
 		return sortedArray;
 	}
 
-	private static int findbucketSize(int[] input) {
+	private static int findbucketSize() {
 		int result = 0;
-		for (int i : input)
+		for (int i : array)
 			if (result < i)
 				result = i;
 		return result + 1;
 	}
 
-	private static void insertIntoBucket(int[] input) {
-		for (int i : input)
+	private static void insertIntoBucket() {
+		for (int i : array)
 			buckets[i]++;
 	}
 
