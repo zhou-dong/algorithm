@@ -6,12 +6,16 @@ public class BucketSort {
 	private static int[] sortedArray = null;
 
 	public static void main(String[] args) {
-		int[] input = { 6, 5, 8, 5, 3, 7, 9, 1, 4, 2, 1, 1, 9 };
+		sort(new int[] { 6, 5, 8, 5, 3, 7, 9, 1, 4, 2, 1, 1, 9 });
+		printSortedArray();
+	}
+
+	public static int[] sort(int[] input) {
 		sortedArray = new int[input.length];
 		buckets = new int[findbucketSize(input)];
 		insertIntoBucket(input);
 		buildSortedArray();
-		printSortedArray();
+		return sortedArray;
 	}
 
 	private static int findbucketSize(int[] input) {
