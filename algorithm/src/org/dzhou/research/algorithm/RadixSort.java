@@ -46,8 +46,7 @@ public class RadixSort {
 		int maxNumber = getMaxNumber();
 		int index = 1;
 		for (int i = 0; i < Integer.MAX_VALUE; i++) {
-			index *= 10;
-			if (maxNumber / index == 0)
+			if ((maxNumber / (index *= 10)) == 0)
 				return i + 1;
 		}
 		return 0;
