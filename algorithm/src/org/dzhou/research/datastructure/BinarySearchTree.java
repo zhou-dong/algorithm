@@ -16,15 +16,15 @@ public class BinarySearchTree {
 	}
 
 	// TODO
-	static void preTraversal(int index) {
+	private static void preTraversal(int index) {
 	}
 
 	// TODO
-	static void inorderTraversal(int index) {
+	private static void inorderTraversal(int index) {
 	}
 
 	// TODO
-	static void postTraversal(int index) {
+	private static void postTraversal(int index) {
 	}
 
 	// TODO finish traversal first then to this
