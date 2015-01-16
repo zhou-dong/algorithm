@@ -45,9 +45,9 @@ public class RadixSort {
 	private static int getSortTime() {
 		int maxNumber = getMaxNumber();
 		int index = 1;
-		for (int i = 0; i < Integer.MAX_VALUE; i++) {
+		for (int i = 1; i < Integer.MAX_VALUE; i++) {
 			if ((maxNumber / (index *= 10)) == 0)
-				return i + 1;
+				return i;
 		}
 		return 0;
 	}
