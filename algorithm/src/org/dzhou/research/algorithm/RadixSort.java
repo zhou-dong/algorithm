@@ -59,7 +59,6 @@ public class RadixSort {
 			if (i > result)
 				result = i;
 		return result;
-
 	}
 
 	public static void main(String[] args) {
