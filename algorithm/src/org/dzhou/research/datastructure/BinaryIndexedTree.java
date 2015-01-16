@@ -1,6 +1,6 @@
 package org.dzhou.research.datastructure;
 
-public class BPlusTree {
+public class BinaryIndexedTree {
 
 	private static void insert() {
 	}

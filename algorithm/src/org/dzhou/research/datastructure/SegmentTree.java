@@ -1,6 +1,6 @@
 package org.dzhou.research.datastructure;
 
-public class BPlusTree {
+public class SegmentTree {
 
 	private static void insert() {
 	}
