@@ -41,8 +41,7 @@ public class UnionFind {
 		initDatas();
 		union();
 		int count = count();
-		System.out.println(count);
-		print();
+		print(count);
 	}
 
 	private static List<Integer[]> datas = new ArrayList<Integer[]>();
@@ -65,9 +64,13 @@ public class UnionFind {
 		datas.add(new Integer[] { 2, 4 });
 	}
 
-	private static void print() {
-		for (int i : array)
+	private static void print(int count) {
+		System.out.println("Group Count: " + count);
+		for (int i : array) {
+			if (i == 0)
+				continue;
 			System.out.print(i + " ");
+		}
 	}
 
 }
