@@ -66,11 +66,9 @@ public class UnionFind {
 
 	private static void print(int count) {
 		System.out.println("Group Count: " + count);
-		for (int i : array) {
-			if (i == 0)
-				continue;
-			System.out.print(i + " ");
-		}
+		for (int i : array)
+			if (i != 0)
+				System.out.print(i + " ");
 	}
 
 }
