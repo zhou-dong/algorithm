@@ -3,7 +3,7 @@ package org.dzhou.research.datastructure;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UnionFind {
+public class CopyOfUnionFind {
 
 	private static void union() {
 		for (Integer[] pair : datas)
