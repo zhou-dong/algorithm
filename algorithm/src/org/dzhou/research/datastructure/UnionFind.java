@@ -27,7 +27,6 @@ public class UnionFind {
 		}
 	}
 
-	// must do count to update last time
 	private static int count() {
 		int result = 0;
 		for (int i = 1; i < array.length; i++)
