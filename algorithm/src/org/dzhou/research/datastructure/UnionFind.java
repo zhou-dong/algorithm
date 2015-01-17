@@ -27,12 +27,12 @@ public class UnionFind {
 		}
 	}
 
+	// must do count to update last time
 	private static int count() {
 		int result = 0;
-		for (int i = 1; i < array.length; i++) {
+		for (int i = 1; i < array.length; i++)
 			if (getFather(i) == i)
 				result++;
-		}
 		return result;
 	}
 
@@ -66,11 +66,8 @@ public class UnionFind {
 
 	private static void print(int count) {
 		System.out.println("Group Count: " + count);
-		for (int i : array) {
-			if (i == 0)
-				continue;
+		for (int i = 1; i < array.length; i++)
 			System.out.print(i + " ");
-		}
 	}
 
 }
