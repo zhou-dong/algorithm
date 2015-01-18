@@ -15,7 +15,7 @@ public class BinarySearchTree {
 		System.out.println("[" + findIndex + ": " + testNumber + "] ");
 	}
 
-	// TODO
+	// TODO use recursive method to traversal
 	private static void preTraversal(int index) {
 	}
 
