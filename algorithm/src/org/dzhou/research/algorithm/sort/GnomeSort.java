@@ -1,4 +1,4 @@
-package org.dzhou.research.algorithm;
+package org.dzhou.research.algorithm.sort;
 
 // Similar with insertion sort
 public class GnomeSort {

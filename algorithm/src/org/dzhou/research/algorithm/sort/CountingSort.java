@@ -1,4 +1,4 @@
-package org.dzhou.research.algorithm;
+package org.dzhou.research.algorithm.sort;
 
 /* 1. Use the method of bucket sort to insert number into bucket . 
  * 2. Every value in bucket add the previous value into itself, to indicate how many numbers above it.

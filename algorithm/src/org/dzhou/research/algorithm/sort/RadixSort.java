@@ -1,4 +1,4 @@
-package org.dzhou.research.algorithm;
+package org.dzhou.research.algorithm.sort;
 
 import java.util.ArrayList;
 import java.util.List;
