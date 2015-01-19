@@ -1,4 +1,4 @@
-package org.dzhou.research.datastructure;
+package org.dzhou.research.algorithm.tree;
 
 import java.util.ArrayList;
 import java.util.List;

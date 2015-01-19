@@ -1,4 +1,4 @@
-package org.dzhou.research.datastructure;
+package org.dzhou.research.algorithm.tree;
 
 public class BPlusTree {
 

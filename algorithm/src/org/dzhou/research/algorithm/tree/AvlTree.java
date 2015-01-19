@@ -1,6 +1,6 @@
-package org.dzhou.research.datastructure;
+package org.dzhou.research.algorithm.tree;
 
-public class SegmentTree {
+public class AvlTree {
 
 	private static void insert() {
 	}
