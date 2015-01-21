@@ -29,7 +29,7 @@ public class BinarySearchTree {
 
 	// TODO finish traversal first then to this
 	public static void delete(int value) {
-
+		// must finish traversal then can do delete.
 	}
 
 	public static void find(int value) {
