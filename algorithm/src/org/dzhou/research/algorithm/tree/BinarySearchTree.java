@@ -16,20 +16,19 @@ public class BinarySearchTree {
 	}
 
 	// TODO use recursive method to traversal
-	private static void preTraversal(int index) {
+	static void preTraversal(int index) {
 	}
 
 	// TODO
-	private static void inorderTraversal(int index) {
+	static void inorderTraversal(int index) {
 	}
 
 	// TODO
-	private static void postTraversal(int index) {
+	static void postTraversal(int index) {
 	}
 
 	// TODO finish traversal first then to this
 	public static void delete(int value) {
-
 	}
 
 	public static void find(int value) {
