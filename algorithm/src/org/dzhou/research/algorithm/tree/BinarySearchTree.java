@@ -8,16 +8,6 @@ public class BinarySearchTree {
 
 	private static int[] tree = new int[350];
 
-	public static void main(String args[]) {
-		int[] input = { 45, 33, 23, 78, 90, 28, 64, 98, 64, 12, 53, 20, 19 };
-		for (int i = 0; i < input.length; i++)
-			insert(input[i]);
-		breadthFirst();
-		delete(45);
-		System.out.println(" ");
-		breadthFirst();
-	}
-
 	// 1.用左子树替换，选左边子树种最大的 2.用右边子树替换，选右边子树种最小的
 	public static void delete(int value) {
 		int index = find(value);
@@ -254,6 +244,16 @@ public class BinarySearchTree {
 
 	private static int rightChildIndex(int parentIndex) {
 		return 2 * parentIndex + 2;
+	}
+
+	public static void main(String args[]) {
+		int[] input = { 45, 33, 23, 78, 90, 28, 64, 98, 64, 12, 53, 20, 19 };
+		for (int i = 0; i < input.length; i++)
+			insert(input[i]);
+		breadthFirst();
+		delete(45);
+		System.out.println(" ");
+		breadthFirst();
 	}
 
 }
