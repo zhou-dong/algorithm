@@ -1,21 +1,100 @@
 package org.dzhou.research.algorithm.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
+// This java class just an example, can be improve by Object(left, data, right);
 public class BinarySearchTree {
 
 	private static int[] tree = new int[350];
-	private static int findIndex = -1;
 
 	public static void main(String args[]) {
 		int[] input = { 45, 33, 23, 78, 90, 28, 64, 98, 64, 12, 53, 20, 19 };
 		for (int i = 0; i < input.length; i++)
 			insert(input[i]);
-		printTree();
-		int testNumber = 33;
-		find(testNumber);
-		System.out.println("[" + findIndex + ": " + testNumber + "] ");
+		breadthFirst();
+		delete(45);
+		System.out.println(" ");
+		breadthFirst();
+	}
 
-		inorderTraversal(0);
+	// 1.用左子树替换，选左边子树种最大的 2.用右边子树替换，选右边子树种最小的
+	public static void delete(int value) {
+		int index = find(value);
+		if (hasChild(index) == false) {
+			tree[index] = 0;
+			return;
+		}
+		if (hasRightChild(index)) {
+			replaceWithRight(index);
+			return;
+		}
+		if (hasLeftChild(index))
+			replaceWithLeft(index);
+	}
 
+	private static boolean hasChild(int index) {
+		if (leftChildValue(index) != 0)
+			return true;
+		if (rightChildValue(index) != 0)
+			return true;
+		return false;
+	}
+
+	private static boolean hasLeftChild(int index) {
+		if (leftChildValue(index) != 0)
+			return true;
+		return false;
+	}
+
+	private static void replaceWithLeft(int index) {
+		int lefChildIndex = leftChildIndex(index);
+		int biggestIndexInLeft = findBiggestInLeft(lefChildIndex);
+		tree[index] = tree[biggestIndexInLeft];
+		tree[biggestIndexInLeft] = 0;
+		List<Integer> childrenIndex = postTraversal(biggestIndexInLeft);
+		List<Integer> childrenValue = new ArrayList<>();
+		for (int i : childrenIndex) {
+			childrenValue.add(tree[i]);
+			tree[i] = 0;
+		}
+		for (int i : childrenValue)
+			insert(i);
+	}
+
+	private static int findBiggestInLeft(int index) {
+		if (hasRightChild(index) == false)
+			return index;
+		int rightChildIndex = rightChildIndex(index);
+		return findBiggestInLeft(rightChildIndex);
+	}
+
+	private static boolean hasRightChild(int index) {
+		if (rightChildValue(index) != 0)
+			return true;
+		return false;
+	}
+
+	private static void replaceWithRight(int index) {
+		int rightchildIndex = rightChildIndex(index);
+		int smallestInRight = findSmallestInRight(rightchildIndex);
+		tree[index] = tree[smallestInRight];
+		tree[smallestInRight] = 0;
+		List<Integer> childrenIndex = postTraversal(smallestInRight);
+		List<Integer> childrenValue = new ArrayList<>();
+		for (int i : childrenIndex) {
+			childrenValue.add(tree[i]);
+			tree[i] = 0;
+		}
+		for (int i : childrenValue)
+			insert(i);
+	}
+
+	private static int findSmallestInRight(int index) {
+		if (hasLeftChild(index) == false)
+			return index;
+		int leftChildIndex = leftChildIndex(index);
+		return findSmallestInRight(leftChildIndex);
 	}
 
 	public static void breadthFirst() {
@@ -88,50 +167,50 @@ public class BinarySearchTree {
 	}
 
 	// <left> <right> <root>
-	public static void postTraversal(int index) {
+	public static List<Integer> postTraversal(int index) {
+		List<Integer> indexs = new ArrayList<>();
+		postTravel(index, indexs);
+		return indexs;
+	}
+
+	public static List<Integer> postTraversalWithRoot(int index) {
+		List<Integer> indexs = new ArrayList<>();
 		int root = tree[index];
-		postTravel(index);
-		System.out.println(root);
+		postTravel(index, indexs);
+		indexs.add(root);
+		return indexs;
 	}
 
-	private static void postTravel(int index) {
-		int left = tree[leftChildIndex(index)];
-		int right = tree[rightChildIndex(index)];
-		if (left != 0) {
-			postTraversal(leftChildIndex(index));
-			System.out.print(left + " ");
+	private static void postTravel(int index, List<Integer> indexs) {
+		if (hasLeftChild(index)) {
+			int leftChildIndex = leftChildIndex(index);
+			postTravel(leftChildIndex, indexs);
+			indexs.add(leftChildIndex);
 		}
-		if (right != 0) {
-			postTraversal(rightChildIndex(index));
-			System.out.print(right + " ");
+		if (hasRightChild(index)) {
+			int rightChildIndex = rightChildIndex(index);
+			postTravel(rightChildIndex, indexs);
+			indexs.add(rightChildIndex);
 		}
 	}
 
-	// 1.用左子树替换，选左边子树种最大的 2.用右边子树替换，选右边子树种最小的
-	public static void delete(int value) {
-
+	public static int find(int value) {
+		return recursiveFind(0, value);
 	}
 
-	public static void find(int value) {
-		findIndex = -1;
-		recursiveFind(0, value);
-	}
-
-	private static void recursiveFind(int index, int value) {
-		if (tree[index] == value) {
-			findIndex = index;
-			return;
-		}
+	private static int recursiveFind(int index, int value) {
+		if (tree[index] == value)
+			return index;
 		if (tree[index] > value) {
 			if (leftChildValue(index) == value)
-				findIndex = leftChildIndex(index);
+				return leftChildIndex(index);
 			else
-				recursiveFind(leftChildIndex(index), value);
+				return recursiveFind(leftChildIndex(index), value);
 		} else {
 			if (rightChildValue(index) == value)
-				findIndex = rightChildIndex(index);
+				return rightChildIndex(index);
 			else
-				recursiveFind(rightChildIndex(index), value);
+				return recursiveFind(rightChildIndex(index), value);
 		}
 	}
 
@@ -141,7 +220,7 @@ public class BinarySearchTree {
 
 	private static void recursiveInsert(int index, int value) {
 		if (tree[index] == value) {
-			System.out.println("duplicated value");
+			System.out.println("duplicated value: " + value);
 			return;
 		}
 		if (tree[index] == 0) {
@@ -161,14 +240,6 @@ public class BinarySearchTree {
 		}
 	}
 
-	private static int parentIndexFromLeft(int childIndex) {
-		return (childIndex - 1) / 2;
-	}
-
-	private static int parentIndexFromRight(int childIndex) {
-		return (childIndex - 2) / 2;
-	}
-
 	private static int rightChildValue(int parentIndex) {
 		return tree[rightChildIndex(parentIndex)];
 	}
@@ -183,12 +254,6 @@ public class BinarySearchTree {
 
 	private static int rightChildIndex(int parentIndex) {
 		return 2 * parentIndex + 2;
-	}
-
-	private static void printTree() {
-		for (int i = 0; i < tree.length; i++)
-			System.out.print("[" + i + ": " + tree[i] + "] ");
-		System.out.println("");
 	}
 
 }
