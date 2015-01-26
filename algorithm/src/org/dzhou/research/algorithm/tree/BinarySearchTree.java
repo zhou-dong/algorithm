@@ -15,15 +15,19 @@ public class BinarySearchTree {
 		System.out.println("[" + findIndex + ": " + testNumber + "] ");
 	}
 
-	// TODO use recursive method to traversal
+	private static void breadthFirst() {
+	}
+
+	// <root> <left> <right>
 	private static void preTraversal(int index) {
 	}
 
-	// TODO
+	// <left> <root> <right>
 	private static void inorderTraversal(int index) {
+
 	}
 
-	// TODO
+	// <left> <right> <root>
 	private static void postTraversal(int index) {
 	}
 
@@ -79,6 +83,14 @@ public class BinarySearchTree {
 			else
 				recursiveInsert(leftChildIndex(index), value);
 		}
+	}
+
+	private static int parentIndexFromLeft(int childIndex) {
+		return (childIndex - 1) / 2;
+	}
+
+	private static int parentIndexFromRight(int childIndex) {
+		return (childIndex - 2) / 2;
 	}
 
 	private static int rightChildValue(int parentIndex) {
