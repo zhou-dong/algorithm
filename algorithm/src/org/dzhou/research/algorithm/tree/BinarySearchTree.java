@@ -2,20 +2,65 @@ package org.dzhou.research.algorithm.tree;
 
 public class BinarySearchTree {
 
-	private static int[] tree = new int[100];
+	private static int[] tree = new int[350];
 	private static int findIndex = -1;
 
 	public static void main(String args[]) {
-		int[] input = { 6, 5, 3, 1, 8, 7, 2, 4, 9, 9 };
+		int[] input = { 45, 33, 23, 78, 90, 28, 64, 98, 64, 12, 53, 20, 19 };
 		for (int i = 0; i < input.length; i++)
 			insert(input[i]);
 		printTree();
-		int testNumber = 2;
+		int testNumber = 33;
 		find(testNumber);
 		System.out.println("[" + findIndex + ": " + testNumber + "] ");
+
+		breadthFirst();
+
 	}
 
-	private static void breadthFirst() {
+	public static void breadthFirst() {
+		int level = 0;
+		while (true) {
+			int[] dataInOneLevel = traversalInLevel(level);
+			if (hasNumber(dataInOneLevel) == false)
+				return;
+			System.out.print("level: " + level + " data:");
+			for (int i : dataInOneLevel)
+				if (i != 0)
+					System.out.print(" " + i);
+			System.out.println(" ");
+			level++;
+		}
+	}
+
+	private static boolean hasNumber(int[] input) {
+		for (int i : input)
+			if (i != 0)
+				return true;
+		return false;
+	}
+
+	private static int[] traversalInLevel(int level) {
+		int beginIndex = findBeginIndexInOneLevel(level);
+		int numbers = countNumbersInOneLevel(level);
+		int[] result = new int[numbers];
+		for (int i = 0; i < numbers; i++)
+			result[i] = tree[beginIndex++];
+		return result;
+	}
+
+	private static int findBeginIndexInOneLevel(int level) {
+		int result = 1;
+		for (int i = 0; i < level; i++)
+			result *= 2;
+		return result - 1;
+	}
+
+	private static int countNumbersInOneLevel(int level) {
+		int result = 1;
+		for (int i = 0; i < level; i++)
+			result *= 2;
+		return result;
 	}
 
 	// <root> <left> <right>
