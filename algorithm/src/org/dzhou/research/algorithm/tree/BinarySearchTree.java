@@ -14,7 +14,7 @@ public class BinarySearchTree {
 		find(testNumber);
 		System.out.println("[" + findIndex + ": " + testNumber + "] ");
 
-		breadthFirst();
+		inorderTraversal(0);
 
 	}
 
@@ -64,16 +64,47 @@ public class BinarySearchTree {
 	}
 
 	// <root> <left> <right>
-	private static void preTraversal(int index) {
+	public static void preTraversal(int index) {
+		int root = tree[index];
+		System.out.print(root + " ");
+		int left = tree[leftChildIndex(index)];
+		int right = tree[rightChildIndex(index)];
+		if (left != 0)
+			preTraversal(leftChildIndex(index));
+		if (right != 0)
+			preTraversal(rightChildIndex(index));
 	}
 
 	// <left> <root> <right>
-	private static void inorderTraversal(int index) {
-
+	public static void inorderTraversal(int index) {
+		int root = tree[index];
+		int left = tree[leftChildIndex(index)];
+		int right = tree[rightChildIndex(index)];
+		if (left != 0)
+			inorderTraversal(leftChildIndex(index));
+		System.out.print(root + " ");
+		if (right != 0)
+			inorderTraversal(rightChildIndex(index));
 	}
 
 	// <left> <right> <root>
-	private static void postTraversal(int index) {
+	public static void postTraversal(int index) {
+		int root = tree[index];
+		postTravel(index);
+		System.out.println(root);
+	}
+
+	private static void postTravel(int index) {
+		int left = tree[leftChildIndex(index)];
+		int right = tree[rightChildIndex(index)];
+		if (left != 0) {
+			postTraversal(leftChildIndex(index));
+			System.out.print(left + " ");
+		}
+		if (right != 0) {
+			postTraversal(rightChildIndex(index));
+			System.out.print(right + " ");
+		}
 	}
 
 	// 1.用左子树替换，选左边子树种最大的 2.用右边子树替换，选右边子树种最小的
