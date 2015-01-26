@@ -31,7 +31,7 @@ public class BinarySearchTree {
 	private static void postTraversal(int index) {
 	}
 
-	// TODO finish traversal first then to this
+	// 1.用左子树替换，选左边子树种最大的 2.用右边子树替换，选右边子树种最小的
 	public static void delete(int value) {
 
 	}
