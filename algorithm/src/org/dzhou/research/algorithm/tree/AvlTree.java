@@ -2,15 +2,23 @@ package org.dzhou.research.algorithm.tree;
 
 public class AvlTree {
 
-	void leftRotate() {
+	protected void leftRotate() {
 
 	}
 
-	void rightRotate() {
+	protected void rightRotate() {
 
 	}
 
-	void insert() {
+	protected void leftRightRotate() {
+
+	}
+
+	protected void rightLeftRotate() {
+
+	}
+
+	public void insert() {
 
 	}
 
@@ -22,7 +30,7 @@ public class AvlTree {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		int[] test = { 6, 8, 7, 4, 5, 2, 1, 9, 10 };
 	}
 
 }
