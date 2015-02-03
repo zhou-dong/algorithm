@@ -1,36 +1,96 @@
 package org.dzhou.research.algorithm.tree;
 
-public class AvlTree {
+/**
+ * Implementation of AVL tree
+ * 
+ * Base on "Justin Ethier" the implement of AvlTree and code on:
+ * https://github.com/justinethier/AVL-Tree/blob/master/AvlTree.java
+ * 
+ */
+public class AvlTree<T extends Comparable<? super T>> {
 
-	protected void leftRotate() {
+	protected static class AvlNode<T> {
+
+		protected T element;
+
+		protected AvlNode<T> leftChild;
+
+		protected AvlNode<T> rightChild;
+
+		protected int height;
+
+		public AvlNode(T element) {
+			this(element, null, null);
+		}
+
+		public AvlNode(T element, AvlNode<T> leftChild, AvlNode<T> rightChild) {
+			this.element = element;
+			this.leftChild = leftChild;
+			this.rightChild = rightChild;
+		}
 
 	}
 
-	protected void rightRotate() {
+	protected AvlNode<T> rotateWithLeftChild(AvlNode<T> node) {
+
+		AvlNode<T> result = node.leftChild;
+
+		node.leftChild = result.rightChild;
+		result.rightChild = node;
+
+		node.height = getMax(getHeight(node.leftChild),
+				getHeight(node.rightChild)) + 1;
+		result.height = getMax(getHeight(result.leftChild),
+				getHeight(result.rightChild)) + 1;
+
+		return result;
 
 	}
 
-	protected void leftRightRotate() {
+	protected AvlNode<T> doubleWithLeftChild(AvlNode<T> node) {
+		node.leftChild = rotateWithRightChild(node.leftChild);
+		return rotateWithLeftChild(node);
+	}
+
+	protected AvlNode<T> rotateWithRightChild(AvlNode<T> node) {
+
+		AvlNode<T> result = node.rightChild;
+
+		node.rightChild = result.leftChild;
+		result.leftChild = node;
+
+		node.height = getMax(getHeight(node.leftChild),
+				getHeight(node.rightChild)) + 1;
+		result.height = getMax(getHeight(node.leftChild),
+				getHeight(node.rightChild)) + 1;
+
+		return result;
 
 	}
 
-	protected void rightLeftRotate() {
+	protected AvlNode<T> doubleWithRightChild(AvlNode<T> node) {
+		node.rightChild = rotateWithLeftChild(node.rightChild);
+		return rotateWithRightChild(node);
+	}
 
+	protected int getMax(int i, int j) {
+		if (i > j)
+			return i;
+		return j;
+	}
+
+	protected int getHeight(AvlNode<T> node) {
+		return node == null ? -1 : node.height;
 	}
 
 	public void insert() {
 
 	}
 
-	void swap(int i, int j) {
-		int temp = i;
-		i = j;
-		j = temp;
-	}
-
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int[] test = { 6, 8, 7, 4, 5, 2, 1, 9, 10 };
+		for (int i : test)
+			System.out.print(i + " ");
 	}
 
 }
