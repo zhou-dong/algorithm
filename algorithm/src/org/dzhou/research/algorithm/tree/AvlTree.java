@@ -130,8 +130,6 @@ public class AvlTree<T extends Comparable<? super T>> {
 		int[] test = { 6, 8, 7, 4, 5, 2, 1, 9, 10 };
 		for (int i : test)
 			System.out.print(i + " ");
-
-		System.out.println("!!!");
 	}
 
 }
