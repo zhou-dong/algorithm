@@ -12,11 +12,8 @@ public class AvlTree<T extends Comparable<? super T>> {
 	protected static class AvlNode<T> {
 
 		protected T element;
-
 		protected AvlNode<T> leftChild;
-
 		protected AvlNode<T> rightChild;
-
 		protected int height;
 
 		public AvlNode(T element) {
@@ -60,7 +57,6 @@ public class AvlTree<T extends Comparable<? super T>> {
 			else
 				node = doubleWithRightChild(node);
 		node.height = calculateHeight(node);
-
 		return node;
 	}
 
