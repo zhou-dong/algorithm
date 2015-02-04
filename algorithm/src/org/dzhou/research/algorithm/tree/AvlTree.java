@@ -71,10 +71,8 @@ public class AvlTree<T extends Comparable<? super T>> {
 		node.leftChild = result.rightChild;
 		result.rightChild = node;
 
-		node.height = getMax(getHeight(node.leftChild),
-				getHeight(node.rightChild)) + 1;
-		result.height = getMax(getHeight(result.leftChild),
-				getHeight(result.rightChild)) + 1;
+		node.height = calculateHeight(node);
+		result.height = calculateHeight(result);
 
 		return result;
 
@@ -92,10 +90,8 @@ public class AvlTree<T extends Comparable<? super T>> {
 		node.rightChild = result.leftChild;
 		result.leftChild = node;
 
-		node.height = getMax(getHeight(node.leftChild),
-				getHeight(node.rightChild)) + 1;
-		result.height = getMax(getHeight(node.leftChild),
-				getHeight(node.rightChild)) + 1;
+		node.height = calculateHeight(node);
+		result.height = calculateHeight(result);
 
 		return result;
 
