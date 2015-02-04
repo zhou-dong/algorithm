@@ -31,6 +31,39 @@ public class AvlTree<T extends Comparable<? super T>> {
 
 	}
 
+	public AvlNode<T> insert(T element, AvlNode<T> node) throws Exception {
+
+		if (node == null) {
+			node = new AvlNode<T>(element);
+			node.height = calculateHeight(node);
+			return node;
+		}
+
+		if (element.compareTo(node.element) == 0)
+			throw new Exception("Attempting to insert duplicate value");
+
+		if (element.compareTo(node.element) < 0) {
+			node.leftChild = insert(element, node.leftChild);
+			if (gapHeightBetweenTwoNodes(node.leftChild, node.rightChild) == 2)
+				if (element.compareTo(node.leftChild.element) < 0)
+					node = rotateWithLeftChild(node);
+				else
+					node = doubleWithLeftChild(node);
+			node.height = calculateHeight(node);
+			return node;
+		}
+
+		node.rightChild = insert(element, node.rightChild);
+		if (gapHeightBetweenTwoNodes(node.rightChild, node.leftChild) == 2)
+			if (element.compareTo(node.rightChild.element) > 0)
+				node = rotateWithRightChild(node);
+			else
+				node = doubleWithRightChild(node);
+		node.height = calculateHeight(node);
+
+		return node;
+	}
+
 	protected AvlNode<T> rotateWithLeftChild(AvlNode<T> node) {
 
 		AvlNode<T> result = node.leftChild;
@@ -73,6 +106,14 @@ public class AvlTree<T extends Comparable<? super T>> {
 		return rotateWithRightChild(node);
 	}
 
+	protected int calculateHeight(AvlNode<T> node) {
+		return getMax(getHeight(node.leftChild), getHeight(node.rightChild)) + 1;
+	}
+
+	protected int gapHeightBetweenTwoNodes(AvlNode<T> a, AvlNode<T> b) {
+		return getHeight(a) - getHeight(b);
+	}
+
 	protected int getMax(int i, int j) {
 		if (i > j)
 			return i;
@@ -81,10 +122,6 @@ public class AvlTree<T extends Comparable<? super T>> {
 
 	protected int getHeight(AvlNode<T> node) {
 		return node == null ? -1 : node.height;
-	}
-
-	public void insert() {
-
 	}
 
 	public static void main(String[] args) {
