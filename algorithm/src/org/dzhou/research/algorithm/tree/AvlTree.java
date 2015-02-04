@@ -16,6 +16,7 @@ public class AvlTree<T extends Comparable<? super T>> {
 		protected AvlNode<T> leftChild;
 
 		protected AvlNode<T> rightChild;
+<<<<<<< HEAD
 
 		protected int height;
 
@@ -83,12 +84,27 @@ public class AvlTree<T extends Comparable<? super T>> {
 		return result;
 
 	}
+=======
+
+		protected int height;
+
+		public AvlNode(T element) {
+			this(element, null, null);
+		}
+
+		public AvlNode(T element, AvlNode<T> leftChild, AvlNode<T> rightChild) {
+			this.element = element;
+			this.leftChild = leftChild;
+			this.rightChild = rightChild;
+		}
+>>>>>>> 0f404eae5bfc83d2ed365131cec3da17e38460b1
 
 	protected AvlNode<T> doubleWithLeftChild(AvlNode<T> node) {
 		node.leftChild = rotateWithRightChild(node.leftChild);
 		return rotateWithLeftChild(node);
 	}
 
+<<<<<<< HEAD
 	protected AvlNode<T> rotateWithRightChild(AvlNode<T> node) {
 
 		AvlNode<T> result = node.rightChild;
@@ -100,30 +116,83 @@ public class AvlTree<T extends Comparable<? super T>> {
 		result.height = calculateHeight(result);
 
 		return result;
+=======
+	protected AvlNode<T> rotateWithLeftChild(AvlNode<T> node) {
+
+		AvlNode<T> result = node.leftChild;
+
+		node.leftChild = result.rightChild;
+		result.rightChild = node;
+
+		node.height = getMax(getHeight(node.leftChild),
+				getHeight(node.rightChild)) + 1;
+		result.height = getMax(getHeight(result.leftChild),
+				getHeight(result.rightChild)) + 1;
+
+		return result;
 
 	}
+>>>>>>> 0f404eae5bfc83d2ed365131cec3da17e38460b1
 
+	protected AvlNode<T> doubleWithLeftChild(AvlNode<T> node) {
+		node.leftChild = rotateWithRightChild(node.leftChild);
+		return rotateWithLeftChild(node);
+	}
+
+<<<<<<< HEAD
 	protected AvlNode<T> doubleWithRightChild(AvlNode<T> node) {
 		node.rightChild = rotateWithLeftChild(node.rightChild);
 		return rotateWithRightChild(node);
 	}
+=======
+	protected AvlNode<T> rotateWithRightChild(AvlNode<T> node) {
+
+		AvlNode<T> result = node.rightChild;
+
+		node.rightChild = result.leftChild;
+		result.leftChild = node;
+
+		node.height = getMax(getHeight(node.leftChild),
+				getHeight(node.rightChild)) + 1;
+		result.height = getMax(getHeight(node.leftChild),
+				getHeight(node.rightChild)) + 1;
+
+		return result;
+>>>>>>> 0f404eae5bfc83d2ed365131cec3da17e38460b1
 
 	protected int calculateHeight(AvlNode<T> node) {
 		return getMax(getHeight(node.leftChild), getHeight(node.rightChild)) + 1;
 	}
 
+<<<<<<< HEAD
+=======
+	protected AvlNode<T> doubleWithRightChild(AvlNode<T> node) {
+		node.rightChild = rotateWithLeftChild(node.rightChild);
+		return rotateWithRightChild(node);
+	}
+
+>>>>>>> 0f404eae5bfc83d2ed365131cec3da17e38460b1
 	protected int getMax(int i, int j) {
 		if (i > j)
 			return i;
 		return j;
 	}
 
+<<<<<<< HEAD
 	protected int gapHeightBetweenTwoNodes(AvlNode<T> a, AvlNode<T> b) {
 		return getHeight(a) - getHeight(b);
 	}
 
 	protected int getHeight(AvlNode<T> node) {
 		return node == null ? -1 : node.height;
+=======
+	protected int getHeight(AvlNode<T> node) {
+		return node == null ? -1 : node.height;
+	}
+
+	public void insert() {
+
+>>>>>>> 0f404eae5bfc83d2ed365131cec3da17e38460b1
 	}
 
 	public static void main(String[] args) {
