@@ -161,19 +161,26 @@ public class AvlTree<T extends Comparable<? super T>> {
 	}
 
 	public static void main(String[] args) {
+
 		AvlTree<Integer> tree = new AvlTree<>();
+
 		int[] test = { 6, 8, 7, 4, 5, 2, 1, 9, 10 };
+
 		for (int i : test)
 			tree.insert(i);
+
 		List<Integer> list = new ArrayList<Integer>();
 		tree.preTraversal(tree.root, list);
 		printList(list);
+
 		list = new ArrayList<Integer>();
 		tree.inorderTraversal(tree.root, list);
 		printList(list);
+
 		list = new ArrayList<Integer>();
 		tree.postTraversal(tree.root, list);
 		printList(list);
+
 	}
 
 	public static void printList(List<Integer> list) {
