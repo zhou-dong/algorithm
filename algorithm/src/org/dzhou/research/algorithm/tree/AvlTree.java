@@ -78,7 +78,6 @@ public class AvlTree<T extends Comparable<? super T>> {
 	}
 
 	protected AvlNode<T> rotateWithLeftChild(AvlNode<T> node) {
-
 		AvlNode<T> result = node.leftChild;
 
 		node.leftChild = result.rightChild;
@@ -88,7 +87,6 @@ public class AvlTree<T extends Comparable<? super T>> {
 		result.height = calculateHeight(result);
 
 		return result;
-
 	}
 
 	protected AvlNode<T> doubleWithLeftChild(AvlNode<T> node) {
@@ -97,7 +95,6 @@ public class AvlTree<T extends Comparable<? super T>> {
 	}
 
 	protected AvlNode<T> rotateWithRightChild(AvlNode<T> node) {
-
 		AvlNode<T> result = node.rightChild;
 
 		node.rightChild = result.leftChild;
@@ -107,7 +104,6 @@ public class AvlTree<T extends Comparable<? super T>> {
 		result.height = calculateHeight(result);
 
 		return result;
-
 	}
 
 	protected AvlNode<T> doubleWithRightChild(AvlNode<T> node) {
@@ -124,9 +120,7 @@ public class AvlTree<T extends Comparable<? super T>> {
 	}
 
 	protected int getMax(int i, int j) {
-		if (i > j)
-			return i;
-		return j;
+		return (i > j) ? i : j;
 	}
 
 	protected int getHeight(AvlNode<T> node) {
