@@ -14,10 +14,9 @@ public class BTree {
 
 		public Node(long data) {
 			datas[0] = data;
-			usedSize = 1;
 		}
 
-		protected int usedSize = 0;
+		protected int usedSize = 1;
 		protected Node parent;
 		protected Node[] children = new Node[NODE_SIZE + 1];
 		protected Long[] datas = new Long[NODE_SIZE];
