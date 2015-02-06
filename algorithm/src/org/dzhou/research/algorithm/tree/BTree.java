@@ -105,11 +105,7 @@ public class BTree {
 		Node node = new Node(data);
 		if (root == null)
 			root = node;
-		else {
-			Node newNode = insert(node, root);
-			if (newNode != null)
-				root = newNode;
-		}
+		insert(node, root);
 	}
 
 	public Node insert(Node node, Node root) {
