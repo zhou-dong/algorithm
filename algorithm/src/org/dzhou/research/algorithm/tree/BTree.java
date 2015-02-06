@@ -26,11 +26,13 @@ public class BTree {
 		}
 
 		public Node insert(Long data) {
-			if (isFull())
-				return split(bubbleSort(createArray(data)));
-			datas[usedSize] = data;
-			gnomeSort(datas);
-			usedSize++;
+			if (isLeaf()) {
+				if (isFull())
+					return split(bubbleSort(createArray(data)));
+				datas[usedSize] = data;
+				gnomeSort(datas);
+				usedSize++;
+			}
 			return null;
 		}
 
