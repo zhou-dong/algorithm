@@ -24,6 +24,8 @@ public class BTree {
 
 		public Node(long data) {
 			datas[0] = data;
+			for (int i = 0; i < datas.length; i++)
+				datas[i] = -1l;
 		}
 
 		protected int usedSize = 1;
@@ -35,15 +37,12 @@ public class BTree {
 			return (children[0] == null) ? true : false;
 		}
 
-		public Node insertData(Long data) {
-			return insertData(new Node(data));
-		}
-
-		private Node insertData(Node node) {
+		private Node insertNode(Node node) {
+			if (node == null)
+				return null;
 			if (isFull())
 				return createNewNode(node);
-			if (isLeaf())
-				leafInsert(node.datas[0]);
+			merge(node);
 			return null;
 		}
 
@@ -52,18 +51,15 @@ public class BTree {
 		}
 
 		private void merge(Node target, Node source) {
+			target.datas[usedSize] = source.datas[0];
+			Arrays.sort(datas);
+			target.usedSize++;
+			if (isLeaf())
+				return;
 			target.children[1] = source.children[0];
 			target.children[2] = source.children[1];
 			target.children[1].parent = target;
 			target.children[2].parent = target;
-			target.datas[1] = source.datas[0];
-			target.usedSize++;
-		}
-
-		private void leafInsert(long data) {
-			datas[usedSize] = data;
-			Arrays.sort(datas);
-			usedSize++;
 		}
 
 		private boolean isFull() {
@@ -107,28 +103,39 @@ public class BTree {
 	protected Node root;
 
 	public void insert(long data) {
+		Node node = new Node(data);
 		if (root == null)
-			root = new Node(data);
-
+			root = node;
+		else {
+			Node newNode = insert(node, root);
+			if (newNode != null)
+				root = newNode;
+		}
 	}
 
-	public void insert(long data, Node node) {
+	public Node insert(Node node, Node root) {
 		Node newNode = null;
-		if (node.isLeaf())
-			newNode = node.insertData(data);
-		if (data < node.datas[0])
-			insert(data, node.children[0]);
-		else if (data > node.datas[1])
-			insert(data, node.children[2]);
+		if (root.isLeaf())
+			newNode = root.insertNode(node);
 		else
-			insert(data, node.children[1]);
-		if (newNode == null)
-			return;
-		node.insertData(data);
+			newNode = insert(node, findNode(node, root));
+		return root.insertNode(newNode);
+	}
+
+	private Node findNode(Node node, Node root) {
+		if (node.datas[0] < root.datas[0])
+			return root.children[0];
+		else if (node.datas[0] > root.datas[1])
+			return root.children[2];
+		else
+			return root.children[1];
 	}
 
 	public static void main(String[] args) {
-
+		long[] test = { 6, 8, 7, 4, 5, 2, 1, 9, 10 };
+		BTree tree = new BTree();
+		for (long i : test)
+			tree.insert(i);
 	}
 
 }
