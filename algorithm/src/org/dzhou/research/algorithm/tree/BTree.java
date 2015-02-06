@@ -1,5 +1,10 @@
 package org.dzhou.research.algorithm.tree;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Two Three Tree
  *
@@ -10,7 +15,12 @@ public class BTree {
 
 	private static final int NODE_SIZE = 2;
 
-	public static class Node {
+	public static class Node implements Comparable<Node> {
+
+		@Override
+		public int compareTo(Node node) {
+			return this.datas[0].compareTo(node.datas[0]);
+		}
 
 		public Node(long data) {
 			datas[0] = data;
@@ -25,18 +35,23 @@ public class BTree {
 			return (children[0] == null) ? true : false;
 		}
 
-		public Node insert(Long data) {
-			if (isLeaf()) {
-				if (isFull())
-					return split(bubbleSort(createArray(data)));
-				datas[usedSize] = data;
-				gnomeSort(datas);
-				usedSize++;
-			}
+		public Node insertData(Long data) {
+			return insertData(new Node(data));
+		}
+
+		private Node insertData(Node node) {
+			if (isFull())
+				return createNewNode(node);
+			if (isLeaf())
+				leafInsert(node.datas[0]);
 			return null;
 		}
 
-		public void merge(Node target, Node source) {
+		private void merge(Node node) {
+			merge(this, node);
+		}
+
+		private void merge(Node target, Node source) {
 			target.children[1] = source.children[0];
 			target.children[2] = source.children[1];
 			target.children[1].parent = target;
@@ -45,75 +60,71 @@ public class BTree {
 			target.usedSize++;
 		}
 
-		public boolean isFull() {
+		private void leafInsert(long data) {
+			datas[usedSize] = data;
+			Arrays.sort(datas);
+			usedSize++;
+		}
+
+		private boolean isFull() {
 			return (usedSize == NODE_SIZE) ? true : false;
 		}
 
-		private Node split(Node[] array) {
-			Node left = array[0];
-			Node median = array[1];
-			Node right = array[2];
-			median.children[0] = left;
-			median.children[1] = right;
-			left.parent = median;
-			right.parent = median;
-			return median;
+		private Node createNewNode(Node node) {
+			List<Node> tempNodes = createTempNodes(node);
+			addChildren(tempNodes);
+			return splitTempNodes(tempNodes);
 		}
 
-		private Node[] createArray(long data) {
-			Node[] array = new Node[3];
-			array[0] = new Node(datas[0]);
-			array[1] = new Node(datas[1]);
-			array[2] = new Node(data);
-			return array;
+		private List<Node> createTempNodes(Node node) {
+			List<Node> result = new ArrayList<BTree.Node>();
+			result.add(new Node(datas[0]));
+			result.add(new Node(datas[1]));
+			result.add(node);
+			Collections.sort(result);
+			return result;
 		}
 
-		private void gnomeSort(Long[] array) {
-			for (int i = 1; i < array.length; i++)
-				recursiveSort(i, array);
+		private void addChildren(List<Node> tempNodes) {
+			tempNodes.get(0).children[0] = children[0];
+			tempNodes.get(0).children[1] = children[1];
+			tempNodes.get(2).children[0] = children[2];
 		}
 
-		private void recursiveSort(int i, Long[] array) {
-			if (i == 0)
-				return;
-			if (array[i] > array[i - 1])
-				return;
-			swap(i, array);
-			recursiveSort(i - 1, array);
+		private Node splitTempNodes(List<Node> nodes) {
+			Node leftNode = nodes.get(0);
+			Node medianNode = nodes.get(1);
+			Node rightNode = nodes.get(2);
+			medianNode.children[0] = leftNode;
+			medianNode.children[1] = rightNode;
+			leftNode.parent = medianNode;
+			rightNode.parent = medianNode;
+			return medianNode;
 		}
 
-		private void swap(int i, Long[] array) {
-			swap(i, i - 1, array);
-		}
+	}
 
-		private void swap(int i, int j, Long[] array) {
-			long temp = array[i];
-			array[i] = array[j];
-			array[j] = temp;
-		}
+	protected Node root;
 
-		private Node[] bubbleSort(Node[] array) {
-			for (int i = array.length - 1; i > 0; i--)
-				for (int j = 0; j < i; j++)
-					if (firstData(array[j]) > firstData(array[j + 1]))
-						swap(j, array);
-			return array;
-		}
+	public void insert(long data) {
+		if (root == null)
+			root = new Node(data);
 
-		private void swap(int i, Node[] array) {
-			swap(i, i + 1, array);
-		}
+	}
 
-		private void swap(int i, int j, Node[] array) {
-			Node temp = array[i];
-			array[i] = array[j];
-			array[j] = temp;
-		}
-
-		private long firstData(Node node) {
-			return node.datas[0];
-		}
-
+	public void insert(long data, Node node) {
+		Node newNode = null;
+		if (node.isLeaf())
+			newNode = node.insertData(data);
+		if (data < node.datas[0])
+			insert(data, node.children[0]);
+		else if (data > node.datas[1])
+			insert(data, node.children[2]);
+		else
+			insert(data, node.children[1]);
+		if (newNode == null)
+			return;
+		node.insertData(data);
 	}
 
 	public static void main(String[] args) {
