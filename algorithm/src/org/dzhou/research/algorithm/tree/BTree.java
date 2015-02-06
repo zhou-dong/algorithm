@@ -22,7 +22,7 @@ public class BTree {
 		protected Long[] datas = new Long[NODE_SIZE];
 
 		public boolean isLeaf() {
-			return (datas[0] == null) ? true : false;
+			return (children[0] == null) ? true : false;
 		}
 
 		public Node insert(Long data) {
