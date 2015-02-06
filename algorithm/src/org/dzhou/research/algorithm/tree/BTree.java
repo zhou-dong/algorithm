@@ -23,8 +23,7 @@ public class BTree {
 
 		public Node(long data) {
 			datas[0] = data;
-			for (int i = 0; i < datas.length; i++)
-				datas[i] = -1l;
+			datas[1] = -1l;
 		}
 
 		protected int usedSize = 1;
@@ -36,6 +35,10 @@ public class BTree {
 			return (children[0] == null) ? true : false;
 		}
 
+		private boolean isFull() {
+			return (usedSize == NODE_SIZE) ? true : false;
+		}
+
 		private Node insertNode(Node node) {
 			if (node == null)
 				return null;
@@ -45,29 +48,22 @@ public class BTree {
 			return null;
 		}
 
-		private void merge(Node node) {
-			merge(this, node);
-		}
-
-		private void merge(Node target, Node source) {
-			target.datas[usedSize] = source.datas[0];
+		private void merge(Node source) {
+			datas[usedSize] = source.datas[0];
 			Arrays.sort(datas);
-			target.usedSize++;
+			usedSize++;
 			if (isLeaf())
 				return;
-			target.children[1] = source.children[0];
-			target.children[2] = source.children[1];
-			target.children[1].parent = target;
-			target.children[2].parent = target;
-		}
-
-		private boolean isFull() {
-			return (usedSize == NODE_SIZE) ? true : false;
+			children[1] = source.children[0];
+			children[2] = source.children[1];
+			children[1].parent = this;
+			children[2].parent = this;
 		}
 
 		private Node createNewNode(Node node) {
 			List<Node> tempNodes = createTempNodes(node);
 			addChildren(tempNodes);
+			addConnection(tempNodes);
 			return splitTempNodes(tempNodes);
 		}
 
@@ -86,15 +82,15 @@ public class BTree {
 			tempNodes.get(2).children[0] = children[2];
 		}
 
+		private void addConnection(List<Node> tempNodes) {
+			tempNodes.get(1).children[0] = tempNodes.get(0);
+			tempNodes.get(1).children[1] = tempNodes.get(2);
+			tempNodes.get(0).parent = tempNodes.get(1);
+			tempNodes.get(2).parent = tempNodes.get(1);
+		}
+
 		private Node splitTempNodes(List<Node> nodes) {
-			Node leftNode = nodes.get(0);
-			Node medianNode = nodes.get(1);
-			Node rightNode = nodes.get(2);
-			medianNode.children[0] = leftNode;
-			medianNode.children[1] = rightNode;
-			leftNode.parent = medianNode;
-			rightNode.parent = medianNode;
-			return medianNode;
+			return nodes.get(1);
 		}
 
 	}
@@ -103,25 +99,27 @@ public class BTree {
 
 	public void insert(long data) {
 		Node node = new Node(data);
-		if (root == null)
+		if (root == null) {
 			root = node;
-		else {
-			Node newNode = insert(node, root);
-			if (newNode != null)
-				root = newNode;
+			return;
 		}
+		Node result = insert(node, root);
+		if (result != null)
+			root = result;
 	}
 
 	public Node insert(Node node, Node root) {
-		Node newNode = null;
 		if (root.isLeaf())
-			newNode = root.insertNode(node);
-		else
-			newNode = insert(node, findNode(node, root));
-		return root.insertNode(newNode);
+			return root.insertNode(node);
+		return root.insertNode(insert(node, findNode(node, root)));
 	}
 
 	private Node findNode(Node node, Node root) {
+		if (root.datas[1] == -1)
+			if (node.datas[0] < root.datas[0])
+				return root.children[0];
+			else
+				return root.children[1];
 		if (node.datas[0] < root.datas[0])
 			return root.children[0];
 		else if (node.datas[0] > root.datas[1])
@@ -131,19 +129,12 @@ public class BTree {
 	}
 
 	public static void main(String[] args) {
-		long[] test = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
 		BTree tree = new BTree();
-		for (long i : test)
+		for (long i = 1l; i < 16l; i++) {
+			if (i == 7)
+				System.out.println(" " + tree);
 			tree.insert(i);
-		recursive(tree.root);
-	}
-
-	private static void recursive(Node root) {
-		System.out.print(root.datas[0] + " " + root.datas[1]);
-		if (root.isLeaf())
-			return;
-		for (Node node : root.children)
-			recursive(node);
+		}
 	}
 
 }
