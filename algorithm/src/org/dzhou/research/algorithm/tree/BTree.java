@@ -62,24 +62,18 @@ public class BTree {
 
 		private Node createNewNode(Node node) {
 			List<Node> tempNodes = createTempNodes(node);
-			addChildren(tempNodes);
+			Collections.sort(tempNodes);
 			addConnection(tempNodes);
+			addChildren(tempNodes, createChildList(node));
 			return splitTempNodes(tempNodes);
 		}
 
 		private List<Node> createTempNodes(Node node) {
-			List<Node> result = new ArrayList<BTree.Node>();
+			List<Node> result = new ArrayList<>();
 			result.add(new Node(datas[0]));
 			result.add(new Node(datas[1]));
 			result.add(node);
-			Collections.sort(result);
 			return result;
-		}
-
-		private void addChildren(List<Node> tempNodes) {
-			tempNodes.get(0).children[0] = children[0];
-			tempNodes.get(0).children[1] = children[1];
-			tempNodes.get(2).children[0] = children[2];
 		}
 
 		private void addConnection(List<Node> tempNodes) {
@@ -87,6 +81,31 @@ public class BTree {
 			tempNodes.get(1).children[1] = tempNodes.get(2);
 			tempNodes.get(0).parent = tempNodes.get(1);
 			tempNodes.get(2).parent = tempNodes.get(1);
+		}
+
+		private List<Node> createChildList(Node node) {
+			List<Node> result = new ArrayList<>();
+			for (Node child : children)
+				if (child != null)
+					result.add(child);
+			for (Node child : node.children)
+				if (child != null)
+					result.add(child);
+			Collections.sort(result);
+			return result;
+		}
+
+		private void addChildren(List<Node> tempNodes, List<Node> childList) {
+			Node left = tempNodes.get(0);
+			Node right = tempNodes.get(2);
+			if (childList.size() > 0)
+				left.children[0] = childList.get(0);
+			if (childList.size() > 1)
+				left.children[1] = childList.get(1);
+			if (childList.size() > 2)
+				right.children[0] = childList.get(3);
+			if (childList.size() > 3)
+				right.children[1] = childList.get(4);
 		}
 
 		private Node splitTempNodes(List<Node> nodes) {
@@ -130,11 +149,9 @@ public class BTree {
 
 	public static void main(String[] args) {
 		BTree tree = new BTree();
-		for (long i = 1l; i < 16l; i++) {
-			if (i == 7)
-				System.out.println(" " + tree);
+		for (long i = 1l; i < 16l; i++)
 			tree.insert(i);
-		}
+		System.out.println(" " + tree);
 	}
 
 }
