@@ -101,11 +101,15 @@ public class BTree {
 		Node node = new Node(data);
 		if (root == null) {
 			root = node;
+<<<<<<< HEAD
 			return;
 		}
 		Node result = insert(node, root);
 		if (result != null)
 			root = result;
+=======
+		insert(node, root);
+>>>>>>> e2020fd9f906f68ba98b808aad81eca4a733e724
 	}
 
 	public Node insert(Node node, Node root) {
