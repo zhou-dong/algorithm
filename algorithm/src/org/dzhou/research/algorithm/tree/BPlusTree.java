@@ -1,5 +1,10 @@
 package org.dzhou.research.algorithm.tree;
 
+/**
+ * 
+ * @author dongdong
+ * 
+ */
 public class BPlusTree {
 
 	private static void insert() {
