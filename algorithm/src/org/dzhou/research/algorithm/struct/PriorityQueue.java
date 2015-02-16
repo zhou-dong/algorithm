@@ -7,11 +7,11 @@ package org.dzhou.research.algorithm.struct;
  * 
  * Normal Queue sometimes not fair to the different time complexity functions.
  * 
- * We could execute short time complexity function first
+ * We could execute short time complexity function first.
  * 
  * Improved method:
  * 
- * could use binary tree to optimize find the simplest or biggest
+ * could use binary tree to optimize find the simplest or biggest.
  */
 public class PriorityQueue {
 
@@ -57,10 +57,14 @@ public class PriorityQueue {
 	public int popTheSmallest() {
 		if (isEmpty())
 			return -1;
+		smallestToFirst();
+		return pop();
+	}
+
+	protected void smallestToFirst() {
 		int smallestIndex = findSmallest();
 		if (smallestIndex != front)
 			swap(array, smallestIndex, front);
-		return pop();
 	}
 
 	// o(n) = n
