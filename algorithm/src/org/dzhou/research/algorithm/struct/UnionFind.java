@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UnionFind {
+
 	private static void union() {
 		for (Integer[] pair : datas)
 			merge(pair[0], pair[1]);
