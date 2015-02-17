@@ -9,6 +9,13 @@ import java.util.List;
  * Two Three Tree
  *
  * Only finish insert
+ * 
+ * Different with B plus tree
+ * 
+ * 1.In B plus Tree, all the data stored in leaf
+ * 
+ * 2.Every leaf node point to next leaf node.
+ * 
  */
 public class BTree {
 
