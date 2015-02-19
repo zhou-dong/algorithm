@@ -19,7 +19,7 @@ package org.dzhou.research.algorithm.tree;
  * 2. If goes left, there is either an intersection in left or no intersections
  * in either.
  */
-public class SegmentTree<Key extends Comparable<Key>, Value> {
+public class IntervalTree<Key extends Comparable<Key>, Value> {
 
 	public void put(Key low, Key high, Value val) {
 	}
