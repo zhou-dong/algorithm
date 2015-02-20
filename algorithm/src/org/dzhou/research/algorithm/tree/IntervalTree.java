@@ -72,7 +72,7 @@ public class IntervalTree<Key extends Comparable<Key>, Value> {
 		while (node != null) {
 			if (iSIntersected(low, high, node))
 				return true;
-			if (goLeft(low, high, node))
+			if (isGoLeft(low, high, node))
 				node = node.left;
 			else
 				node = node.right;
@@ -84,7 +84,7 @@ public class IntervalTree<Key extends Comparable<Key>, Value> {
 		return low.compareTo(node.high) < 0 && high.compareTo(low) > 0;
 	}
 
-	private boolean goLeft(Key low, Key high, Node node) {
+	private boolean isGoLeft(Key low, Key high, Node node) {
 		return node != null && node.max.compareTo(low) > 0;
 	}
 
