@@ -12,7 +12,7 @@ public class SearchPointDepthFirst {
 
 	public SearchPointDepthFirst() {
 		row = map.length;
-		col = row0.length;
+		col = map[0].length;
 		initBook();
 	}
 
