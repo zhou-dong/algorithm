@@ -27,7 +27,7 @@ public class SearchPointDepthFirst {
 				book[i][j] = 0;
 	}
 
-	private int[][] next = { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };
+	private final int[][] next = { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };
 
 	public void execute(int rowIndex, int colIndex, int step) {
 		if (isArrived(rowIndex, colIndex)) {
@@ -43,10 +43,16 @@ public class SearchPointDepthFirst {
 				continue;
 			if (isBooked(nextRow, nextCol))
 				continue;
-			book[nextRow][nextCol] = 1;
+			book(nextRow, nextCol);
 			execute(nextRow, nextCol, step + 1);
-			book[nextRow][nextCol] = 0;
+			unbook(nextRow, nextCol);
 		}
+	}
+
+	private int[] aim = { 3, 2 };
+
+	private boolean isArrived(int rowIndex, int colIndex) {
+		return rowIndex == aim[0] && colIndex == aim[1];
 	}
 
 	public int min = Integer.MAX_VALUE;
@@ -56,10 +62,12 @@ public class SearchPointDepthFirst {
 			min = step;
 	}
 
-	private int[] aim = { 3, 2 };
+	private int row;
+	private int col;
 
-	private boolean isArrived(int rowIndex, int colIndex) {
-		return rowIndex == aim[0] && colIndex == aim[1];
+	private boolean isOutOfMap(int nextRow, int nextCol) {
+		return nextRow < 0 || nextRow > row - 1 || nextCol < 0
+				|| nextCol > col - 1;
 	}
 
 	private boolean isBooked(int nextRow, int nextCol) {
@@ -70,12 +78,12 @@ public class SearchPointDepthFirst {
 		return map[nextRow][nextCol] == 1;
 	}
 
-	private int row;
-	private int col;
+	private void book(int nextRow, int nextCol) {
+		book[nextRow][nextCol] = 1;
+	}
 
-	private boolean isOutOfMap(int nextRow, int nextCol) {
-		return nextRow < 0 || nextRow > row - 1 || nextCol < 0
-				|| nextCol > col - 1;
+	private void unbook(int nextRow, int nextCol) {
+		book[nextRow][nextCol] = 0;
 	}
 
 	public static void main(String[] args) {
