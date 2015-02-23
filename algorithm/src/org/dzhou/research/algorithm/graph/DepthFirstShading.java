@@ -37,15 +37,6 @@ public class DepthFirstShading {
 		initBook();
 	}
 
-	public class Note {
-		int row, col;
-
-		public Note(int row, int col) {
-			this.row = row;
-			this.col = col;
-		}
-	}
-
 	public void execute(int row, int col) {
 		for (int i = 0; i < next.length; i++) {
 			int nextRow = row + next[i][0];
