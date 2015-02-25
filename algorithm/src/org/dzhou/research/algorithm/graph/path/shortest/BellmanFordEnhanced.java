@@ -1,4 +1,4 @@
-package org.dzhou.research.algorithm.graph.path;
+package org.dzhou.research.algorithm.graph.path.shortest;
 
 public class BellmanFordEnhanced {
 
