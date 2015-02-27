@@ -1,4 +1,4 @@
-package org.dzhou.research.algorithm.graph;
+package org.dzhou.research.algorithm;
 
 public class FindNumHalfAbove {
 
