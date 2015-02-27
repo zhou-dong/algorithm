@@ -5,7 +5,7 @@ package org.dzhou.research.algorithm.graph.path.shortest;
  */
 public class BellmanFord {
 
-	int max = Integer.MAX_VALUE;
+	int max = 1000;
 	int pointNum = 5;
 	int lineNum = 5;
 
@@ -44,10 +44,12 @@ public class BellmanFord {
 	public void execute() {
 		for (int k = 0; k < pointNum; k++)
 			for (int i = 0; i < lineNum; i++)
-				if (distance[lineEnd[i]] > distance[lineStart[i]]
-						+ lineWeight[i])
-					distance[lineEnd[i]] = distance[lineStart[i]]
-							+ lineWeight[i];
+				updateDistance(i);
+	}
+
+	private void updateDistance(int i) {
+		if (distance[lineEnd[i]] > distance[lineStart[i]] + lineWeight[i])
+			distance[lineEnd[i]] = distance[lineStart[i]] + lineWeight[i];
 	}
 
 	public void displayLines() {
