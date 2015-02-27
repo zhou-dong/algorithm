@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class FindNumHalfAbove {
 
-	private Integer[] array = { 1, 6, 5, 2, 5, 8, 5, 6, 0, 8, 5, 5, 5, 5, 5 };
+	private Integer[] array = { 1, 5, 6, 5, 2, 5, 8, 5, 5, 6, 0, 8, 5, 5, 5 };
 	private List<Integer> list = new LinkedList<>(Arrays.asList(array));
 
 	public void execute() {
@@ -21,7 +21,7 @@ public class FindNumHalfAbove {
 		Iterator<Integer> iterator = list.iterator();
 		while (iterator.hasNext()) {
 			first = iterator.next();
-			if (second != first)
+			if (first != second)
 				iterator.remove();
 			second = first;
 		}
