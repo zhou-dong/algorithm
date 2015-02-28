@@ -15,7 +15,12 @@
 - Counting sort
 
 ### Tree
-
+- CompleteBinaryTree
+- Binary search Tree
+- Avl tree
+- Red Black tree
+- B tree
+- Interval tree
 
 #### Graph
 
