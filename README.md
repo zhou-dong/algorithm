@@ -1,9 +1,7 @@
 # algorithm
-Use Java to implement Algorithm and Datastructure
+## Use Java to implement Algorithm and Datastructure
 
----
-
-#### Sort Algorithm
+### Sort Algorithm
 - Bubble sort
 - Insertion sort
 - Selection sort
@@ -16,7 +14,7 @@ Use Java to implement Algorithm and Datastructure
 - Bucket sort
 - Counting sort
 
-#### Tree
+### Tree
 
 
 #### Graph
