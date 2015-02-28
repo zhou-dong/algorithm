@@ -35,5 +35,14 @@
 - Bellman ford
 
 ##### minimum tree
+- Kruskal
+- Prim
 
 #### Other Structure
+- Stack
+- Queue
+- Priority Queue
+- Hash table
+- Union find
+- Adjacency list
+- Find more than half number
