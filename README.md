@@ -1,5 +1,4 @@
-# algorithm
-## Use Java to implement Algorithm and Datastructure
+# Algorithm
 
 ### Sort
 - Bubble sort
