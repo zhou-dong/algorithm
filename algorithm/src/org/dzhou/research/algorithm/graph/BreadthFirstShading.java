@@ -3,6 +3,9 @@ package org.dzhou.research.algorithm.graph;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * @author DONG ZHOU
+ */
 public class BreadthFirstShading {
 
 	private int[] row0 = { 1, 2, 1, 0, 0, 0, 0, 0, 2, 3 };
