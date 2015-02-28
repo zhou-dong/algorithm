@@ -1,7 +1,7 @@
 # algorithm
 ## Use Java to implement Algorithm and Datastructure
 
-### Sort Algorithm
+### Sort
 - Bubble sort
 - Insertion sort
 - Selection sort
@@ -38,7 +38,7 @@
 - Kruskal
 - Prim
 
-#### Other Structure
+#### Others
 - Stack
 - Queue
 - Priority Queue
