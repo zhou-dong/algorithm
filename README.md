@@ -23,6 +23,17 @@
 - Interval tree
 
 #### Graph
+- Breadth first search
+- Depth first search
+- Flood fill
+- Less transfer
+- City map
 
+##### shortest path
+- Floyd Warshall
+- Dijkstra
+- Bellman ford
+
+##### minimum tree
 
 #### Other Structure
