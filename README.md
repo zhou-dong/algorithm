@@ -1,6 +1,6 @@
 # Algorithm
 
-### Sort
+## Sort
 - Bubble sort
 - Insertion sort
 - Selection sort
@@ -13,7 +13,7 @@
 - Bucket sort
 - Counting sort
 
-### Tree
+## Tree
 - CompleteBinaryTree
 - Binary search Tree
 - Avl tree
@@ -21,23 +21,23 @@
 - B tree
 - Interval tree
 
-#### Graph
+## Graph
 - Breadth first search
 - Depth first search
 - Flood fill
 - Less transfer
 - City map
 
-##### shortest path
+### shortest path
 - Floyd Warshall
 - Dijkstra
 - Bellman ford
 
-##### minimum tree
+### minimum tree
 - Kruskal
 - Prim
 
-#### Others
+## Others
 - Stack
 - Queue
 - Priority Queue
