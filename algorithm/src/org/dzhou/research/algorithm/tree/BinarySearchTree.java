@@ -3,7 +3,11 @@ package org.dzhou.research.algorithm.tree;
 import java.util.ArrayList;
 import java.util.List;
 
-// This java class just an example, can be improve by Object(left, data, right);
+/**
+ * This java class just an example, can be improve by Object(left, data, right);
+ * 
+ * @author DONG ZHOU
+ */
 public class BinarySearchTree {
 
 	private static int[] tree = new int[350];

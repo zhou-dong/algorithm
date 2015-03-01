@@ -1,5 +1,8 @@
 package org.dzhou.research.algorithm.sort;
 
+/**
+ * @author DONG ZHOU
+ */
 public class SelectionSort {
 
 	public static void sort(int[] input) {

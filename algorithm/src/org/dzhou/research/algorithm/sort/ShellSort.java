@@ -1,5 +1,8 @@
 package org.dzhou.research.algorithm.sort;
 
+/**
+ * @author DONG ZHOU
+ */
 public class ShellSort {
 
 	private static int[] array = null;

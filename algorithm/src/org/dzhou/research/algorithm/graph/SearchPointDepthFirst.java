@@ -1,5 +1,8 @@
 package org.dzhou.research.algorithm.graph;
 
+/**
+ * @author DONG ZHOU
+ */
 public class SearchPointDepthFirst {
 
 	private int[] row0 = { 0, 0, 1, 0 };

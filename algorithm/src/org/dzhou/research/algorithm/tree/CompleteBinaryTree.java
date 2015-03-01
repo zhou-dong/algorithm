@@ -1,5 +1,8 @@
 package org.dzhou.research.algorithm.tree;
 
+/**
+ * @author DONG ZHOU
+ */
 public class CompleteBinaryTree {
 
 	private static int[] tree = null;

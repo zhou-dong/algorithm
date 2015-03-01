@@ -1,5 +1,8 @@
 package org.dzhou.research.algorithm.graph;
 
+/**
+ * @author DONG ZHOU
+ */
 public class CityMapDepthFirst {
 
 	private int max = Integer.MAX_VALUE;

@@ -1,6 +1,10 @@
 package org.dzhou.research.algorithm.graph;
 
-/** how many combination of putting numbers into boxes */
+/**
+ * How many combination of putting numbers into boxes
+ * 
+ * @author DONG ZHOU
+ */
 public class SimpleDepthFirst {
 
 	private int max;

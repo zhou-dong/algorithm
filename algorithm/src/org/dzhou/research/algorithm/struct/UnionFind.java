@@ -3,6 +3,9 @@ package org.dzhou.research.algorithm.struct;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author DONG ZHOU
+ */
 public class UnionFind {
 
 	private static void union() {

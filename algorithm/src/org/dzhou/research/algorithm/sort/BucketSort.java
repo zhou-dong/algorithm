@@ -1,5 +1,8 @@
 package org.dzhou.research.algorithm.sort;
 
+/**
+ * @author DONG ZHOU
+ */
 public class BucketSort {
 
 	private static int[] array = null;

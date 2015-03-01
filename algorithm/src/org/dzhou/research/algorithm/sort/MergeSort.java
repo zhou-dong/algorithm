@@ -1,5 +1,8 @@
 package org.dzhou.research.algorithm.sort;
 
+/**
+ * @author DONG ZHOU
+ */
 public class MergeSort {
 
 	public static int[] recursiveSort(int[] input) {

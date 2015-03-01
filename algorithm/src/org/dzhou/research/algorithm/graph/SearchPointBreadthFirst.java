@@ -3,6 +3,9 @@ package org.dzhou.research.algorithm.graph;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * @author DONG ZHOU
+ */
 public class SearchPointBreadthFirst {
 
 	public Queue<Note> queue = new LinkedList<>();

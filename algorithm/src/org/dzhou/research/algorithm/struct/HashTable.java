@@ -9,6 +9,7 @@ import java.util.Arrays;
  *
  * Improvement: use list to store value
  * 
+ * @author DONG ZHOU
  */
 public class HashTable {
 

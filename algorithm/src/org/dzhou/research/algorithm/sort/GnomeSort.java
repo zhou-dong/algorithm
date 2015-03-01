@@ -1,6 +1,10 @@
 package org.dzhou.research.algorithm.sort;
 
-// Similar with insertion sort
+/**
+ * Similar with insertion sort
+ * 
+ * @author DONG ZHOU
+ */
 public class GnomeSort {
 
 	private static int[] array;

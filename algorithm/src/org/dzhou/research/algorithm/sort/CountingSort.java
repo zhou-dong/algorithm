@@ -1,8 +1,16 @@
 package org.dzhou.research.algorithm.sort;
 
-/* 1. Use the method of bucket sort to insert number into bucket . 
- * 2. Every value in bucket add the previous value into itself, to indicate how many numbers above it.
- * 3. Translate the position of number from bucket then add the result.*/
+/**
+ * 
+ * 1. Use the method of bucket sort to insert number into bucket .
+ * 
+ * 2. Every value in bucket add the previous value into itself, to indicate how
+ * many numbers above it.
+ * 
+ * 3. Translate the position of number from bucket then add the result.
+ * 
+ * @author DONG ZHOU
+ */
 public class CountingSort {
 
 	private static int[] result;
