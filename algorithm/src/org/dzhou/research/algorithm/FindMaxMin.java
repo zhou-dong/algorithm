@@ -1,5 +1,8 @@
 package org.dzhou.research.algorithm;
 
+/**
+ * @author DONG ZHOU
+ */
 public class FindMaxMin {
 
 	private int[] array = { -1, 1, 3, 5, 6, 9, 10, 45, 28, 6 };
