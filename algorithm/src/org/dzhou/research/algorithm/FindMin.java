@@ -5,13 +5,13 @@ package org.dzhou.research.algorithm;
  */
 public class FindMin {
 
-	private int[] array = { -1, 1, 3, 5, 6, 9, 10, 45, 28, 6 };
+	private int[] array = { -1, 1, 3, 5, 6, 9, 10, 45, 28, 6, -20 };
 
 	public int execute() {
 		int result = array[0];
-		for (int i : array)
-			if (i < result)
-				result = i;
+		for (int i = 0; i < array.length; i++)
+			if (array[i] < result)
+				result = array[i];
 		return result;
 	}
 
