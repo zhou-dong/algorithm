@@ -9,9 +9,9 @@ public class FindMax {
 
 	public int execute() {
 		int result = array[0];
-		for (int i : array)
-			if (i > result)
-				result = i;
+		for (int i = 1; i < array.length; i++)
+			if (array[i] > result)
+				result = array[i];
 		return result;
 	}
 
