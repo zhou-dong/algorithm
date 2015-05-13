@@ -46,3 +46,4 @@
 - Adjacency list
 - Find more than half number
 - Simultaneous Find min and max
+- Np complete
