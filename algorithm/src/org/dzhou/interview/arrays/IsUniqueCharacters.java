@@ -1,5 +1,9 @@
 package org.dzhou.interview.arrays;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 
  * Implement an algorithm to determine if a string has all unique character.
@@ -7,7 +11,16 @@ package org.dzhou.interview.arrays;
  * 
  * @author DONG ZHOU
  * 
- *         First should ask is the string is an ASCII string or Unicode string.
+ *         First should ask is the string is an ASCII string we know the length
+ *         of ASCII, so we can use an array to do, which running time is O(n).
+ * 
+ *         If the character may be Chinese character or other language which we
+ *         do not know how long the character set is, we can sort the string
+ *         first, then compare each character from begin to end. which running
+ *         time is O(n*log(n)).
+ * 
+ *         If we can use hash table for hash map, we also could use that, which
+ *         the running time is O(n), but will use extra space.
  */
 public class IsUniqueCharacters {
 
@@ -34,13 +47,25 @@ public class IsUniqueCharacters {
 		return true;
 	}
 
-	public boolean isUniqueChars(String input) {
-
+	public static boolean bySort(String input) {
+		char[] chars = input.toCharArray();
+		Arrays.sort(chars);
+		char check = chars[0];
+		for (int i = 1; i < chars.length; i++) {
+			if (check == chars[i])
+				return false;
+			check = chars[i];
+		}
 		return true;
 	}
 
-	public boolean byHashTable(String input) {
-
+	public static boolean byHashTable(String input) {
+		Map<Character, Boolean> map = new HashMap<>();
+		for (char c : input.toCharArray()) {
+			if (map.get(c) != null)
+				return false;
+			map.put(c, true);
+		}
 		return true;
 	}
 
@@ -49,15 +74,7 @@ public class IsUniqueCharacters {
 		return true;
 	}
 
-	public boolean bySortFirst(String input) {
-
-		return true;
-	}
-
 	public static void main(String[] args) {
-		System.out.println((int) 'a');
-
-		System.out.println(isUniqueForExtendedAsciiCode("abc e123456yhnmjff"));
-
+		System.out.print(byHashTable("abc周.."));
 	}
 }
