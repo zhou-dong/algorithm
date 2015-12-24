@@ -71,19 +71,4 @@ public class ChechPermutation {
 		return true;
 	}
 
-	public static void main(String[] args) {
-
-		System.out.println(isPermutationBySort("12345abc", "abc45123"));
-		System.out.println(isPermutationBySort("12qwaszx", "xzsawq21"));
-		System.out.println(isPermutationBySort("12qwaszx1", "xzsawq21"));
-
-		System.out.println(isPermutationByMap("12345abc", "abc45123"));
-		System.out.println(isPermutationByMap("12qwaszx", "xzsawq21"));
-		System.out.println(isPermutationByMap("12qwaszx1", "xzsawq21"));
-
-		System.out.println(isPermutationInAscii("12345abc", "abc45123"));
-		System.out.println(isPermutationInAscii("12qwaszx", "xzsawq21"));
-		System.out.println(isPermutationInAscii("12qwaszx1", "xzsawq21"));
-
-	}
 }
