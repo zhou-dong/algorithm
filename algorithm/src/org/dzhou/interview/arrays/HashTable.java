@@ -1,5 +1,6 @@
 package org.dzhou.interview.arrays;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -43,6 +44,13 @@ public class HashTable<K, V> {
 	}
 
 	public V get(K key) {
+		Entity<K, V> entity = getEntity(key);
+		if (entity == null)
+			return null;
+		return entity.value;
+	}
+
+	private Entity<K, V> getEntity(K key) {
 		if (key == null)
 			return null;
 		int hash = hash(key);
@@ -51,15 +59,41 @@ public class HashTable<K, V> {
 			return null;
 		for (Entity<K, V> entity : list)
 			if (key.equals(entity.key))
-				return entity.value;
+				return entity;
 		return null;
 	}
 
+	public void update(K key, V value) {
+		Entity<K, V> entity = getEntity(key);
+		if (entity != null)
+			entity.value = value;
+	}
+
+	public void delete(K key) {
+		if (key == null)
+			return;
+		int hash = hash(key);
+		List<Entity<K, V>> list = table[hash];
+		if (list == null || list.size() == 0)
+			return;
+		Iterator<Entity<K, V>> iterator = list.iterator();
+		while (iterator.hasNext()) {
+			Entity<K, V> entity = iterator.next();
+			if (key.equals(entity.key)) {
+				iterator.remove();
+			}
+		}
+	}
+
 	public static void main(String[] args) {
-		HashTable<String, Integer> test = new HashTable<>();
-		test.put("Dong Zhou", 6666);
-		int value = test.get("Dong Zhou");
-		System.out.println(value);
+		String key = "dongzhou";
+		HashTable<String, String> test = new HashTable<>();
+		test.put(key, "first");
+		System.out.println(test.get(key));
+		test.update(key, "second");
+		System.out.println(test.get(key));
+		test.delete(key);
+		System.out.println(test.get(key));
 	}
 
 }
