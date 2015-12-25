@@ -31,7 +31,7 @@ public class PalindromePermutation {
 		return true;
 	}
 
-	public static int[] buildCharFrequencyTable(String phrase) {
+	private static int[] buildCharFrequencyTable(String phrase) {
 		int[] table = new int['z' - 'a' + 1];
 		char[] chars = phrase.toCharArray();
 		for (char c : chars) {
@@ -42,7 +42,7 @@ public class PalindromePermutation {
 		return table;
 	}
 
-	public static int getCharNumber(char c) {
+	private static int getCharNumber(char c) {
 		if (c >= 'a' && c <= 'z')
 			return c - 'a';
 		if (c >= 'A' && c <= 'Z')
