@@ -96,7 +96,6 @@ public class PalindromePermutation {
 		else
 			bitVector &= ~mask;
 		return bitVector;
-
 	}
 
 	public static void main(String[] args) {
