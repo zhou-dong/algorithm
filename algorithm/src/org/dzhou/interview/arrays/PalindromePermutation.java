@@ -51,8 +51,27 @@ public class PalindromePermutation {
 
 	}
 
-	public static void main(String[] args) {
-		boolean test = isPermutationOfPalindrome("taco a catA");
-		System.out.println(test);
+	public static boolean isPermutationOfPalindrome2(String phrase) {
+		int oddCount = 0;
+		char[] chars = phrase.toCharArray();
+		int[] table = new int['z' - 'a' + 1];
+		for (char c : chars) {
+			int num = getCharNumber(c);
+			if (num == -1)
+				continue;
+			table[num]++;
+			if (table[num] % 2 == 1)
+				oddCount++;
+			else
+				oddCount--;
+		}
+		return oddCount <= 1;
 	}
+
+	public static void main(String[] args) {
+		String phrase = "taco a catAb";
+		System.out.println(isPermutationOfPalindrome(phrase));
+		System.out.println(isPermutationOfPalindrome2(phrase));
+	}
+
 }
