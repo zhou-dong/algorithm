@@ -68,10 +68,42 @@ public class PalindromePermutation {
 		return oddCount <= 1;
 	}
 
+	public static boolean isPermutationOfPalindromeByBit(String phrase) {
+		int bitVector = createBitVector(phrase);
+		return bitVector == 0 || isExactlyOneBitSet(bitVector);
+	}
+
+	// 0001 0000 - 1 = 0000 1111
+	// 0001 0000 & 0000 1111 = 0
+	private static boolean isExactlyOneBitSet(int bitVector) {
+		return (bitVector & (bitVector - 1)) == 0;
+	}
+
+	private static int createBitVector(String phrase) {
+		int bitVector = 0;
+		char[] chars = phrase.toCharArray();
+		for (char c : chars)
+			bitVector = toggle(bitVector, c);
+		return bitVector;
+	}
+
+	private static int toggle(int bitVector, int index) {
+		if (index == -1)
+			return bitVector;
+		int mask = 1 << index; // 1 左移 index 个位置
+		if ((mask & bitVector) == 0)
+			bitVector |= mask;
+		else
+			bitVector &= ~mask;
+		return bitVector;
+
+	}
+
 	public static void main(String[] args) {
-		String phrase = "taco a catAb";
+		String phrase = "taco aB catAb";
 		System.out.println(isPermutationOfPalindrome(phrase));
 		System.out.println(isPermutationOfPalindrome2(phrase));
+		System.out.println(isPermutationOfPalindromeByBit(phrase));
 	}
 
 }
