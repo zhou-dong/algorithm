@@ -14,7 +14,7 @@ package org.dzhou.interview.arrays;
  *         Removal:
  *
  */
-public class ChechOneAwayDistance {
+public class ChechOneAway {
 
 	public static boolean isOneAway(String first, String second) {
 		if (first.length() == second.length())
