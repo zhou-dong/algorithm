@@ -13,9 +13,46 @@ package org.dzhou.interview.arrays;
  */
 public class PalindromePermutation {
 
-	public boolean isPermutationOfPalindrome(String phrase) {
-
-		return false;
+	public static boolean isPermutationOfPalindrome(String phrase) {
+		int[] table = buildCharFrequencyTable(phrase);
+		return isMaxOneOdd(table);
 	}
 
+	private static boolean isMaxOneOdd(int[] table) {
+		boolean foundOdd = false;
+		for (int count : table) {
+			if (count % 2 == 1) {
+				if (foundOdd) {
+					return false;
+				}
+				foundOdd = true;
+			}
+		}
+		return true;
+	}
+
+	public static int[] buildCharFrequencyTable(String phrase) {
+		int[] table = new int['z' - 'a' + 1];
+		char[] chars = phrase.toCharArray();
+		for (char c : chars) {
+			int number = getCharNumber(c);
+			if (number != -1)
+				table[number]++;
+		}
+		return table;
+	}
+
+	public static int getCharNumber(char c) {
+		if (c >= 'a' && c <= 'z')
+			return c - 'a';
+		if (c >= 'A' && c <= 'Z')
+			return c - 'A';
+		return -1;
+
+	}
+
+	public static void main(String[] args) {
+		boolean test = isPermutationOfPalindrome("taco a catA");
+		System.out.println(test);
+	}
 }
