@@ -7,11 +7,11 @@ package org.dzhou.interview.arrays;
  * 
  * @author DONG ZHOU
  *
- *         Replacement:
+ *         1: Replacement
  *
- *         Insertion:
+ *         2: Insertion
  *
- *         Removal:
+ *         3: Removal
  *
  */
 public class ChechOneAway {
@@ -54,10 +54,37 @@ public class ChechOneAway {
 		return true;
 	}
 
+	public static boolean isOneEditAway(String first, String second) {
+		if (first.length() - second.length() > 1)
+			return false;
+		String s1 = first.length() < second.length() ? first : second;
+		String s2 = first.length() < second.length() ? second : first;
+		int index1 = 0;
+		int index2 = 0;
+		boolean foundDifference = false;
+		while (index1 < first.length() && index2 < second.length()) {
+			if (s1.charAt(index1) != s2.charAt(index2)) {
+				if (foundDifference)
+					return false;
+				foundDifference = true;
+				if (first.length() == second.length())
+					index1++;
+			} else
+				index1++;
+			index2++;
+		}
+		return true;
+	}
+
 	public static void main(String[] args) {
 		System.out.println(isOneAway("pale", "ple"));
 		System.out.println(isOneAway("pales", "pale"));
 		System.out.println(isOneAway("pale", "bale"));
 		System.out.println(isOneAway("pale", "ble"));
+		// test second method of isOneEditAway
+		System.out.println(isOneEditAway("pale", "ple"));
+		System.out.println(isOneEditAway("pales", "pale"));
+		System.out.println(isOneEditAway("pale", "bale"));
+		System.out.println(isOneEditAway("pale", "ble"));
 	}
 }
