@@ -15,7 +15,7 @@ import java.util.Map;
  * 
  *         count each character's appear time. O(n)
  */
-public class ChechPermutation {
+public class Permutation {
 
 	static String sort(String input) {
 		char[] chars = input.toCharArray();
