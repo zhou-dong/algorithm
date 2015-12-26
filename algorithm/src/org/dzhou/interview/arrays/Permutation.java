@@ -40,7 +40,7 @@ public class Permutation {
 		for (int i = 0; i < second.length(); i++) {
 			int val = second.charAt(i);
 			characters[val]--;
-			if (val < 0)
+			if (characters[val] < 0)
 				return false;
 		}
 		return true;
