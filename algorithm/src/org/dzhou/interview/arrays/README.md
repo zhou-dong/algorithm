@@ -37,4 +37,31 @@ In this algorithm, we only need count how many odd characters. If odd characters
 
 1. use hash table
 2. If ASCII use array
-3. Use bit operation 
+3. Use bit operation
+
+### One away
+
+Different types:
+
+Intuition algorithm already O(n) and almost do not need extra space, so we can code could be beautiful.
+
+- replacement: can have one different char.
+- insert: Also only miss single on char, all the other chars are same
+- delete: reverse as insert. 
+
+### String compression
+
+1. use string buffer or string builder to do it.
+2. If want to optimize, could check the length of compressed string first.
+
+### Rotate matrix
+
+Instead of using one layer extra space, could exchange element by element. The minimum running time is O(n^2);
+
+### Zero matrix
+
+Running time is O(n^2), the point is we do not want to update element which already been updated.
+
+### String rotation
+
+Brilliant idea: rotation of (string1) is substring of (string1 + string1) ;
