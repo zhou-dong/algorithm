@@ -2,7 +2,7 @@
 
 Array questions and strings questions are often interchangeable. 
 
-## HashTable
+## Hash table
 
 ### Info
 
@@ -11,7 +11,8 @@ Hash table is a very important data structure to optimize the running time of al
 ### Implement
 
 There are two ways to implement hash table, which are:
-	- linked list with hash code
-	- binary search tree.
+
+- linked list with hash code
+- binary search tree.
 
 We use linked list + hash code.
