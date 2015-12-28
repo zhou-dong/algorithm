@@ -38,7 +38,7 @@ public class LinkedList {
 
 	static Node deleteNode(Node head, Object data) {
 
-		if (head.data == data)
+		if (head.data.equals(data))
 			return head.next;
 
 		Node tmp = head;
@@ -62,8 +62,8 @@ public class LinkedList {
 		for (int i = 0; i < 100; i++)
 			head.appendToTail(i * 100);
 		print(head);
-		deleteNode(head, 9900);
-		deleteNode(head, 0);
+		head = deleteNode(head, 9900);
+		head = deleteNode(head, "head");
 		print(head);
 	}
 
