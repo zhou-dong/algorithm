@@ -36,17 +36,43 @@ public class LinkedList {
 
 	}
 
+	static Node deleteNode(Node head, Object data) {
+
+		if (head.data == data)
+			return head.next;
+
+		Node tmp = head;
+
+		while (tmp.next != null) {
+			if (tmp.next.data.equals(data)) {
+				tmp.next = tmp.next.next;
+				return head;
+			}
+			tmp = tmp.next;
+		}
+
+		return head;
+
+	}
+
 	public static void main(String[] args) {
 		// initial head
 		Node head = new Node("head");
 		// append elements to tail
 		for (int i = 0; i < 100; i++)
 			head.appendToTail(i * 100);
-		// print all the elements
+		print(head);
+		deleteNode(head, 9900);
+		deleteNode(head, 0);
+		print(head);
+	}
+
+	static void print(Node head) {
 		while (head != null) {
-			System.out.println(head.data);
+			System.out.print(head.data + " ");
 			head = head.next;
 		}
+		System.out.println();
 	}
 
 }
