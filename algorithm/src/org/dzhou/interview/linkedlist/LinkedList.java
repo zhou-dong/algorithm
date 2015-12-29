@@ -1,37 +1,6 @@
 package org.dzhou.interview.linkedlist;
 
-import java.util.HashSet;
-
 public class LinkedList {
-
-	public static void deleteDups3(Node head) {
-		HashSet<Object> set = new HashSet<>();
-		Node previous = null;
-		while (head != null) {
-			if (set.contains(head.data))
-				previous.next = head.next;
-			else {
-				set.add(head.data);
-				previous = head;
-			}
-			head = head.next;
-		}
-	}
-
-	// not efficient, running time is O(n^2)
-	public static void deleteDups2(Node head) {
-		Node current = head;
-		while (current != null) {
-			Node runner = current;
-			while (runner.next != null) {
-				if (runner.next.data == current.data)
-					runner.next = runner.next.next;
-				else
-					runner = runner.next;
-			}
-			current = current.next;
-		}
-	}
 
 	public static void main(String[] args) {
 		// initial head
@@ -52,12 +21,14 @@ public class LinkedList {
 		System.out.print("Add dups: ");
 		print(head);
 		DeleteDups.deleteDups(head);
-		System.out.print("Rm dups: ");
+		System.out.print("RM dups: ");
 		print(head);
 		for (int i = 0; i < 10; i++)
 			head.appendToTail(i + 3);
+		System.out.print("Add dups: ");
 		print(head);
-		deleteDups2(head);
+		System.out.print("RM dups: ");
+		DeleteDups.deleteDups2(head);
 		print(head);
 
 	}
