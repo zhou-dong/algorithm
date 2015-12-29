@@ -37,7 +37,20 @@ public class LinkedList {
 		DeleteMiddleNode.deleteNode(head);
 		DeleteMiddleNode.deleteNode(head);
 		DeleteMiddleNode.deleteNode(head);
+		System.out.print("RM first 3 node: ");
 		print(head);
+		testPartition();
+	}
+
+	public static void testPartition() {
+		Node node = new Node(10);
+		for (int i = 0; i < 20; i++) {
+			int data = (int) (Math.random() * 30);
+			node.appendToTail(data);
+		}
+		print(node);
+		Partition.partition(node, 15);
+		print(node);
 	}
 
 	static void print(Node head) {
