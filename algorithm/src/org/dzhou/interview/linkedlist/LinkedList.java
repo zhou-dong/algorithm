@@ -4,7 +4,7 @@ import java.util.HashSet;
 
 public class LinkedList {
 
-	public static void deleteDups(Node head) {
+	public static void deleteDups3(Node head) {
 		HashSet<Object> set = new HashSet<>();
 		Node previous = null;
 		while (head != null) {
@@ -39,16 +39,20 @@ public class LinkedList {
 		// append elements to tail
 		for (int i = 0; i < 20; i++)
 			head.appendToTail(i);
+		System.out.print("Initial list: ");
 		print(head);
 		head = Node.deleteNode(head, 19);
 		head = Node.deleteNode(head, 18);
 		head = Node.deleteNode(head, -1);
+		System.out.print("removed list: ");
 		print(head);
 		// append duplicate data
 		for (int i = 0; i < 10; i++)
 			head.appendToTail(i);
+		System.out.print("Add dups: ");
 		print(head);
-		deleteDups(head);
+		DeleteDups.deleteDups(head);
+		System.out.print("Rm dups: ");
 		print(head);
 		for (int i = 0; i < 10; i++)
 			head.appendToTail(i + 3);
