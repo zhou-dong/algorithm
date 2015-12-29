@@ -40,6 +40,7 @@ public class LinkedList {
 		System.out.print("RM first 3 node: ");
 		print(head);
 		testPartition();
+		testPartition2();
 	}
 
 	public static void testPartition() {
@@ -49,7 +50,18 @@ public class LinkedList {
 			node.appendToTail(data);
 		}
 		print(node);
-		Partition.partition(node, 15);
+		node = Partition.partition(node, 15);
+		print(node);
+	}
+
+	public static void testPartition2() {
+		Node node = new Node(10);
+		for (int i = 0; i < 20; i++) {
+			int data = (int) (Math.random() * 30);
+			node.appendToTail(data);
+		}
+		print(node);
+		node = Partition.partition2(node, 15);
 		print(node);
 	}
 

@@ -20,6 +20,8 @@ public class Partition {
 		Node afterStart = null;
 		Node afterEnd = null;
 		while (head != null) {
+			Node next = head.next;
+			head.next = null;
 			if (head.data < x) {
 				if (beforeStart == null) {
 					beforeStart = head;
@@ -37,12 +39,30 @@ public class Partition {
 					afterEnd = head;
 				}
 			}
-			head = head.next;
+			head = next;
 		}
 		if (beforeStart == null)
 			return afterStart;
 		beforeEnd.next = afterStart;
 		return beforeStart;
+	}
+
+	public static Node partition2(Node node, int x) {
+		Node head = node;
+		Node tail = node;
+		while (node != null) {
+			Node next = node.next;
+			if (node.data < x) {
+				node.next = head;
+				head = node;
+			} else {
+				tail.next = node;
+				tail = node;
+			}
+			node = next;
+		}
+		tail.next = null;
+		return head;
 	}
 
 }
