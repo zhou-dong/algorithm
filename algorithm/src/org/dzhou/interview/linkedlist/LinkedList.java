@@ -33,6 +33,7 @@ public class LinkedList {
 		KthToLast.printKthTolast(head, 4);
 		System.out.println(KthToLast.kthNodeToLast(head, 4).data);
 		System.out.println(KthToLast.kthNodeToLast2(head, 4).data);
+		System.out.println(KthToLast.kthNodeToLast3(head, 4).data);
 	}
 
 	static void print(Node head) {

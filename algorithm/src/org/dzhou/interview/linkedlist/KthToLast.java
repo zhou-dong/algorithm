@@ -48,4 +48,19 @@ public class KthToLast {
 		return result;
 	}
 
+	public static Node kthNodeToLast3(Node head, int k) {
+		Node node1 = head;
+		Node node2 = head;
+		for (int i = 0; i < k; i++) {
+			if (node1 == null)
+				return null;
+			node1 = node1.next;
+		}
+		while (node1 != null) {
+			node1 = node1.next;
+			node2 = node2.next;
+		}
+		return node2;
+	}
+
 }
