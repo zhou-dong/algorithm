@@ -34,6 +34,10 @@ public class LinkedList {
 		System.out.println(KthToLast.kthNodeToLast(head, 4).data);
 		System.out.println(KthToLast.kthNodeToLast2(head, 4).data);
 		System.out.println(KthToLast.kthNodeToLast3(head, 4).data);
+		DeleteMiddleNode.deleteNode(head);
+		DeleteMiddleNode.deleteNode(head);
+		DeleteMiddleNode.deleteNode(head);
+		print(head);
 	}
 
 	static void print(Node head) {
