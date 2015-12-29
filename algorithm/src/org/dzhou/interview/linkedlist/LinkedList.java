@@ -30,7 +30,9 @@ public class LinkedList {
 		System.out.print("RM dups: ");
 		DeleteDups.deleteDups2(head);
 		print(head);
-
+		KthToLast.printKthTolast(head, 4);
+		System.out.println(KthToLast.kthNodeToLast(head, 4).data);
+		System.out.println(KthToLast.kthNodeToLast2(head, 4).data);
 	}
 
 	static void print(Node head) {
