@@ -57,4 +57,9 @@ public class Palindrome {
 		return isEqual(node, reverse);
 	}
 
+	public static boolean isPalindrome2(Node node) {
+
+		return true;
+	}
+
 }
