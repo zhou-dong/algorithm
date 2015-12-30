@@ -79,4 +79,9 @@ public class Palindrome {
 		return true;
 	}
 
+	public static boolean isPalindrome3(Node node) {
+
+		return true;
+	}
+
 }
