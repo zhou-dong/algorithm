@@ -1,5 +1,7 @@
 package org.dzhou.interview.linkedlist;
 
+import java.util.Stack;
+
 /**
  * 
  * Implement a function to check if a linked list is a palindrome.
@@ -58,7 +60,22 @@ public class Palindrome {
 	}
 
 	public static boolean isPalindrome2(Node node) {
-
+		Stack<Integer> stack = new Stack<>();
+		Node fast = node;
+		Node slow = node;
+		while (fast != null && fast.next != null) {
+			stack.add(slow.data);
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+		if (fast != null)
+			slow = slow.next;
+		while (slow != null) {
+			int top = stack.pop().intValue();
+			if (top != slow.data)
+				return false;
+			slow = slow.next;
+		}
 		return true;
 	}
 
