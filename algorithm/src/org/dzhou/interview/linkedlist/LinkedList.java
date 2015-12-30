@@ -44,6 +44,7 @@ public class LinkedList {
 		testReverse();
 		isPalindrome();
 		isPalindrome2();
+		isPalindrome3();
 	}
 
 	public static void testPartition() {
@@ -96,6 +97,16 @@ public class LinkedList {
 		node.appendToTail(1);
 		node.appendToTail(0);
 		boolean isEqual = Palindrome.isPalindrome2(node);
+		System.out.println(isEqual);
+	}
+
+	public static void isPalindrome3() {
+		Node node = new Node(0);
+		node.appendToTail(1);
+		node.appendToTail(2);
+		node.appendToTail(1);
+		node.appendToTail(0);
+		boolean isEqual = Palindrome.isPalindrome3(node);
 		System.out.println(isEqual);
 	}
 

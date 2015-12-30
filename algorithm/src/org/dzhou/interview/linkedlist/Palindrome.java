@@ -80,8 +80,40 @@ public class Palindrome {
 	}
 
 	public static boolean isPalindrome3(Node node) {
+		int length = lengthOfList(node);
+		return isPalindromeRecurse(node, length).result;
+	}
 
-		return true;
+	static class ResultOfReverse {
+		public Node node;
+		public boolean result;
+
+		public ResultOfReverse(Node node, boolean result) {
+			this.node = node;
+			this.result = result;
+		}
+	}
+
+	static ResultOfReverse isPalindromeRecurse(Node head, int length) {
+		if (head == null || length == 0)
+			return new ResultOfReverse(head, true);
+		else if (length == 1)
+			return new ResultOfReverse(head.next, true);
+		ResultOfReverse result = isPalindromeRecurse(head.next, length - 2);
+		if (result.result == false || result.node == null)
+			return result;
+		result.result = (result.node.data == head.data);
+		result.node = result.node.next;
+		return result;
+	}
+
+	static int lengthOfList(Node node) {
+		int length = 0;
+		while (node != null) {
+			length++;
+			node = node.next;
+		}
+		return length;
 	}
 
 }
