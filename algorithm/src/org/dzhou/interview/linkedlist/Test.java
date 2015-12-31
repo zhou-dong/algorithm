@@ -1,6 +1,6 @@
 package org.dzhou.interview.linkedlist;
 
-public class LinkedList {
+public class Test {
 
 	public static void main(String[] args) {
 		// initial head
