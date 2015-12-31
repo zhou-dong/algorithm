@@ -9,6 +9,11 @@ Two elements:
 1. data in node.
 2. reference of next node.
 
+Method:
+
+1. appendToTail
+2. delete
+
 #### Remove duplicates
 
 1. use hash table
