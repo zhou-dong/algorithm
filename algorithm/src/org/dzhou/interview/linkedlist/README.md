@@ -21,3 +21,27 @@ Method:
 
 #### kth to last
 
+- recursive (mainly use recursive and can improve code).
+
+#### Partition
+
+- can improve in coding 
+
+#### Palindrome
+
+1. use recursive to create a reverse list, then compare.
+2. use stack to store elements, then compare.
+3. use recursive go the middle of the list, then compare two elements leave from the middle.
+
+#### Intersection
+
+1. use hash set to detect
+2. If two lists intersection with each other, after the intersection node all node will be same.
+
+#### Loop detection
+
+In a loop, two pointer, slower with speed one, faster with speed two
+
+1. If the go from the point, there will meet at the same point
+2. If faster have k element beyond, they will meet at loopSize - k distance to start element.
+3. from head to start element also k elements.
