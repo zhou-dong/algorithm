@@ -47,6 +47,7 @@ public class LinkedList {
 		isPalindrome3();
 		testSizeAndTail();
 		testIntersection();
+		testLoopDetection();
 	}
 
 	public static void testPartition() {
@@ -151,6 +152,19 @@ public class LinkedList {
 		}
 		second.next = intersection;
 		Node result = Intersection.findIntersection(first, second);
+		System.out.println(result.data);
+	}
+
+	static void testLoopDetection() {
+		Node node = new Node(88);
+		Node loopPointer = null;
+		for (int i = 0; i < 6; i++) {
+			int data = (int) (Math.random() * 30);
+			node.appendToTail(data);
+			loopPointer = node.next;
+		}
+		loopPointer.next = node;
+		Node result = LoopDetection.findBegining(node);
 		System.out.println(result.data);
 	}
 }
