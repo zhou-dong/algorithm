@@ -8,3 +8,11 @@ Two elements:
 
 1. data in node.
 2. reference of next node.
+
+#### Remove duplicates
+
+1. use hash table
+2. two iterators
+
+#### kth to last
+
