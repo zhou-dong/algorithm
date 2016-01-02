@@ -3,12 +3,12 @@ package org.dzhou.interview.stackandqueue;
 import java.util.EmptyStackException;
 
 /**
- * 
  * Practice of "cracking the code interview"
  * 
  * @author DONG ZHOU
  *
  * @param <T>
+ * 
  */
 public class Stack<T> {
 
