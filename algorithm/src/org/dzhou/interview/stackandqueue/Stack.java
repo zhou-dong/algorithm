@@ -1,4 +1,4 @@
-package org.dzhou.interview.preview;
+package org.dzhou.interview.stackandqueue;
 
 import java.util.EmptyStackException;
 
