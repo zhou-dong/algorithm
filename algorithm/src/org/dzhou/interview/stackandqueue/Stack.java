@@ -34,9 +34,9 @@ public class Stack<T> {
 	public T pop() {
 		if (top == null)
 			throw new EmptyStackException();
-		Node<T> result = top;
+		T result = top.data;
 		top = top.next;
-		return result.data;
+		return result;
 	}
 
 	public T peek() {
