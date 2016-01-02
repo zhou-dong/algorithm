@@ -1,4 +1,4 @@
-package org.dzhou.interview.arrays;
+package org.dzhou.interview.arrayandstring;
 
 /**
  * There are three types of edits that can be performed on strings: insert a

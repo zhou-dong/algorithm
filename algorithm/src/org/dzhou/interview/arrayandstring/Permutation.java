@@ -1,4 +1,4 @@
-package org.dzhou.interview.arrays;
+package org.dzhou.interview.arrayandstring;
 
 import java.util.Arrays;
 import java.util.HashMap;

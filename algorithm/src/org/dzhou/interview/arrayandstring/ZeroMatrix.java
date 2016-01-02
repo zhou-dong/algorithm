@@ -1,4 +1,4 @@
-package org.dzhou.interview.arrays;
+package org.dzhou.interview.arrayandstring;
 
 /**
  * Write an algorithm such that if an element in an M * N matrix is 0, it's
