@@ -37,10 +37,10 @@ public class FixedMultiStack {
 	public int pop(int stackNum) {
 		if (isEmpty(stackNum))
 			throw new EmptyStackException();
-		sizes[stackNum]--;
 		int topIndex = indexOfTop(stackNum);
 		int value = values[topIndex];
 		values[topIndex] = 0;
+		sizes[stackNum]--;
 		return value;
 	}
 
