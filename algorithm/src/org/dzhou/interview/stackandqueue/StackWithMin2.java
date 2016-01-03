@@ -10,29 +10,29 @@ package org.dzhou.interview.stackandqueue;
  * @author DONG ZHOU
  *
  */
-public class StackWithMin extends Stack<NodeWithMin> {
+public class StackWithMin2 extends Stack<Integer> {
+
+	Stack<Integer> minStack;
+
+	public StackWithMin2() {
+		minStack = new Stack<>();
+	}
 
 	public void push(int value) {
-		int newMin = Math.max(value, min());
-		super.push(new NodeWithMin(value, newMin));
+		minStack.push(Math.max(value, min()));
+		super.push(value);
+	}
+
+	public Integer pop() {
+		minStack.pop();
+		return super.pop();
 	}
 
 	public int min() {
 		if (this.isEmpty())
 			return Integer.MAX_VALUE;
 		else
-			return this.peek().min;
-	}
-}
-
-class NodeWithMin {
-
-	public int value;
-	public int min;
-
-	public NodeWithMin(int value, int min) {
-		this.value = value;
-		this.min = min;
+			return minStack.peek();
 	}
 
 }
