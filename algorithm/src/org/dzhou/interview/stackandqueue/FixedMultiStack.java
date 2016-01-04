@@ -12,10 +12,6 @@ import java.util.EmptyStackException;
  */
 public class FixedMultiStack {
 
-	public class FullStackException extends RuntimeException {
-		private static final long serialVersionUID = 1L;
-	}
-
 	private int numberOfStacks = 3;
 	private int stackCapacity;
 	private int[] values;
@@ -63,4 +59,8 @@ public class FixedMultiStack {
 		int size = sizes[stackNum];
 		return offset + size - 1;
 	}
+}
+
+class FullStackException extends RuntimeException {
+	private static final long serialVersionUID = 1L;
 }
