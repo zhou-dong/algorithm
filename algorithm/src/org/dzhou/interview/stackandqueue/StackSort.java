@@ -1,7 +1,5 @@
 package org.dzhou.interview.stackandqueue;
 
-import java.util.Comparator;
-
 /**
  * Practice of "cracking the code interview"
  * 
@@ -20,7 +18,7 @@ public class StackSort {
 		Stack<Integer> result = new Stack<>();
 		while (!stack.isEmpty()) {
 			Integer tmp = stack.pop();
-			while (!result.isEmpty() && result.peek() > tmp) {
+			while (!result.isEmpty() && result.peek() < tmp) {
 				stack.push(result.pop());
 			}
 			result.push(tmp);
