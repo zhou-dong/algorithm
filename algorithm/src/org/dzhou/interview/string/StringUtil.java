@@ -1,6 +1,19 @@
 package org.dzhou.interview.string;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringUtil {
+
+	public static List<String> findMatcher(String string, String regex) {
+		Matcher matcher = Pattern.compile(regex).matcher(string);
+		List<String> result = new ArrayList<>();
+		while (matcher.find())
+			result.add(matcher.group());
+		return result;
+	}
 
 	public static String replace(String word, char gone, char here) {
 		char[] result = word.toCharArray();
