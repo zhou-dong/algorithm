@@ -24,11 +24,13 @@ public class Stack<T> {
 	}
 
 	private Node<T> top;
+	public int size = 0;
 
 	public void push(T item) {
 		Node<T> node = new Node<T>(item);
 		node.next = top;
 		top = node;
+		size++;
 	}
 
 	public T pop() {
@@ -36,6 +38,7 @@ public class Stack<T> {
 			throw new EmptyStackException();
 		T result = top.data;
 		top = top.next;
+		size--;
 		return result;
 	}
 
