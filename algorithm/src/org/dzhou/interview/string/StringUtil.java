@@ -2,6 +2,14 @@ package org.dzhou.interview.string;
 
 public class StringUtil {
 
+	public static String replace(String word, char gone, char here) {
+		char[] result = word.toCharArray();
+		for (int i = 0; i < result.length; i++)
+			if (result[i] == gone)
+				result[i] = here;
+		return new String(result);
+	}
+
 	public static int indexOf(String string, char character) {
 		for (int i = 0; i < string.length(); i++)
 			if (character == string.charAt(i))
@@ -35,4 +43,5 @@ public class StringUtil {
 	public static boolean isEmpty(char[] chars) {
 		return (chars == null || chars.length == 0);
 	}
+
 }

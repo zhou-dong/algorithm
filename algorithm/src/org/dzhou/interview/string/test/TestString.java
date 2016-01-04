@@ -7,6 +7,12 @@ import org.junit.Test;
 public class TestString {
 
 	@Test
+	public void testReplace() {
+		String word = "dong zhou and dong dong";
+		Assert.assertEquals("Dong zhou anD Dong Dong", StringUtil.replace(word, 'd', 'D'));
+	}
+
+	@Test
 	public void testIndexOf() {
 		String str = "dong zhou 2016 01 04";
 		Assert.assertEquals(5, StringUtil.indexOf(str, 'z'));
