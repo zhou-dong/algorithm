@@ -65,3 +65,19 @@ attention: lazy method
 
 #### Sort of Stack
 
+use additional stack to sort one stack
+
+```Java
+public static Stack<Integer> sort(Stack<Integer> stack) {
+	Stack<Integer> result = new Stack<>();
+	while (!stack.isEmpty()) {
+		Integer tmp = stack.pop();
+		while (!result.isEmpty() && result.peek() < tmp) {
+			stack.push(result.pop());
+		}
+		result.push(tmp);
+	}
+	return result;
+}
+```
+
