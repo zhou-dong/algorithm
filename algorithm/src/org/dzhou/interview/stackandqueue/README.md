@@ -81,3 +81,22 @@ public static Stack<Integer> sort(Stack<Integer> stack) {
 }
 ```
 
+#### Stack With minimum
+
+every time pop from stack get the minimum element of this stack, two type:
+
+1. use another stack to store the minimum element of stack in current stage
+2. every element of stack hold the minimum element of itself.
+
+### Set of stacks
+
+add stacks into a list
+
+- if one stack is full, add one more stack
+- if one stack is empty, remove it from list
+
+#### Animal Queue
+
+Just normal implementation, use two queue to implement two types of animal which are dog and cat.
+
+In this implementation, can practice how to use linked list as a queue. And practice design pattern.
