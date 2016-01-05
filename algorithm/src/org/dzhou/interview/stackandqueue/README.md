@@ -1,5 +1,9 @@
 # Stack and Queue
 
+In lots of case, instead of using recursive, we can use stack to implement same idea.
+
+In the load balance, queue is an very important structure.
+
 ### Linked List
 
 Linked List is same as Queue.
