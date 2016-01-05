@@ -95,6 +95,24 @@ public class RegularExpression {
 		testLength("Hello world", " ", 1);
 	}
 
+	@Test
+	public void wordsInSentence() {
+		String sentence = "Welcome to the first module in the second course 2016 01 04.";
+		List<String> words = StringUtil.wordsInSentence(sentence);
+		Assert.assertEquals(9, words.size());
+	}
+
+	@Test
+	public void sentencesInParagraph() {
+		StringBuffer paragraph = new StringBuffer();
+		paragraph.append("Welcome to the first module in the second course.");
+		paragraph.append("Today is  2016 01 04.");
+		paragraph.append("Are you ready?");
+		paragraph.append("Let's go!");
+		List<String> sentence = StringUtil.sentencesInParagraph(paragraph.toString());
+		Assert.assertEquals(4, sentence.size());
+	}
+
 	public void testLength(String input, String regex, int length) {
 		List<String> result = StringUtil.findMatcher(input, regex);
 		Assert.assertEquals(length, result.size());

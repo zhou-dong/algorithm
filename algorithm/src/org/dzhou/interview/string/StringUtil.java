@@ -7,6 +7,14 @@ import java.util.regex.Pattern;
 
 public class StringUtil {
 
+	public static List<String> sentencesInParagraph(String paragraph) {
+		return findMatcher(paragraph, "[^.?!]+");
+	}
+
+	public static List<String> wordsInSentence(String sentence) {
+		return findMatcher(sentence, "[a-zA-Z]+");
+	}
+
 	public static List<String> findMatcher(String string, String regex) {
 		Matcher matcher = Pattern.compile(regex).matcher(string);
 		List<String> result = new ArrayList<>();
