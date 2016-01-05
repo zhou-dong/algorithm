@@ -114,7 +114,7 @@ public class RegularExpression {
 	}
 
 	public void testLength(String input, String regex, int length) {
-		List<String> result = StringUtil.findMatcher(input, regex);
+		List<String> result = StringUtil.getTokens(input, regex);
 		Assert.assertEquals(length, result.size());
 	}
 

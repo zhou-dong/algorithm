@@ -8,14 +8,14 @@ import java.util.regex.Pattern;
 public class StringUtil {
 
 	public static List<String> sentencesInParagraph(String paragraph) {
-		return findMatcher(paragraph, "[^.?!]+");
+		return getTokens(paragraph, "[^.?!]+");
 	}
 
 	public static List<String> wordsInSentence(String sentence) {
-		return findMatcher(sentence, "[a-zA-Z]+");
+		return getTokens(sentence, "[a-zA-Z]+");
 	}
 
-	public static List<String> findMatcher(String string, String regex) {
+	public static List<String> getTokens(String string, String regex) {
 		Matcher matcher = Pattern.compile(regex).matcher(string);
 		List<String> result = new ArrayList<>();
 		while (matcher.find())
