@@ -1,12 +1,18 @@
 package org.dzhou.interview.treeandgraph;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class GraphAdjList extends Graph2 {
 
 	private Map<Integer, ArrayList<Integer>> adjListsMap;
+
+	public GraphAdjList() {
+		super();
+		adjListsMap = new HashMap<Integer, ArrayList<Integer>>();
+	}
 
 	@Override
 	public void addvertex() {
@@ -21,7 +27,7 @@ public class GraphAdjList extends Graph2 {
 
 	@Override
 	public List<Integer> getNeighbors(int vertex) {
-		return adjListsMap.get(vertex);
+		return new ArrayList<>(adjListsMap.get(vertex));
 	}
 
 }
