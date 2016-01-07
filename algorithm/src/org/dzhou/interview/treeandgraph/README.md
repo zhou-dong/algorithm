@@ -21,3 +21,5 @@ Adjacent matrix:
 
 - index of rows or columns represent nodes.
 - data in rows or columns represent edges.
+
+**Matrix multiplication for finding n hop neighbors**
