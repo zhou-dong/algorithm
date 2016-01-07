@@ -33,7 +33,7 @@ public class GraphAdjMatrix extends Graph2 {
 	}
 
 	@Override
-	public void addEdges(int vertex1, int vertex2, int weight) {
+	public void addEdge(int vertex1, int vertex2, int weight) {
 		adjMatrix[vertex1][vertex2] = weight;
 	}
 

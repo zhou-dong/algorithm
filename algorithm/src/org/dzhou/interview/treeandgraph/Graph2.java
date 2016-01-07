@@ -14,7 +14,7 @@ public abstract class Graph2 {
 
 	public abstract void addvertex();
 
-	public abstract void addEdges(int vertex1, int vertex2, int weight);
+	public abstract void addEdge(int vertex1, int vertex2, int weight);
 
 	public abstract List<Integer> getNeighbors(int vertex);
 
