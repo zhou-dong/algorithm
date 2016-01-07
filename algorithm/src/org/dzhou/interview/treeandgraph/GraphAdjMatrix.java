@@ -11,9 +11,9 @@ public class GraphAdjMatrix extends Graph2 {
 	public List<Integer> getNeighbors(int vertex) {
 		List<Integer> result = new LinkedList<>();
 		int[] rows = adjMatrix[vertex];
-		for (int i = 0; i < rows.length; i++) {
-			if (rows[i] != 0)
-				result.add(i);
+		for (int j = 0; j < rows.length; j++) {
+			if (rows[j] != 0)
+				result.add(j);
 		}
 		return result;
 	}
