@@ -16,3 +16,8 @@ What's the maximum number of edges in a directed graph with n vertices?
 What's the maximum number of edges in an undirected graph with n vertices?
 
 - n * (n - 1)/2
+
+Adjacent matrix:
+
+- index of rows or columns represent nodes.
+- data in rows or columns represent edges.
