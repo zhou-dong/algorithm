@@ -22,4 +22,13 @@ Adjacent matrix:
 - index of rows or columns represent nodes.
 - data in rows or columns represent edges.
 
+Degree:
+
+- In-degree: the in-degree of a vertex, v, is the number of edges with v as their end point.
+- Out-degree: the out-degree of a vertex, v, is the number of edges with v as their start point.
+- Degree: the degree of a vertex is the sum of its in-degree and its out-degree.
+
 **Matrix multiplication for finding n hop neighbors**
+
+Distance: the distance between two vertices in a graph is the shortest length of a path between them.
+
