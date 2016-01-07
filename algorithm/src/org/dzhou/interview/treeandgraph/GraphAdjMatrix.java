@@ -1,5 +1,6 @@
 package org.dzhou.interview.treeandgraph;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,8 +13,22 @@ public class GraphAdjMatrix extends Graph2 {
 		List<Integer> result = new LinkedList<>();
 		int[] rows = adjMatrix[vertex];
 		for (int j = 0; j < rows.length; j++) {
-			if (rows[j] != 0)
+			if (rows[j] != 0) {
 				result.add(j);
+			}
+		}
+		return result;
+	}
+
+	public List<Integer> getDistance2(int vertex) {
+		List<Integer> result = new ArrayList<>();
+		List<Integer> neighbors = getNeighbors(vertex);
+		for (int neighbor : neighbors) {
+			for (int j = 0; j < adjMatrix.length; j++) {
+				if (adjMatrix[neighbor][j] != 1) {
+					result.add(j);
+				}
+			}
 		}
 		return result;
 	}
