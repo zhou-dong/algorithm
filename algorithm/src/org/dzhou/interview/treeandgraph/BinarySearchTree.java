@@ -1,5 +1,14 @@
 package org.dzhou.interview.treeandgraph;
 
+/**
+ * Practice of "cracking the code interview"
+ * 
+ * Given a stored (increasing order) array with unique integer element, write an
+ * algorithm to create a binary search tree with minimal height;
+ * 
+ * @author DONG ZHOU
+ *
+ */
 public class BinarySearchTree {
 
 	public TreeNode<Integer> createBySortedArray(int[] array) {
