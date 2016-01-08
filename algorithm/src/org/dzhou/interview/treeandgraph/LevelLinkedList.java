@@ -1,5 +1,8 @@
 package org.dzhou.interview.treeandgraph;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 /**
  * Practice of "cracking the code interview"
  * 
@@ -12,7 +15,13 @@ package org.dzhou.interview.treeandgraph;
  */
 public class LevelLinkedList {
 
-	public void createLevelLinkedList() {
+	public ArrayList<LinkedList<TreeNode<?>>> createLevelLinkedList(TreeNode<?> node) {
+		ArrayList<LinkedList<TreeNode<?>>> lists = new ArrayList<>();
+		return lists;
+	}
+
+	public void createLevelLinkedList(TreeNode<?> node, ArrayList<LinkedList<TreeNode<?>>> lists,
+			int level) {
 
 	}
 
