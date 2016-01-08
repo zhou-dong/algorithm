@@ -38,9 +38,8 @@ public class LevelLinkedList {
 	}
 
 	public ArrayList<LinkedList<TreeNode<?>>> createLevelLinkedList2(TreeNode<?> root) {
-		if (root == null) {
+		if (root == null)
 			return null;
-		}
 		ArrayList<LinkedList<TreeNode<?>>> result = new ArrayList<>();
 		LinkedList<TreeNode<?>> current = new LinkedList<>();
 		current.add(root);
