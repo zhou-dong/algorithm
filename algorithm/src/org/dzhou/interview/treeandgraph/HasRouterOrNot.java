@@ -15,22 +15,22 @@ import org.dzhou.interview.treeandgraph.Node.State;
  */
 public class HasRouterOrNot {
 
-	public static boolean search(Graph graph, Node start, Node end) {
+	public static boolean search(Graph<?> graph, Node<?> start, Node<?> end) {
 		if (start == end)
 			return true;
 		initNodesStateToUnvisited(graph);
-		LinkedList<Node> queue = new LinkedList<>();
+		LinkedList<Node<?>> queue = new LinkedList<>();
 		addToQueue(queue, start);
-		Node node;
+		Node<?> node;
 		while (!queue.isEmpty()) {
 			node = queue.removeFirst();
 			if (node != null)
-				for (Node adjacent : node.children) {
+				for (Node<?> adjacent : node.children) {
 					if (adjacent.state != State.Unvisited)
 						continue;
 					if (adjacent == end)
 						return true;
-					else 
+					else
 						addToQueue(queue, adjacent);
 				}
 			node.state = State.Visited;
@@ -38,30 +38,30 @@ public class HasRouterOrNot {
 		return false;
 	}
 
-	public static boolean search2(Graph graph, Node start, Node end) {
+	public static boolean search2(Graph<?> graph, Node<?> start, Node<?> end) {
 		initNodesStateToUnvisited(graph);
-		LinkedList<Node> queue = new LinkedList<>();
+		LinkedList<Node<?>> queue = new LinkedList<>();
 		addToQueue(queue, start);
-		Node node;
+		Node<?> node;
 		while (true) {
 			node = queue.removeFirst();
 			if (node == null)
 				return false;
 			if (node == end)
 				return true;
-			for (Node adjacent : node.children)
+			for (Node<?> adjacent : node.children)
 				if (adjacent.state == State.Unvisited)
 					addToQueue(queue, adjacent);
 			node.state = State.Visited;
 		}
 	}
 
-	private static void initNodesStateToUnvisited(Graph graph) {
-		for (Node node : graph.nodes)
+	private static void initNodesStateToUnvisited(Graph<?> graph) {
+		for (Node<?> node : graph.nodes)
 			node.state = State.Unvisited;
 	}
 
-	private static void addToQueue(LinkedList<Node> queue, Node node) {
+	private static void addToQueue(LinkedList<Node<?>> queue, Node<?> node) {
 		node.state = State.Visiting;
 		queue.add(node);
 	}

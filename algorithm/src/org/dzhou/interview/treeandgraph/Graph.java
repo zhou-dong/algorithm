@@ -1,7 +1,7 @@
 package org.dzhou.interview.treeandgraph;
 
-public class Graph {
+public class Graph<T> {
 
-	public Node[] nodes;
+	public Node<T>[] nodes;
 
 }
