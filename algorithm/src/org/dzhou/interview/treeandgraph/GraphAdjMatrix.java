@@ -25,7 +25,7 @@ public class GraphAdjMatrix extends Graph2 {
 		List<Integer> neighbors = getNeighbors(vertex);
 		for (int neighbor : neighbors) {
 			for (int j = 0; j < adjMatrix.length; j++) {
-				if (adjMatrix[neighbor][j] != 1) {
+				if (adjMatrix[neighbor][j] != 0) {
 					result.add(j);
 				}
 			}
