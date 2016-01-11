@@ -13,6 +13,8 @@ import java.util.List;
  *         1. in order traversal to copy all node into a array, then check
  * 
  *         2. Optimize first solution
+ * 
+ *         3.
  */
 public class ValidateBST {
 
@@ -49,6 +51,20 @@ public class ValidateBST {
 			return false;
 		last_printed = node.data;
 		if (!checkBST(node.right))
+			return false;
+		return true;
+	}
+
+	public boolean checkBST3(TreeNode<Integer> node) {
+		return checkBST(node, null, null);
+	}
+
+	private boolean checkBST(TreeNode<Integer> node, Integer min, Integer max) {
+		if (node == null)
+			return true;
+		if ((min != null && node.data < min) || (max != null && node.data > max))
+			return false;
+		if (!checkBST(node.left, min, node.data) || !checkBST(node, node.data, max))
 			return false;
 		return true;
 	}
