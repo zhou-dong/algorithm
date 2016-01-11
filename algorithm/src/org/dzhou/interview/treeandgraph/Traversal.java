@@ -1,11 +1,9 @@
 package org.dzhou.interview.treeandgraph;
 
 /**
- *
- * Practice Traversal
+ * Practice of "cracking the code interview"
  * 
  * @author DONG ZHOU
- *
  */
 public class Traversal {
 
