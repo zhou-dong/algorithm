@@ -14,7 +14,10 @@ import java.util.List;
  * 
  *         2. Optimize first solution
  * 
- *         3.
+ *         3. current node data bigger than left children data, so it is max
+ *         than children; current node data should less than right children
+ *         data, so it is minimum data than right children.
+ * 
  */
 public class ValidateBST {
 
@@ -64,7 +67,7 @@ public class ValidateBST {
 			return true;
 		if ((min != null && node.data < min) || (max != null && node.data > max))
 			return false;
-		if (!checkBST(node.left, min, node.data) || !checkBST(node, node.data, max))
+		if (!checkBST(node.left, min, node.data) || !checkBST(node.right, node.data, max))
 			return false;
 		return true;
 	}
