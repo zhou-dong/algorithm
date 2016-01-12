@@ -20,6 +20,11 @@ public class Node {
 		this.data = data;
 	}
 
+	public void append(Node prev) {
+		this.next = prev.next;
+		prev.next = this;
+	}
+
 	public void appendToTail(int data) {
 		Node node = this;
 		while (node.next != null)
