@@ -37,6 +37,52 @@ public class MyLinkedList<E> {
 		size++;
 	}
 
+	public E get(int index) {
+		return getNode(index).data;
+	}
+
+	private ListNode<E> getNode(int index) {
+		if (size == 0)
+			throw new IndexOutOfBoundsException();
+		if (index >= size || index < 0)
+			throw new IndexOutOfBoundsException();
+		ListNode<E> result = head.next;
+		for (int i = 0; i < index; i++) {
+			result = result.next;
+		}
+		return result;
+	}
+
+	public void add(int index, E element) {
+		if (index == size) {
+			addEnd(element);
+			return;
+		}
+		ListNode<E> current = getNode(index);
+		ListNode<E> node = new ListNode<E>(element);
+		node.prev = current.prev;
+		node.next = current;
+		current.prev = node;
+		node.prev.next = node;
+		size++;
+	}
+
+	public E remove(int index) {
+		ListNode<E> current = getNode(index);
+		current.prev.next = current.next;
+		current.next.prev = current.prev;
+		current.prev = null;
+		current.next = null;
+		size--;
+		return current.data;
+	}
+
+	public E set(int index, E element) {
+		ListNode<E> current = getNode(index);
+		current.data = element;
+		return element;
+	}
+
 	public int getSize() {
 		return size;
 	}
