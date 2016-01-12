@@ -33,8 +33,8 @@ public class LevelLinkedList {
 			list = lists.get(level);
 		}
 		list.add(root);
-		createLevelLinkedList(root.left, lists, level + 1);
-		createLevelLinkedList(root.right, lists, level + 1);
+		createLevelLinkedList(root.getLeft(), lists, level + 1);
+		createLevelLinkedList(root.getRight(), lists, level + 1);
 	}
 
 	public ArrayList<LinkedList<TreeNode<?>>> createLevelLinkedList2(TreeNode<?> root) {
@@ -48,10 +48,10 @@ public class LevelLinkedList {
 			LinkedList<TreeNode<?>> parents = current;
 			current = new LinkedList<>();
 			for (TreeNode<?> parent : parents) {
-				if (parent.left != null)
-					current.add(parent.left);
-				if (parent.right != null)
-					current.add(parent.right);
+				if (parent.getLeft() != null)
+					current.add(parent.getLeft());
+				if (parent.getRight() != null)
+					current.add(parent.getRight());
 			}
 		}
 		return result;

@@ -26,9 +26,9 @@ public class ValidateBST {
 	private void inOrderTraversal(TreeNode<Integer> node) {
 		if (node == null)
 			return;
-		inOrderTraversal(node.left);
+		inOrderTraversal(node.getLeft());
 		visit(node);
-		inOrderTraversal(node.right);
+		inOrderTraversal(node.getRight());
 	}
 
 	private void visit(TreeNode<Integer> node) {
@@ -38,7 +38,7 @@ public class ValidateBST {
 	public boolean checkBST(TreeNode<Integer> node) {
 		inOrderTraversal(node);
 		for (int i = 1; i < nodeList.size(); i++)
-			if (nodeList.get(i).data < nodeList.get(i - 1).data)
+			if (nodeList.get(i).getData() < nodeList.get(i - 1).getData())
 				return false;
 		return true;
 	}
@@ -48,12 +48,12 @@ public class ValidateBST {
 	public boolean checkBST2(TreeNode<Integer> node) {
 		if (node == null)
 			return true;
-		if (!checkBST2(node.left))
+		if (!checkBST2(node.getLeft()))
 			return false;
-		if (last_printed != null && last_printed > node.data)
+		if (last_printed != null && last_printed > node.getData())
 			return false;
-		last_printed = node.data;
-		if (!checkBST(node.right))
+		last_printed = node.getData();
+		if (!checkBST(node.getRight()))
 			return false;
 		return true;
 	}
@@ -65,9 +65,10 @@ public class ValidateBST {
 	private boolean checkBST(TreeNode<Integer> node, Integer min, Integer max) {
 		if (node == null)
 			return true;
-		if ((min != null && node.data < min) || (max != null && node.data > max))
+		if ((min != null && node.getData() < min) || (max != null && node.getData() > max))
 			return false;
-		if (!checkBST(node.left, min, node.data) || !checkBST(node.right, node.data, max))
+		if (!checkBST(node.getLeft(), min, node.getData())
+				|| !checkBST(node.getRight(), node.getData(), max))
 			return false;
 		return true;
 	}

@@ -15,14 +15,14 @@ public class Successor {
 	public TreeNode<?> inOrderSuccessor(TreeNode<?> node) {
 		if (node == null)
 			return null;
-		if (node.right != null)
-			return leftMostChild(node.right);
+		if (node.getRight() != null)
+			return leftMostChild(node.getRight());
 		else {
 			TreeNode<?> parent = node;
-			TreeNode<?> successor = node.parent;
-			while (successor != null && successor.left != parent) {
+			TreeNode<?> successor = node.getParent();
+			while (successor != null && successor.getLeft() != parent) {
 				parent = successor;
-				successor = successor.parent;
+				successor = successor.getParent();
 			}
 			return successor;
 		}
@@ -31,8 +31,8 @@ public class Successor {
 	TreeNode<?> leftMostChild(TreeNode<?> node) {
 		if (node == null)
 			return null;
-		while (node.left != null)
-			node = node.left;
+		while (node.getLeft() != null)
+			node = node.getLeft();
 		return node;
 	}
 

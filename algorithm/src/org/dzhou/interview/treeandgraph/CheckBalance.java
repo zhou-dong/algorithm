@@ -15,26 +15,26 @@ public class CheckBalance {
 	public int getHeight(TreeNode<?> root) {
 		if (root == null)
 			return -1;
-		return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
+		return Math.max(getHeight(root.getLeft()), getHeight(root.getRight())) + 1;
 	}
 
 	public boolean isBalanced(TreeNode<?> root) {
 		if (root == null)
 			return true;
-		int heightDiff = getHeight(root.left) - getHeight(root.right);
+		int heightDiff = getHeight(root.getLeft()) - getHeight(root.getRight());
 		if (Math.abs(heightDiff) > 1)
 			return false;
 		else
-			return isBalanced(root.left) && isBalanced(root.right);
+			return isBalanced(root.getLeft()) && isBalanced(root.getRight());
 	}
 
 	public int getHeight2(TreeNode<?> root) {
 		if (root == null)
 			return -1;
-		int leftHeight = getHeight2(root.left);
+		int leftHeight = getHeight2(root.getLeft());
 		if (leftHeight == Integer.MIN_VALUE)
 			return Integer.MIN_VALUE;
-		int rightHeight = getHeight2(root.right);
+		int rightHeight = getHeight2(root.getRight());
 		if (rightHeight == Integer.MIN_VALUE)
 			return Integer.MIN_VALUE;
 		int heightDiff = leftHeight - rightHeight;

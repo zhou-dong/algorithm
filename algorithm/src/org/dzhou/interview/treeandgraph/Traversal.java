@@ -8,27 +8,27 @@ package org.dzhou.interview.treeandgraph;
 public class Traversal {
 
 	public void inOrderTraversal(TreeNode<?> node) {
-		if (node == null)
-			return;
-		inOrderTraversal(node.left);
-		visit(node);
-		inOrderTraversal(node.right);
+		if (node != null) {
+			inOrderTraversal(node.getLeft());
+			visit(node);
+			inOrderTraversal(node.getRight());
+		}
 	}
 
 	public void preOrderTraversal(TreeNode<?> node) {
-		if (node == null)
-			return;
-		visit(node);
-		preOrderTraversal(node.left);
-		preOrderTraversal(node.right);
+		if (node != null) {
+			visit(node);
+			preOrderTraversal(node.getLeft());
+			preOrderTraversal(node.getRight());
+		}
 	}
 
 	public void postOrderTraversal(TreeNode<?> node) {
-		if (node == null)
-			return;
-		postOrderTraversal(node.left);
-		postOrderTraversal(node.right);
-		visit(node);
+		if (node != null) {
+			postOrderTraversal(node.getLeft());
+			postOrderTraversal(node.getRight());
+			visit(node);
+		}
 	}
 
 	public void visit(TreeNode<?> node) {

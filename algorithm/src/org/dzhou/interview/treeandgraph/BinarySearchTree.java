@@ -20,8 +20,8 @@ public class BinarySearchTree {
 			return null;
 		int middle = (start + end) / 2;
 		TreeNode<Integer> node = new TreeNode<Integer>(middle);
-		node.left = createBySortedArray(array, start, middle - 1);
-		node.right = createBySortedArray(array, middle + 1, end);
+		node.setLeft(createBySortedArray(array, start, middle - 1));
+		node.setRight(createBySortedArray(array, middle + 1, end));
 		return node;
 	}
 
