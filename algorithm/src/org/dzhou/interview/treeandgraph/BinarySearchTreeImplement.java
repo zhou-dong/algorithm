@@ -25,6 +25,10 @@ public class BinarySearchTreeImplement<T extends Comparable<? super T>> {
 	}
 
 	public boolean insert(T toInsert) {
+		if (root == null) {
+			root = new TreeNode<T>(toInsert);
+			return true;
+		}
 		TreeNode<T> current = root;
 		TreeNode<T> parent = null;
 		int compare = 0;
