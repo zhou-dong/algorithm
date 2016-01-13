@@ -72,6 +72,8 @@ public class MyLinkedList<E> {
 	}
 
 	public E remove(int index) {
+		if (index >= size || index < 0)
+			throw new IndexOutOfBoundsException();
 		ListNode<E> current = getNode(index);
 		current.prev.next = current.next;
 		current.next.prev = current.prev;
