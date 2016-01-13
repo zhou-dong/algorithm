@@ -1,11 +1,29 @@
 package org.dzhou.interview.treeandgraph;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Practice of "cracking the code interview"
  * 
  * @author DONG ZHOU
  */
 public class Traversal {
+
+	public void levelOrderTraversal(TreeNode<?> node) {
+		Queue<TreeNode<?>> queue = new LinkedList<>();
+		queue.add(node);
+		while (!queue.isEmpty()) {
+			TreeNode<?> current = queue.poll();
+			visit(current);
+			if (current.getLeft() != null) {
+				queue.add(current.getLeft());
+			}
+			if (current.getRight() != null) {
+				queue.add(current.getRight());
+			}
+		}
+	}
 
 	public void inOrderTraversal(TreeNode<?> node) {
 		if (node != null) {
