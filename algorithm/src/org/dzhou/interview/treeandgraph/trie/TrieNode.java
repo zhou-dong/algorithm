@@ -1,4 +1,4 @@
-package org.dzhou.interview.treeandgraph;
+package org.dzhou.interview.treeandgraph.trie;
 
 import java.util.HashMap;
 import java.util.Set;
