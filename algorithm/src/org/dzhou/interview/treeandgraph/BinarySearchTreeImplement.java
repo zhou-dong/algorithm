@@ -49,9 +49,4 @@ public class BinarySearchTreeImplement<T extends Comparable<? super T>> {
 		return true;
 	}
 
-	public T remove(T toRemove) {
-
-		return toRemove;
-	}
-
 }
