@@ -29,6 +29,8 @@ public class MyLinkedList<E> {
 	}
 
 	public void addEnd(E data) {
+		if (data == null)
+			throw new NullPointerException();
 		ListNode<E> node = new ListNode<E>(data);
 		node.prev = tail.prev;
 		node.next = tail;
@@ -54,6 +56,8 @@ public class MyLinkedList<E> {
 	}
 
 	public void add(int index, E element) {
+		if (element == null)
+			throw new NullPointerException();
 		if (index == size) {
 			addEnd(element);
 			return;
@@ -78,6 +82,8 @@ public class MyLinkedList<E> {
 	}
 
 	public E set(int index, E element) {
+		if (element == null)
+			throw new NullPointerException();
 		ListNode<E> current = getNode(index);
 		current.data = element;
 		return element;
