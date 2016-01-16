@@ -22,7 +22,6 @@ public class Maze {
 	}
 
 	public class MazeNode {
-
 		private Coordinate coordinate;
 		private List<MazeNode> neighbors;
 
@@ -45,62 +44,49 @@ public class Maze {
 		public void setCoordinate(Coordinate coordinate) {
 			this.coordinate = coordinate;
 		}
-
 	}
 
 	public List<Coordinate> dfs(Coordinate startCoordinate, Coordinate goalCoordinate) {
-
 		if (startCoordinate == null || goalCoordinate == null) {
 			return Collections.emptyList();
 		}
-
 		MazeNode start = new MazeNode(startCoordinate);
 		MazeNode goal = new MazeNode(goalCoordinate);
-
 		Map<MazeNode, MazeNode> parentMap = new HashMap<>();
-
 		if (!dfsSearch(start, goal, parentMap)) {
 			return Collections.emptyList();
 		}
-
-		return (List<Coordinate>) constructPath(start, goal, parentMap);
+		return constructPath(start, goal, parentMap);
 	}
 
 	private List<Coordinate> constructPath(MazeNode start, MazeNode goal,
 			Map<MazeNode, MazeNode> parentMap) {
-		LinkedList<Coordinate> path = new LinkedList<>();
+		List<Coordinate> path = new LinkedList<>();
 		MazeNode current = goal;
 		while (current != start) {
-			path.addFirst(current.getCoordinate());
+			path.add(current.getCoordinate());
 			current = parentMap.get(current);
 		}
 		return path;
-
 	}
 
 	private boolean dfsSearch(MazeNode start, MazeNode goal, Map<MazeNode, MazeNode> parentMap) {
-
 		Set<MazeNode> visited = new HashSet<>();
 		Stack<MazeNode> toExplore = new Stack<>();
 		toExplore.push(start);
-
 		while (!toExplore.isEmpty()) {
 			MazeNode current = toExplore.pop();
-			if (current == goal) {
+			if (current == goal)
 				return true;
-			}
-			List<MazeNode> neighbors = current.getNeighbors();
-
-			for (MazeNode next : neighbors) {
-				if (visited.contains(next)) {
+			for (MazeNode next : current.getNeighbors()) {
+				if (visited.contains(next))
 					continue;
-				}
 				visited.add(next);
 				parentMap.put(next, current);
 				toExplore.push(next);
 			}
 		}
-
 		return false;
 	}
+
 }
