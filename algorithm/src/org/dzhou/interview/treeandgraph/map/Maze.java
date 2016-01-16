@@ -11,8 +11,7 @@ import java.util.Stack;
 
 public class Maze {
 
-	class Coordinate {
-
+	public class Coordinate {
 		int row;
 		int col;
 
@@ -20,16 +19,16 @@ public class Maze {
 			this.row = row;
 			this.col = col;
 		}
-
 	}
 
-	class MazeNode {
+	public class MazeNode {
 
-		public MazeNode(int row, int col) {
+		private Coordinate coordinate;
+		private List<MazeNode> neighbors;
 
+		public MazeNode(Coordinate coordinate) {
+			this.coordinate = coordinate;
 		}
-
-		private List<MazeNode> neighbors = null;
 
 		public List<MazeNode> getNeighbors() {
 			return neighbors;
@@ -39,16 +38,24 @@ public class Maze {
 			this.neighbors = neighbors;
 		}
 
+		public Coordinate getCoordinate() {
+			return coordinate;
+		}
+
+		public void setCoordinate(Coordinate coordinate) {
+			this.coordinate = coordinate;
+		}
+
 	}
 
-	List<MazeNode> dfs(int startRow, int startCol, int endRow, int endCol) {
+	public List<Coordinate> dfs(Coordinate startCoordinate, Coordinate goalCoordinate) {
 
-		MazeNode start = new MazeNode(startRow, startCol);
-		MazeNode goal = new MazeNode(endRow, endCol);
-
-		if (start == null || goal == null) {
+		if (startCoordinate == null || goalCoordinate == null) {
 			return Collections.emptyList();
 		}
+
+		MazeNode start = new MazeNode(startCoordinate);
+		MazeNode goal = new MazeNode(goalCoordinate);
 
 		Map<MazeNode, MazeNode> parentMap = new HashMap<>();
 
@@ -56,15 +63,15 @@ public class Maze {
 			return Collections.emptyList();
 		}
 
-		return (List<MazeNode>) constructPath(start, goal, parentMap);
+		return (List<Coordinate>) constructPath(start, goal, parentMap);
 	}
 
-	private List<MazeNode> constructPath(MazeNode start, MazeNode goal,
+	private List<Coordinate> constructPath(MazeNode start, MazeNode goal,
 			Map<MazeNode, MazeNode> parentMap) {
-		LinkedList<MazeNode> path = new LinkedList<>();
+		LinkedList<Coordinate> path = new LinkedList<>();
 		MazeNode current = goal;
 		while (current != start) {
-			path.addFirst(current);
+			path.addFirst(current.getCoordinate());
 			current = parentMap.get(current);
 		}
 		return path;
