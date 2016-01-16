@@ -47,15 +47,13 @@ public class Maze {
 	}
 
 	public List<Coordinate> dfs(Coordinate startCoordinate, Coordinate goalCoordinate) {
-		if (startCoordinate == null || goalCoordinate == null) {
+		if (startCoordinate == null || goalCoordinate == null)
 			return Collections.emptyList();
-		}
 		MazeNode start = new MazeNode(startCoordinate);
 		MazeNode goal = new MazeNode(goalCoordinate);
 		Map<MazeNode, MazeNode> parentMap = new HashMap<>();
-		if (!dfsSearch(start, goal, parentMap)) {
+		if (!dfsSearch(start, goal, parentMap))
 			return Collections.emptyList();
-		}
 		return constructPath(start, goal, parentMap);
 	}
 
