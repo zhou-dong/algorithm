@@ -1,6 +1,6 @@
 package org.dzhou.interview.treeandgraph.map;
 
-public class Edge {
+public class Edge implements Comparable<Edge> {
 
 	private GeographicPoint start;
 	private GeographicPoint end;
@@ -59,6 +59,11 @@ public class Edge {
 
 	public void setRoadType(String roadType) {
 		this.roadType = roadType;
+	}
+
+	@Override
+	public int compareTo(Edge o) {
+		return (int) (this.distance - o.distance);
 	}
 
 }
