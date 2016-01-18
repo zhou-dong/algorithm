@@ -65,7 +65,6 @@ public class MapGraph {
 	}
 
 	public List<GeographicPoint> bfs(GeographicPoint start, GeographicPoint goal) {
-		// Dummy variable for calling the search algorithms
 		Consumer<GeographicPoint> temp = (x) -> {
 		};
 		return bfs(start, goal, temp);
@@ -124,8 +123,6 @@ public class MapGraph {
 	}
 
 	public List<GeographicPoint> dijkstra(GeographicPoint start, GeographicPoint goal) {
-		// Dummy variable for calling the search algorithms
-		// You do not need to change this method.
 		Consumer<GeographicPoint> temp = (x) -> {
 		};
 		return dijkstra(start, goal, temp);
@@ -210,7 +207,6 @@ public class MapGraph {
 	}
 
 	public List<GeographicPoint> aStarSearch(GeographicPoint start, GeographicPoint goal) {
-		// Dummy variable for calling the search algorithms
 		Consumer<GeographicPoint> temp = (x) -> {
 		};
 		return aStarSearch(start, goal, temp);
