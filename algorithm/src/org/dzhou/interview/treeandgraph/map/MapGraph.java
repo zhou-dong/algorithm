@@ -19,7 +19,7 @@ import java.util.function.Consumer;
  *         A class which represents a graph of geographic locations Nodes in the
  *         graph are intersections between
  *
- *         Copy for study!
+ *         copy for backup and study!
  */
 public class MapGraph {
 
@@ -65,6 +65,7 @@ public class MapGraph {
 	}
 
 	public List<GeographicPoint> bfs(GeographicPoint start, GeographicPoint goal) {
+		// Dummy variable for calling the search algorithms
 		Consumer<GeographicPoint> temp = (x) -> {
 		};
 		return bfs(start, goal, temp);
@@ -73,10 +74,8 @@ public class MapGraph {
 	public List<GeographicPoint> bfs(GeographicPoint start, GeographicPoint goal,
 			Consumer<GeographicPoint> nodeSearched) {
 		Map<GeographicPoint, GeographicPoint> parent = bfsSearch(start, goal, nodeSearched);
-
 		if (parent.isEmpty())
 			return null;
-
 		return generatePath(start, goal, parent);
 	}
 
@@ -123,6 +122,8 @@ public class MapGraph {
 	}
 
 	public List<GeographicPoint> dijkstra(GeographicPoint start, GeographicPoint goal) {
+		// Dummy variable for calling the search algorithms
+		// You do not need to change this method.
 		Consumer<GeographicPoint> temp = (x) -> {
 		};
 		return dijkstra(start, goal, temp);
@@ -130,6 +131,7 @@ public class MapGraph {
 
 	public List<GeographicPoint> dijkstra(GeographicPoint start, GeographicPoint goal,
 			Consumer<GeographicPoint> nodeSearched) {
+
 		initialDistanceToStart(start);
 
 		Queue<Vertex> queue = new PriorityQueue<>();
@@ -159,8 +161,6 @@ public class MapGraph {
 
 		if (parent.size() == 0)
 			return Collections.emptyList();
-
-		System.out.println(parent.size());
 
 		return generatePath2(start, goal, parent);
 	}
@@ -207,6 +207,7 @@ public class MapGraph {
 	}
 
 	public List<GeographicPoint> aStarSearch(GeographicPoint start, GeographicPoint goal) {
+		// Dummy variable for calling the search algorithms
 		Consumer<GeographicPoint> temp = (x) -> {
 		};
 		return aStarSearch(start, goal, temp);
@@ -215,8 +216,7 @@ public class MapGraph {
 	public List<GeographicPoint> aStarSearch(GeographicPoint start, GeographicPoint goal,
 			Consumer<GeographicPoint> nodeSearched) {
 
-		initialDistanceToStart(start);
-		initialDistanceToGoal(goal);
+		initialAstarDistance(start, goal);
 
 		Queue<Vertex> queue = new PriorityQueue<>();
 		queue.add(vertices.get(start));
@@ -234,8 +234,8 @@ public class MapGraph {
 				Vertex neighbor = vertices.get(edge.getEnd());
 				if (visited.contains(neighbor))
 					continue;
-				double distance = edge.getDistance() + current.getDistance();
-
+				double distance = edge.getDistance() + current.getDistance()
+						+ neighbor.getActualDistance();
 				if (neighbor.getDistance() > distance) {
 					neighbor.setDistance(distance);
 					parent.put(neighbor.getLocation(), current.getLocation());
@@ -247,20 +247,34 @@ public class MapGraph {
 		if (parent.size() == 0)
 			return Collections.emptyList();
 
+		System.out.println(parent.size());
+
 		return generatePath2(start, goal, parent);
 	}
 
 	private void initialDistanceToGoal(GeographicPoint goal) {
 		for (Entry<GeographicPoint, Vertex> entry : vertices.entrySet()) {
-			Vertex vertex = entry.getValue();
-			double distance = Double.MAX_VALUE;
-			for (Edge edge : vertex.getEdges()) {
-				if (goal.equals(edge.getEnd())) {
-					distance = edge.getDistance();
-					break;
-				}
-			}
-			vertex.setActualDistance(distance);
+			double distanceToGoal = entry.getKey().distance(goal);
+			entry.getValue().setActualDistance(distanceToGoal);
+		}
+	}
+
+	private void initialAstarDistance(GeographicPoint start, GeographicPoint goal) {
+		initialDistanceToGoal(goal);
+		Set<GeographicPoint> visited = new HashSet<>();
+		Vertex startVertex = vertices.get(start);
+		for (Edge edge : startVertex.getEdges()) {
+			if (!edge.getStart().equals(start))
+				continue;
+			GeographicPoint neighbor = edge.getEnd();
+			double distance = edge.getDistance() + vertices.get(neighbor).getActualDistance();
+			vertices.get(neighbor).setDistance(distance);
+			visited.add(neighbor);
+		}
+		for (Entry<GeographicPoint, Vertex> entry : vertices.entrySet()) {
+			if (visited.contains(entry.getKey()))
+				continue;
+			entry.getValue().setDistance(Double.MAX_VALUE);
 		}
 	}
 
