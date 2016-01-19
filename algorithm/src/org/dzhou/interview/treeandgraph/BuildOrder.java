@@ -20,7 +20,6 @@ import java.util.Map;
 public class BuildOrder {
 
 	public class Project {
-
 		private String name;
 		private int dependencies = 0;
 		private List<Project> children = new ArrayList<>();
@@ -29,6 +28,7 @@ public class BuildOrder {
 		public void addNeighbor(Project node) {
 			if (!map.containsKey(node.getName())) {
 				children.add(node);
+				map.put(node.getName(), node);
 			}
 			node.incrementDependencies();
 		}
@@ -56,7 +56,46 @@ public class BuildOrder {
 		public int getDependencies() {
 			return this.dependencies;
 		}
-
 	}
 
+	public class Graph {
+		private List<Project> nodes = new ArrayList<>();
+		private HashMap<String, Project> map = new HashMap<>();
+
+		public Project getOrCreateNode(String name) {
+			if (!map.containsKey(name)) {
+				Project node = new Project(name);
+				nodes.add(node);
+				map.put(name, node);
+			}
+			return map.get(name);
+		}
+
+		public void addEdge(String startName, String endName) {
+			Project start = getOrCreateNode(startName);
+			Project end = getOrCreateNode(endName);
+			start.addNeighbor(end);
+		}
+
+		public List<Project> getNodes() {
+			return this.nodes;
+		}
+	}
+
+	int addNonDependent(Project[] order, List<Project> projects, int offset) {
+		for (Project project : projects) {
+			if (project.getDependencies() == 0) {
+				order[offset] = project;
+				offset++;
+			}
+		}
+		return offset;
+	}
+
+	Graph buildGraph(String[] projects, String[][] dependencies) {
+		Graph graph = new Graph();
+		for (String[] dependency : dependencies)
+			graph.addEdge(dependency[0], dependency[1]);
+		return graph;
+	}
 }
