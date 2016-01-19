@@ -117,4 +117,9 @@ public class BuildOrder {
 		return order;
 	}
 
+	Project[] findBuildOrder(String[] projects, String[][] dependencies) {
+		Graph graph = buildGraph(projects, dependencies);
+		return orderProjects(graph.getNodes());
+	}
+
 }
