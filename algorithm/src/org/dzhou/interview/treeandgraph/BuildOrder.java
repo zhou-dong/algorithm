@@ -84,4 +84,13 @@ public class BuildOrder {
 		return graph;
 	}
 
+	int addNonDenpendent(Project[] order, List<Project> projects, int offset) {
+		for (Project project : projects) {
+			if (project.getNumDependencies() == 0) {
+				order[offset] = project;
+				offset++;
+			}
+		}
+		return offset;
+	}
 }
