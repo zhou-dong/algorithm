@@ -66,7 +66,7 @@ public class BuildOrder2 {
 		}
 	}
 
-	public static class graph {
+	public static class Graph {
 		Map<String, Project> map = new HashMap<>();
 		List<Project> nodes = new ArrayList<>();
 
@@ -92,8 +92,9 @@ public class BuildOrder2 {
 		Stack<Project> stack = new Stack<>();
 		for (Project project : projects) {
 			if (project.getState() == State.BLANK) {
-				if (!doDFS(project, stack))
+				if (!doDFS(project, stack)) {
 					return null;
+				}
 			}
 		}
 		return stack;
@@ -116,4 +117,19 @@ public class BuildOrder2 {
 		return true;
 	}
 
+	Graph buildGraph(String[] projects, String[][] dependencies) {
+		Graph graph = new Graph();
+		for (String project : projects) {
+			graph.getOrCreateNode(project);
+		}
+		for (String[] dependency : dependencies) {
+			graph.addEdge(dependency[0], dependency[1]);
+		}
+		return graph;
+	}
+
+	Stack<Project> findBuildOrder(String[] projects, String[][] dependencies) {
+		Graph graph = buildGraph(projects, dependencies);
+		return orderProjects(graph.getNodes());
+	}
 }
