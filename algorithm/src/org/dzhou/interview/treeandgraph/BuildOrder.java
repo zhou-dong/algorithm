@@ -1,5 +1,10 @@
 package org.dzhou.interview.treeandgraph;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Practice of "cracking the code interview"
  * 
@@ -13,5 +18,45 @@ package org.dzhou.interview.treeandgraph;
  *
  */
 public class BuildOrder {
+
+	public class Project {
+
+		private String name;
+		private int dependencies = 0;
+		private List<Project> children = new ArrayList<>();
+		private Map<String, Project> map = new HashMap<>();
+
+		public void addNeighbor(Project node) {
+			if (!map.containsKey(node.getName())) {
+				children.add(node);
+			}
+			node.incrementDependencies();
+		}
+
+		public Project(String name) {
+			this.name = name;
+		}
+
+		public void incrementDependencies() {
+			dependencies++;
+		}
+
+		public void decrementDependencise() {
+			dependencies--;
+		}
+
+		public String getName() {
+			return this.name;
+		}
+
+		public List<Project> getChildren() {
+			return this.children;
+		}
+
+		public int getDependencies() {
+			return this.dependencies;
+		}
+
+	}
 
 }
