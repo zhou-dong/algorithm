@@ -21,81 +21,67 @@ public class BuildOrder {
 
 	public class Project {
 		private String name;
-		private int dependencies = 0;
+		private int numDependencies;
 		private List<Project> children = new ArrayList<>();
 		private Map<String, Project> map = new HashMap<>();
 
-		public void addNeighbor(Project node) {
-			if (!map.containsKey(node.getName())) {
-				children.add(node);
-				map.put(node.getName(), node);
-			}
-			node.incrementDependencies();
+		public boolean addNeighbor(Project node) {
+			if (map.containsKey(node.getName()))
+				return false;
+			children.add(node);
+			map.put(node.getName(), node);
+			numDependencies++;
+			return true;
 		}
 
 		public Project(String name) {
 			this.name = name;
 		}
 
-		public void incrementDependencies() {
-			dependencies++;
-		}
-
-		public void decrementDependencise() {
-			dependencies--;
-		}
-
 		public String getName() {
-			return this.name;
+			return name;
+		}
+
+		public int getNumDependencies() {
+			return numDependencies;
 		}
 
 		public List<Project> getChildren() {
-			return this.children;
-		}
-
-		public int getDependencies() {
-			return this.dependencies;
+			return new ArrayList<>(children);
 		}
 	}
 
 	public class Graph {
+		private Map<String, Project> map = new HashMap<>();
 		private List<Project> nodes = new ArrayList<>();
-		private HashMap<String, Project> map = new HashMap<>();
 
 		public Project getOrCreateNode(String name) {
 			if (!map.containsKey(name)) {
 				Project node = new Project(name);
-				nodes.add(node);
 				map.put(name, node);
+				nodes.add(node);
 			}
 			return map.get(name);
 		}
 
 		public void addEdge(String startName, String endName) {
-			Project start = getOrCreateNode(startName);
-			Project end = getOrCreateNode(endName);
-			start.addNeighbor(end);
+			getOrCreateNode(startName).addNeighbor(getOrCreateNode(endName));
 		}
 
 		public List<Project> getNodes() {
-			return this.nodes;
+			return new ArrayList<>(nodes);
 		}
-	}
-
-	int addNonDependent(Project[] order, List<Project> projects, int offset) {
-		for (Project project : projects) {
-			if (project.getDependencies() == 0) {
-				order[offset] = project;
-				offset++;
-			}
-		}
-		return offset;
 	}
 
 	Graph buildGraph(String[] projects, String[][] dependencies) {
 		Graph graph = new Graph();
-		for (String[] dependency : dependencies)
+		for (String project : projects) {
+			graph.getOrCreateNode(project);
+		}
+		for (String[] dependency : dependencies) {
 			graph.addEdge(dependency[0], dependency[1]);
+		}
 		return graph;
 	}
+
 }
