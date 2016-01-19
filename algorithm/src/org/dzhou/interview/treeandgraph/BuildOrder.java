@@ -34,6 +34,10 @@ public class BuildOrder {
 			return true;
 		}
 
+		public void decrementDependencies() {
+			numDependencies--;
+		}
+
 		public Project(String name) {
 			this.name = name;
 		}
@@ -93,4 +97,24 @@ public class BuildOrder {
 		}
 		return offset;
 	}
+
+	Project[] orderProjects(List<Project> projects) {
+		Project[] order = new Project[projects.size()];
+		int endOfList = addNonDenpendent(order, projects, 0);
+		int toBeProcessed = 0;
+		while (toBeProcessed < order.length) {
+			Project current = order[toBeProcessed];
+			if (current == null) {
+				return null;
+			}
+			List<Project> children = current.getChildren();
+			for (Project child : children) {
+				child.decrementDependencies();
+			}
+			endOfList = addNonDenpendent(order, children, endOfList);
+			toBeProcessed++;
+		}
+		return order;
+	}
+
 }
