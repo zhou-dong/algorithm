@@ -24,7 +24,7 @@ public class Subtree2<T> {
 	boolean subTree(TreeNode<T> t1, TreeNode<T> t2) {
 		if (t1 == null)
 			return false;
-		else if (t1.getData() == t2.getData() || matchTree(t1, t2))
+		else if (t1.getData() == t2.getData() && matchTree(t1, t2))
 			return true;
 		return subTree(t1.getLeft(), t2) || subTree(t1.getRight(), t2);
 	}
