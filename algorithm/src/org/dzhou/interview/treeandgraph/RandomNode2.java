@@ -15,14 +15,14 @@ import java.util.Random;
  *         methods.
  *
  */
-public class RandomNode {
+public class RandomNode2 {
 
 	private int data;
 	private int size;
-	public RandomNode left;
-	public RandomNode right;
+	public RandomNode2 left;
+	public RandomNode2 right;
 
-	public RandomNode(int data) {
+	public RandomNode2(int data) {
 		this.data = data;
 		size = 1;
 	}
@@ -39,7 +39,7 @@ public class RandomNode {
 		return size;
 	}
 
-	public RandomNode getRandomNode() {
+	public RandomNode2 getRandomNode() {
 		int leftSize = left == null ? 0 : left.size;
 		Random random = new Random();
 		int index = random.nextInt(this.size);
@@ -54,19 +54,19 @@ public class RandomNode {
 	public void insertInOrder(int data) {
 		if (data <= this.data) {
 			if (left == null)
-				left = new RandomNode(data);
+				left = new RandomNode2(data);
 			else
 				left.insertInOrder(data);
 		} else {
 			if (right == null)
-				right = new RandomNode(data);
+				right = new RandomNode2(data);
 			else
 				right.insertInOrder(data);
 		}
 		size++;
 	}
 
-	public RandomNode find(int data) {
+	public RandomNode2 find(int data) {
 		if (data == this.data)
 			return this;
 		else if (data <= this.data)
