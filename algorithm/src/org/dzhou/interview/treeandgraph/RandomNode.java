@@ -1,5 +1,7 @@
 package org.dzhou.interview.treeandgraph;
 
+import java.util.Random;
+
 /**
  * Practice of "cracking the code interview"
  * 
@@ -14,5 +16,64 @@ package org.dzhou.interview.treeandgraph;
  *
  */
 public class RandomNode {
+
+	private int data;
+	public RandomNode left;
+	public RandomNode right;
+	private int size;
+
+	public RandomNode(int data) {
+		this.data = data;
+		size = 1;
+	}
+
+	public int getData() {
+		return data;
+	}
+
+	public void setData(int data) {
+		this.data = data;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public RandomNode getRandomNode() {
+		int leftSize = left == null ? 0 : left.size;
+		Random random = new Random();
+		int index = random.nextInt(this.size);
+		if (index < leftSize)
+			return left.getRandomNode();
+		else if (index == leftSize)
+			return this;
+		else
+			return right.getRandomNode();
+	}
+
+	public void insertInOrder(int data) {
+		if (data <= this.data) {
+			if (left == null)
+				left = new RandomNode(data);
+			else
+				left.insertInOrder(data);
+		} else {
+			if (right == null)
+				right = new RandomNode(data);
+			else
+				right.insertInOrder(data);
+		}
+		size++;
+	}
+
+	public RandomNode find(int data) {
+		if (data == this.data)
+			return this;
+		else if (data <= this.data)
+			return left != null ? left.find(data) : null;
+		else if (data > this.data)
+			return right != null ? right.find(data) : null;
+		return null;
+	}
 
 }
