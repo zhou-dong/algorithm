@@ -15,6 +15,29 @@ import java.util.Random;
  *         methods.
  *
  */
+class RandomTree {
+	RandomNode2 root;
+
+	public int size() {
+		return root == null ? 0 : root.getSize();
+	}
+
+	public RandomNode2 getRandomNode() {
+		if (root == null)
+			return null;
+		Random random = new Random();
+		int index = random.nextInt(size());
+		return root.getIthNode(index);
+	}
+
+	public void insertInOrder(int data) {
+		if (root == null)
+			root = new RandomNode2(data);
+		else
+			root.insertInOrder(data);
+	}
+}
+
 public class RandomNode2 {
 
 	private int data;
@@ -39,16 +62,14 @@ public class RandomNode2 {
 		return size;
 	}
 
-	public RandomNode2 getRandomNode() {
+	public RandomNode2 getIthNode(int index) {
 		int leftSize = left == null ? 0 : left.size;
-		Random random = new Random();
-		int index = random.nextInt(this.size);
 		if (index < leftSize)
-			return left.getRandomNode();
+			return left.getIthNode(index);
 		else if (index == leftSize)
 			return this;
 		else
-			return right.getRandomNode();
+			return right.getIthNode(index - (leftSize + 1));
 	}
 
 	public void insertInOrder(int data) {
