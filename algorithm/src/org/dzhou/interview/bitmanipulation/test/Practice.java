@@ -9,6 +9,13 @@ public class Practice {
 		print((1 << 2) - 1);
 		print(3 << 1);
 		print(Integer.BYTES);
+		print(Integer.toBinaryString(29));
+		print(Integer.toBinaryString(4));
+		print(Integer.toBinaryString(5));
+	}
+
+	public static void print(String num) {
+		System.out.println(num);
 	}
 
 	public static void print(int num) {

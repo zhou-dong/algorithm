@@ -1,11 +1,26 @@
 package org.dzhou.interview.bitmanipulation.test;
 
 import org.dzhou.interview.bitmanipulation.BinaryToString;
+import org.dzhou.interview.bitmanipulation.Conversion;
 import org.dzhou.interview.bitmanipulation.Debugger;
+import org.dzhou.interview.bitmanipulation.PairwiseSwap;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class BitManipulateTest {
+
+	@Test
+	public void testSwapOddEvenBits() {
+		Assert.assertEquals(8, new PairwiseSwap().swapOddEvenBits(4));
+		Assert.assertEquals(4, new PairwiseSwap().swapOddEvenBits(8));
+		Assert.assertEquals(10, new PairwiseSwap().swapOddEvenBits(5));
+	}
+
+	@Test
+	public void testConversion() {
+		Assert.assertEquals(2, new Conversion().bitSwapRequired(15, 29));
+		Assert.assertEquals(2, new Conversion().bitSwapRequired2(29, 15));
+	}
 
 	@Test
 	public void testIsPowerTo2() {
