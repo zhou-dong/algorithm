@@ -30,7 +30,7 @@ x ^ x = 0, x & x = x, x | x = x
 
 ### Two Complement and Negative Numbers
 
-| Positive Values 	  | Negative Values 		        |
+| Positive Values |   |     | Negative Values |   |     |
 |-----------------|---|-----|-----------------|---|-----|
 | 7               | 0 | 111 | -1              | 1 | 111 |
 | 6               | 0 | 110 | -2              | 1 | 110 |
