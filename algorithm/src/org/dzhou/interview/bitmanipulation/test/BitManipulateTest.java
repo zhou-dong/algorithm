@@ -3,11 +3,17 @@ package org.dzhou.interview.bitmanipulation.test;
 import org.dzhou.interview.bitmanipulation.BinaryToString;
 import org.dzhou.interview.bitmanipulation.Conversion;
 import org.dzhou.interview.bitmanipulation.Debugger;
+import org.dzhou.interview.bitmanipulation.FlipBitToWin;
 import org.dzhou.interview.bitmanipulation.PairwiseSwap;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class BitManipulateTest {
+
+	@Test
+	public void testFlip() {
+		Assert.assertEquals(8, new FlipBitToWin().longestSequence(1775));
+	}
 
 	@Test
 	public void testSwapOddEvenBits() {
