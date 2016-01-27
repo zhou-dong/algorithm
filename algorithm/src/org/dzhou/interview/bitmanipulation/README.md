@@ -30,17 +30,16 @@ x ^ x = 0, x & x = x, x | x = x
 
 ### Two Complement and Negative Numbers
 
-Positive Values AND Negative Values 
-
-| 7 | 0 | 111 | -1 | 1 | 111 |
-|---|---|-----|----|---|-----|
-| 6 | 0 | 110 | -2 | 1 | 110 |
-| 5 | 0 | 101 | -3 | 1 | 101 |
-| 4 | 0 | 100 | -4 | 1 | 100 |
-| 3 | 0 | 011 | -5 | 1 | 011 |
-| 2 | 0 | 010 | -6 | 1 | 010 |
-| 1 | 0 | 001 | -7 | 1 | 001 |
-| 0 | 0 | 000 |    |   |     |
+| DECIMAL | POSITIVE | BINARY | DECIMAL | NEGATIVE | BINARY |
+|:-------:|:--------:|:------:|:-------:|:--------:|:------:|
+|    7    |     0    |   111  |    -1   |     1    |   111  |
+|    6    |     0    |   110  |    -2   |     1    |   110  |
+|    5    |     0    |   101  |    -3   |     1    |   101  |
+|    4    |     0    |   100  |    -4   |     1    |   100  |
+|    3    |     0    |   011  |    -5   |     1    |   011  |
+|    2    |     0    |   010  |    -6   |     1    |   010  |
+|    1    |     0    |   001  |    -7   |     1    |   001  |
+|    0    |     0    |   000  |         |          |        |
 
 先来理解下8位二进制数表示原理。先来理解下8位二进制数表示原理。从而可以延伸到32位，64位以及任意其他位数。
 
@@ -94,3 +93,38 @@ Positive Values AND Negative Values
 大家会发现，-1的补码还可以这么求：1取反（包括符号位），然后加1，其实也能得到-1的补码。在程序中，求一个数的相反数，如果看到这样的写法 ~num + 1，其实就是这个原理了。我个人还是更喜欢直接用 -1 * num，这样更通俗易懂。
 
 come from: http://www.01happy.com/computer-true-code-complement-code/
+
+### Arithmetic vs. Logical Right Shift
+
+移位操作符（shift operators）
+   
+移位操作符同样是位的操作，有以下三种：
+
+- <<    （往左移位）
+- >>    （往右移位）
+- >>>   （无符号右移位）
+
+下面对以上的三种移位操作做简单的说明
+   
+- “<<”将目标数向左移位，在低位补“0”。
+- “>>”将目标数向右移位，此时应注意，“>>”使用符号延伸（sign extension），
+	+ 若目标数是正数（positive），在高位补“0”；
+	+ 若目标数是负数（negative），在高位补“1”。
+- “>>>”使用“0”延伸（zero extension）,不管目标数是正数还是负数，总是在高位补“0”。
+	+ 注意：无符号右移位“>>>”在C/C++中是不存在的。
+	
+```java
+int repeatedArithmeticShift(int x, int count) {
+	for (int i = 0; i < count; i++) {
+		x >>= 1;
+	}
+	return x;
+}
+
+int repeatedLogicalShift(int x, int count) {
+	for (int i = 0; i < count; i++) {
+		x >>>= 1;
+	}
+	return x;
+}
+```
