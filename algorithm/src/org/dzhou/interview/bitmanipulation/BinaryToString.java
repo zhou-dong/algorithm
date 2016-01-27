@@ -34,4 +34,24 @@ public class BinaryToString {
 		return binary.toString();
 	}
 
+	public String printBinary2(double num) {
+		if (num >= 1 || num <= 0)
+			return ERROR;
+		double frac = 0.5;
+		StringBuffer binary = new StringBuffer();
+		binary.append(".");
+		while (num > 0) {
+			if (binary.length() > 32)
+				return ERROR;
+			if (num >= frac) {
+				binary.append(1);
+				num -= frac;
+			} else {
+				binary.append(0);
+			}
+			frac /= 2;
+		}
+		return binary.toString();
+	}
+
 }
