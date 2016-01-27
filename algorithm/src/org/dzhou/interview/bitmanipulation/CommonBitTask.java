@@ -16,4 +16,10 @@ public class CommonBitTask {
 		return x;
 	}
 
+	public boolean getBit(int num, int i) {
+		int tmp = 1 << i; // shifts 1 over by i bits
+		int result = num & tmp; // perform AND with num
+		return result != 0;
+	}
+
 }

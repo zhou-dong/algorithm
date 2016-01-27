@@ -15,6 +15,12 @@ public class CommonBitTaskTest {
 	}
 
 	@Test
+	public void testGetBit() {
+		Assert.assertTrue(bitTask.getBit(2, 1));
+		Assert.assertTrue(bitTask.getBit(4, 2));
+	}
+
+	@Test
 	public void testRepeatedArithmeticShift() {
 		Assert.assertEquals(2, bitTask.repeatedArithmeticShift(4, 1));
 		Assert.assertEquals(1, bitTask.repeatedArithmeticShift(4, 2));
