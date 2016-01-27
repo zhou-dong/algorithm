@@ -8,6 +8,7 @@ public class Practice {
 	public static void main(String[] args) {
 		print((1 << 2) - 1);
 		print(3 << 1);
+		print(Integer.BYTES);
 	}
 
 	public static void print(int num) {
