@@ -15,6 +15,12 @@ public class CommonBitTaskTest {
 	}
 
 	@Test
+	public void testUpdateBit() {
+		Assert.assertEquals(6, bitTask.updateBit(14, 3, false));
+		Assert.assertEquals(30, bitTask.updateBit(14, 4, true));
+	}
+
+	@Test
 	public void testSetBit() {
 		Assert.assertEquals(6, bitTask.setBit(6, 2));
 		Assert.assertEquals(14, bitTask.setBit(6, 3));
@@ -39,4 +45,5 @@ public class CommonBitTaskTest {
 		Assert.assertTrue(bitTask.repeatedLogicalShift(-4, 1) > 0);
 		Assert.assertTrue(bitTask.repeatedLogicalShift(-4, 2) > 0);
 	}
+
 }

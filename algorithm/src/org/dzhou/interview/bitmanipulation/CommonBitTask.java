@@ -27,4 +27,11 @@ public class CommonBitTask {
 		return num | tmp;
 	}
 
+	public int updateBit(int num, int i, boolean bitIs1) {
+		int value = bitIs1 ? 1 : 0;
+		int mask = ~(1 << i);
+		int clearTargetPosition = num & mask;
+		return clearTargetPosition | (value << i);
+	}
+
 }
