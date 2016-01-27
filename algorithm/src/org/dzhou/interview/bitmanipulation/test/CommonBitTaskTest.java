@@ -1,5 +1,6 @@
-package org.dzhou.interview.bitmanipulation;
+package org.dzhou.interview.bitmanipulation.test;
 
+import org.dzhou.interview.bitmanipulation.CommonBitTask;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
