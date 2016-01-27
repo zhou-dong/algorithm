@@ -15,6 +15,21 @@ public class CommonBitTaskTest {
 	}
 
 	@Test
+	public void testClearMSBits() {
+		Assert.assertEquals(6, bitTask.clearBitsMSBthroughI(14, 3));
+		Assert.assertEquals(14, bitTask.clearBitsMSBthroughI(30, 4));
+		Assert.assertEquals(6, bitTask.clearBitsMSBthroughI(30, 3));
+		Assert.assertEquals(2, bitTask.clearBitsMSBthroughI(30, 2));
+		Assert.assertEquals(0, bitTask.clearBitsMSBthroughI(30, 1));
+	}
+
+	@Test
+	public void testClearBit() {
+		Assert.assertEquals(6, bitTask.clearBit(14, 3));
+		Assert.assertEquals(14, bitTask.clearBit(30, 4));
+	}
+
+	@Test
 	public void testUpdateBit() {
 		Assert.assertEquals(6, bitTask.updateBit(14, 3, false));
 		Assert.assertEquals(30, bitTask.updateBit(14, 4, true));
