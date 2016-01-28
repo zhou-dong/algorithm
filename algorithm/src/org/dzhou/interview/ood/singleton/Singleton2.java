@@ -1,4 +1,4 @@
-package org.dzhou.interview.ood;
+package org.dzhou.interview.ood.singleton;
 
 public class Singleton2 {
 
