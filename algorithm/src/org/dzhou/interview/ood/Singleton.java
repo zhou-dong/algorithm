@@ -2,10 +2,10 @@ package org.dzhou.interview.ood;
 
 public class Singleton {
 
-	private static Singleton instance = null;
-
 	private Singleton() {
 	}
+
+	private static Singleton instance = null;
 
 	public static Singleton getInstance() {
 		if (instance == null)
