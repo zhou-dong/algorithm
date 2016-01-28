@@ -9,6 +9,8 @@
 4. Investigate Actions
 5. Design Patterns
 
+#### Singleton
+
 ```java
 public class Singleton {
 	private Singleton() {}

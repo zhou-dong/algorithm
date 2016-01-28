@@ -1,4 +1,4 @@
-package org.dzhou.interview.ood.singleton;
+package org.dzhou.interview.ood;
 
 import java.util.HashMap;
 import java.util.Map;
