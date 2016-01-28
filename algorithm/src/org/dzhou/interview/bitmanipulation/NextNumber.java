@@ -11,34 +11,53 @@ package org.dzhou.interview.bitmanipulation;
  */
 public class NextNumber {
 
-	private int num1s(int n) {
-		int count = 0;
-		while (n > 0) {
-			if ((n & 1) != 0) {
-				count++;
-			}
-			n >>= 1;
+	public int getNext(int n) {
+		int c = n;
+		int c0 = 0;
+		int c1 = 0;
+		// compute c0 and c1
+		while (c != 0) {
+			if ((c & 1) == 1)
+				c1++;
+			else
+				c0++;
+			c >>= 1;
 		}
-		return count;
+		if (c0 + c1 == 31 || c0 + c1 == 0)
+			return -1;
+		int p = c0 + c1; // position of rightmost non-trailing zero
+		n |= (1 << p);
+		n &= ~((1 << p) - 1);
+		n |= (1 << (c1 - 1)) - 1;
+		return n;
 	}
 
-	public int previousNum(int n) {
-		int num1s = num1s(n);
-		int result = 0;
-		for (int i = 0; i < num1s; i++) {
-			result = (result << 1 | 1);
+	public int getPrev(int n) {
+		int temp = n;
+		int c0 = 0;
+		int c1 = 0;
+		while (temp != 0) {
+			if ((temp & 1) == 1)
+				c1++;
+			else
+				c0++;
+			temp >>= 1;
 		}
-		return result;
+		int p = c0 + c1;
+		n &= ((~0) << (p + 1));
+		int mask = (1 << (c1 + 1)) - 1;
+		n |= mask << (c0 - 1);
+		return n;
 	}
 
-	public int nextNum(int n) {
-		int num1s = num1s(n);
-		int mask = 1 << (Integer.BYTES * 8 - 2);
-		int result = 0;
-		for (int i = 0; i < num1s; i++) {
-			result = (result >> 1) | mask;
-		}
-		return result;
+	public static void main(String[] args) {
+		NextNumber number2 = new NextNumber();
+		System.out.println(Integer.toBinaryString(13948));
+		number2.getPrev(13948);
+	}
+
+	public void print(int n) {
+		System.out.println(Integer.toBinaryString(n));
 	}
 
 }

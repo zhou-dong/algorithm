@@ -4,7 +4,7 @@ import org.dzhou.interview.bitmanipulation.BinaryToString;
 import org.dzhou.interview.bitmanipulation.Conversion;
 import org.dzhou.interview.bitmanipulation.Debugger;
 import org.dzhou.interview.bitmanipulation.FlipBitToWin;
-import org.dzhou.interview.bitmanipulation.NextNumber;
+import org.dzhou.interview.bitmanipulation.MaxMinNumber;
 import org.dzhou.interview.bitmanipulation.PairwiseSwap;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,8 +13,8 @@ public class BitManipulateTest {
 
 	@Test
 	public void testPreviousNum() {
-		Assert.assertEquals(3, new NextNumber().previousNum(6));
-		Assert.assertEquals(3, new NextNumber().previousNum(24));
+		Assert.assertEquals(3, new MaxMinNumber().previousNum(6));
+		Assert.assertEquals(3, new MaxMinNumber().previousNum(24));
 	}
 
 	@Test
