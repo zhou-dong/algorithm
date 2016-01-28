@@ -11,6 +11,11 @@ import org.junit.Test;
 public class BitManipulateTest {
 
 	@Test
+	public void testFlip2() {
+		Assert.assertEquals(8, new FlipBitToWin().flipBit(1775));
+	}
+
+	@Test
 	public void testFlip() {
 		Assert.assertEquals(8, new FlipBitToWin().longestSequence(1775));
 	}
