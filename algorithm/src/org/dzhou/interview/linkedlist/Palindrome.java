@@ -3,6 +3,7 @@ package org.dzhou.interview.linkedlist;
 import java.util.Stack;
 
 /**
+ * Practice of "cracking the code interview"
  * 
  * Implement a function to check if a linked list is a palindrome.
  * 

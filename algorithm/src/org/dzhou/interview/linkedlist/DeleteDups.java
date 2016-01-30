@@ -2,6 +2,12 @@ package org.dzhou.interview.linkedlist;
 
 import java.util.HashSet;
 
+/**
+ * Practice of "cracking the code interview"
+ * 
+ * @author DONG ZHOU
+ *
+ */
 public class DeleteDups {
 
 	public static void deleteDups(Node head) {

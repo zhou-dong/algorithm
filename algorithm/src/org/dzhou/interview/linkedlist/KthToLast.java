@@ -1,5 +1,11 @@
 package org.dzhou.interview.linkedlist;
 
+/**
+ * Practice of "cracking the code interview"
+ * 
+ * @author DONG ZHOU
+ *
+ */
 public class KthToLast {
 
 	public static int printKthTolast(Node head, int k) {

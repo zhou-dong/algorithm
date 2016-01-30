@@ -1,6 +1,7 @@
 package org.dzhou.interview.linkedlist;
 
 /**
+ * Practice of "cracking the code interview"
  * 
  * Simple implement of LinkedList.
  * 

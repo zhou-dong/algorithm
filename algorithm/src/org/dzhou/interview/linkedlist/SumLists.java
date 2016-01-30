@@ -1,6 +1,7 @@
 package org.dzhou.interview.linkedlist;
 
 /**
+ * Practice of "cracking the code interview"
  * 
  * You have two numbers represented by a linked list, where each node containers
  * a single digit. The digits are store in reverse order, such that the 1's are

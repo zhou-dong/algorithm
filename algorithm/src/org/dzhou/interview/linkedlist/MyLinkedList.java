@@ -1,6 +1,8 @@
 package org.dzhou.interview.linkedlist;
 
 /**
+ * Practice of "cracking the code interview"
+ * 
  * @author DONG ZHOU
  *
  * @param <E>

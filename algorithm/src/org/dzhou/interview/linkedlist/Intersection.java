@@ -1,6 +1,8 @@
 package org.dzhou.interview.linkedlist;
 
 /**
+ * Practice of "cracking the code interview"
+ * 
  * Given two (singly) linked list, determine if the two lists intersect. Return
  * the intersection node. Note that the intersection is defined based on
  * reference, not value. That is, if the kth node of the first linked list is
