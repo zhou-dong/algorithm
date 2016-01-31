@@ -1,5 +1,11 @@
 package org.dzhou.interview.sort;
 
+/**
+ * Practice of "cracking the code interview"
+ * 
+ * @author DONG ZHOU
+ *
+ */
 public class Merge {
 
 	public void merge(int[] a, int[] b, int lastA, int lastB) {
