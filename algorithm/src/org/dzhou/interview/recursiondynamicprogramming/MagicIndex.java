@@ -29,7 +29,7 @@ public class MagicIndex {
 		return magicFast(array, 0, array.length - 1);
 	}
 
-	public int magicFast(int[] array, int start, int end) {
+	private int magicFast(int[] array, int start, int end) {
 		if (end < start)
 			return -1;
 		int mid = (start + end) / 2;
@@ -39,6 +39,29 @@ public class MagicIndex {
 			return magicFast(array, start, mid - 1);
 		else
 			return magicFast(array, mid + 1, end);
+	}
+
+	public int magicFastWithUndistinctElements(int[] array) {
+		return magicFastWithUndistinctElements(array, 0, array.length - 1);
+	}
+
+	private int magicFastWithUndistinctElements(int[] array, int start, int end) {
+		if (end < start)
+			return -1;
+
+		int midIndex = (start + end) / 2;
+		int midValue = array[midIndex];
+		if (midValue == midIndex)
+			return midValue;
+
+		int leftIndex = Math.min(midIndex - 1, midValue);
+		int left = magicFastWithUndistinctElements(array, start, leftIndex);
+		if (left >= 0)
+			return left;
+
+		int rightIndex = Math.max(midIndex + 1, midValue);
+		int right = magicFastWithUndistinctElements(array, rightIndex, end);
+		return right;
 	}
 
 }
