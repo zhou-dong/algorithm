@@ -24,25 +24,24 @@ public class HanoiTower {
 		}
 
 		public boolean add(int data) {
-			if (!disks.isEmpty() && disks.peek() <= data) {
+			if (!disks.isEmpty() && disks.peek() <= data)
 				return false;
-			} else {
+			else {
 				disks.push(data);
 				return true;
 			}
 		}
 
-		public void moveTopTo(Tower t) {
-			int top = disks.pop();
-			t.add(top);
+		public boolean moveTopTo(Tower t) {
+			return t.add(disks.pop());
 		}
 
 		public void moveDisks(int n, Tower destination, Tower buffer) {
-			if (n > 0) {
-				moveDisks(n - 1, buffer, destination);
-				moveTopTo(destination);
-				buffer.moveDisks(n - 1, destination, this);
-			}
+			if (n < 1)
+				return;
+			moveDisks(n - 1, buffer, destination);
+			moveTopTo(destination);
+			buffer.moveDisks(n - 1, destination, this);
 		}
 	}
 
