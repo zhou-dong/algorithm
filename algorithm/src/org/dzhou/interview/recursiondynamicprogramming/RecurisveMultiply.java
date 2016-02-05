@@ -34,10 +34,10 @@ public class RecurisveMultiply {
 		int bigger = a < b ? b : a;
 		int smaller = a < b ? a : b;
 		int memo[] = new int[smaller + 1];
-		return minProductHelper(smaller, bigger, memo);
+		return minProductHelper2(smaller, bigger, memo);
 	}
 
-	private int minProductHelper(int smaller, int bigger, int[] memo) {
+	private int minProductHelper2(int smaller, int bigger, int[] memo) {
 		if (smaller == 0)
 			return 0;
 		else if (smaller == 1)
@@ -45,10 +45,29 @@ public class RecurisveMultiply {
 		else if (memo[smaller] > 0)
 			return memo[smaller];
 		int s = smaller >> 1;
-		int side1 = minProductHelper(s, bigger, memo);
-		int side2 = (smaller % 2 == 1) ? minProductHelper(smaller - s, bigger, memo) : side1;
+		int side1 = minProductHelper2(s, bigger, memo);
+		int side2 = (smaller % 2 == 1) ? minProductHelper2(smaller - s, bigger, memo) : side1;
 		memo[smaller] = side1 + side2;
 		return memo[smaller];
+	}
+
+	public int minProduct3(int a, int b) {
+		int bigger = a < b ? b : a;
+		int smaller = a < b ? a : b;
+		return minProductHelper3(smaller, bigger);
+	}
+
+	private int minProductHelper3(int smaller, int bigger) {
+		if (smaller == 0)
+			return 0;
+		else if (smaller == 1)
+			return bigger;
+		int s = smaller >> 1;
+		int halfProd = minProductHelper3(s, bigger);
+		if (smaller % 2 == 0)
+			return halfProd + halfProd;
+		else
+			return halfProd + halfProd + bigger;
 	}
 
 }
