@@ -1,6 +1,7 @@
 package org.dzhou.interview.recursiondynamicprogramming;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Practice of "cracking the code interview"
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Permutation {
 
-	public ArrayList<String> getPerms(String str) {
+	public List<String> getPerms(String str) {
 		if (str == null)
 			return null;
 		ArrayList<String> permutations = new ArrayList<>();
@@ -22,7 +23,7 @@ public class Permutation {
 		}
 		char first = str.charAt(0);
 		String remainder = str.substring(1);
-		ArrayList<String> words = getPerms(remainder);
+		List<String> words = getPerms(remainder);
 		for (String word : words) {
 			for (int j = 0; j < word.length(); j++) {
 				String s = insertCharAt(word, first, j);
