@@ -12,4 +12,16 @@ package org.dzhou.interview.recursiondynamicprogramming;
  */
 public class Coins {
 
+	public int makeChange(int amount, int[] denoms, int index) {
+		int ways = 0;
+
+		return ways;
+
+	}
+
+	int makeChange(int n) {
+		int[] denoms = { 25, 10, 5, 1 };
+		return makeChange(n, denoms, 0);
+	}
+
 }
