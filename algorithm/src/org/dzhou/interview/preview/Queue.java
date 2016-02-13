@@ -30,6 +30,9 @@ public class Queue<T> {
 		}
 		T result = first.data;
 		first = first.next;
+		if (first == null) {
+			last = null;
+		}
 		return result;
 	}
 
