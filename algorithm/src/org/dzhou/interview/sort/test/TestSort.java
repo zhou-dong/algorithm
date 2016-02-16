@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.dzhou.interview.sort.MergeSort;
 import org.dzhou.interview.sort.QuickSort;
+import org.dzhou.interview.sort.SearcBinary;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -17,7 +18,6 @@ public class TestSort {
 		show(data);
 		MergeSort.mergesort(data);
 		show(data);
-
 		Assert.assertArrayEquals(sorted, data);
 	}
 
@@ -25,14 +25,28 @@ public class TestSort {
 	public void testQuicksort() {
 		int[] data = getRandomArray(10, 20);
 		int[] sorted = getSorted(data);
-		show(sorted);
-		show(data);
+		// show(sorted);
+		// show(data);
 		QuickSort.sort(data);
-		show(data);
+		// show(data);
 		Assert.assertArrayEquals(sorted, data);
 	}
 
-	private void show(int[] array) {
+	@Test
+	public void testBinarysearch() {
+		int[] data = { 0, 1, 2, 2, 3, 4, 5, 6, 7, 8, 9 };
+		int index = SearcBinary.binarysearch(data, 9);
+		Assert.assertEquals(10, index);
+	}
+
+	@Test
+	public void testBinarysearchRecursive() {
+		int[] data = { 0, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+		int index = SearcBinary.binarysearchRecurisve(data, 6);
+		Assert.assertEquals(7, index);
+	}
+
+	void show(int[] array) {
 		for (int i : array) {
 			System.out.print(i + " ");
 		}

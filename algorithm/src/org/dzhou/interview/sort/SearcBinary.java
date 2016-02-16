@@ -19,7 +19,11 @@ public class SearcBinary {
 		return -1;
 	}
 
-	public static int binarysearchRecurisve(int[] array, int x, int low, int high) {
+	public static int binarysearchRecurisve(int[] array, int x) {
+		return binarysearchRecurisve(array, x, 0, array.length - 1);
+	}
+
+	static int binarysearchRecurisve(int[] array, int x, int low, int high) {
 		if (low > high)
 			return -1;
 		int mid = (low + high) / 2;
