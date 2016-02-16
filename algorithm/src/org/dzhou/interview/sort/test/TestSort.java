@@ -4,20 +4,31 @@ import java.util.Arrays;
 import java.util.Random;
 
 import org.dzhou.interview.sort.MergeSort;
+import org.dzhou.interview.sort.QuickSort;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestMergesort {
+public class TestSort {
 
-	@Test
 	public void testSort() {
-		int[] data = getRandomArray(10, 100);
+		int[] data = getRandomArray(10, 20);
 		int[] sorted = getSorted(data);
 		show(sorted);
 		show(data);
 		MergeSort.mergesort(data);
 		show(data);
 
+		Assert.assertArrayEquals(sorted, data);
+	}
+
+	@Test
+	public void testQuicksort() {
+		int[] data = getRandomArray(10, 20);
+		int[] sorted = getSorted(data);
+		show(sorted);
+		show(data);
+		QuickSort.sort(data);
+		show(data);
 		Assert.assertArrayEquals(sorted, data);
 	}
 
