@@ -2,7 +2,7 @@ package org.dzhou.interview.sort;
 
 public class MergeSort {
 
-	public void mergesort(int array[], int low, int high) {
+	static void mergesort(int array[], int low, int high) {
 		if (low < high) {
 			int middle = (low + high) / 2;
 			mergesort(array, low, middle);
@@ -11,9 +11,9 @@ public class MergeSort {
 		}
 	}
 
-	void merge(int[] array, int low, int middle, int high) {
+	static void merge(int[] array, int low, int middle, int high) {
 		int[] helper = new int[array.length];
-		for (int i = low; i < high; i++) {
+		for (int i = low; i <= high; i++) {
 			helper[i] = array[i];
 		}
 		int helperLeft = low;
@@ -35,4 +35,7 @@ public class MergeSort {
 		}
 	}
 
+	public static void mergesort(int[] array) {
+		mergesort(array, 0, array.length - 1);
+	}
 }
