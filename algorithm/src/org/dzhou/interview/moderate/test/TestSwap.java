@@ -20,4 +20,12 @@ public class TestSwap {
 		Assert.assertArrayEquals(swaped, origin);
 	}
 
+	@Test
+	public void testSwapArray_opt() {
+		int[] origin = { 1, 2 };
+		int[] swaped = { 2, 1 };
+		Swap.swap_opt(origin, 0, 1);
+		Assert.assertArrayEquals(swaped, origin);
+	}
+
 }

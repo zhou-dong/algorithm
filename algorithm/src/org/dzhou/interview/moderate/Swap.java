@@ -26,6 +26,8 @@ public class Swap {
 	}
 
 	/*
+	 * 异或
+	 * 
 	 * 异或是一种基于二进制的位运算，用符号XOR或者^表示，
 	 * 
 	 * 其运算法则是对运算符两侧数的每一个二进制位，同值取0，异值取1。
@@ -33,13 +35,31 @@ public class Swap {
 	 * 它与布尔运算的区别在于， 当运算符两侧均为1时，布尔运算的结果为1， 异或运算的结果为0。
 	 * 
 	 * 简单理解就是不进位加法，如1+1=0，,0+0=0,1+0=1。
+	 * 
+	 * 
+	 * 性质
+	 * 
+	 * 1. 交换律
+	 * 
+	 * 2. 结合律
+	 * 
+	 * 3. 对于任何数x，都有x^x=0，x^0=x
+	 * 
+	 * 4. 自反性 A XOR B XOR B = A XOR 0 = A
 	 */
 	public static void swap_opt(int a, int b) {
 		System.out.println(a + " " + b);
 		// example a=101, b = 110
 		a = a ^ b; // a = 101^110 = 011
-		b = a ^ b; // b = 011^110 = 101
-		a = a ^ b; // a = 011^101 = 110
+		b = a ^ b; // b = 011^110 = 101 (a^b^b) = (a^0) = a
+		a = a ^ b; // a = 011^101 = 110 (a^b^a) = (b^0) = b
 		System.out.println(a + " " + b);
 	}
+
+	public static void swap_opt(int[] array, int a, int b) {
+		array[a] = array[a] ^ array[b]; // a = 101^110 = 011
+		array[b] = array[a] ^ array[b]; // b = 011^110 = 101 (a^b^b) = (a^0) = a
+		array[a] = array[a] ^ array[b]; // a = 011^101 = 110 (a^b^a) = (b^0) = b
+	}
+
 }
