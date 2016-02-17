@@ -25,4 +25,12 @@ public class Swap {
 		array[a] = array[b] - array[a]; // update a = b - a (difference) ;
 	}
 
+	public static void swap_opt(int a, int b) {
+		System.out.println(a + " " + b);
+		// example a=101, b = 110
+		a = a ^ b; // a = 101^110 = 011
+		b = a ^ b; // b = 011^110 = 101
+		a = a ^ b; // a = 011^101 = 110
+		System.out.println(a + " " + b);
+	}
 }

@@ -8,6 +8,8 @@ public class TestSwap {
 
 	public void testSwap() {
 		Swap.swap(-1, 8);
+		Swap.swap_opt(-1, 8);
+		Swap.swap_opt(5, 8);
 	}
 
 	@Test
