@@ -8,4 +8,9 @@ package org.dzhou.interview.moderate;
  */
 public class OXO {
 
+	public boolean hasWin() {
+
+		return false;
+	}
+
 }
