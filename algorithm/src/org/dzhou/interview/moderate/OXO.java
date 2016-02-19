@@ -8,9 +8,14 @@ package org.dzhou.interview.moderate;
  */
 public class OXO {
 
+	// 解法1
 	public boolean hasWin() {
 
 		return false;
 	}
+
+	// 解法2
+
+	// 解法3
 
 }
