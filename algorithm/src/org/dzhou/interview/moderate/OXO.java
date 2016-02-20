@@ -14,6 +14,11 @@ public class OXO {
 		return false;
 	}
 
+	public static int convertBoardToInt(char[][] board) {
+		int sum = 0;
+
+		return sum;
+	}
 	// 解法2
 
 	// 解法3
