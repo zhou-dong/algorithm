@@ -12,7 +12,7 @@ import java.util.Map;
 public class OXO {
 
 	public enum Piece {
-		EMPTY;
+		EMPTY, RED, BLUE;
 	}
 
 	public static Map<Integer, Boolean> recordMap = new HashMap<>();
