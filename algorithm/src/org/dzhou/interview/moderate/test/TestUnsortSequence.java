@@ -19,7 +19,7 @@ public class TestUnsortSequence {
 	public void test2() {
 		int[] array = { 1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19 };
 		Result result = new FindUnsortedSequence().findUnsortedSequence(array);
-		Assert.assertEquals(4, result.left);
+		Assert.assertEquals(3, result.left);
 		Assert.assertEquals(9, result.right);
 	}
 }
