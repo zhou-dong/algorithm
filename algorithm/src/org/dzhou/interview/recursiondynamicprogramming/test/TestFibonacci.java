@@ -27,6 +27,7 @@ public class TestFibonacci {
 		Fibonacci fibonacci = new Fibonacci();
 		Assert.assertEquals(2584, fibonacci.fibonacci(18));
 	}
+
 	@Test
 	public void testFibonacci4() {
 		Fibonacci fibonacci = new Fibonacci();
