@@ -10,6 +10,7 @@ package org.dzhou.interview.hard;
  */
 public class Add {
 
+	// 每次 (a & b) << 1，都会进位，直到 a & b == 0
 	public static int add(int a, int b) {
 		if (b == 0)
 			return a;
