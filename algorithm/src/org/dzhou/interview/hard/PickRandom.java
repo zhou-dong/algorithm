@@ -13,6 +13,27 @@ public class PickRandom {
 
 	public static Random random = new Random();
 
+	public int[] pickMRecursively(int[] array, int m, int i) {
+		if (i + 1 == m) {
+			return copyFirstM(array, m);
+		} else if (i + m > m) {
+			int[] result = pickMRecursively(array, m, i - 1);
+			int rand = random.nextInt(i + 1);
+			if (rand < m) {
+				result[rand] = array[rand];
+			}
+			return result;
+		}
+		return null;
+	}
+
+	private int[] copyFirstM(int[] array, int m) {
+		int[] result = new int[m];
+		for (int i = 0; i < m; i++)
+			result[i] = array[i];
+		return result;
+	}
+
 	public int[] pickMIteratively(int[] array, int m) {
 		int[] result = new int[m];
 
