@@ -13,6 +13,8 @@ import java.util.List;
  */
 public class SuffixTree {
 
+	TreeNode root;
+
 	class TreeNode {
 		HashMap<Character, TreeNode> children;
 		String text;
@@ -25,7 +27,10 @@ public class SuffixTree {
 		}
 
 		public void insertString(String s, int index) {
+		}
 
+		public List<Integer> search(String s) {
+			return null;
 		}
 	}
 
