@@ -15,6 +15,10 @@ public class SuffixTree {
 
 	TreeNode root;
 
+	public SuffixTree() {
+		// TODO Auto-generated constructor stub
+	}
+
 	class TreeNode {
 		HashMap<Character, TreeNode> children;
 		String text;
