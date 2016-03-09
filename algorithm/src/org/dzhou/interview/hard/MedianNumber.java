@@ -9,8 +9,12 @@ package org.dzhou.interview.hard;
  */
 public class MedianNumber {
 
+	public void addNewNumber(int randomNumber) {
+	}
+
 	public static double getMedian() {
 
 		return 0d;
 	}
+
 }
