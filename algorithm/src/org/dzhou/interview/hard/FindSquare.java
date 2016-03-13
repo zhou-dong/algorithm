@@ -8,4 +8,15 @@ package org.dzhou.interview.hard;
  */
 public class FindSquare {
 
+	void findSquare() {
+
+	}
+
+	void findSquareWithSize() {
+
+	}
+
+	boolean isSquare() {
+		return false;
+	}
 }
