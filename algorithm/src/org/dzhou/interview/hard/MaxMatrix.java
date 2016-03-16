@@ -19,4 +19,8 @@ public class MaxMatrix {
 	int precomputeMatrix(int[][] original) {
 		return 0;
 	}
+
+	int computeSum(int[][] original) {
+		return 0;
+	}
 }
