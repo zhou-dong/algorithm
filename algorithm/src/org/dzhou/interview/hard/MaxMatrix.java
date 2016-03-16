@@ -15,4 +15,8 @@ public class MaxMatrix {
 		return maxArea;
 
 	}
+
+	int precomputeMatrix(int[][] original) {
+		return 0;
+	}
 }
