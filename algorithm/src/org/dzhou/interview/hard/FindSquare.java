@@ -16,7 +16,7 @@ public class FindSquare {
 
 	}
 
-	boolean isSquare() {
+	boolean isSquare(int[][] matrix, int row, int col, int size) {
 		return false;
 	}
 }
