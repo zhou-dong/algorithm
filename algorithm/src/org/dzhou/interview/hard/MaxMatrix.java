@@ -1,5 +1,8 @@
 package org.dzhou.interview.hard;
 
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedDeque;
+
 /**
  * Practice of "cracking the code interview"
  * 
@@ -7,6 +10,8 @@ package org.dzhou.interview.hard;
  *
  */
 public class MaxMatrix {
+
+	Queue<String> queue = new ConcurrentLinkedDeque<>();
 
 	int getMaxMatrix(int[][] original) {
 
