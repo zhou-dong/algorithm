@@ -2,13 +2,15 @@
 
 Search
 
-
 Tree
 
 Bit Opeartion
 
-Graoph
+Grapph
 
 Sort
 
 
+array
+
+string
