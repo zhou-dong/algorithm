@@ -28,4 +28,10 @@ DECISION TREE
 
 BOOST
 
+How would you find the kth smallest element in an array of integers?
+
+1. Ask quesion
+    - Is it an pre-ordered array
+2. Solution:
+    1. Selection sort
 
