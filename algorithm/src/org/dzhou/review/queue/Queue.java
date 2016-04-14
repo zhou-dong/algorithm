@@ -15,6 +15,7 @@ public class Queue<T> {
 
 	private Node first;
 	private Node last;
+	private int size = 0;
 
 	public void push(T data) {
 		Node current = new Node(data);
@@ -23,6 +24,7 @@ public class Queue<T> {
 		last = current;
 		if (first == null)
 			first = last;
+		size++;
 	}
 
 	public T peek() {
@@ -38,11 +40,16 @@ public class Queue<T> {
 		first = first.next;
 		if (first == null)
 			last = null;
+		size--;
 		return val;
 	}
 
 	public boolean isEmpty() {
 		return first == null;
+	}
+
+	public int getSize() {
+		return size;
 	}
 
 }
