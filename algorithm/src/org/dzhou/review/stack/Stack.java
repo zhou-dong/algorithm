@@ -1,5 +1,7 @@
 package org.dzhou.review.stack;
 
+import java.util.EmptyStackException;
+
 public class Stack<T> {
 
 	class Node {
@@ -16,13 +18,32 @@ public class Stack<T> {
 
 	public void push(T data) {
 		Node current = new Node(data);
-		if (top == null) {
-			top = current;
-		} else
-			top.next = current;
+		current.next = top;
+		top = current;
+		size++;
+	}
+
+	public T peek() {
+		if (top == null)
+			throw new EmptyStackException();
+		return top.data;
+	}
+
+	public T pop() {
+		if (top == null)
+			throw new EmptyStackException();
+		T val = top.data;
+		top = top.next;
+		size--;
+		return val;
 	}
 
 	public int getSize() {
 		return size;
 	}
+
+	public boolean isEmpty() {
+		return top == null;
+	}
+
 }
