@@ -1,6 +1,6 @@
-package org.dzhou.review.linkedlist;
+package org.dzhou.review.list;
 
-public class LinkedList<T> {
+public class LinkedList<T> implements List<T>{
 
 	class Node {
 		T data;
