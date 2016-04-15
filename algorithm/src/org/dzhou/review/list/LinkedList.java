@@ -1,6 +1,6 @@
 package org.dzhou.review.list;
 
-public class LinkedList<T> implements List<T>{
+public class LinkedList<T> implements List<T> {
 
 	class Node {
 		T data;
@@ -24,6 +24,7 @@ public class LinkedList<T> implements List<T>{
 		last.prev = first;
 	}
 
+	@Override
 	public void add(T data) {
 		addEnd(data);
 	}
@@ -46,10 +47,10 @@ public class LinkedList<T> implements List<T>{
 		size++;
 	}
 
+	@Override
 	public void add(int index, T data) {
-		if (index > size || index < 0)
-			throw new IndexOutOfBoundsException();
-		else if (index == 0)
+		rangeCheckForAdd(index);
+		if (index == 0)
 			addFront(data);
 		else if (index == size)
 			addEnd(data);
@@ -64,39 +65,59 @@ public class LinkedList<T> implements List<T>{
 		}
 	}
 
+	private void rangeCheckForAdd(int index) {
+		if (index > size || index < 0)
+			throw new IndexOutOfBoundsException();
+	}
+
+	@Override
 	public T remove(int index) {
 		Node current = getNode(index);
 		current.prev.next = current.next;
 		current.next.prev = current.prev;
 		current.prev = null;
-		current.next = null ;
+		current.next = null;
 		size--;
-		return current.data ;
+		return current.data;
 	}
 
+	@Override
 	public T set(int index, T element) {
 		Node current = getNode(index);
 		current.data = element;
 		return element;
 	}
 
+	@Override
 	public T get(int index) {
 		return getNode(index).data;
 	}
 
 	private Node getNode(int index) {
-		if (index < 0 || index >= size || size == 0)
-			throw new IndexOutOfBoundsException();
+		sizeCheck();
+		rangeCheckForGet(index);
 		Node result = first.next;
 		for (int i = 0; i < index; i++)
 			result = result.next;
 		return result;
 	}
 
+	private void rangeCheckForGet(int index) {
+		if (index < 0 || index >= size)
+			throw new IndexOutOfBoundsException();
+	}
+
+	private void sizeCheck() {
+		if (size == 0)
+			throw new IndexOutOfBoundsException();
+	}
+
+	@Override
 	public boolean isEmpty() {
 		return size == 0;
 	}
 
+	@Override
 	public int getSize() {
 		return size;
 	}
