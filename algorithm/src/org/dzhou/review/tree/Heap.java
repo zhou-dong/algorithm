@@ -35,6 +35,12 @@ public class Heap<T extends Comparable<T>> {
 		return (k - 1) / 2;
 	}
 
+	private void swap(int x, int y) {
+		T temp = items.get(x);
+		items.set(x, items.get(y));
+		items.set(y, temp);
+	}
+
 	public T delete() {
 		if (items.size() == 0) {
 			throw new NoSuchElementException();
@@ -46,20 +52,6 @@ public class Heap<T extends Comparable<T>> {
 		items.set(0, items.remove(items.size() - 1));
 		siftDown();
 		return result;
-	}
-
-	private int leftChildIndex(int k) {
-		return 2 * k + 1;
-	}
-
-	private int rightChildIndex(int k) {
-		return 2 * k + 2;
-	}
-
-	private void swap(int x, int y) {
-		T temp = items.get(x);
-		items.set(x, items.get(y));
-		items.set(y, temp);
 	}
 
 	private void siftDown() {
@@ -77,6 +69,14 @@ public class Heap<T extends Comparable<T>> {
 				break;
 			}
 		}
+	}
+
+	private int leftChildIndex(int k) {
+		return 2 * k + 1;
+	}
+
+	private int rightChildIndex(int k) {
+		return 2 * k + 2;
 	}
 
 	private int biggerChildIndex(int k) {
