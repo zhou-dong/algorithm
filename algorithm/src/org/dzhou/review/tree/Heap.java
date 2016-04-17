@@ -31,6 +31,10 @@ public class Heap<T extends Comparable<T>> {
 		}
 	}
 
+	private int parentIndex(int k) {
+		return (k - 1) / 2;
+	}
+
 	public T delete() {
 		if (items.size() == 0) {
 			throw new NoSuchElementException();
@@ -42,10 +46,6 @@ public class Heap<T extends Comparable<T>> {
 		items.set(0, items.remove(items.size() - 1));
 		siftDown();
 		return result;
-	}
-
-	private int parentIndex(int k) {
-		return (k - 1) / 2;
 	}
 
 	private int leftChildIndex(int k) {
