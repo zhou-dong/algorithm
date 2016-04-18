@@ -82,6 +82,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			if (parent != null)
 				removeOneChildNode(parent, current, isLeft);
 		} else {
+			current.object = findAndRmoveBiggestChild(current.left);
 		}
 	}
 
@@ -111,24 +112,15 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		return node.left != null ? node.left : node.right;
 	}
 
-	private void swapData(Node x, Node y) {
-		T temp = x.object;
-		x.object = y.object;
-		y.object = temp;
-	}
-
-	private Node findBiggest(Node node) {
+	private T findAndRmoveBiggestChild(Node node) {
+		Node parent = null;
 		Node current = node;
-		while (current.right != null)
+		while (current.right != null) {
+			parent = current;
 			current = current.right;
-		return current;
-	}
-
-	private Node findSmallest(Node node) {
-		Node current = node;
-		while (current.left != null)
-			current = current.left;
-		return current;
+		}
+		parent.right = current.left;
+		return current.object;
 	}
 
 }
