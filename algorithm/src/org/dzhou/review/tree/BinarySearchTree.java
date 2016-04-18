@@ -71,16 +71,13 @@ public class BinarySearchTree<T extends Comparable<T>> {
 				isLeft = false;
 			}
 		}
-		if (current == null) {
+		if (current == null)
 			throw new IllegalArgumentException();
-		}
 		int childrenNumber = countChildren(current);
-		if (childrenNumber == 0) {
-			if (parent != null)
-				removeLeaf(parent, isLeft);
-		} else if (childrenNumber == 1) {
-			if (parent != null)
-				removeOneChildNode(parent, current, isLeft);
+		if (parent != null && childrenNumber == 0) {
+			removeLeaf(parent, isLeft);
+		} else if (parent != null && childrenNumber == 1) {
+			removeOneChildNode(parent, current, isLeft);
 		} else {
 			current.object = findAndRmoveBiggestChild(current.left);
 		}
