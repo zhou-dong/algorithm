@@ -49,6 +49,8 @@ public class Quicksort<T extends Comparable<T>> {
 	}
 
 	private static <T extends Comparable<T>> void sway(T[] array, int x, int y) {
+		if (x == y)
+			return;
 		T temp = array[x];
 		array[x] = array[y];
 		array[y] = temp;
