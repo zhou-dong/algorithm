@@ -24,7 +24,6 @@ public class Quicksort<T extends Comparable<T>> {
 			}
 			if (left >= right)
 				break;
-			// swap
 			sway(array, left, right);
 			left++;
 			right--;
