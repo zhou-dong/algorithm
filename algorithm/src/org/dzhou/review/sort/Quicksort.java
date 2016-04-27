@@ -35,7 +35,7 @@ public class Quicksort<T extends Comparable<T>> {
 	}
 
 	private static <T extends Comparable<T>> void sort(T[] array, int lowIndex, int highIndex) {
-		if (highIndex > lowIndex) {
+		if (lowIndex < highIndex) {
 			int splitPoint = split(array, lowIndex, highIndex);
 			sort(array, lowIndex, splitPoint - 1);
 			sort(array, splitPoint + 1, highIndex);
