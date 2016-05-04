@@ -93,13 +93,19 @@ public class ReverseString {
 			swap(input, index, input.length - index - 1);
 	}
 
-	// method seven
-	public static String reverseStringByStringBuilder(String s) {
-		return new StringBuilder(s).reverse().toString();
+	// method eight
+	public static String reverseStringByLinkedList(String s) {
+		LinkedList<Character> list = new LinkedList<>();
+		for (char c : s.toCharArray())
+			list.add(c);
+		char[] result = new char[list.size()];
+		for (int i = 0; i < result.length; i++)
+			result[i] = list.pollLast();
+		return new String(result);
 	}
 
 	// method eight
-	public static String reverseStringByLinkedList(String s) {
+	public static String reverseStringByLinkedList2(String s) {
 		LinkedList<Character> list = new LinkedList<>();
 		for (char c : s.toCharArray())
 			list.add(c);
@@ -108,6 +114,11 @@ public class ReverseString {
 		for (int i = 0; i < result.length; i++)
 			result[i] = list.get(i);
 		return new String(result);
+	}
+
+	// method seven
+	public static String reverseStringByStringBuilder(String s) {
+		return new StringBuilder(s).reverse().toString();
 	}
 
 }

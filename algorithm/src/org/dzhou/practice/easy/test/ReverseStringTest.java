@@ -46,14 +46,20 @@ public class ReverseStringTest {
 	}
 
 	@Test
-	public void testReverseStringByStringBuilder() {
-		String answer = ReverseString.reverseStringByStringBuilder(input);
+	public void testReverseStringByLinkedList() {
+		String answer = ReverseString.reverseStringByLinkedList(input);
 		Assert.assertEquals(expected, answer);
 	}
 
 	@Test
-	public void testReverseStringByLinkedList() {
-		String answer = ReverseString.reverseStringByLinkedList(input);
+	public void testReverseStringByLinkedList2() {
+		String answer = ReverseString.reverseStringByLinkedList2(input);
+		Assert.assertEquals(expected, answer);
+	}
+
+	@Test
+	public void testReverseStringByStringBuilder() {
+		String answer = ReverseString.reverseStringByStringBuilder(input);
 		Assert.assertEquals(expected, answer);
 	}
 
