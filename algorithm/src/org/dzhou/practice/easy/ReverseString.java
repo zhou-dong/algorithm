@@ -121,4 +121,18 @@ public class ReverseString {
 		return new StringBuilder(s).reverse().toString();
 	}
 
+	// method ten
+	public static String reverseStringByRecursionFromHalf2(String s) {
+		char[] input = s.toCharArray();
+		reverseStringByRecursionFromHalf2(input, 0, input.length / 2);
+		return new String(input);
+	}
+
+	private static void reverseStringByRecursionFromHalf2(char[] input, int index, int half) {
+		if (index >= half)
+			return;
+		swap(input, index, input.length - index - 1);
+		reverseStringByRecursionFromHalf2(input, index + 1, half);
+	}
+
 }

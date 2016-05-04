@@ -63,4 +63,10 @@ public class ReverseStringTest {
 		Assert.assertEquals(expected, answer);
 	}
 
+	@Test
+	public void testReverseStringByRecursionFromHalf2() {
+		String answer = ReverseString.reverseStringByRecursionFromHalf2(input);
+		Assert.assertEquals(expected, answer);
+	}
+
 }
