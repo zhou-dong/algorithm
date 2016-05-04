@@ -93,7 +93,7 @@ public class ReverseString {
 			swap(input, index, input.length - index - 1);
 	}
 
-	// method eight
+	// method seven
 	public static String reverseStringByLinkedList(String s) {
 		LinkedList<Character> list = new LinkedList<>();
 		for (char c : s.toCharArray())
@@ -116,7 +116,7 @@ public class ReverseString {
 		return new String(result);
 	}
 
-	// method seven
+	// method nine
 	public static String reverseStringByStringBuilder(String s) {
 		return new StringBuilder(s).reverse().toString();
 	}
