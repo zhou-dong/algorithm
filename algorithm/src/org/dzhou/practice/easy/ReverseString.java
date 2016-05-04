@@ -86,11 +86,11 @@ public class ReverseString {
 	}
 
 	private static void reverseStringByRecursionFromHalf(char[] input, int index, int half) {
-		if (index < input.length) {
-			reverseStringByRecursionFromHalf(input, index + 1, half);
-			if (index > half)
-				swap(input, index, input.length - index - 1);
-		}
+		if (index >= input.length)
+			return;
+		reverseStringByRecursionFromHalf(input, index + 1, half);
+		if (index > half)
+			swap(input, index, input.length - index - 1);
 	}
 
 	// method seven
