@@ -79,11 +79,26 @@ public class ReverseString {
 	}
 
 	// method six
+	public static String reverseStringByRecursionFromHalf(String s) {
+		char[] input = s.toCharArray();
+		reverseStringByRecursionFromHalf(input, 0, input.length / 2);
+		return new String(input);
+	}
+
+	private static void reverseStringByRecursionFromHalf(char[] input, int index, int half) {
+		if (index < input.length) {
+			reverseStringByRecursionFromHalf(input, index + 1, half);
+			if (index > half)
+				swap(input, index, input.length - index - 1);
+		}
+	}
+
+	// method seven
 	public static String reverseStringByStringBuilder(String s) {
 		return new StringBuilder(s).reverse().toString();
 	}
 
-	// method seven
+	// method eight
 	public static String reverseStringByLinkedList(String s) {
 		LinkedList<Character> list = new LinkedList<>();
 		for (char c : s.toCharArray())

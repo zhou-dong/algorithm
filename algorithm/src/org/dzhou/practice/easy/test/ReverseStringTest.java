@@ -40,6 +40,12 @@ public class ReverseStringTest {
 	}
 
 	@Test
+	public void testReverseStringByRecursionFromHalf() {
+		String answer = ReverseString.reverseStringByRecursionFromHalf(input);
+		Assert.assertEquals(expected, answer);
+	}
+
+	@Test
 	public void testReverseStringByStringBuilder() {
 		String answer = ReverseString.reverseStringByStringBuilder(input);
 		Assert.assertEquals(expected, answer);
