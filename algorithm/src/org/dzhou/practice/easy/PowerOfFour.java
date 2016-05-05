@@ -78,4 +78,5 @@ public class PowerOfFour {
 		double epsilon = 0.00000001;
 		return (Math.log(num) / Math.log(4) + epsilon) % 1 <= 2 * epsilon;
 	}
+
 }
