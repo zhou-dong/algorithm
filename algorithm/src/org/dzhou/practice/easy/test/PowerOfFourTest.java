@@ -13,10 +13,30 @@ public class PowerOfFourTest {
 	}
 
 	@Test
+	public void test1() {
+		Assert.assertTrue(PowerOfFour.isPowerOfFour1(16));
+		Assert.assertFalse(PowerOfFour.isPowerOfFour1(24));
+	}
+
+	@Test
 	public void test2() {
 		Assert.assertTrue(PowerOfFour.isPowerOfFour2(16));
 		Assert.assertFalse(PowerOfFour.isPowerOfFour2(24));
 		Assert.assertFalse(PowerOfFour.isPowerOfFour2(17));
+	}
+
+	@Test
+	public void test3() {
+		Assert.assertTrue(PowerOfFour.isPowerOfFour3(16));
+		Assert.assertFalse(PowerOfFour.isPowerOfFour3(24));
+		Assert.assertFalse(PowerOfFour.isPowerOfFour3(17));
+	}
+
+	@Test
+	public void test4() {
+		Assert.assertTrue(PowerOfFour.isPowerOfFour4(16));
+		Assert.assertFalse(PowerOfFour.isPowerOfFour4(24));
+		Assert.assertFalse(PowerOfFour.isPowerOfFour4(17));
 	}
 
 }
