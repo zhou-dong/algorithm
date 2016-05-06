@@ -25,4 +25,28 @@ public class PowerOfTwoTest {
 			Assert.assertFalse(PowerOfTwo.isPowerOfTwo1(x));
 	}
 
+	@Test
+	public void test2() {
+		for (int x : trues)
+			Assert.assertTrue(PowerOfTwo.isPowerOfTwo2(x));
+		for (int x : falses)
+			Assert.assertFalse(PowerOfTwo.isPowerOfTwo2(x));
+	}
+
+	@Test
+	public void test3() {
+		for (int x : trues)
+			Assert.assertTrue(PowerOfTwo.isPowerOfTwo3(x));
+		for (int x : falses)
+			Assert.assertFalse(PowerOfTwo.isPowerOfTwo3(x));
+	}
+
+	@Test
+	public void test4() {
+		for (int x : trues)
+			Assert.assertTrue(PowerOfTwo.isPowerOfTwo4(x));
+		for (int x : falses)
+			Assert.assertFalse(PowerOfTwo.isPowerOfTwo4(x));
+	}
+
 }

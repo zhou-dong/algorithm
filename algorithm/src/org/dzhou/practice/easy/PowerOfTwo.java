@@ -29,4 +29,17 @@ public class PowerOfTwo {
 		return false;
 	}
 
+	public static boolean isPowerOfTwo2(int n) {
+		return Integer.toString(n, 2).matches("^10*$");
+	}
+
+	public static boolean isPowerOfTwo3(int n) {
+		return (Math.log(n) / Math.log(2)) % 1 == 0;
+	}
+
+	public static boolean isPowerOfTwo4(int n) {
+		double epsilon = 0.00000001;
+		return ((Math.log10(n) / Math.log10(2)) % 1 + epsilon) < 2 * epsilon;
+	}
+
 }
