@@ -13,7 +13,19 @@ package org.dzhou.practice.easy;
 public class MoveZeroes {
 
 	public static void moveZeroes(int[] nums) {
+		for (int i = nums.length - 1; i >= 0; i--) {
+			for (int j = 0; j < i; j++) {
+				if (nums[j] == 0) {
+					swap(nums, j, j + 1);
+				}
+			}
+		}
+	}
 
+	private static void swap(int[] nums, int x, int y) {
+		int temp = nums[x];
+		nums[x] = nums[y];
+		nums[y] = temp;
 	}
 
 }
