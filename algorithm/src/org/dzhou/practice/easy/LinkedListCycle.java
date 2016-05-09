@@ -26,7 +26,7 @@ public class LinkedListCycle {
 
 	public boolean hasCycle(ListNode head) {
 		ListNode speed = head;
-		while (head != null && speed != null && speed.next != null) {
+		while (speed != null && speed.next != null) {
 			head = head.next;
 			speed = speed.next.next;
 			if (head == speed)
