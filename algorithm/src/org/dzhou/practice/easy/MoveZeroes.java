@@ -22,6 +22,26 @@ public class MoveZeroes {
 		}
 	}
 
+	public static void moveZeroes1(int[] nums) {
+		for (int i = 0, j = 1; j < nums.length && i < nums.length; i++) {
+			if (nums[i] == 0) {
+				if (j <= i) {
+					j = i + 1;
+				}
+				while (j < nums.length) {
+					if (nums[j] == 0)
+						j++;
+					else
+						break;
+				}
+				if (j == nums.length) {
+					break;
+				}
+				swap(nums, i, j);
+			}
+		}
+	}
+
 	private static void swap(int[] nums, int x, int y) {
 		int temp = nums[x];
 		nums[x] = nums[y];
