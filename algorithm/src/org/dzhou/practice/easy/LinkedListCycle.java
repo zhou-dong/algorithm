@@ -1,5 +1,8 @@
 package org.dzhou.practice.easy;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Given a linked list, determine if it has a cycle in it.
  * 
@@ -22,8 +25,25 @@ public class LinkedListCycle {
 	}
 
 	public boolean hasCycle(ListNode head) {
+		ListNode speed = head;
+		while (head != null && speed != null && speed.next != null) {
+			head = head.next;
+			speed = speed.next.next;
+			if (head == speed)
+				return true;
+		}
+		return false;
+	}
 
-		return true;
+	public boolean hasCycle1(ListNode head) {
+		Set<ListNode> set = new HashSet<>();
+		while (head != null) {
+			if (set.contains(head))
+				return true;
+			set.add(head);
+			head = head.next;
+		}
+		return false;
 	}
 
 }
