@@ -12,7 +12,7 @@ package org.dzhou.practice.easy;
  */
 public class MoveZeroes {
 
-	public void moveZeroes(int[] nums) {
+	public static void moveZeroes(int[] nums) {
 
 	}
 
