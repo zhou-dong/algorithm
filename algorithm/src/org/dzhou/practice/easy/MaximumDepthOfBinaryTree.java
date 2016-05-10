@@ -24,7 +24,7 @@ public class MaximumDepthOfBinaryTree {
 
 	public int maxDepth(TreeNode root) {
 
-		return 0;
+		return -1;
 	}
 
 }
