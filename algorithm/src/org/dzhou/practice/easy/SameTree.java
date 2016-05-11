@@ -23,8 +23,29 @@ public class SameTree {
 	}
 
 	public boolean isSameTree(TreeNode p, TreeNode q) {
-
+		if (p == null && q == null)
+			return true;
+		if (p == null && q != null)
+			return false;
+		if (p != null && q == null)
+			return false;
+		if (p.val != q.val)
+			return false;
+		boolean isLeftSame = isSameTree(p.left, q.left);
+		if (!isLeftSame)
+			return false;
+		boolean isRightSame = isSameTree(p.right, q.right);
+		if (!isRightSame)
+			return false;
 		return true;
+	}
+
+	public boolean isSameTree1(TreeNode p, TreeNode q) {
+		if (p == null && q == null)
+			return true;
+		if (p == null || q == null)
+			return false;
+		return (p.val == q.val) && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
 	}
 
 }
