@@ -16,7 +16,18 @@ package org.dzhou.practice.easy;
 public class AddDigits {
 
 	public int addDigits(int num) {
-		return -1;
+		while (num > 9)
+			num = getSum(num);
+		return num;
+	}
+
+	private int getSum(int num) {
+		int sum = 0;
+		while (num != 0) {
+			sum += num % 10;
+			num /= 10;
+		}
+		return sum;
 	}
 
 }
