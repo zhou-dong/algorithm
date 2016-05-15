@@ -27,8 +27,8 @@ import java.util.Stack;
  */
 public class ImplementQueueUsingStacks {
 
-	Stack<Integer> s1 = new Stack<Integer>();
-	Stack<Integer> s2 = new Stack<Integer>();
+	private Stack<Integer> s1 = new Stack<Integer>();
+	private Stack<Integer> s2 = new Stack<Integer>();
 
 	// Push element x to the back of queue.
 	public void push(int x) {
