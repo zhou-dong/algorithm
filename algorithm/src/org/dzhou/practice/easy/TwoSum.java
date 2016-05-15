@@ -1,5 +1,8 @@
 package org.dzhou.practice.easy;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Given an array of integers, return indices of the two numbers such that they
  * add up to a specific target.
@@ -16,11 +19,34 @@ package org.dzhou.practice.easy;
 public class TwoSum {
 
 	public int[] twoSum(int[] nums, int target) {
+		Map<Integer, Integer> map = new HashMap<>();
+		for (int i = 0; i < nums.length; i++) {
+			int val = target - nums[i];
+			if (map.containsKey(val) && map.get(val) != i)
+				return new int[] { i, map.get(val) };
+			map.put(nums[i], i);
+		}
+		throw new IllegalArgumentException("No two sum solution");
+	}
+
+	public int[] twoSum1(int[] nums, int target) {
+		Map<Integer, Integer> map = new HashMap<>();
+		for (int i = 0; i < nums.length; i++)
+			map.put(nums[i], i);
+		for (int i = 0; i < nums.length; i++) {
+			int val = target - nums[i];
+			if (map.containsKey(val) && map.get(val) != i)
+				return new int[] { i, map.get(val) };
+		}
+		throw new IllegalArgumentException("No two sum solution");
+	}
+
+	public int[] twoSum2(int[] nums, int target) {
 		for (int i = 0; i < nums.length; i++)
 			for (int j = i + 1; j < nums.length; j++)
 				if (nums[i] + nums[j] == target)
 					return new int[] { i, j };
-		return null;
+		throw new IllegalArgumentException("No two sum solution");
 	}
 
 }
