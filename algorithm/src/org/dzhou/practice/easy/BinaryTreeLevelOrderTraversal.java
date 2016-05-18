@@ -6,22 +6,10 @@ import java.util.List;
 import java.util.Queue;
 
 /**
- * Given a binary tree, return the level order traversal of its nodes' values.
- * (ie, from left to right, level by level).
- * 
- * For example:<br>
- * Given binary tree {3,9,20,#,#,15,7},<br>
- * 3<br>
- * / \<br>
- * 9 20<br>
- * / \<br>
- * 15 7<br>
- * 
- * return its level order traversal as: [<br>
- * [3],<br>
- * [9,20],<br>
- * [15,7]<br>
- * ]<br>
+ * Given a binary tree, return the bottom-up level order traversal of its nodes'
+ * values. (ie, from left to right, level by level from leaf to root). For
+ * example: Given binary tree {3,9,20,#,#,15,7}, 3 / \ 9 20 / \ 15 7 return its
+ * bottom-up level order traversal as: [ [15,7] [9,20], [3], ]
  * 
  * @author zhoudong
  *
@@ -41,7 +29,6 @@ public class BinaryTreeLevelOrderTraversal {
 
 	// recursion
 	class Solution {
-
 		public List<List<Integer>> levelOrder(TreeNode root) {
 			List<List<Integer>> result = new LinkedList<>();
 			levelOrder(root, result, 0);
@@ -57,7 +44,6 @@ public class BinaryTreeLevelOrderTraversal {
 			levelOrder(node.left, result, level + 1);
 			levelOrder(node.right, result, level + 1);
 		}
-
 	}
 
 	// BFS
@@ -71,7 +57,6 @@ public class BinaryTreeLevelOrderTraversal {
 			queue.offer(root);
 
 			List<List<Integer>> result = new LinkedList<>();
-
 			while (!queue.isEmpty()) {
 				List<Integer> level = new LinkedList<>();
 				int size = queue.size();
@@ -88,6 +73,6 @@ public class BinaryTreeLevelOrderTraversal {
 
 			return result;
 		}
-
 	}
+
 }
