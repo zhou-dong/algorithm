@@ -63,7 +63,9 @@ public class SymmetricTree {
 				return true;
 			if (n1 == null || n2 == null)
 				return false;
-			return (n1.val == n2.val) && isSymmetric(n1.right, n2.left) && isSymmetric(n1.left, n2.right);
+			if (n1.val != n2.val)
+				return false;
+			return isSymmetric(n1.right, n2.left) && isSymmetric(n1.left, n2.right);
 		}
 	}
 }
