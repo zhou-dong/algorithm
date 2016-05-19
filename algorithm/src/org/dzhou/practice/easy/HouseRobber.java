@@ -16,4 +16,18 @@ package org.dzhou.practice.easy;
  */
 public class HouseRobber {
 
+	public int rob(int[] nums) {
+		if (nums.length < 2) {
+			return nums.length == 0 ? 0 : nums[0];
+		}
+		int x = nums[0];
+		int y = Math.max(x, nums[1]);
+		for (int i = 2; i < nums.length; i++) {
+			int temp = y;
+			y = Math.max(y, x + nums[i]);
+			x = temp;
+		}
+		return y;
+	}
+
 }
