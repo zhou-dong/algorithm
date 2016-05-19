@@ -8,14 +8,14 @@ package org.dzhou.practice.easy;
  * 
  * @author zhoudong
  *
- *         梯子有n层，每次只能爬1层或2层，那么要爬到第n层，要么是从第n-1层一步上来，要不就是从n- 2层2步上来。所以递推公式：
+ *         梯子有n层，每次只能爬1层或2层，那么要爬到第n层，要么是从第n-1层一步上来，要不就是从n- 2层2步上来。
  * 
- *         dp[n] = dp[n-1] + dp[n-2]
+ *         所以递推公式： dp[n] = dp[n-1] + dp[n-2]
  */
 public class ClimbingStairs {
 
 	public int climbStairs(int n) {
-		if (n == 1 || n == 2 || n == 3)
+		if (n == 0 || n == 1 || n == 2)
 			return n;
 		int[] dp = new int[n + 1];
 		for (int i = 0; i < 3; i++)
