@@ -26,14 +26,11 @@ public class WordPattern {
 
 	public boolean wordPattern(String pattern, String str) {
 		String[] words = str.split(" ");
-
 		if (pattern.length() != words.length) {
 			return false;
 		}
-
 		Map<Character, String> map1 = new HashMap<>();
 		Map<String, Character> map2 = new HashMap<>();
-
 		for (int i = 0; i < words.length; i++) {
 			char c = pattern.charAt(i);
 			String word = words[i];
@@ -49,7 +46,6 @@ public class WordPattern {
 				}
 			}
 		}
-
 		return true;
 	}
 
