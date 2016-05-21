@@ -20,11 +20,22 @@ public class PalindromeLinkedList {
 		}
 	}
 
-	class Solution {
-		public boolean isPalindrome(ListNode head) {
+	public boolean isPalindrome(ListNode head) {
 
-			return true;
+		return true;
+	}
+
+	private ListNode reverse(ListNode head) {
+		ListNode prev = null;
+
+		while (head != null) {
+			ListNode temp = head.next;
+			head.next = prev;
+			prev = head;
+			head = temp;
 		}
+
+		return prev;
 	}
 
 }
