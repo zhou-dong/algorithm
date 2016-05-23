@@ -1,7 +1,5 @@
 package org.dzhou.practice.easy;
 
-import java.util.Stack;
-
 /**
  * The count-and-say sequence is the sequence of integers beginning as follows:
  * 1, 11, 21, 1211, 111221, ...
@@ -19,13 +17,21 @@ import java.util.Stack;
 public class CountAndSay {
 
 	public String countAndSay(int n) {
-
-		return null;
-	}
-
-	public static void main(String[] args) {
-		CountAndSay instance = new CountAndSay();
-		System.out.println(instance.countAndSay(112));
+		String result = "1";
+		while (n > 1) {
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < result.length(); i++) {
+				int count = 1;
+				while ((i + 1) < result.length() && result.charAt(i) == result.charAt(i + 1)) {
+					count++;
+					i++;
+				}
+				sb.append(count + "" + result.charAt(i));
+			}
+			result = sb.toString();
+			n--;
+		}
+		return result;
 	}
 
 }
