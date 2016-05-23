@@ -25,25 +25,38 @@ import java.util.Map;
  */
 public class ExcelSheetColumnNumber {
 
-	public int titleToNumber(String s) {
-		if (s == null || s.length() == 0)
-			return 0;
-		int result = 0;
-		Map<Character, Integer> vocabulary = createVocabulary();
-		for (int i = 0; i < s.length(); i++) {
-			int val = vocabulary.get(s.charAt(s.length() - 1 - i));
-			result += (val * Math.pow(26, i));
+	class Solution {
+		public int titleToNumber(String s) {
+			if (s == null)
+				return 0;
+			int rst = 0;
+			for (int i = 0; i < s.length(); ++i)
+				rst = rst * 26 + s.charAt(i) - 'A' + 1;
+			return rst;
 		}
-		return result;
 	}
 
-	private Map<Character, Integer> createVocabulary() {
-		char[] chars = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
-				'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
-		Map<Character, Integer> vocabulary = new HashMap<>();
-		for (int i = 0; i < chars.length; i++)
-			vocabulary.put(chars[i], i + 1);
-		return vocabulary;
+	class Solution1 {
+		public int titleToNumber(String s) {
+			if (s == null || s.length() == 0)
+				return 0;
+			int result = 0;
+			Map<Character, Integer> vocabulary = createVocabulary();
+			for (int i = 0; i < s.length(); i++) {
+				int val = vocabulary.get(s.charAt(s.length() - 1 - i));
+				result += (val * Math.pow(26, i));
+			}
+			return result;
+		}
+
+		private Map<Character, Integer> createVocabulary() {
+			char[] chars = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+					'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+			Map<Character, Integer> vocabulary = new HashMap<>();
+			for (int i = 0; i < chars.length; i++)
+				vocabulary.put(chars[i], i + 1);
+			return vocabulary;
+		}
 	}
 
 }
