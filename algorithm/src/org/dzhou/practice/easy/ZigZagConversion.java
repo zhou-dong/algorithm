@@ -7,4 +7,10 @@ package org.dzhou.practice.easy;
  */
 public class ZigZagConversion {
 
+	public String convert(String s, int numRows) {
+		StringBuilder result = new StringBuilder();
+
+		return result.toString();
+	}
+
 }
