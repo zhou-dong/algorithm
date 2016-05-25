@@ -1,8 +1,6 @@
 package org.dzhou.practice.easy;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -26,17 +24,12 @@ public class PascalTriangleII {
 				result[i] = 0;
 		}
 		for (int i = 1; i < rowIndex + 1; i++) {
-			for (int j = 0; j <= i; j++) {
-				if (j == 0 || j == rowIndex)
-					continue;
+			result[i] = 1;
+			for (int j = i - 1; j > 0; j--) {
 				result[j] = result[j - 1] + result[j];
 			}
 		}
 		return Arrays.asList(result);
 	}
 
-	public static void main(String[] args) {
-		PascalTriangleII instance = new PascalTriangleII();
-		System.out.println(instance.getRow(3));
-	}
 }
