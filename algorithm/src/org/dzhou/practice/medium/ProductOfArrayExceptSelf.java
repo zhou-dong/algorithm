@@ -34,43 +34,42 @@ public class ProductOfArrayExceptSelf {
 	public class Solution {
 
 		public int[] productExceptSelf(int[] nums) {
-
 			int[] pSeq = new int[nums.length];
 			int[] nSeq = new int[nums.length];
-
 			pSeq[0] = 1;
 			for (int i = 1; i < nums.length; i++) {
 				pSeq[i] = pSeq[i - 1] * nums[i - 1];
 			}
-
 			nSeq[nums.length - 1] = 1;
 			for (int i = nums.length - 2; i >= 0; i--) {
 				nSeq[i] = nSeq[i + 1] * nums[i + 1];
 			}
-
 			for (int i = 0; i < nums.length; i++) {
 				pSeq[i] = pSeq[i] * nSeq[i];
 			}
-
 			return pSeq;
 		}
 
 	}
 
-	public int[] productExceptSelf(int[] nums) {
-		multiply(nums, 1, 0, nums.length);
-		return nums;
-	}
+	public class Solution1 {
 
-	private int multiply(int[] nums, int fwdProduct, int index, int length) {
-		int revProduct = 1;
-		if (index < length) {
-			revProduct = multiply(nums, fwdProduct * nums[index], index + 1, length);
-			int cur = nums[index];
-			nums[index] = fwdProduct * revProduct;
-			revProduct *= cur;
+		public int[] productExceptSelf(int[] nums) {
+			multiply(nums, 1, 0, nums.length);
+			return nums;
 		}
-		return revProduct;
+
+		private int multiply(int[] nums, int fwdProduct, int index, int length) {
+			int revProduct = 1;
+			if (index < length) {
+				revProduct = multiply(nums, fwdProduct * nums[index], index + 1, length);
+				int cur = nums[index];
+				nums[index] = fwdProduct * revProduct;
+				revProduct *= cur;
+			}
+			return revProduct;
+		}
+
 	}
 
 }
