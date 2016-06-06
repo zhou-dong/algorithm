@@ -3,6 +3,7 @@ package org.dzhou.practice.medium;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Given a binary tree, return the preorder traversal of its nodes' values.
@@ -38,6 +39,7 @@ public class BinaryTreePreorderTraversal {
 		}
 	}
 
+	// 递归做法
 	public class Solution {
 
 		public List<Integer> preorderTraversal(TreeNode root) {
@@ -54,6 +56,33 @@ public class BinaryTreePreorderTraversal {
 			list.add(node.val);
 			helper(node.left, list);
 			helper(node.right, list);
+		}
+
+	}
+
+	// 非递归方法
+	public class Solution1 {
+
+		public List<Integer> preorderTraversal(TreeNode root) {
+
+			if (root == null)
+				return Collections.emptyList();
+
+			List<Integer> result = new ArrayList<>();
+			Stack<TreeNode> stack = new Stack<>();
+
+			while (root != null || !stack.isEmpty()) {
+				if (root != null) {
+					stack.push(root);
+					result.add(root.val);
+					root = root.left;
+				} else {
+					root = stack.pop();
+					root = root.right;
+				}
+			}
+
+			return result;
 		}
 
 	}
