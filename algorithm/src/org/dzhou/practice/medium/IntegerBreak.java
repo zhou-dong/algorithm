@@ -25,24 +25,40 @@ public class IntegerBreak {
 	public class Solution {
 
 		public int integerBreak(int n) {
-
 			if (n == 2)
 				return 1;
 			if (n == 3)
 				return 2;
-
 			int result = 1;
 			while (n > 2) {
 				result *= 3;
 				n -= 3;
 			}
-
 			if (n == 1)
 				return (result / 3) * 4;// 余1，把其中的一个3加1变为4再相乘
 			if (n == 2)
 				return result * 2; // 余2,则可直接把2与res相乘
-
 			return result;
+		}
+
+	}
+
+	public class Solution1 {
+
+		public int integerBreak(int n) {
+			int size = n > 7 ? (n + 1) : 8;
+			int[] dp = new int[size];
+			dp[0] = 0;
+			dp[1] = 0;
+			dp[2] = 1;
+			dp[3] = 2;
+			dp[4] = 4;
+			dp[5] = 6;
+			dp[6] = 9;
+			dp[7] = 12;
+			for (int i = 8; i < size; i++)
+				dp[i] = Math.max(2 * dp[i - 2], 3 * dp[i - 3]);
+			return dp[n];
 		}
 
 	}
