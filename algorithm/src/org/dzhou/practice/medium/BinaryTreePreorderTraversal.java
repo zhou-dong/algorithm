@@ -64,13 +64,10 @@ public class BinaryTreePreorderTraversal {
 	public class Solution1 {
 
 		public List<Integer> preorderTraversal(TreeNode root) {
-
 			if (root == null)
 				return Collections.emptyList();
-
 			List<Integer> result = new ArrayList<>();
 			Stack<TreeNode> stack = new Stack<>();
-
 			while (root != null || !stack.isEmpty()) {
 				if (root != null) {
 					stack.push(root);
@@ -81,7 +78,6 @@ public class BinaryTreePreorderTraversal {
 					root = root.right;
 				}
 			}
-
 			return result;
 		}
 
