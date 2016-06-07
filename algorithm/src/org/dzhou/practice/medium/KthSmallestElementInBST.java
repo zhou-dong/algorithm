@@ -1,5 +1,7 @@
 package org.dzhou.practice.medium;
 
+import java.util.Stack;
+
 /**
  * Given a binary search tree, write a function kthSmallest to find the kth
  * smallest element in it.
@@ -21,5 +23,40 @@ package org.dzhou.practice.medium;
  *
  */
 public class KthSmallestElementInBST {
+
+	// Definition for a binary tree node.
+	public class TreeNode {
+		int val;
+		TreeNode left;
+		TreeNode right;
+
+		TreeNode(int x) {
+			val = x;
+		}
+	}
+
+	public class Solution {
+
+		public int kthSmallest(TreeNode root, int k) {
+			Stack<TreeNode> stack = new Stack<TreeNode>();
+			TreeNode p = root;
+			int result = 0;
+			while (p != null || !stack.isEmpty()) {
+				if (p != null) {
+					stack.push(p);
+					p = p.left;
+				} else {
+					TreeNode temp = stack.pop();
+					k--;
+					if (k == 0) {
+						result = temp.val;
+					}
+					p = temp.right;
+				}
+			}
+			return result;
+		}
+
+	}
 
 }
