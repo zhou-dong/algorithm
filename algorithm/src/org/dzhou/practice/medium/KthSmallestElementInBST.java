@@ -1,4 +1,4 @@
-package org.dzhou.practice.easy.test;
+package org.dzhou.practice.medium;
 
 /**
  * Given a binary search tree, write a function kthSmallest to find the kth
