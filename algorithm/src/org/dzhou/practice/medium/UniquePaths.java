@@ -27,6 +27,7 @@ public class UniquePaths {
 			return 1;
 
 		int[][] dp = new int[m][n];
+
 		for (int i = 0; i < n; i++)
 			dp[0][i] = 1;
 		for (int j = 0; j < m; j++)
