@@ -2,6 +2,7 @@ package org.dzhou.practice.medium;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * Given a binary tree containing digits from 0-9 only, each root-to-leaf path
@@ -39,34 +40,48 @@ public class SumRootToLeafNumbers {
 	}
 
 	public class Solution {
+		public int sumNumbers(TreeNode root) {
+			Stack<TreeNode> nodeStack = new Stack<TreeNode>();
+			Stack<Integer> sumStack = new Stack<Integer>();
+			TreeNode node = root;
+			int prePathSum = 0, sum = 0;
+			while (node != null || !nodeStack.empty()) {
+				while (node != null) {
+					prePathSum = (prePathSum * 10) + node.val;
+					nodeStack.push(node);
+					sumStack.push(prePathSum);
+					node = node.left;
+				}
+				if (!nodeStack.empty()) {
+					node = nodeStack.pop();
+					prePathSum = sumStack.pop();
+					if (node.left == null && node.right == null) {
+						sum += prePathSum;
+					}
+					node = node.right;
+				}
+			}
+			return sum;
+		}
+	}
+
+	public class Solution1 {
+		int sum = 0;
 
 		public int sumNumbers(TreeNode root) {
-
-			if (root == null)
-				return 0;
-
-			Queue<TreeNode> queue = new LinkedList<>();
-			queue.add(root);
-
-			int sum = 0, parent = 0;
-			while (!queue.isEmpty()) {
-				int size = queue.size();
-				parent *= 10;
-				for (int i = 0; i < size; i++) {
-					TreeNode node = queue.poll();
-					sum += (node.val + parent);
-					if (node.left != null)
-						queue.add(node.left);
-					if (node.right != null)
-						queue.add(node.right);
-				}
-				parent = sum;
-				sum = 0;
-			}
-
-			return parent;
+			helper(root, 0);
+			return sum;
 		}
 
+		private void helper(TreeNode node, int pre) {
+			if (node == null)
+				return;
+			int value = pre * 10 + node.val;
+			if (node.left == null && node.right == null)
+				sum += value;
+			helper(node.left, value);
+			helper(node.right, value);
+		}
 	}
 
 }
