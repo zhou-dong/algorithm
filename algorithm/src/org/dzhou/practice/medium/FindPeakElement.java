@@ -22,9 +22,11 @@ package org.dzhou.practice.medium;
 public class FindPeakElement {
 
 	public class Solution {
+
 		public int findPeakElement(int[] nums) {
 
 			int left = 0, right = nums.length - 1;
+
 			while (left <= right) {
 				if (left == right)
 					return left;
@@ -34,8 +36,10 @@ public class FindPeakElement {
 				else
 					right = mid;
 			}
+
 			return left;
 		}
+
 	}
 
 }
