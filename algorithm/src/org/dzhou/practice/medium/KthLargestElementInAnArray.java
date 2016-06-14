@@ -1,5 +1,7 @@
 package org.dzhou.practice.medium;
 
+import java.util.PriorityQueue;
+
 /**
  * Find the kth largest element in an unsorted array. Note that it is the kth
  * largest element in the sorted order, not the kth distinct element.
@@ -15,8 +17,16 @@ public class KthLargestElementInAnArray {
 
 	public class Solution {
 		public int findKthLargest(int[] nums, int k) {
-
-			return 0;
+			PriorityQueue<Integer> queue = new PriorityQueue<>();
+			for (int i = 0; i < k; i++) {
+				queue.add(nums[i]);
+			}
+			for (int i = k; i < nums.length; i++) {
+				queue.add(nums[i]);
+				queue.poll();
+			}
+			return queue.peek();
 		}
 	}
+
 }
