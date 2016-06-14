@@ -9,6 +9,9 @@ package org.dzhou.practice.medium;
  * 
  * @author zhoudong
  *
+ *         四平方和定理 （英语：Lagrange's four-square theorem）
+ *         说明每个正整数均可表示为4个整数的平方和。它是费马多边形数定理和华林问题的特例。
+ * 
  */
 
 public class PerfectSquares {
