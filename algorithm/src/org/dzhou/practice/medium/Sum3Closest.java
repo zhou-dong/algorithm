@@ -34,8 +34,8 @@ public class Sum3Closest {
 					else
 						high--;
 					if (Math.abs(target - sum) < min) {
-						result = sum;
 						min = Math.abs(target - sum);
+						result = sum;
 					}
 				}
 			}
