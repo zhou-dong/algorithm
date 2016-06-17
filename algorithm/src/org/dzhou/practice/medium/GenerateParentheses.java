@@ -28,7 +28,7 @@ public class GenerateParentheses {
 		}
 
 		public void dfs(List<String> result, String item, int left, int right) {
-			if (left > right)// deal with ")("
+			if (left > right)// deal with ")(" <---> (必须满足左括号数目要大等于右括号数目)
 				return;
 			if (left == 0 && right == 0) {
 				result.add(item.toString());
