@@ -49,4 +49,26 @@ public class LetterCombinationsOfAPhoneNumber {
 		}
 	}
 
+	public class Solution1 {
+
+		public List<String> letterCombinations(String digits) {
+			String[] buttons = { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+			List<String> result = new ArrayList<String>();
+			dfs(result, digits.length(), buttons, digits, "");
+			return result;
+		}
+
+		public void dfs(List<String> result, int remain, String[] buttons, String digits, String str) {
+			if (remain == 0) {
+				if (str.length() != 0)
+					result.add(str);
+				return;
+			}
+			String button = buttons[digits.charAt(0) - '0'];
+			for (int i = 0; i < button.length(); i++)
+				dfs(result, remain - 1, buttons, digits.substring(1), str + button.charAt(i));
+		}
+
+	}
+
 }
