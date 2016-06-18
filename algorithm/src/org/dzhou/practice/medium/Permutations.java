@@ -42,14 +42,4 @@ public class Permutations {
 
 	}
 
-	private void test() {
-		Solution instance = new Solution();
-		int[] nums = { 1, 2, 3 };
-		System.out.println(instance.permute(nums));
-	}
-
-	public static void main(String[] args) {
-		Permutations instance = new Permutations();
-		instance.test();
-	}
 }
