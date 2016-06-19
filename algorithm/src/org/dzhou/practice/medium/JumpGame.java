@@ -23,8 +23,11 @@ public class JumpGame {
 	public class Solution {
 
 		public boolean canJump(int[] nums) {
-
-			return true;
+			int max = 0, i = 0;
+			for (i = 0; i <= max && i < nums.length; i++) {
+				max = Math.max(max, nums[i] + i);
+			}
+			return i == nums.length;
 		}
 
 	}
