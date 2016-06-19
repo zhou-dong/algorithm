@@ -14,7 +14,7 @@ import java.util.List;
  * [ [1,1,2], [1,2,1], [2,1,1] ]
  * 
  * @author zhoudong
- *
+ * 
  */
 public class PermutationsII {
 
