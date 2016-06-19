@@ -23,7 +23,7 @@ import java.util.Map;
  */
 public class GroupAnagrams {
 
-	public class Solution1 {
+	public class Solution {
 
 		public List<List<String>> groupAnagrams(String[] strs) {
 			if (strs == null || strs.length == 0)
