@@ -12,6 +12,12 @@ package org.dzhou.practice.medium;
  * 
  * @author zhoudong
  *
+ *
+ *         参考自：http://www.cnblogs.com/springfor/p/3864411.html
+ *
+ *         1. 通过faster/slower双指针。
+ *
+ *         2.把整个list连起来变成环，找到切分点断开。
  */
 public class RotateList {
 
@@ -29,8 +35,8 @@ public class RotateList {
 
 		public ListNode rotateRight(ListNode head, int k) {
 
-			if (head == null)
-				return null;
+			if (head == null || k == 0)
+				return head;
 
 			int length = length(head);
 			k %= length;
@@ -63,7 +69,34 @@ public class RotateList {
 
 	}
 
+	// 把整个list连起来变成环，找到切分点断开。
 	public class Solution1 {
+
+		public ListNode rotateRight(ListNode head, int n) {
+
+			if (head == null || n == 0)
+				return head;
+
+			int length = 1;
+			ListNode last = head;
+			while (last.next != null) {
+				last = last.next;
+				length++;
+			}
+
+			n %= length;
+			if (n == 0)
+				return head;
+
+			last.next = head; // form a loop
+			for (int i = 0; i < length - n; i++)
+				last = last.next;
+
+			head = last.next;
+			last.next = null;
+
+			return head;
+		}
 	}
 
 }
