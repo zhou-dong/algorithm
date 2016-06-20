@@ -41,8 +41,9 @@ public class SimplifyPath {
 					if (!list.isEmpty()) {
 						list.remove(list.size() - 1);
 					}
-				} else
+				} else {
 					list.add(temp);
+				}
 			}
 
 			if (list.isEmpty())
