@@ -12,7 +12,7 @@ package org.dzhou.practice.easy;
  * @author zhoudong
  *
  */
-public class RemoveDuplicatesfromSortedList {
+public class RemoveDuplicatesFromSortedList {
 
 	// Definition for singly-linked list.
 	public class ListNode {
