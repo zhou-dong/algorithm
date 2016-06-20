@@ -18,6 +18,33 @@ public class RemoveDuplicatesFromSortedArrayII {
 	public class Solution {
 
 		public int removeDuplicates(int[] nums) {
+			if (nums == null)
+				return 0;
+			if (nums.length < 3)
+				return nums.length;
+
+			// [1,1,1,2,2,3],
+			// [1,1,2,2]
+			int prev = 0, curr = 1, next = 2;
+			while (next < nums.length) {
+				if (nums[curr] == nums[next] && nums[prev] == nums[curr]) {
+					next++;
+				} else {
+					curr++;
+					nums[curr] = nums[next];
+					prev++;
+					next++;
+				}
+			}
+
+			return curr + 1;
+		}
+
+	}
+
+	public class Solution1 {
+
+		public int removeDuplicates(int[] nums) {
 
 			if (nums == null)
 				return 0;
@@ -38,6 +65,7 @@ public class RemoveDuplicatesFromSortedArrayII {
 
 			return prev + 1;
 		}
+
 	}
 
 }
