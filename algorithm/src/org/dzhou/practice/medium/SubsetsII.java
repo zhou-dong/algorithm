@@ -27,9 +27,10 @@ public class SubsetsII {
 			if (nums == null || nums.length == 0)
 				return Collections.emptyList();
 
-			Arrays.sort(nums);
 			List<List<Integer>> result = new ArrayList<List<Integer>>();
 			result.add(new ArrayList<>());
+
+			Arrays.sort(nums);
 			for (int i = 1; i < nums.length + 1; i++) {
 				dfs(nums, result, new ArrayList<>(), 0, i);
 			}
