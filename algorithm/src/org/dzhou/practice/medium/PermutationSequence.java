@@ -52,7 +52,6 @@ public class PermutationSequence {
 			for (int i = 1; i <= n; i++)
 				numList.add(i);
 
-			// 求阶乘
 			int factorial = 1;
 			for (int i = 2; i < n; i++)
 				factorial *= i;
@@ -67,12 +66,12 @@ public class PermutationSequence {
 				k = k % factorial;// new k for next turn
 				if (times != 0)
 					factorial = factorial / times;// new (n-1)!
+
 				times--;
 			}
 
 			return res.toString();
 		}
-
 	}
 
 	// DFS Time Limit Exceeded
