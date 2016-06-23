@@ -14,6 +14,8 @@ package org.dzhou.practice.hard;
  * 
  * @author zhoudong
  *
+ *         reference: http://www.cnblogs.com/springfor/p/3896167.html
+ * 
  */
 public class EditDistance {
 
