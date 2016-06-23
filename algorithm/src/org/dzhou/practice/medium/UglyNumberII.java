@@ -1,5 +1,7 @@
 package org.dzhou.practice.medium;
 
+import java.util.Arrays;
+
 /**
  * Write a program to find the n-th ugly number.
  * 
@@ -28,5 +30,34 @@ package org.dzhou.practice.medium;
  *
  */
 public class UglyNumberII {
+
+	public class Solution {
+
+		public int nthUglyNumber(int n) {
+
+			int[] primes = { 2, 3, 5 };
+			int[] nums = new int[n];
+			nums[0] = 1;
+			int[] index = new int[primes.length];
+			Arrays.fill(index, 0);
+
+			for (int i = 1; i < n; i++) {
+				int min = Integer.MAX_VALUE;
+				for (int j = 0; j < primes.length; j++) {
+					int temp = primes[j] * nums[index[j]];
+					min = Math.min(temp, min);
+				}
+				for (int j = 0; j < primes.length; j++) {
+					if (min == primes[j] * nums[index[j]]) {
+						index[j]++;
+					}
+				}
+				nums[i] = min;
+			}
+
+			return nums[n - 1];
+		}
+
+	}
 
 }
