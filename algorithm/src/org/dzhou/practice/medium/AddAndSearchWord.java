@@ -56,10 +56,7 @@ public class AddAndSearchWord {
 
 		private boolean search(String word, int index, TrieNode curr) {
 			if (index == word.length()) {
-				if (curr.children.size() == 0)
-					return true;
-				else
-					return false;
+				return false;
 			}
 
 			char c = word.charAt(index);
