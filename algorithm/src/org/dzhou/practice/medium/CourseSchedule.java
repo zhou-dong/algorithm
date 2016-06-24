@@ -59,7 +59,6 @@ public class CourseSchedule {
 		}
 
 		private boolean hasCycle(int vertexId, int[] visited, Map<Integer, List<Integer>> adjList) {
-
 			if (adjList.containsKey(vertexId)) {
 				visited[vertexId] = 1;
 				for (int v1 : adjList.get(vertexId)) {
