@@ -14,19 +14,14 @@ public class HIndexII {
 	public class Solution {
 
 		public int hIndex(int[] citations) {
-
 			if (citations == null || citations.length == 0)
 				return 0;
-
-			// 计算H指数
-			int result = 0;
+			int result = 0;// 计算H指数
 			for (int i = citations.length - 1; i >= 0; i--) {
-				if (result >= citations[i]) {
+				if (result >= citations[i])
 					return result;
-				}
 				result++;
 			}
-
 			return result;
 		}
 
