@@ -41,13 +41,16 @@ public class Pow {
 		private double power(double x, int n) {
 			if (n == 0)
 				return 1;
+			if (n == 1)
+				return x;
 			// x的N次方可以看做：x^n = x^(n/2)*x^(n/2)*x^(n%2)。所以利用递归求解
 			int k = n / 2;
 			int l = n - k * 2;
-			double t1 = myPow(x, k); // x^(n/2)
-			double t2 = myPow(x, l); // x^(n%2)
+			double t1 = power(x, k); // x^(n/2)
+			double t2 = power(x, l); // x^(n%2)
 			return t1 * t1 * t2;
 		}
+
 	}
 
 }
