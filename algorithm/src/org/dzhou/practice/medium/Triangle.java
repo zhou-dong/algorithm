@@ -25,20 +25,22 @@ import java.util.List;
  */
 public class Triangle {
 
-	// 递推式是sum[i][j]=min(sum[i-1][j-1],sum[i-1][j])+triangle[i][j]
 	public int minimumTotal(List<List<Integer>> triangle) {
 		if (triangle.size() == 0)
 			return 0;
-		int[] res = new int[triangle.size()];
+		// 因为是dynamic programming，所以用一维数组就可以做标记
+		int[] dp = new int[triangle.size()];
+		// copy最后一层到result[]中
 		for (int i = 0; i < triangle.size(); i++) {
-			res[i] = triangle.get(triangle.size() - 1).get(i);
+			dp[i] = triangle.get(triangle.size() - 1).get(i);
 		}
+		// dynamic program
 		for (int i = triangle.size() - 2; i >= 0; i--) {
 			for (int j = 0; j <= i; j++) {
-				res[j] = Math.min(res[j], res[j + 1]) + triangle.get(i).get(j);
+				dp[j] = Math.min(dp[j], dp[j + 1]) + triangle.get(i).get(j); // DP递推式
 			}
 		}
-		return res[0];
+		return dp[0];
 	}
 
 }
