@@ -1,4 +1,4 @@
-package org.dzhou.practice.medium;
+package org.dzhou.practice.hard;
 
 import java.util.HashMap;
 import java.util.Map;
