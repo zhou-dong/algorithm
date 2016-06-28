@@ -41,8 +41,8 @@ public class LRUCache {
 
 	public LRUCache(int capacity) {
 		this.capacity = capacity;
-		tail.prev = head;
-		head.next = tail;
+		this.head.next = tail;
+		this.tail.prev = head;
 	}
 
 	public int get(int key) {
@@ -73,6 +73,7 @@ public class LRUCache {
 			hs.get(key).value = value;
 			return;
 		}
+		// remove the first element
 		if (hs.size() == capacity) {
 			hs.remove(head.next.key);
 			head.next = head.next.next;
