@@ -88,7 +88,6 @@ public class PopulatingNextRightPointersInEachNode {
 	}
 
 	// DFS
-
 	public class Solution1 {
 
 		public void connect(TreeLinkNode root) {
