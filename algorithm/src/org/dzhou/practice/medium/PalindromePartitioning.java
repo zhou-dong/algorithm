@@ -2,7 +2,6 @@ package org.dzhou.practice.medium;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -40,9 +39,8 @@ public class PalindromePartitioning {
 			}
 			for (int i = pos + 1; i <= s.length(); i++) {
 				String prefix = s.substring(pos, i);
-				if (!isPalindrome(prefix)) {
+				if (!isPalindrome(prefix))
 					continue;
-				}
 				path.add(prefix);
 				dfs(result, path, s, i);
 				path.remove(path.size() - 1);
