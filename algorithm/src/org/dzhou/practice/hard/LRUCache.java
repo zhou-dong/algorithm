@@ -49,15 +49,12 @@ public class LRUCache {
 		if (!hs.containsKey(key)) {
 			return -1;
 		}
-
 		// remove current
 		Node current = hs.get(key);
 		current.prev.next = current.next;
 		current.next.prev = current.prev;
-
 		// move current to tail
 		move_to_tail(current);
-
 		return hs.get(key).value;
 	}
 
