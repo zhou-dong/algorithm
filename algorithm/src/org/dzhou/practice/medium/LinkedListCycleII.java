@@ -12,9 +12,8 @@ package org.dzhou.practice.medium;
  *
  *         1.遍历一一放入set中，如果已经出现过一次，说明有cycle，并且第一出线的就是cycle的起点.
  * 
- *         2.
- *         使用两个指针slow,fast。两个指针都从表头开始走，slow每次走一步，fast每次走两步，如果fast遇到null，则说明没有环，
- *         返回false；如果slow==fast，说明有环
+ *         2.使用两个指针slow,fast。两个指针都从表头开始走，slow每次走一步，fast每次走两步，如果fast遇到null，
+ *         则说明没有环， 返回false；如果slow==fast，说明有环
  * 
  *         3.数学方法
  */
