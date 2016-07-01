@@ -7,7 +7,9 @@ package org.dzhou.practice.easy;
  * Example: Given a = 1 and b = 2, return 3.
  * 
  * @author zhoudong
- *
+ * 
+ *         reference:
+ *         http://bookshadow.com/weblog/2016/06/30/leetcode-sum-of-two-integers/
  */
 public class SumOfTwoIntegers {
 
@@ -20,6 +22,22 @@ public class SumOfTwoIntegers {
 				a = c;
 			}
 			return a;
+		}
+	}
+
+	// copy from reference
+	public class Solution1 {
+		public int getSum(int a, int b) {
+			int r = 0, c = 0, p = 1;
+			while ((a | b | c) != 0) {
+				if (((a ^ b ^ c) & 1) != 0)
+					r |= p;
+				p <<= 1;
+				c = (a & b | b & c | a & c) & 1;
+				a >>>= 1;
+				b >>>= 1;
+			}
+			return r;
 		}
 	}
 
