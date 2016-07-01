@@ -29,7 +29,27 @@ public class MinimumSizeSubarraySum {
 
 		public int minSubArrayLen(int s, int[] nums) {
 
-			return 0;
+			if (nums == null || nums.length == 0)
+				return 0;
+			if (nums[0] >= s)
+				return 1;
+
+			int left = 0, sum = nums[0], min = Integer.MAX_VALUE;
+
+			for (int right = 1; right < nums.length; right++) {
+				if (nums[right] >= s)
+					return 1;
+				sum += nums[right];
+				if (sum < s)
+					continue;
+				while (sum >= s) {
+					sum -= nums[left];
+					left++;
+				}
+				min = Math.min(min, right - left + 2);
+			}
+
+			return min == Integer.MAX_VALUE ? 0 : min;
 		}
 
 	}
