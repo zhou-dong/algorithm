@@ -21,15 +21,14 @@ package org.dzhou.practice.medium;
  *         reference:
  *         https://www.hrwhisper.me/leetcode-increasing-triplet-subsequence/
  * 
- *         不断的缩小x1和x2，看看是否有第三个数 比x2大。
+ *         1. 保证 x1 < x2 <br>
+ *         2. x1, x2 不断缩小 <br>
+ *         3. 是否有第3个数，大于它们
  */
 public class IncreasingTripletSubsequence {
 
 	public class Solution {
 
-		// 1. 保证x1 < x2
-		// 2. x1, x2 不断缩小
-		// 3. 是否有第3个数，大于它们
 		public boolean increasingTriplet(int[] nums) {
 			int x1 = Integer.MAX_VALUE, x2 = Integer.MAX_VALUE;
 			for (int num : nums) {
