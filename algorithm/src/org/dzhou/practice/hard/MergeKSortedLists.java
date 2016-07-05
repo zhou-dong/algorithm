@@ -29,6 +29,7 @@ public class MergeKSortedLists {
 		}
 	}
 
+	// Solution with heap (priority queue)
 	public class Solution {
 
 		public ListNode mergeKLists(ListNode[] lists) {
@@ -38,8 +39,7 @@ public class MergeKSortedLists {
 			if (lists.length == 1)
 				return lists[0];
 
-			ListNode preHead = new ListNode(0);
-			ListNode current = preHead;
+			// initial heap
 			PriorityQueue<ListNode> queue = new PriorityQueue<ListNode>(new Comparator<ListNode>() {
 				@Override
 				public int compare(ListNode o1, ListNode o2) {
@@ -47,11 +47,20 @@ public class MergeKSortedLists {
 				}
 			});
 
+			// construction heap with height = list.length;
 			for (ListNode head : lists) {
-				if (head != null)
+				if (head != null) {
 					queue.add(head);
+				}
 			}
 
+			// create dummy head
+			ListNode preHead = new ListNode(0);
+			ListNode current = preHead;
+
+			// 1. poll the minimal node from heap
+			// 2. connect node result
+			// 3. add the next of node into heap
 			while (!queue.isEmpty()) {
 				ListNode temp = queue.poll();
 				current.next = temp;
