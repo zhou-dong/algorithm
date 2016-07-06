@@ -71,8 +71,6 @@ public class ReverseNodesInKGroup {
 				reverse = reverseNextK(reverse.tail.next, k);
 			}
 
-			if (reverse.tail != null)
-				reverse.tail.next = null;
 			return preHead.next;
 		}
 
