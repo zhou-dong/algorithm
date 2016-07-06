@@ -76,4 +76,60 @@ public class MergeKSortedLists {
 
 	}
 
+	// merge two by two
+	public class Solution1 {
+
+		public ListNode mergeKLists(ListNode[] lists) {
+
+			if (lists == null || lists.length == 0)
+				return null;
+			if (lists.length == 1)
+				return lists[0];
+
+			ListNode[] result = getNewList(lists);
+			while (result.length > 1)
+				result = getNewList(result);
+
+			return result[0];
+		}
+
+		private ListNode[] getNewList(ListNode[] lists) {
+			int len = lists.length / 2 + (lists.length % 2 == 0 ? 0 : 1);
+			ListNode[] result = new ListNode[len];
+			int left = 0, right = lists.length - 1;
+			while (left <= right) {
+				if (left == right)
+					result[left] = lists[left];
+				else
+					result[left] = merge(lists[left], lists[right]);
+				left++;
+				right--;
+			}
+			return result;
+		}
+
+		private ListNode merge(ListNode node1, ListNode node2) {
+			ListNode preHead = new ListNode(0);
+			ListNode current = preHead;
+			while (node1 != null && node2 != null) {
+				if (node1.val < node2.val) {
+					current.next = node1;
+					node1 = node1.next;
+				} else {
+					current.next = node2;
+					node2 = node2.next;
+				}
+				current = current.next;
+			}
+			current.next = null;
+			if (node1 != null) {
+				current.next = node1;
+			} else if (node2 != null) {
+				current.next = node2;
+			}
+			return preHead.next;
+		}
+
+	}
+
 }
