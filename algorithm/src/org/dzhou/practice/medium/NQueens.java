@@ -72,11 +72,23 @@ public class NQueens {
 				result.add(item);
 				return result;
 			}
-			helper(result, n);
+
+			for (int x = 0; x < n; x++) {
+				for (int y = 0; y < n; y++) {
+					Role[][] chessboard = createChessboard(n);
+					chessboard[x][y] = Role.QUEUE;
+					helper(result, chessboard, 0, 0);
+				}
+			}
 			return result;
 		}
 
-		Set<String> set = new HashSet<>();
+		private Role[][] createChessboard(int n) {
+			Role[][] chessboard = new Role[n][n];
+			for (Role[] row : chessboard)
+				Arrays.fill(row, Role.OTHER);
+			return chessboard;
+		}
 
 		private void showBoard(Role[][] board) {
 			for (Role[] row : board) {
@@ -88,40 +100,28 @@ public class NQueens {
 			System.out.println("------------------------");
 		}
 
-		private void helper(List<List<String>> result, int n) {
-
-			for (int a = 0; a < n; a++) {
-				for (int b = 0; b < n; b++) {
-					Role[][] chessboard = createChessboard(n);
-					chessboard[a][b] = Role.QUEUE;
-
-					showBoard(chessboard);
-					
-					for (int i = 0; i < n; i++) {
-						for (int j = 0; j < n; j++) {
-							if (!isValid(chessboard, i, j))
-								continue;
-							chessboard[i][j] = Role.QUEUE;
-							if (i == n - 1) {
-								List<String> borad = drawChessboard(chessboard);
-								if (borad != null) {
-									result.add(borad);
-									showBoard(chessboard);
-								}
-							}
-						}
-					}
-
-				}
+		private void helper(List<List<String>> result, Role[][] chessboard, int i, int j) {
+			showBoard(chessboard);
+			if (j == chessboard[0].length)
+				return;
+			if (i == chessboard.length) {
+				List<String> board = drawChessboard(chessboard);
+				if (board != null)
+					result.add(board);
+				return;
 			}
+
+			if (!isValid(chessboard, i, j))
+				return;
+
+			chessboard[i][j] = Role.QUEUE;
+			helper(result, chessboard, i, j + 1);
+			helper(result, chessboard, i + 1, 0);
+			chessboard[i][j] = Role.OTHER;
+
 		}
 
-		private Role[][] createChessboard(int n) {
-			Role[][] chessboard = new Role[n][n];
-			for (Role[] row : chessboard)
-				Arrays.fill(row, Role.OTHER);
-			return chessboard;
-		}
+		Set<String> set = new HashSet<>();
 
 		private List<String> drawChessboard(Role[][] chessboard) {
 			StringBuilder sb = new StringBuilder();
