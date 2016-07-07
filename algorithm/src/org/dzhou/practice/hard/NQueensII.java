@@ -117,6 +117,4 @@ public class NQueensII {
 
 	}
 
-	public static void main(String[] args) {
-	}
 }
