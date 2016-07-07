@@ -45,7 +45,7 @@ public class NQueens {
 
 	private void test() {
 		Solution s = new Solution();
-		System.out.println(s.solveNQueens(8));
+		System.out.println(s.solveNQueens(1));
 	}
 
 	enum Role {
@@ -64,6 +64,12 @@ public class NQueens {
 			if (n < 1)
 				return Collections.emptyList();
 			List<List<String>> result = new ArrayList<>();
+			if (n == 1) {
+				List<String> item = new ArrayList<>();
+				item.add("Q");
+				result.add(item);
+				return result;
+			}
 			helper(result, n);
 			return result;
 		}
