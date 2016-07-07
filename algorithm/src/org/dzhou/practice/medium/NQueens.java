@@ -3,7 +3,9 @@ package org.dzhou.practice.medium;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * The n-queens puzzle is the problem of placing n queens on an n×n chessboard
@@ -45,7 +47,7 @@ public class NQueens {
 
 	private void test() {
 		Solution s = new Solution();
-		System.out.println(s.solveNQueens(1));
+		System.out.println(s.solveNQueens(5));
 	}
 
 	enum Role {
@@ -74,6 +76,8 @@ public class NQueens {
 			return result;
 		}
 
+		Set<String> set = new HashSet<>();
+
 		private void showBoard(Role[][] board) {
 			for (Role[] row : board) {
 				for (Role role : row) {
@@ -91,6 +95,8 @@ public class NQueens {
 					Role[][] chessboard = createChessboard(n);
 					chessboard[a][b] = Role.QUEUE;
 
+					showBoard(chessboard);
+					
 					for (int i = 0; i < n; i++) {
 						for (int j = 0; j < n; j++) {
 							if (!isValid(chessboard, i, j))
@@ -98,8 +104,8 @@ public class NQueens {
 							chessboard[i][j] = Role.QUEUE;
 							if (i == n - 1) {
 								List<String> borad = drawChessboard(chessboard);
-								if (borad != null && !result.contains(borad)) {
-									result.add(drawChessboard(chessboard));
+								if (borad != null) {
+									result.add(borad);
 									showBoard(chessboard);
 								}
 							}
@@ -118,6 +124,7 @@ public class NQueens {
 		}
 
 		private List<String> drawChessboard(Role[][] chessboard) {
+			StringBuilder sb = new StringBuilder();
 			List<String> result = new ArrayList<>();
 			for (int i = 0; i < chessboard.length; i++) {
 				StringBuilder temp = new StringBuilder();
@@ -129,8 +136,13 @@ public class NQueens {
 				}
 				if (atLeastOne == false)
 					return null;
+				sb.append(temp.toString());
 				result.add(temp.toString());
 			}
+
+			if (set.contains(sb.toString()))
+				return null;
+			set.add(sb.toString());
 			return result;
 		}
 
