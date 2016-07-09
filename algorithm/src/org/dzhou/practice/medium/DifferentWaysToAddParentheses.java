@@ -33,7 +33,6 @@ import java.util.Map;
 public class DifferentWaysToAddParentheses {
 
 	enum Operator {
-
 		PLUS('+') {
 			@Override
 			int execute(int x, int y) {
@@ -53,13 +52,13 @@ public class DifferentWaysToAddParentheses {
 			}
 		};
 
-		abstract int execute(int x, int y);
-
 		private char operator;
 
 		Operator(char operator) {
 			this.operator = operator;
 		}
+
+		abstract int execute(int x, int y);
 
 		static Map<Character, Operator> operators = new HashMap<>();
 		static {
@@ -76,15 +75,18 @@ public class DifferentWaysToAddParentheses {
 	public class Solution {
 
 		public List<Integer> diffWaysToCompute(String input) {
-			if (input == null || input.length() == 0)
+
+			if (input == null || input.length() == 0) {
 				return Collections.emptyList();
+			}
 
 			List<Integer> result = new ArrayList<>();
 
 			for (int i = 0; i < input.length(); i++) {
 				char c = input.charAt(i);
-				if (!isOperator(c))
+				if (!isOperator(c)) {
 					continue;
+				}
 
 				List<Integer> partial1 = diffWaysToCompute(input.substring(0, i));
 				List<Integer> partial2 = diffWaysToCompute(input.substring(i + 1, input.length()));
