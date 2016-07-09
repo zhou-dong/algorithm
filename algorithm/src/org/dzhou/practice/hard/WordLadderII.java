@@ -1,6 +1,7 @@
 package org.dzhou.practice.hard;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -39,8 +40,67 @@ public class WordLadderII {
 	public class Solution {
 
 		public List<List<String>> findLadders(String beginWord, String endWord, Set<String> wordList) {
+			Set<String> set = new HashSet<>();
+			set.add(beginWord);
+			List<String> item = new ArrayList<>();
+			item.add(beginWord);
+			Map<Integer, List<List<String>>> map = new HashMap<>();
+			dfs(map, item, wordList, set, endWord);
+			System.out.println(map.size());
+			return getResult(map);
+		}
 
+		private List<List<String>> getResult(Map<Integer, List<List<String>>> map) {
+			if (map.size() == 0)
+				return Collections.emptyList();
+			int key = 1;
+			while (true) {
+				if (map.containsKey(key))
+					return map.get(key);
+				key++;
+			}
+		}
+
+		private void dfs(Map<Integer, List<List<String>>> map, List<String> item, Set<String> wordList, Set<String> set,
+				String endWord) {
+			String last = item.get(item.size() - 1);
+			if (item.size() > wordList.size())
+				return;
+			if (last.equals(endWord)) {
+				if (!map.containsKey(item.size()))
+					map.put(item.size(), new ArrayList<>());
+				map.get(item.size()).add(new ArrayList<>(item));
+				return;
+			}
+			for (char c = 'a'; c <= 'z'; c++) {
+				String next = getNextWord(last, wordList, set, c);
+				if (next == null)
+					continue;
+				item.add(next);
+				set.add(next);
+				dfs(map, item, wordList, set, endWord);
+				item.remove(item.size() - 1);
+				set.remove(next);
+			}
+		}
+
+		private String getNextWord(String word, Set<String> wordList, Set<String> set, char c) {
+			for (int i = 0; i < word.length(); i++) {
+				if (c == word.charAt(i))
+					continue;
+				String temp = replace(word, i, c);
+				if (set.contains(temp))
+					continue;
+				if (wordList.contains(temp))
+					return temp;
+			}
 			return null;
+		}
+
+		private String replace(String word, int index, char c) {
+			char[] result = word.toCharArray();
+			result[index] = c;
+			return new String(result);
 		}
 
 	}
