@@ -39,9 +39,9 @@ public class PerfectSquares {
 
 			// 从小到大找任意数a
 			for (int i = 0; i <= n; i++) {
-				// 从小到大找平方数 b*b
+				// 从小到大找平方数 j*j
 				for (int j = 0; i + j * j <= n; j++) {
-					// 因为a+b*b可能本身就是平方数，所以我们要取两个中较小的
+					// 因为i+j*j可能本身就是平方数，所以我们要取两个中较小的
 					dp[i + j * j] = Math.min(dp[i] + 1, dp[i + j * j]);
 				}
 			}
