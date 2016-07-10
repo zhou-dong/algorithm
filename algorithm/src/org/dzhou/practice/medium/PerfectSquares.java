@@ -6,8 +6,9 @@ import java.util.Arrays;
  * Given a positive integer n, find the least number of perfect square numbers
  * (for example, 1, 4, 9, 16, ...) which sum to n.
  * 
- * For example, given n = 12, return 3 because 12 = 4 + 4 + 4; given n = 13,
- * return 2 because 13 = 4 + 9.
+ * For example,<br>
+ * given n = 12, return 3 because 12 = 4 + 4 + 4;<br>
+ * given n = 13, return 2 because 13 = 4 + 9.
  * 
  * @author zhoudong
  *
@@ -23,6 +24,7 @@ public class PerfectSquares {
 
 	public class Solution {
 
+		// dynamic programming solution
 		public int numSquares(int n) {
 
 			int[] dp = new int[n + 1];
@@ -36,11 +38,11 @@ public class PerfectSquares {
 			}
 
 			// 从小到大找任意数a
-			for (int a = 0; a <= n; a++) {
+			for (int i = 0; i <= n; i++) {
 				// 从小到大找平方数 b*b
-				for (int b = 0; a + b * b <= n; b++) {
+				for (int j = 0; i + j * j <= n; j++) {
 					// 因为a+b*b可能本身就是平方数，所以我们要取两个中较小的
-					dp[a + b * b] = Math.min(dp[a] + 1, dp[a + b * b]);
+					dp[i + j * j] = Math.min(dp[i] + 1, dp[i + j * j]);
 				}
 			}
 
