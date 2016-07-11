@@ -17,6 +17,9 @@ The number of steps total is:
 Total Steps:  
 	= (N-1) + (N-2) + (N-3) + ... + 2 + 1;  
 	= 1 + 2 + 3 + ... + (N-1) ;  
+	= (1+N-1)/2 * (N-1);  
 	= N(N-1) / 2;  
 
 Runtime will take O(N^2) time.
+
+reference: Cracking the Coding Interview

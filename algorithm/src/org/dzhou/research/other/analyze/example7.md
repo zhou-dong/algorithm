@@ -8,3 +8,5 @@ Which of the following are equivalent to O(N)?
 - O(N + M)
 
 All but the last one are equivalent to O(N).
+
+reference: Cracking the Coding Interview

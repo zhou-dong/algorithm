@@ -1,19 +1,16 @@
 # Example 8
 
-What is the runtime of the below code?
+Suppose we had an algorithm that took in an array of strings, sorted each string, and then sorted the full array. What would the runtime be?
 
-```java
-void reverse(int[] array) {
-	for (int i = 0; i < array.length / 2; i++) {
-		swap(array, i, array.length - 1 - i);
-	}
-}
+- Let s be the length of the longest string.
+- Let a be the length of array.
 
-void swap(int[] array, int x, int y) {
-	int temp = array[x];
-	array[x] = array[y];
-	array[y] = temp;
-}
-```
+- sort one string: s*log(s)
+- sort a string: a*s*log(s)
 
-This will take O(N) time.
+- compare to string: s
+- sort array without compare each character: a*log(a)
+
+total: a*s*log(s) + s*a*log(a) = a*s*(log(s)+log(a))
+
+reference: Cracking the Coding Interview

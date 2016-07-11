@@ -17,3 +17,5 @@ void printPairs(int[] array) {
 ```
 
 This will take O(N) time.
+
+reference: Cracking the Coding Interview
