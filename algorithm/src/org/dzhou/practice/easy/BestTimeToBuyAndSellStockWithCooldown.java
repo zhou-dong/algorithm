@@ -19,4 +19,6 @@ package org.dzhou.practice.easy;
  */
 public class BestTimeToBuyAndSellStockWithCooldown {
 
+	private void todo() {
+	}
 }
