@@ -14,7 +14,7 @@ void printUnorderedPairs(int[] array) {
 
 The number of steps total is:
 
-TOTAL STEPS:  
+Total Steps:  
 	= (N-1) + (N-2) + (N-3) + ... + 2 + 1;  
 	= 1 + 2 + 3 + ... + (N-1) ;  
 	= N(N-1) / 2;  
