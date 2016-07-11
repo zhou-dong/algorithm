@@ -2,11 +2,12 @@ package org.dzhou.research.other.analyze;
 
 public class Other {
 
-	int f(int n) {
-		if (n <= 0) {
-			return 1;
+	void printUnorderedPairs(int[] array) {
+		for (int i = 0; i < array.length; i++) {
+			for (int j = i + 1; j < array.length; j++) {
+				System.out.println(array[i] + "," + array[j]);
+			}
 		}
-		return f(n - 1) + f(n - 1) + f(n - 1);
 	}
 
 }
