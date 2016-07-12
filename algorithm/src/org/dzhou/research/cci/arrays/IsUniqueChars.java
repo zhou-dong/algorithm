@@ -8,10 +8,10 @@ package org.dzhou.research.cci.arrays;
  * 
  * 方法：
  * 
- * 1. Brute Force<br>
- * 2. Sort first than compare<br>
- * 3. Use array to index each character<br>
- * 4. Use bit as index<br>
+ * 0. Brute Force<br>
+ * 1. Sort first than compare<br>
+ * 2. Use array to index each character<br>
+ * 3. Use bit as index<br>
  * 
  * @author zhoudong
  *
