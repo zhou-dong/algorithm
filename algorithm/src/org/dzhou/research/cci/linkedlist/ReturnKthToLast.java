@@ -1,4 +1,4 @@
-package org.dzhou.research.cci.arrays;
+package org.dzhou.research.cci.linkedlist;
 
 /**
  * Implement an algorithm to find the kTh to last element of a singly linked
