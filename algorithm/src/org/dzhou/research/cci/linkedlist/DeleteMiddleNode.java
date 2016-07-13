@@ -8,6 +8,8 @@ package org.dzhou.research.cci.linkedlist;
  * 
  * Solution：先复制下一个结点到本结点，然后删除下个结点。
  * 
+ * 缺点：这种方法不能删除最后一个node
+ * 
  * @author zhoudong
  * 
  */
