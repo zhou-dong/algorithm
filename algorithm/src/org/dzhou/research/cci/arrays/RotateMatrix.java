@@ -15,7 +15,6 @@ public class RotateMatrix {
 	public class Solution {
 
 		void rotate(int[][] matrix, int n) {
-
 			for (int layer = 0; layer < n / 2; layer++) {
 				int first = layer;
 				int last = n - 1 - layer;
@@ -33,7 +32,6 @@ public class RotateMatrix {
 					matrix[i][last] = top;
 				}
 			}
-
 		}
 
 	}
