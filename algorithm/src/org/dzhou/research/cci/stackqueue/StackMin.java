@@ -51,7 +51,7 @@ public class StackMin {
 		}
 
 		public void push(int value) {
-			if (value < min())
+			if (value <= min())
 				s2.push(value);
 			super.push(value);
 		}
