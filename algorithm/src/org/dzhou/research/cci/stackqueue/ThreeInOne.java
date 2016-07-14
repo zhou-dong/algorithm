@@ -143,7 +143,7 @@ public class ThreeInOne {
 			}
 
 			values[stack.start] = 0;
-			stack.start = nextIndex(stack.size);
+			stack.start = nextIndex(stack.start);
 			stack.capacity--;
 		}
 
