@@ -1,7 +1,5 @@
 package org.dzhou.research.cci.linkedlist;
 
-import org.dzhou.research.cci.linkedlist.SumLists.LinkedListNode;
-
 /**
  * Write code to partition a linked list around a value x, such that all nodes
  * less than x come before all nodes greater than or equal to x. If x is
