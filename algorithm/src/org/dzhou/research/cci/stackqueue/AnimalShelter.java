@@ -34,9 +34,9 @@ public class AnimalShelter {
 		}
 
 		public Animal dequeueAny() {
-			if (dogs.size() == 0)
+			if (dogs.isEmpty())
 				return dequeueCats();
-			else if (cats.size() == 0)
+			else if (cats.isEmpty())
 				return dequeueDogs();
 			if (dogs.peek().isOlderThan(cats.peek()))
 				return dequeueDogs();
