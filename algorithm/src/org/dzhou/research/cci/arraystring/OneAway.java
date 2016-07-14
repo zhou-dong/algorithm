@@ -1,4 +1,4 @@
-package org.dzhou.research.cci.arrays;
+package org.dzhou.research.cci.arraystring;
 
 /**
  * There are three types of edits that can be performed on strings" insert a

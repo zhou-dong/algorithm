@@ -1,4 +1,4 @@
-package org.dzhou.research.cci.arrays;
+package org.dzhou.research.cci.arraystring;
 
 /**
  * Write an algorithm such that if an element in an MxN matrix is 0, its entire

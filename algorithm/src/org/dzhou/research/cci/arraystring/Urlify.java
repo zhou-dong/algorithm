@@ -1,4 +1,4 @@
-package org.dzhou.research.cci.arrays;
+package org.dzhou.research.cci.arraystring;
 
 /**
  * Write a method to replace all spaces in a string with '%20'. You may assume

@@ -1,4 +1,4 @@
-package org.dzhou.research.cci.arrays;
+package org.dzhou.research.cci.arraystring;
 
 /**
  * Given a string, write a function to check if it is permutation of a
