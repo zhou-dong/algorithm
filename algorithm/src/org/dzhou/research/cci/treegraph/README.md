@@ -6,6 +6,8 @@
 
 #### In-order Traversal
 
+如果是遍历binary search tree的话，会按照升序访问整个tree。
+
 ```java
 void inOrderTraversal(TreeNode node) {
 	if (node != null) {
@@ -16,9 +18,9 @@ void inOrderTraversal(TreeNode node) {
 }
 ```
 
-如果是遍历binary search tree的话，会按照升序访问整个tree。
-
 #### Pre-order Traversal
+
+首先访问root node。
 
 ```java
 void preOrderTraversal(TreeNode node) {
@@ -30,9 +32,9 @@ void preOrderTraversal(TreeNode node) {
 }
 ```
 
-首先访问root node。
-
 #### Post-order Traversal
+
+最后访问root node。
 
 ```java
 void postOrderTraversal(TreeNode node) {
@@ -44,9 +46,7 @@ void postOrderTraversal(TreeNode node) {
 }
 ```
 
-最后访问root node。
-
-### Binary Heaps
+### Heaps
 
 #### insert
 
