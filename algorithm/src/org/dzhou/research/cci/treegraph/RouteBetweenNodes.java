@@ -71,13 +71,13 @@ public class RouteBetweenNodes {
 		}
 
 		private boolean dfs(Node node, Node end) {
+			node.state = State.Visiting;
 			for (Node child : node.children) {
 				if (child == null)
 					continue;
 				if (child == end)
 					return true;
 				if (child.state == State.Unvisited) {
-					child.state = State.Visiting;
 					if (dfs(child, end))
 						return true;
 				}
