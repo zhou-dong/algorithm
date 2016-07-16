@@ -27,6 +27,7 @@ public class ListOfDepths {
 		}
 	}
 
+	// bfs solution
 	public class Solution<T> {
 		List<List<TreeNode<T>>> createLevelLinkedList(TreeNode<T> root) {
 			return bfs(root);
@@ -55,6 +56,7 @@ public class ListOfDepths {
 		}
 	}
 
+	// dfs solution
 	public class Solution1<T> {
 		List<List<TreeNode<T>>> createLevelLinkedList(TreeNode<T> root) {
 			if (root == null)
