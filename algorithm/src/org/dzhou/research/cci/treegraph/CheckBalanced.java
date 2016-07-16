@@ -87,12 +87,14 @@ public class CheckBalanced {
 			return Math.abs(getLeftHeight(node) - getRightHeight(node));
 		}
 
+		// error method
 		private int getLeftHeight(TreeNode node) {
 			if (node == null)
 				return -1;
 			return getLeftHeight(node.left) + 1;
 		}
 
+		// error method
 		private int getRightHeight(TreeNode node) {
 			if (node == null)
 				return -1;
