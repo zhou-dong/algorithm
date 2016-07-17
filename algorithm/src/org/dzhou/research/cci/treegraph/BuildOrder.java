@@ -125,8 +125,4 @@ public class BuildOrder {
 		}
 	}
 
-	public class Solution1 {
-
-	}
-
 }
