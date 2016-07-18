@@ -1,7 +1,6 @@
 package org.dzhou.interview.treeandgraph;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,10 +18,11 @@ import java.util.List;
 public class BstSequence {
 
 	public List<LinkedList<Integer>> allSequences(TreeNode<Integer> node) {
-		if (node == null) {
-			return Collections.emptyList();
-		}
 		List<LinkedList<Integer>> result = new ArrayList<>();
+		if (node == null) {
+			result.add(new LinkedList<>());
+			return result;
+		}
 
 		LinkedList<Integer> prefix = new LinkedList<>();
 		prefix.add(node.getData());
@@ -41,8 +41,8 @@ public class BstSequence {
 		return result;
 	}
 
-	void weaveLists(LinkedList<Integer> first, LinkedList<Integer> second,
-			List<LinkedList<Integer>> results, LinkedList<Integer> prefix) {
+	void weaveLists(LinkedList<Integer> first, LinkedList<Integer> second, List<LinkedList<Integer>> results,
+			LinkedList<Integer> prefix) {
 		if (first.size() == 0 || second.size() == 0) {
 			LinkedList<Integer> result = new LinkedList<>(prefix);
 			result.addAll(first);
