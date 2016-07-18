@@ -66,10 +66,90 @@ void postOrderTraversal(TreeNode node) {
 
 #### insert
 
+recursive
+
+```java
+public void insert(T data) {
+	if (data.compareTo(this.data) <= 0) {
+		if (this.left == null) {
+			this.left = new TreeNode(data);
+		} else {
+			this.left.insert(data);
+		}
+	} else {
+		if (this.right == null) {
+			this.right = new TreeNode(data);
+		} else {
+			this.right.insert(data);
+		}
+	}
+}
+```
+
+iterator
+
+```java
+public boolean insert(T data) {
+	if (root == null) {
+		root = new TreeNode(data);
+		return true;
+	}
+	TreeNode current = root;
+	TreeNode parent = null;
+	int compare = 0;
+	if (current != null) {
+		parent = current;
+		compare = data.compareTo(current.data);
+		if (compare == 0) {
+			return false;
+		} else if (compare < 0) {
+			current = current.left;
+		} else {
+			current = current.right;
+		}
+	}
+	if (compare < 0) {
+		parent.left = new TreeNode(data);
+	} else {
+		parent.right = new TreeNode(data);
+	}
+	return true;
+}
+```
 
 #### find
 
-#### getIthNode
+recursive
+
+```java
+public TreeNode find(T data) {
+	if (data == this.data) {
+		return this;
+	} else if (data.compareTo(this.data) < 0) {
+		return (this.left == null) ? null : this.left.find(data);
+	} else {
+		return (this.right == null) ? null : this.right.find(data);
+	}
+}
+```
+
+iterator
+
+```java
+public TreeNode find(T data) {
+	TreeNode current = root;
+	while (current != null) {
+		int compare = data.compareTo(current.data);
+		if (compare == 0) {
+			return current;
+		} else if (compare < 0) {
+			current = current.left;
+		} else
+			current = current.right;
+	}
+	return null;
+}
+```
 
 ## Graph
 
