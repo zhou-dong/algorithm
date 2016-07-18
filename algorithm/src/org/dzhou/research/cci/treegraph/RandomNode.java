@@ -82,7 +82,7 @@ public class RandomNode {
 		public TreeNode find(int data) {
 			if (data == this.data)
 				return this;
-			else if (data <= this.data)
+			else if (data < this.data)
 				return left != null ? left.find(data) : null;
 			else if (data > this.data)
 				return right != null ? right.find(data) : null;

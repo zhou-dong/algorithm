@@ -61,6 +61,16 @@ void postOrderTraversal(TreeNode node) {
 
 插入和删除这样的操作，都是为了让整个tree始终保持balance。
 
+### Implement of Binary Search Tree
+
+
+#### insert
+
+
+#### find
+
+#### getIthNode
+
 ## Graph
 
 如果要在tree中搜索结点S到T的路径，使用bidirectional search要比breadth-first search效率高。
