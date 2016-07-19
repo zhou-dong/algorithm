@@ -120,11 +120,14 @@ public int clearBitsIthrough0(int num, int i) {
 ```
 
 Update Bit
+
 ```java
 public int updateBit(int num, int i, Bit bit) {
 	return (bit == Bit.ZERO) ? clearBit(num, i) : setBit(num, i);
 }
 ```
+
+Check only contain one Bit.ONE, other bits are Bit.ZERO
 
 ```java
 public boolean isOnlyOneBitIsOne(int num) {
