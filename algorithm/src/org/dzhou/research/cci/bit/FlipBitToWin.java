@@ -20,8 +20,16 @@ public class FlipBitToWin {
 
 	public class Solution {
 		public int longestSequence(int n) {
-			int max = Integer.MIN_VALUE;
+			if (n == 0)
+				return 0;
+			else if (~n == 0)
+				return Integer.BYTES * 8;
 			List<Integer> sequences = getAlternatingSequences(n);
+			return lenWithOneNeighbor(sequences);
+		}
+
+		private int lenWithOneNeighbor(List<Integer> sequences) {
+			int max = Integer.MIN_VALUE;
 			for (int i = 1; i < sequences.size(); i++)
 				max = Math.max(max, sequences.get(i) + sequences.get(i - 1));
 			return max + 1;
