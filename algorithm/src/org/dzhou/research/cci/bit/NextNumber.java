@@ -50,14 +50,4 @@ public class NextNumber {
 		return n;
 	}
 
-	public static void main(String[] args) {
-		NextNumber number2 = new NextNumber();
-		System.out.println(Integer.toBinaryString(13948));
-		number2.getPrev(13948);
-	}
-
-	public void print(int n) {
-		System.out.println(Integer.toBinaryString(n));
-	}
-
 }

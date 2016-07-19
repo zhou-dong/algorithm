@@ -129,6 +129,8 @@ public int updateBit(int num, int i, Bit bit) {
 
 Check only contain one Bit.ONE, other bits are Bit.ZERO
 
+Or if num is power of 2
+
 ```java
 public boolean isOnlyOneBitIsOne(int num) {
 	return (num & (num - 1)) == 0 ? true : false;
