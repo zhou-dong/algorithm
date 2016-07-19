@@ -136,3 +136,29 @@ public boolean isOnlyOneBitIsOne(int num) {
 	return (num & (num - 1)) == 0 ? true : false;
 }
 ```
+
+Count Bit.ONE
+
+```java
+public int countBitOne(int num) {
+	int count = 0;
+	while (num != 0) {
+		count += (num & 1);
+		num >>= 1;
+	}
+	return count;
+}
+```
+
+Count Bit.ONE
+
+```java
+public int countBitONE(int num) {
+	int count = 0;
+	while (num != 0) {
+		count++;
+		num &= (num - 1);
+	}
+	return count;
+}
+```
