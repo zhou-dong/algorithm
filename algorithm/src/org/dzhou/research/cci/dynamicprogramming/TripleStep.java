@@ -13,6 +13,7 @@ package org.dzhou.research.cci.dynamicprogramming;
 public class TripleStep {
 
 	public class Solution {
+
 		public int countWays(int n) {
 			if (n < 0)
 				return 0;
@@ -36,6 +37,7 @@ public class TripleStep {
 			memo[n] = countWays(n - 1, memo) + countWays(n - 2, memo) + countWays(n - 3, memo);
 			return memo[n];
 		}
+
 	}
 
 }
