@@ -13,6 +13,11 @@ package org.dzhou.research.cci.dynamicprogramming;
  */
 public class RecurisveMultiply {
 
+	public static void main(String[] args) {
+		RecurisveMultiply instance = new RecurisveMultiply();
+		instance.test();
+	}
+
 	boolean isOppositeSign(int x, int y) {
 		return (x ^ y) < 0;
 	}
@@ -57,7 +62,6 @@ public class RecurisveMultiply {
 
 	// bit operation
 	class Solution2 {
-
 		public int multiply(int a, int b) {
 			int answer = multiplyPositive(Math.abs(a), Math.abs(b));
 			return isSameSign(a, b) ? answer : (0 - answer);
@@ -77,6 +81,31 @@ public class RecurisveMultiply {
 				return halfProd + halfProd;
 			} else {
 				return halfProd + halfProd + bigger;
+			}
+		}
+	}
+
+	class Solution3 {
+		public int multiply(int a, int b) {
+			int answer = multiplyPositive(Math.abs(a), Math.abs(b));
+			return isSameSign(a, b) ? answer : (0 - answer);
+		}
+
+		public int multiplyPositive(int a, int b) {
+			return productHelper(Math.min(a, b), Math.max(a, b));
+		}
+
+		private int productHelper(int time, int base) {
+			if (time == 0)
+				return 0;
+			else if (time == 1)
+				return base;
+
+			int halfProd = productHelper(time >> 1, base);
+			if (time % 2 == 0)
+				return halfProd + halfProd;
+			else {
+				return halfProd + halfProd + base;
 			}
 		}
 	}
