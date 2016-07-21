@@ -13,11 +13,6 @@ package org.dzhou.research.cci.dynamicprogramming;
  */
 public class RecurisveMultiply {
 
-	public static void main(String[] args) {
-		RecurisveMultiply instance = new RecurisveMultiply();
-		instance.test();
-	}
-
 	boolean isOppositeSign(int x, int y) {
 		return (x ^ y) < 0;
 	}
