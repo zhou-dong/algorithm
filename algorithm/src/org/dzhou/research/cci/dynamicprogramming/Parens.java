@@ -28,6 +28,12 @@ import java.util.Set;
  */
 public class Parens {
 
+	private String insertInside(String str, int leftIndex) {
+		String left = str.substring(0, leftIndex + 1);
+		String right = str.substring(leftIndex + 1, str.length());
+		return left + "()" + right;
+	}
+
 	class Solution {
 		public Set<String> generateParens(int remaining) {
 			Set<String> set = new HashSet<>();
@@ -49,12 +55,6 @@ public class Parens {
 			}
 			set.add("()" + str);
 		}
-
-		private String insertInside(String str, int leftIndex) {
-			String left = str.substring(0, leftIndex + 1);
-			String right = str.substring(leftIndex + 1, str.length());
-			return left + "()" + right;
-		}
 	}
 
 	class Solution1 {
@@ -67,10 +67,9 @@ public class Parens {
 		private void addParen(List<String> list, int leftRem, int rightRem, char[] str, int count) {
 			if (leftRem < 0 || rightRem < leftRem)
 				return;
-			if (leftRem == 0 && rightRem == 0) {
-				String s = String.copyValueOf(str);
-				list.add(s);
-			} else {
+			if (leftRem == 0 && rightRem == 0)
+				list.add(new String(str));
+			else {
 				if (leftRem > 0) {
 					str[count] = '(';
 					addParen(list, leftRem - 1, rightRem, str, count + 1);
