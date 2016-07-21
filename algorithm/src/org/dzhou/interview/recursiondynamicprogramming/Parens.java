@@ -68,9 +68,11 @@ public class Parens {
 		System.out.println(parens.generateParens(1));
 		System.out.println(parens.generateParens(2));
 		System.out.println(parens.generateParens(3));
+		System.out.println(parens.generateParens(4));
 		System.out.println();
 		System.out.println(parens.generateParens2(1));
 		System.out.println(parens.generateParens2(2));
 		System.out.println(parens.generateParens2(3));
+		System.out.println(parens.generateParens2(4));
 	}
 }
