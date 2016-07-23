@@ -7,9 +7,30 @@
 这次刷题总结的要求和步骤：
 
 1. 仔细分析每个题要考的知识点。
-	- 其实算法题要考的知识点就那么几个，刷多了自己有感觉了
+	- 找出要考的知识点
+		+ 算法/数据结构
+	- 分析每个解法
+		+ 时间复杂度
+		+ 空间复杂度
 2. 不在IDE上写代码，争取做到 bug free。
 3. 做完以后总结，写感想。
+
+其实算法题要考的知识点就那么几个，刷多了自然有感觉了。
+
+知识点：
+
+- sorting
+- binary search
+- string algorithms
+- graphs
+- dynamic programming
+- arrays
+- lists
+- stacks
+- heaps
+- binary trees
+- bit manipulation
+- and simple math like GCD, prime numbers, simple geometry.
 
 ## 关于面试：
 
@@ -18,3 +39,7 @@
 reference:
 
 https://www.quora.com/How-should-I-prepare-for-my-Google-interview-if-I-have-1-month-left
+
+http://www.hiredintech.com/learn-algorithms
+
+http://www.gainlo.co/#!/
