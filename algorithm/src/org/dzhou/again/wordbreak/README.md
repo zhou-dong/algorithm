@@ -10,10 +10,11 @@ Return true because "leetcode" can be segmented as "leet code".
 
 ## Analyze
 
-Example:  
-input: thisisanexamplethankyou  
-set: {this, is, an, example, thank, you}  
-return true
+Example:
+  
+- input: thisisanexamplethankyou  
+- set: {this, is, an, example, thank, you}  
+- return true
 
 ### Dynamic Programming
 
