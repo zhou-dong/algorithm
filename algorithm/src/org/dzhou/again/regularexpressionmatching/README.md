@@ -40,23 +40,6 @@ The recursion mainly breaks down elegantly to the following two cases:
 	+ 当做本字符不存在（appear 0 time），直接比较后面的
 	+ 本字符纯在，约掉被比较字符串一个字符，递归比较
 
-Pseudo code
-
-```java
-if ( pattern[i+1] != '*' ) { 
-	isMatch(string[i], pattern[i])
-} else {
-	if (isMarch(string[i], pattern[i+2]){
-		return true;
-	} else {
-		if ( isMatch(string[i], pattern[i]) ) {
-			return isMatch(string[i], pattern[i + 2]);
-		}
-		return false;
-	}
-}
-```
-
 Java code: recursive solution
 
 ```java
