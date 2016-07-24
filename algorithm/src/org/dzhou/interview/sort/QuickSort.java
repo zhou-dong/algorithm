@@ -8,6 +8,7 @@ public class QuickSort {
 
 	static void quicksort(int[] array, int left, int right) {
 		int index = partition(array, left, right);
+		// have the same meaning as binary search like while(low<high){}
 		if (left < index - 1) {
 			quicksort(array, left, index - 1);
 		}
