@@ -17,6 +17,20 @@ package org.dzhou.practice.medium;
  *         C: 100<br>
  *         D: 500<br>
  *         M: 1000<br>
+ * 
+ *         I: 1<br>
+ *         IV: 4<br>
+ *         V: 5<br>
+ *         IX: 9<br>
+ *         X: 10<br>
+ *         XL: 40<br>
+ *         L: 50<br>
+ *         XC: 90<br>
+ *         C: 100<br>
+ *         CD: 400<br>
+ *         D: 500<br>
+ *         CM: 900<br>
+ *         M: 1000<br>
  */
 public class IntegerToRoman {
 
@@ -45,9 +59,11 @@ public class IntegerToRoman {
 	public class Solution {
 
 		public String intToRoman(int num) {
+
 			StringBuilder sb = new StringBuilder();
 
 			Roman[] romans = Roman.values();
+
 			for (int i = romans.length - 1; i >= 0; i--) {
 				int current = romans[i].getDecimal();
 				if (num >= current) {
