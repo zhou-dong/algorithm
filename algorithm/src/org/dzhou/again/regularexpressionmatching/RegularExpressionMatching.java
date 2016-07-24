@@ -33,11 +33,38 @@ package org.dzhou.again.regularexpressionmatching;
  */
 public class RegularExpressionMatching {
 
-	// recursive solution
 	public class Solution {
 
 		public boolean isMatch(String s, String p) {
 
+			if (p.length() == 0)
+				return s.length() == 0;
+			if (p.length() == 1)
+				return s.length() == 1 && isMatch(s, p, 0);
+
+			if (p.charAt(1) != '*')
+				return isMatch(s, p, 0) && isMatch(s.substring(1), p.substring(1));
+
+			if (isMatch(s, p.substring(2))) // appear 0 time
+				return true;
+
+			return isMatch(s, p, 0) && isMatch(s.substring(1), p);
+		}
+
+		private boolean isMatch(String s, String p, int index) {
+			if (validIndex(s, index) && validIndex(p, index))
+				return p.charAt(index) == '.' || p.charAt(index) == s.charAt(index);
+			return false;
+		}
+
+		private boolean validIndex(String str, int index) {
+			return index >= 0 && index < str.length();
+		}
+	}
+
+	// recursive solution
+	public class Solution1 {
+		public boolean isMatch(String s, String p) {
 			// recursive return condition
 			if (p.length() == 0)
 				return s.length() == 0;
@@ -59,7 +86,6 @@ public class RegularExpressionMatching {
 		private boolean isMatch(String s, String p, int index) {
 			return p.charAt(index) == '.' || p.charAt(index) == s.charAt(index);
 		}
-
 	}
 
 }
