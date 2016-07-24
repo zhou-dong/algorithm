@@ -36,7 +36,6 @@ public class RegularExpressionMatching {
 	public class Solution {
 
 		public boolean isMatch(String s, String p) {
-
 			if (p.length() == 0)
 				return s.length() == 0;
 			if (p.length() == 1)
@@ -47,7 +46,6 @@ public class RegularExpressionMatching {
 
 			if (isMatch(s, p.substring(2))) // appear 0 time
 				return true;
-
 			return isMatch(s, p, 0) && isMatch(s.substring(1), p);
 		}
 
@@ -60,32 +58,7 @@ public class RegularExpressionMatching {
 		private boolean validIndex(String str, int index) {
 			return index >= 0 && index < str.length();
 		}
-	}
 
-	// recursive solution
-	public class Solution1 {
-		public boolean isMatch(String s, String p) {
-			// recursive return condition
-			if (p.length() == 0)
-				return s.length() == 0;
-			if (p.length() == 1)
-				return s.length() == 1 && isMatch(s, p, 0);
-
-			if (p.charAt(1) != '*') // normal compare
-				return s.length() > 0 && isMatch(s, p, 0) && isMatch(s.substring(1), p.substring(1));
-
-			// next char is *
-			while (s.length() > 0 && isMatch(s, p, 0)) {
-				if (isMatch(s, p.substring(2)))
-					return true;
-				s = s.substring(1);
-			}
-			return isMatch(s, p.substring(2));
-		}
-
-		private boolean isMatch(String s, String p, int index) {
-			return p.charAt(index) == '.' || p.charAt(index) == s.charAt(index);
-		}
 	}
 
 }

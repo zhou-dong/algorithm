@@ -32,15 +32,32 @@ The recursion mainly breaks down elegantly to the following two cases:
 
 "匹配"这个问题,非常容易转换成"匹配了一部分",整个匹配不匹配,要看"剩下的匹配"情况. 这就很好的把一个大的问题转换成了规模较小的问题:递归
 
-#### Time complexity： 
 
-             
-#### space complexity: 
+## Solution:
 
+- 当前字符的后一位!=‘*’的时候，正常比较。
+- 当前字符后一位==‘*’的时候：
+	+ 当做本字符不存在（appear 0 time），直接比较后面的
+	+ 本字符纯在，约掉被比较字符串一个字符，递归比较
 
-## Code
+Pseudo code
 
-recursive solution
+```java
+if ( pattern[i+1] != '*' ) { 
+	isMatch(string[i], pattern[i])
+} else {
+	if (isMarch(string[i], pattern[i+2]){
+		return true;
+	} else {
+		if ( isMatch(string[i], pattern[i]) ) {
+			return isMatch(string[i], pattern[i + 2]);
+		}
+		return false;
+	}
+}
+```
+
+Java code: recursive solution
 
 ```java
 public boolean isMatch(String s, String p) {
@@ -69,9 +86,6 @@ private boolean validIndex(String str, int index) {
 }
 	
 ```
-
-## Conclusion
-
 
 reference: 
 
