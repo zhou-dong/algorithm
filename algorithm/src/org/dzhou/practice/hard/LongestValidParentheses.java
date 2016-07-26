@@ -14,11 +14,11 @@ import java.util.Stack;
  * 
  * @author zhoudong
  *
- *         看到题的第一感觉觉得应该用dynamic programming
  */
 public class LongestValidParentheses {
 
 	public class Solution {
+
 		public int longestValidParentheses(String s) {
 			if (s == null || s.length() == 0)
 				return 0;
@@ -42,6 +42,7 @@ public class LongestValidParentheses {
 			}
 			return max;
 		}
+
 	}
 
 }
