@@ -1,5 +1,7 @@
 package org.dzhou.practice.hard;
 
+import java.util.Stack;
+
 /**
  * Given a string containing just the characters '(' and ')', find the length of
  * the longest valid (well-formed) parentheses substring.
@@ -17,31 +19,29 @@ package org.dzhou.practice.hard;
 public class LongestValidParentheses {
 
 	public class Solution {
-
 		public int longestValidParentheses(String s) {
-
-			int max = 0;
-
-			int left = 0;
-			int right = 0;
-
+			if (s == null || s.length() == 0)
+				return 0;
+			int max = 0, start = -1;
+			Stack<Integer> stack = new Stack<>();
 			for (int i = 0; i < s.length(); i++) {
-				if (s.charAt(i) == ')') {
-					right++;
-					if (right > left) {
-						right = 0;
-						left = 0;
+				if (s.charAt(i) == '(') {
+					stack.push(i);
+				} else {
+					if (stack.isEmpty()) {
+						start = i;
 					} else {
-						max = Math.max(max, right);
+						stack.pop();
+						if (stack.isEmpty()) {
+							max = Math.max(max, i - start);
+						} else {
+							max = Math.max(max, i - stack.peek());
+						}
 					}
-				} else if (s.charAt(i) == '(') {
-					left++;
 				}
 			}
-
-			return max * 2;
+			return max;
 		}
-
 	}
 
 }
