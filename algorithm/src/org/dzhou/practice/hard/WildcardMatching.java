@@ -26,10 +26,25 @@ package org.dzhou.practice.hard;
  *         %A7%A3%E9%A2%98%E7%AC%94%E8%AE%B0/
  * 
  *         贪心算法 greedy algorithm
+ * 
+ *         自己感觉这道题用动态规划，比用贪心算法清晰多了。（纯属个人意见，见仁见智）
+ * 
+ *         https://www.youtube.com/watch?v=3ZDZ-N0EPV0
+ * 
+ *         动态规划的解法简直太棒了，幸好当时算法课的时候，老师着重讲了动态规划的算法，如果自己完全不了解的话，还是需要一段时间次能明白的。
+ * 
  */
 public class WildcardMatching {
 
+	// dynamic programming
 	public class Solution {
+		public boolean isMatch(String s, String p) {
+
+			return false;
+		}
+	}
+
+	public class Solution1 {
 
 		public boolean isMatch(String s, String p) {
 
