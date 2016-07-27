@@ -70,8 +70,23 @@ private boolean validIndex(String str, int index) {
 	
 ```
 
+Dynamic Programming
+
+|   |   | x | a | * | b | . | c |
+|:-:|---|:-:|:-:|:-:|:-:|---|---|
+|   | T | F | F | F | F | F | F |
+| x | F | T | F | T | F | F | F |
+| a | F | F | T | T | F | F | F |
+| a | F | F | F | T | F | F | F |
+| b | F | F | F | F | T | F | F |
+| y | F | F | F | F | F | T | F |
+| c | F | F | F | F | F | F | T |
+
+
 reference: 
 
 http://articles.leetcode.com/regular-expression-matching
 
 http://harrifeng.github.io/algo/leetcode/regular-expression-matching.html
+
+https://www.youtube.com/watch?v=l3hda49XcDE

@@ -33,7 +33,54 @@ package org.dzhou.again.regularexpressionmatching;
  */
 public class RegularExpressionMatching {
 
+	// dynamic programming
 	public class Solution {
+		public boolean isMatch(String s, String p) {
+			if (s == null || p == null)
+				return false;
+			boolean[][] dp = createTable(s, p);
+			for (int i = 1; i < dp.length; i++) {
+				for (int j = 1; j < dp[i].length; j++) {
+					execute(s, p, dp, i, j);
+				}
+			}
+			return dp[s.length()][p.length()];
+		}
+
+		private boolean[][] createTable(String s, String p) {
+			boolean[][] dp = new boolean[s.length() + 1][p.length() + 1];
+			dp[0][0] = true;
+			for (int j = 1; j < dp[0].length; j++) {
+				if (p.charAt(j - 1) == '*') {
+					dp[0][j] = dp[0][j - 2];
+				} else {
+					dp[0][j] = false;
+				}
+			}
+			return dp;
+		}
+
+		private void execute(String s, String p, boolean[][] dp, int i, int j) {
+			if (isMatch(s.charAt(i - 1), p.charAt(j - 1))) {
+				dp[i][j] = dp[i - 1][j - 1];
+			} else if (p.charAt(j - 1) == '*') {
+				if (dp[i][j - 2]) {
+					dp[i][j] = dp[i][j - 2];
+				} else if (isMatch(s.charAt(i - 1), p.charAt(j - 2))) {
+					dp[i][j] = dp[i - 1][j];
+				}
+			} else {
+				dp[i][j] = false;
+			}
+		}
+
+		private boolean isMatch(char s, char p) {
+			return p == '.' || p == s;
+		}
+	}
+
+	// recursive
+	public class Solution1 {
 
 		public boolean isMatch(String s, String p) {
 			if (p.length() == 0)
