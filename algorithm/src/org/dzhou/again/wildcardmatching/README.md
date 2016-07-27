@@ -29,6 +29,19 @@ isMatch("aab", "c*a*b") → false
 
 我自己觉得使用 dynamic programming 最不费脑子，所以特别建议使用DP求解。 
 
+dp(i)(j) = 
+
+- dp(i-1)(j-1) if dp(i) == dp(j) ;
+- dp(i-1)(j) || dp(i)(j-1) if dp(j) =='*' ;
+- false ;
+
+Example: 
+
+- string:  abbcbb
+- pattern: ab?c*b
+
+result: true
+
 |   |   | a | b | ? | c | * | b |
 |:-:|---|:-:|:-:|:-:|:-:|---|---|
 |   | T | F | F | F | F | F | F |
@@ -39,8 +52,21 @@ isMatch("aab", "c*a*b") → false
 | b | F | F | F | F | F | T | T |
 | b | F | F | F | F | F | T | T |
 
-## Solution:
+- string:  abbcbb
+- pattern: ab?c*c
 
+result: false
+
+|   |   | a | b | ? | c | * | c |
+|:-:|---|:-:|:-:|:-:|:-:|---|---|
+|   | T | F | F | F | F | F | F |
+| a | F | T | F | F | F | F | F |
+| b | F | F | T | F | F | F | F |
+| b | F | F | F | T | F | F | F |
+| c | F | F | F | F | T | T | F |
+| b | F | F | F | F | F | T | F |
+| b | F | F | F | F | F | T | F |
 
 ## Reference: 
-https://leetcode.com/problems/wildcard-matching/
+
+https://www.youtube.com/watch?v=3ZDZ-N0EPV0
