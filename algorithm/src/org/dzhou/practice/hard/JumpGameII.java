@@ -27,7 +27,7 @@ public class JumpGameII {
 
 	public class Solution {
 
-		// Given array A = [2,3,1,1,4]
+		// Example: Given array A = [2,3,1,1,4]
 		public int jump(int[] nums) {
 			if (nums == null || nums.length == 0)
 				return 0;
