@@ -31,14 +31,14 @@ public class RecoverBinarySearchTree {
 		TreeNode previous = new TreeNode(Integer.MIN_VALUE);
 
 		public void recoverTree(TreeNode root) {
-			preOrderTraversal(root);
+			inOrderTraversal(root);
 			swap(firstNode, secondNode);
 		}
 
-		private void preOrderTraversal(TreeNode node) {
+		private void inOrderTraversal(TreeNode node) {
 			if (node == null)
 				return;
-			preOrderTraversal(node.left);
+			inOrderTraversal(node.left);
 			if (firstNode == null && node.val < previous.val) {
 				firstNode = previous;
 			}
@@ -46,7 +46,7 @@ public class RecoverBinarySearchTree {
 				secondNode = node;
 			}
 			previous = node;
-			preOrderTraversal(node.right);
+			inOrderTraversal(node.right);
 		}
 
 		private void swap(TreeNode first, TreeNode second) {
