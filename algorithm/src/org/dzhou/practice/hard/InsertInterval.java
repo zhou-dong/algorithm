@@ -42,13 +42,6 @@ public class InsertInterval {
 		}
 	}
 
-	/*
-	 * Given intervals [1,3],[6,9], insert and merge [2,5] in as [1,5],[6,9].
-	 * 
-	 * Given [1,2],[3,5],[6,7],[8,10],[12,16], insert and merge [4,9] in as
-	 * [1,2],[3,10],[12,16].
-	 * 
-	 */
 	public class Solution {
 		public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
 			int index = findPosition(intervals, newInterval);
