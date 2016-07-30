@@ -1,4 +1,4 @@
-package org.dzhou.again.wordbreak;
+package org.dzhou.practice.hard;
 
 import java.util.Set;
 
@@ -16,6 +16,7 @@ import java.util.Set;
 public class WordBreak {
 
 	public class Solution {
+
 		public boolean wordBreak(String s, Set<String> wordDict) {
 			if (s == null || s.length() == 0 || wordDict == null || wordDict.size() == 0)
 				return false;
@@ -34,6 +35,7 @@ public class WordBreak {
 			}
 			return dp[dp.length - 1];
 		}
+
 	}
 
 }
