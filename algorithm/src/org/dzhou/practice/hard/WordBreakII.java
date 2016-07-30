@@ -34,13 +34,11 @@ public class WordBreakII {
 			return result;
 		}
 
-		// s = "catsanddog",<br>
 		private void dfs(String s, Set<String> wordDict, List<String> result, StringBuilder item, int start) {
 			if (start == s.length()) {
 				result.add(new String(item));
 				return;
 			}
-
 			StringBuilder sb = new StringBuilder();
 			for (int i = start; i < s.length(); i++) {
 				sb.append(s.charAt(i));
