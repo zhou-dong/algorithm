@@ -14,8 +14,7 @@ import java.util.Set;
  * For example, given
  * 
  * s = "catsanddog",<br>
- * dict = ["cat", "cats", "and", "sand", "dog"].
- * 
+ * dict = ["cat", "cats", "and", "sand", "dog"].<br>
  * A solution is ["cats and dog", "cat sand dog"].
  * 
  * @author zhoudong
@@ -28,26 +27,34 @@ public class WordBreakII {
 		public List<String> wordBreak(String s, Set<String> wordDict) {
 			if (s == null || s.length() == 0 || wordDict == null || wordDict.size() == 0)
 				return Collections.emptyList();
-			boolean[] dp = createDpArray(s, wordDict);
-			return (dp[dp.length - 1] == false) ? Collections.emptyList() : createResult(dp, s);
+			if (!hasSolution(s, wordDict))
+				return Collections.emptyList();
+			List<String> result = new ArrayList<>();
+			dfs(s, wordDict, result, new StringBuilder(), 0);
+			return result;
 		}
 
-		private List<String> createResult(boolean[] dp, String s) {
-			List<String> result = new ArrayList<>();
-			StringBuilder item = new StringBuilder();
-			int prev = 0;
-			for (int i = 0; i < dp.length; i++) {
-				if (dp[i] == false)
-					continue;
-
-				prev = i;
+		// s = "catsanddog",<br>
+		private void dfs(String s, Set<String> wordDict, List<String> result, StringBuilder item, int start) {
+			if (start == s.length()) {
+				result.add(new String(item));
+				return;
 			}
 
-			return result;
-
+			StringBuilder sb = new StringBuilder();
+			for (int i = start; i < s.length(); i++) {
+				sb.append(s.charAt(i));
+				if (!wordDict.contains(sb.toString()))
+					continue;
+				int itemLength = item.length();
+				if (itemLength > 0)
+					item.append(" ");
+				dfs(s, wordDict, result, item.append(sb), i + 1);
+				item.delete(itemLength, item.length());
+			}
 		}
 
-		private boolean[] createDpArray(String s, Set<String> wordDict) {
+		private boolean hasSolution(String s, Set<String> wordDict) {
 			boolean[] dp = new boolean[s.length()];
 			for (int i = 0; i < dp.length; i++) {
 				if (wordDict.contains(s.substring(0, i + 1))) {
@@ -61,14 +68,9 @@ public class WordBreakII {
 					}
 				}
 			}
-			return dp;
+			return dp[dp.length - 1];
 		}
 
 	}
 
-	public static void main(String[] args) {
-		String s = "abcdefg";
-
-		System.out.println(s.substring(0, 2));
-	}
 }
