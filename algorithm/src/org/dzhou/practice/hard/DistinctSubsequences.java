@@ -31,8 +31,8 @@ package org.dzhou.practice.hard;
  */
 public class DistinctSubsequences {
 
+	// Dynamic Solution
 	public class Solution {
-
 		public int numDistinct(String s, String t) {
 			if (s == null || t == null)
 				return 0;
@@ -54,6 +54,12 @@ public class DistinctSubsequences {
 			return table;
 		}
 
+		private void init0thRowIsMatchEmptyTarget(int[] row) {
+			for (int col = 1; col < row.length; col++) {
+				row[col] = 1;
+			}
+		}
+
 		private void runDP(int[][] dp, String t, String s) {
 			for (int i = 1; i < dp.length; i++) {
 				for (int j = 1; j < dp[i].length; j++) {
@@ -65,13 +71,29 @@ public class DistinctSubsequences {
 				}
 			}
 		}
-
-		private void init0thRowIsMatchEmptyTarget(int[] row) {
-			for (int col = 1; col < row.length; col++) {
-				row[col] = 1;
-			}
-		}
-
 	}
 
+	// DFS solution
+	public class Solution1 {
+		int max = 0;
+
+		public int numDistinct(String s, String t) {
+			dfs(s, t);
+			return max;
+		}
+
+		private void dfs(String s, String t) {
+			if (t.length() == 0) {
+				max++;
+				return;
+			}
+			if (s.length() == 0)
+				return;
+			for (int i = 0; i < s.length(); i++) {
+				if (s.charAt(i) == t.charAt(0)) {
+					dfs(s.substring(i + 1), t.substring(1));
+				}
+			}
+		}
+	}
 }
