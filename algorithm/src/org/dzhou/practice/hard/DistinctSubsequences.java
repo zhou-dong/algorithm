@@ -36,12 +36,12 @@ public class DistinctSubsequences {
 		public int numDistinct(String s, String t) {
 			if (s == null || t == null)
 				return 0;
-			if (s.isEmpty()) {
-				if (t.isEmpty())
-					return 1;
-				else
-					return 0;
-			}
+			if (s.isEmpty())
+				return t.isEmpty() ? 1 : 0;
+			return numDistinctValidInput(s, t);
+		}
+
+		private int numDistinctValidInput(String s, String t) {
 			int[][] dp = createDpTable(t.length() + 1, s.length() + 1);
 			init0thRowIsMatchEmptyTarget(dp[0]);
 			runDP(dp, t, s);
@@ -96,4 +96,5 @@ public class DistinctSubsequences {
 			}
 		}
 	}
+
 }
