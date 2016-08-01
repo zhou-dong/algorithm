@@ -13,7 +13,6 @@ package org.dzhou.practice.hard;
  * 
  * Return 3.
  * 
- * 
  * @author zhoudong
  *
  *         “When you see string problem that is about subsequence or matching,
@@ -35,8 +34,42 @@ public class DistinctSubsequences {
 	public class Solution {
 
 		public int numDistinct(String s, String t) {
+			if (s == null || t == null)
+				return 0;
+			if (s.isEmpty()) {
+				if (t.isEmpty())
+					return 1;
+				else
+					return 0;
+			}
+			int[][] dp = createDpTable(t.length() + 1, s.length() + 1);
+			init0thRowIsMatchEmptyTarget(dp[0]);
+			runDP(dp, t, s);
+			return dp[t.length()][s.length()];
+		}
 
-			return 0;
+		private int[][] createDpTable(int row, int col) {
+			int[][] table = new int[row][col];
+			table[0][0] = 1;
+			return table;
+		}
+
+		private void runDP(int[][] dp, String t, String s) {
+			for (int i = 1; i < dp.length; i++) {
+				for (int j = 1; j < dp[i].length; j++) {
+					if (t.charAt(i - 1) == s.charAt(j - 1)) {
+						dp[i][j] = dp[i - 1][j - 1] + dp[i][j - 1];
+					} else {
+						dp[i][j] = dp[i][j - 1];
+					}
+				}
+			}
+		}
+
+		private void init0thRowIsMatchEmptyTarget(int[] row) {
+			for (int col = 1; col < row.length; col++) {
+				row[col] = 1;
+			}
 		}
 
 	}
