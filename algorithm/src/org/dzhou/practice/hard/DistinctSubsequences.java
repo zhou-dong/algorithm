@@ -38,10 +38,10 @@ public class DistinctSubsequences {
 				return 0;
 			if (s.isEmpty())
 				return t.isEmpty() ? 1 : 0;
-			return numDistinctValidInput(s, t);
+			return numDistinctWithDpSolution(s, t);
 		}
 
-		private int numDistinctValidInput(String s, String t) {
+		private int numDistinctWithDpSolution(String s, String t) {
 			int[][] dp = createDpTable(t.length() + 1, s.length() + 1);
 			init0thRowIsMatchEmptyTarget(dp[0]);
 			runDP(dp, t, s);
