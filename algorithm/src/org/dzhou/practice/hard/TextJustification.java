@@ -37,15 +37,6 @@ import java.util.List;
  */
 public class TextJustification {
 
-	public static void main(String[] args) {
-		new TextJustification().test();
-	}
-
-	private void test() {
-		String[] str = new String[] { "Listen", "to", "many,", "speak", "to", "a", "few." };
-		System.out.println(new Solution().fullJustify(str, 6));
-	}
-
 	public class Solution {
 
 		public List<String> fullJustify(String[] words, int maxWidth) {
@@ -128,9 +119,8 @@ public class TextJustification {
 		}
 
 		private StringBuilder appendSpacesToTail(StringBuilder sb, int count) {
-			for (int i = 0; i < count; i++) {
+			for (int i = 0; i < count; i++)
 				sb.append(" ");
-			}
 			return sb;
 		}
 
