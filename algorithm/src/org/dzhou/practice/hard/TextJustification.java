@@ -38,14 +38,12 @@ import java.util.List;
 public class TextJustification {
 
 	public static void main(String[] args) {
-		TextJustification instance = new TextJustification();
-		instance.test();
-
+		new TextJustification().test();
 	}
 
 	private void test() {
-		Solution s = new Solution();
-		System.out.println(s.fullJustify(new String[] { "Listen", "to", "many,", "speak", "to", "a", "few." }, 6));
+		String[] str = new String[] { "Listen", "to", "many,", "speak", "to", "a", "few." };
+		System.out.println(new Solution().fullJustify(str, 6));
 	}
 
 	public class Solution {
@@ -149,7 +147,6 @@ public class TextJustification {
 				sb.append(" ");
 			return sb.toString();
 		}
-
 	}
 
 }
