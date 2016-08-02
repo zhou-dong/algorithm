@@ -5,6 +5,8 @@ package org.dzhou.practice.hard;
  * the width of each bar is 1, find the area of largest rectangle in the
  * histogram.
  * 
+ * For example, Given heights = [2,1,5,6,2,3], return 10.
+ * 
  * @author zhoudong
  *
  */
