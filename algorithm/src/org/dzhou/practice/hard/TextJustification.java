@@ -37,57 +37,79 @@ import java.util.List;
  */
 public class TextJustification {
 
+	public static void main(String[] args) {
+		TextJustification instance = new TextJustification();
+		instance.test();
+
+	}
+
+	private void test() {
+		Solution s = new Solution();
+		System.out.println(s.fullJustify(new String[] { "Listen", "to", "many,", "speak", "to", "a", "few." }, 6));
+	}
+
 	public class Solution {
 
 		public List<String> fullJustify(String[] words, int maxWidth) {
-
 			List<String> result = new ArrayList<String>();
-
+			if (words == null || words.length == 0 || words[0].length() == 0) {
+				result.add(wholeSpaceLine(maxWidth));
+				return result;
+			}
 			int index = 0, count = 0;
 			List<String> item = new ArrayList<>();
 			while (index < words.length) {
 				count += words[index].length() + 1;
-				if (index + 1 != words.length) {
+				item.add(words[index]);
+				if (index + 1 < words.length) {
 					if (count + words[index + 1].length() > maxWidth) {
 						addLine(item, maxWidth, result);
 						item = new ArrayList<>();
 						count = 0;
 					}
 				} else {
-					addLastLine(item, result);
+					addLastLine(item, result, maxWidth);
 				}
 				index++;
 			}
-
 			return result;
 		}
 
 		private void addLine(List<String> item, int maxWidth, List<String> result) {
 			StringBuilder sb = oneSpaceInterval(item);
-
-			int index = 0;
-			int count = 0;
-
-			int base = (maxWidth - sb.length()) / item.size() - 1;
-			int mod = (maxWidth - sb.length()) % item.size() - 1;
-
-			int[] spaceCount = new int[item.size() - 1];
-			Arrays.fill(spaceCount, base);
-			for (int i = 0; i < mod; i++) {
-				spaceCount[i]++;
-			}
-
-			for (int i = 0; i < item.size() - 1; i++) {
-				index = nextSpaceIndex(sb, index);
-				addSpace(sb, count);
+			if (item.size() == 1) {
+				appendSpacesToTail(sb, maxWidth - sb.length());
+			} else {
+				int[] spaceCount = toBeInsertSpaceCount(sb, item, maxWidth);
+				insertSpaces(spaceCount, sb);
 			}
 			result.add(sb.toString());
 		}
 
-		private StringBuilder addSpace(StringBuilder sb, int count) {
-			for (int i = 0; i < count; i++)
-				sb.append(" ");
+		private StringBuilder insertSpaces(int[] spaceCount, StringBuilder sb) {
+			int offset = 0;
+			for (int i = 0; i < spaceCount.length; i++) {
+				offset = nextSpaceIndex(sb, offset);
+				insertSpaces(sb, spaceCount[i], offset);
+			}
 			return sb;
+		}
+
+		private StringBuilder insertSpaces(StringBuilder sb, int count, int index) {
+			for (int i = 0; i < count; i++)
+				sb.insert(index, " ");
+			return sb;
+		}
+
+		private int[] toBeInsertSpaceCount(StringBuilder sb, List<String> item, int maxWidth) {
+			int length = item.size() - 1;
+			int[] spaceCount = new int[length];
+			int base = (maxWidth - sb.length()) / length;
+			int more = (maxWidth - sb.length()) % length;
+			Arrays.fill(spaceCount, base);
+			for (int i = 0; i < more; i++)
+				spaceCount[i]++;
+			return spaceCount;
 		}
 
 		private int nextSpaceIndex(StringBuilder sb, int index) {
@@ -101,9 +123,17 @@ public class TextJustification {
 			return -1;
 		}
 
-		private void addLastLine(List<String> item, List<String> result) {
+		private void addLastLine(List<String> item, List<String> result, int maxWidth) {
 			StringBuilder sb = oneSpaceInterval(item);
+			appendSpacesToTail(sb, maxWidth - sb.length());
 			result.add(sb.toString());
+		}
+
+		private StringBuilder appendSpacesToTail(StringBuilder sb, int count) {
+			for (int i = 0; i < count; i++) {
+				sb.append(" ");
+			}
+			return sb;
 		}
 
 		private StringBuilder oneSpaceInterval(List<String> item) {
@@ -111,6 +141,13 @@ public class TextJustification {
 			for (String word : item)
 				sb.append(word).append(" ");
 			return sb.deleteCharAt(sb.length() - 1);
+		}
+
+		private String wholeSpaceLine(int count) {
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < count; i++)
+				sb.append(" ");
+			return sb.toString();
 		}
 
 	}
