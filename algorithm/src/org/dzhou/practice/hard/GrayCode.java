@@ -37,6 +37,7 @@ import java.util.List;
 public class GrayCode {
 
 	public class Solution {
+
 		public List<Integer> grayCode(int n) {
 			if (n == 0) {
 				List<Integer> result = new ArrayList<Integer>();
@@ -53,6 +54,7 @@ public class GrayCode {
 			}
 			return result;
 		}
+
 	}
 
 }
