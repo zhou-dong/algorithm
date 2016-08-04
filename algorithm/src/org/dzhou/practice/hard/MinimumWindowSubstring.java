@@ -22,25 +22,62 @@ public class MinimumWindowSubstring {
 
 	public class Solution {
 
+		int start = 0, found = 0, begin = -1, end, minLength = Integer.MAX_VALUE;
+
 		public String minWindow(String s, String t) {
+
 			Map<Character, Integer> targetCharCount = charCount(t);
 			Map<Character, Integer> windowCharCount = new HashMap<>();
 
-			int found = 0;
-			int begin = -1, end = s.length() - 1, minLength = s.length();
-
-			for (char c : s.toCharArray()) {
+			for (int i = 0; i < s.length(); i++) {
+				char c = s.charAt(i);
 				if (!targetCharCount.containsKey(c))
 					continue;
 				addChar(c, windowCharCount);
 				if (windowCharCount.get(c) <= targetCharCount.get(c))
 					found++;
 				if (found == t.length()) {
-
+					shiftWindow(targetCharCount, windowCharCount, i, s);
+					updateMinLength(i);
+					removeFirst(s, windowCharCount);
 				}
 			}
 
-			return begin == -1 ? "" : s.substring(begin, end);
+			return begin == -1 ? "" : s.substring(begin, end + 1);
+		}
+
+		private void removeFirst(String s, Map<Character, Integer> windowCharCount) {
+			subtractOne(s.charAt(start), windowCharCount);
+			found--;
+			start++; // 子串起始位置加1，我们开始看下一个子串了
+		}
+
+		private void updateMinLength(int index) {
+			if (index - start < minLength) {
+				begin = start;
+				end = index;
+				minLength = index - start;
+			}
+		}
+
+		private void shiftWindow(Map<Character, Integer> targetCharCount, Map<Character, Integer> windowCharCount,
+				int index, String s) {
+			while (start < index) {
+				char c = s.charAt(start);
+				if (!targetCharCount.containsKey(c)) {
+					start++;
+				} else if (windowCharCount.get(c) > targetCharCount.get(c)) {
+					subtractOne(c, windowCharCount);
+					start++;
+				} else {
+					break;
+				}
+			}
+		}
+
+		private void subtractOne(char c, Map<Character, Integer> map) {
+			if (map.containsKey(c))
+				map.put(c, map.get(c) - 1);
 		}
 
 		private Map<Character, Integer> charCount(String t) {
