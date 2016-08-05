@@ -92,12 +92,11 @@ public class CopyListWithRandomPointer {
 		private RandomListNode split(RandomListNode head) {
 			RandomListNode newHead = head.next;
 			while (head != null) {
-				RandomListNode temp = head.next;
-				head.next = temp.next;
+				RandomListNode newNode = head.next;
+				head.next = newNode.next;
+				if (newNode.next != null)
+					newNode.next = newNode.next.next;
 				head = head.next;
-				if (temp.next != null) {
-					temp.next = temp.next.next;
-				}
 			}
 			return newHead;
 		}
