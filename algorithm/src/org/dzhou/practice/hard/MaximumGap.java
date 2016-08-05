@@ -41,6 +41,16 @@ public class MaximumGap {
 			}
 		}
 
+		class MinMax {
+			final int min;
+			final int max;
+
+			public MinMax(int min, int max) {
+				this.min = min;
+				this.max = max;
+			}
+		}
+
 		public int maximumGap(int[] nums) {
 			if (nums.length < 2)
 				return 0;
@@ -57,11 +67,10 @@ public class MaximumGap {
 		}
 
 		private void insertNumsIntoBuckets(Bucket[] buckets, int[] nums) {
-			int min = findMin(nums);
-			int max = findMax(nums);
-			double interval = calculateInterval(nums.length, max, min);
+			MinMax minMax = findMinMax(nums);
+			double interval = calculateInterval(nums.length, minMax.max, minMax.min);
 			for (int num : nums) {
-				int index = bucketIndex(num, min, interval);
+				int index = bucketIndex(num, minMax.min, interval);
 				buckets[index].insert(num);
 			}
 		}
@@ -93,19 +102,16 @@ public class MaximumGap {
 			return result;
 		}
 
-		private int findMin(int[] nums) {
+		private MinMax findMinMax(int[] nums) {
 			int min = nums[0];
-			for (int i = 1; i < nums.length; i++)
+			int max = nums[0];
+			for (int i = 1; i < nums.length; i++) {
 				min = Math.min(min, nums[i]);
-			return min;
+				max = Math.max(max, nums[i]);
+			}
+			return new MinMax(min, max);
 		}
 
-		private int findMax(int[] nums) {
-			int max = nums[0];
-			for (int i = 1; i < nums.length; i++)
-				max = Math.max(max, nums[i]);
-			return max;
-		}
 	}
 
 	// O(NLogN)
