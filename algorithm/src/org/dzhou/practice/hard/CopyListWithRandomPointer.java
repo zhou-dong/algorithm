@@ -61,7 +61,6 @@ public class CopyListWithRandomPointer {
 	 * https://siddontang.gitbooks.io/leetcode-solution/content/linked_list/
 	 * copy_list_with_random_pointer.html
 	 */
-
 	public class Solution1 {
 		public RandomListNode copyRandomList(RandomListNode head) {
 			if (head == null)
