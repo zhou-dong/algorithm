@@ -11,7 +11,6 @@ import java.util.Map;
  * 
  * Return a deep copy of the list.
  * 
- * 
  * @author zhoudong
  *
  */
@@ -57,4 +56,50 @@ public class CopyListWithRandomPointer {
 		}
 	}
 
+	/**
+	 * reference :
+	 * https://siddontang.gitbooks.io/leetcode-solution/content/linked_list/
+	 * copy_list_with_random_pointer.html
+	 */
+
+	public class Solution1 {
+		public RandomListNode copyRandomList(RandomListNode head) {
+			if (head == null)
+				return null;
+			copyNext(head);
+			copyRandom(head);
+			return split(head);
+		}
+
+		private void copyNext(RandomListNode head) {
+			while (head != null) {
+				RandomListNode newNode = new RandomListNode(head.label);
+				newNode.next = head.next;
+				newNode.random = head.random;
+				head.next = newNode;
+				head = newNode.next;
+			}
+		}
+
+		private void copyRandom(RandomListNode head) {
+			while (head != null) {
+				if (head.random != null)
+					head.next.random = head.random.next;
+				head = head.next.next;
+			}
+		}
+
+		private RandomListNode split(RandomListNode head) {
+			RandomListNode newHead = head.next;
+			while (head != null) {
+				RandomListNode temp = head.next;
+				head.next = temp.next;
+				head = head.next;
+				if (temp.next != null) {
+					temp.next = temp.next.next;
+				}
+			}
+			return newHead;
+		}
+	}
 }
