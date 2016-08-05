@@ -57,21 +57,4 @@ public class CopyListWithRandomPointer {
 		}
 	}
 
-	void test() {
-		Solution s = new Solution();
-		RandomListNode head = new RandomListNode(-1);
-		head.next = new RandomListNode(-1);
-		RandomListNode curr = s.copyRandomList(head);
-		while (curr != null) {
-			System.out.println(curr.label);
-			curr = curr.next;
-		}
-
-	}
-
-	public static void main(String[] args) {
-		CopyListWithRandomPointer c = new CopyListWithRandomPointer();
-		c.test();
-	}
-
 }
