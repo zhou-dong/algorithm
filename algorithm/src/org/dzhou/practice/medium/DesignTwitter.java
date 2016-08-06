@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -70,7 +69,7 @@ public class DesignTwitter {
 		/** Compose a new tweet. */
 		public void postTweet(int userId, int tweetId) {
 			if (!userTweets.containsKey(userId))
-				userTweets.put(userId, new LinkedList<>());
+				userTweets.put(userId, new ArrayList<>());
 			userTweets.get(userId).add(tweetId);
 			tweetOwner.put(tweetId, userId);
 			tweets.add(tweetId);
@@ -83,11 +82,12 @@ public class DesignTwitter {
 		 * least recent.
 		 */
 		public List<Integer> getNewsFeed(int userId) {
-			List<Integer> result = new LinkedList<>();
+			int resultSize = 10;
+			List<Integer> result = new ArrayList<>(resultSize);
 			Set<Integer> followees = getFollowees(userId);
 			int count = 0;
 			for (int i = tweets.size() - 1; i >= 0; i--) {
-				if (count == 10)
+				if (count == resultSize)
 					break;
 				int tweet = tweets.get(i);
 				int owner = tweetOwner.get(tweet);
