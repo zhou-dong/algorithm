@@ -1,5 +1,8 @@
 package org.dzhou.practice.hard;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Given a string S, you are allowed to convert it to a palindrome by adding
  * characters in front of it. Find and return the shortest palindrome you can
@@ -20,26 +23,23 @@ package org.dzhou.practice.hard;
  */
 public class ShortestPalindrome {
 
-	public class Solution {
+	public static void main(String[] args) {
+		new ShortestPalindrome().test();
+	}
+
+	void test() {
+		Solution1 s = new Solution1();
+		System.out.println(s.shortestPalindrome("aacecaaa"));
+	}
+
+	public class Solution1 {
 
 		public String shortestPalindrome(String s) {
-
-			String reverse = new StringBuilder(s).reverse().toString();
-
-			String join = s + "#" + reverse;
-
-			int[] position = new int[join.length()];
-
-			for (int i = 0; i < join.length(); i++) {
-
-			}
-
-			return reverse.substring(0, position[position.length - 1]) + s;
+			if (s == null || s.length() == 0)
+				return "";
+			return null;
 		}
 
-		private void kmp() {
-
-		}
 	}
 
 }
