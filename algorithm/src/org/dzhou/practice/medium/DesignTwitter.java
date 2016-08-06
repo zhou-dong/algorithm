@@ -1,4 +1,4 @@
-package org.dzhou.practice.hard;
+package org.dzhou.practice.medium;
 
 import java.util.ArrayList;
 import java.util.Collections;
