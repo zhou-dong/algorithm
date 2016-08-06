@@ -1,4 +1,4 @@
-package org.dzhou.practice.hard;
+package org.dzhou.practice.medium;
 
 /**
  * Given two words word1 and word2, find the minimum number of steps required to
