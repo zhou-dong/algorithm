@@ -34,7 +34,12 @@ public class GuessNumberHigherOrLower {
 	 */
 
 	abstract class GuessGame {
-		abstract int guess(int num);
+
+		int n;
+
+		int guess(int num) {
+			return n == num ? 0 : num < n ? -1 : 1;
+		}
 
 		abstract int guessNumber(int num);
 	}
@@ -56,10 +61,6 @@ public class GuessNumberHigherOrLower {
 			}
 			return -1;
 		}
-
-		@Override
-		int guess(int num) {
-			return 0;
-		}
 	}
+
 }
