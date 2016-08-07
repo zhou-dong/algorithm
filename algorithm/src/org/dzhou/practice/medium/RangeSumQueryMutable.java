@@ -36,17 +36,18 @@ public class RangeSumQueryMutable {
 			int low;
 			int high;
 			int val;
+
 			SegmentTreeNode left;
 			SegmentTreeNode right;
 
-			SegmentTreeNode(int low, int high, int val) {
+			SegmentTreeNode(int low, int high) {
 				this.low = low;
 				this.high = high;
-				this.val = val;
 			}
 
-			public SegmentTreeNode(int low, int high) {
-				this(low, high, 0);
+			SegmentTreeNode(int low, int high, int val) {
+				this(low, high);
+				this.val = val;
 			}
 		}
 
