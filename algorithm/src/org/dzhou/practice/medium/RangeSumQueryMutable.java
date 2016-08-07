@@ -90,7 +90,7 @@ public class RangeSumQueryMutable {
 
 			int mid = (root.low + root.high) / 2;
 			int old = 0;
-			if (i >= root.low && i <= mid)
+			if (i <= mid)
 				old = update(root.left, i, val);
 			else
 				old = update(root.right, i, val);
