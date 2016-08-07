@@ -23,7 +23,10 @@ package org.dzhou.practice.medium;
  * @author zhoudong
  *
  *         reference :
+ * 
  *         http://www.voidcn.com/blog/pointbreak1/article/p-4878279.html
+ * 
+ *         https://www.youtube.com/watch?v=ZBHKZF5w4YU
  */
 public class RangeSumQueryMutable {
 
