@@ -37,20 +37,18 @@ public class RangeSumQuery2DImmutable {
 		public NumMatrix(int[][] matrix) {
 			if (matrix == null || matrix.length == 0 || matrix[0].length == 0)
 				return;
-			table = copy(matrix);
+			table = copyFirstColumn(matrix);
 			for (int row = 0; row < matrix.length; row++) {
 				for (int col = 1; col < matrix[row].length; col++) {
-					table[row][col] += table[row][col - 1];
+					table[row][col] = (table[row][col - 1] + matrix[row][col]);
 				}
 			}
 		}
 
-		private int[][] copy(int[][] matrix) {
+		private int[][] copyFirstColumn(int[][] matrix) {
 			int[][] copy = new int[matrix.length][matrix[0].length];
 			for (int row = 0; row < matrix.length; row++) {
-				for (int col = 0; col < matrix[row].length; col++) {
-					copy[row][col] = matrix[row][col];
-				}
+				copy[row][0] = matrix[row][0];
 			}
 			return copy;
 		}
