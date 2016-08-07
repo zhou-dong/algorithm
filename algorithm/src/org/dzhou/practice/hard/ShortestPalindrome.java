@@ -23,15 +23,6 @@ import java.util.Set;
  */
 public class ShortestPalindrome {
 
-	public static void main(String[] args) {
-		new ShortestPalindrome().test();
-	}
-
-	void test() {
-		Solution sl = new Solution();
-		System.out.println(sl.shortestPalindrome("aacecaaa"));
-	}
-
 	public class Solution {
 		public String shortestPalindrome(String s) {
 			if (s == null || s.length() == 0)
@@ -46,9 +37,7 @@ public class ShortestPalindrome {
 		private int[] kmpPartialTable(String s) {
 			int[] table = new int[s.length()];
 			for (int i = 1; i < s.length(); i++) {
-
 				int j = table[i - 1];
-
 				while (j > 0 && s.charAt(i) != s.charAt(j))
 					j = table[j - 1];
 				if (s.charAt(i) == s.charAt(j)) {
@@ -73,7 +62,6 @@ public class ShortestPalindrome {
 	}
 
 	public class Solution1 {
-
 		public String shortestPalindrome(String s) {
 			if (s == null || s.length() == 0)
 				return "";
