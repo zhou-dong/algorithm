@@ -20,20 +20,16 @@ package org.dzhou.practice.medium;
  * transactions = [buy, sell, cooldown, buy, sell]<br>
  * 
  * @author zhoudong
- *
  * 
- *         设sell[i] 卖出操作的最大利润。它需要考虑的是，第i天是否卖出。（手上有stock在第i天所能获得的最大利润）
+ *         reference:
  * 
- *         buy[i] 买进操作的最大利润。它需要考虑的是，第i天是否买进。（手上没有stock在第i天所能获得的最大利润）
+ *         https://www.hrwhisper.me/leetcode-best-time-to-buy-and-sell-stock-with-cooldown/
  * 
- *         所以，显然有状态转移方程
+ *         状态转移方程:
  * 
- *         buy[i] = max(buy[i-1] , sell[i-2] – prices[i]) //
- *         休息一天在买入，所以是sell[i-2]在状态转移
+ *         buy[i] = max(buy[i-1] , sell[i-2] – prices[i])
  * 
  *         sell[i] = max(sell[i-1], buy[i-1] + prices[i])
- * 
- *         最后显然有sell[n-1] > buy[n-1] 所以我们返回sell[n-1]
  */
 public class BestTimeToBuyAndSellStockWithCooldown {
 
