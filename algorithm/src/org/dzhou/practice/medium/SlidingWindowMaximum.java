@@ -1,6 +1,7 @@
 package org.dzhou.practice.medium;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 /**
@@ -50,7 +51,30 @@ public class SlidingWindowMaximum {
 		}
 	}
 
+	// double-ended queue
 	public class Solution {
+		public int[] maxSlidingWindow(int[] nums, int k) {
+			if (nums == null || nums.length == 0 || k > nums.length)
+				return new int[0];
+
+			LinkedList<Integer> queue = new LinkedList<>();
+			int[] result = new int[nums.length + 1 - k];
+
+			for (int i = 0; i < nums.length; i++) {
+				if (!queue.isEmpty() && queue.peekFirst() == i - k)
+					queue.poll();
+				while (!queue.isEmpty() && nums[queue.peekLast()] < nums[i])
+					queue.removeLast();
+				queue.offerLast(i);
+				if ((i + 1) >= k)
+					result[i + 1 - k] = nums[queue.peek()];
+			}
+			return result;
+		}
+	}
+
+	// Heap Solution
+	public class Solution1 {
 		public int[] maxSlidingWindow(int[] nums, int k) {
 			if (nums == null || nums.length == 0 || k > nums.length)
 				return new int[0];
@@ -72,7 +96,7 @@ public class SlidingWindowMaximum {
 	}
 
 	// Heap Solution
-	public class Solution1 {
+	public class Solution2 {
 		public int[] maxSlidingWindow(int[] nums, int k) {
 			if (nums == null || nums.length == 0 || k > nums.length)
 				return new int[0];
