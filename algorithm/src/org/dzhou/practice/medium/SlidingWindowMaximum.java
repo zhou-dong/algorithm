@@ -39,18 +39,6 @@ import java.util.PriorityQueue;
  */
 public class SlidingWindowMaximum {
 
-	public static void main(String[] args) {
-		SlidingWindowMaximum s = new SlidingWindowMaximum();
-		s.test();
-	}
-
-	private void test() {
-		Solution s = new Solution();
-		for (int n : s.maxSlidingWindow(new int[] { 1, -1 }, 1)) {
-			System.out.print(n + " ");
-		}
-	}
-
 	// double-ended queue
 	public class Solution {
 		public int[] maxSlidingWindow(int[] nums, int k) {
