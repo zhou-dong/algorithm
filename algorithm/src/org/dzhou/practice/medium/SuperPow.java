@@ -16,15 +16,39 @@ package org.dzhou.practice.medium;
  * @author zhoudong
  *
  *         reference:
- *
- *         思路: 需要用到的数学知识 <br>
- *         1. a^b % 1337 = (a%1337)^b % 1337 <br>
- *         2. xy % 1337 = ((x%1337) * (y%1337)) % 1337, 其中xy是一个数字如:45, 98等等
+ * 
+ *         https://www.hrwhisper.me/leetcode-super-pow/
+ * 
+ *         http://www.voidcn.com/blog/xindoo/article/p-6144777.html
+ * 
+ *         123^4567 = ((((((123)^4)^10*(123)^5)^10)*123^6)^10)*123^7
  * 
  */
 public class SuperPow {
 
 	public class Solution {
+
+		private int mod = 1337;
+
+		public int superPow(int a, int[] b) {
+			int ans = 1;
+			a %= mod;
+			for (int i = 0; i < b.length; i++) {
+				ans = (powmod(ans, 10, mod) * powmod(a, b[i], mod)) % mod;
+			}
+			return ans;
+		}
+
+		private int powmod(int a, int b, int mod) {
+			int ans = 1;
+			for (int i = 0; i < b; i++) {
+				ans = (ans * a) % mod;
+			}
+			return ans;
+		}
+	}
+
+	public class Solution1 {
 		private int mod = 1337;
 
 		public int superPow(int a, int[] b) {
