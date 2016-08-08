@@ -77,13 +77,4 @@ public class IntegerToEnglishWords {
 
 	}
 
-	void test() {
-		Solution s = new Solution();
-		System.out.println(s.numberToWords(1114));
-	}
-
-	public static void main(String[] args) {
-		IntegerToEnglishWords i = new IntegerToEnglishWords();
-		i.test();
-	}
 }
