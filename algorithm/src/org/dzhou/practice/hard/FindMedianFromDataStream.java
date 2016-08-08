@@ -43,16 +43,25 @@ public class FindMedianFromDataStream {
 
 			// Adds a number into the data structure.
 			public void addNum(int num) {
-				small.add(num);
-				large.add(small.poll());
-				if (small.size() < large.size()) {
+				if (small.isEmpty() || num < small.peek())
+					small.add(num);
+				else
+					large.add(num);
+
+				if (small.size() > large.size() + 1)
+					large.add(small.poll());
+				else if (large.size() > small.size() + 1)
 					small.add(large.poll());
-				}
 			}
 
 			// Returns the median of current data stream
 			public double findMedian() {
-				return small.size() == large.size() ? (small.peek() + large.peek()) / 2.0d : small.peek();
+				if (large.size() == small.size())
+					return (large.peek() + small.peek()) / 2.0d;
+				else if (small.size() > large.size())
+					return (double) small.peek();
+				else
+					return (double) large.peek();
 			}
 		}
 
@@ -74,25 +83,16 @@ public class FindMedianFromDataStream {
 
 			// Adds a number into the data structure.
 			public void addNum(int num) {
-				if (small.isEmpty() || num < small.peek())
-					small.add(num);
-				else
-					large.add(num);
-
-				if (small.size() > large.size() + 1)
-					large.add(small.poll());
-				else if (large.size() > small.size() + 1)
+				small.add(num);
+				large.add(small.poll());
+				if (small.size() < large.size()) {
 					small.add(large.poll());
+				}
 			}
 
 			// Returns the median of current data stream
 			public double findMedian() {
-				if (large.size() == small.size())
-					return (large.peek() + small.peek()) / 2.0d;
-				else if (small.size() > large.size())
-					return (double) small.peek();
-				else
-					return (double) large.peek();
+				return small.size() == large.size() ? (small.peek() + large.peek()) / 2.0d : small.peek();
 			}
 		}
 
