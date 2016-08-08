@@ -29,7 +29,7 @@ import java.util.PriorityQueue;
  *
  *         使用大小堆来解决问题，最大堆负责存储这些数左边的(small)，最小堆则负责右边的(large)。
  */
-public class FindMedianfromDataStream {
+public class FindMedianFromDataStream {
 
 	public class Solution1 {
 		public class MedianFinder {
