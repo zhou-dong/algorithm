@@ -43,8 +43,7 @@ public class IntegerToEnglishWords {
 			int count = 0;
 			while (num > 0) {
 				if (num % 1000 > 0) {
-					String chunk = chunk(num % 1000);
-					result = chunk + units[count] + " " + result;
+					result = chunk(num % 1000) + units[count] + " " + result;
 				}
 				num /= 1000;
 				count++;
