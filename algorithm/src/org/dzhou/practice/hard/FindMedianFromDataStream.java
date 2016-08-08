@@ -31,6 +31,37 @@ import java.util.PriorityQueue;
  */
 public class FindMedianFromDataStream {
 
+	public class Solution {
+		public class MedianFinder {
+			PriorityQueue<Integer> small;
+			PriorityQueue<Integer> large;
+
+			public MedianFinder() {
+				small = new PriorityQueue<>(Collections.reverseOrder());
+				large = new PriorityQueue<>();
+			}
+
+			// Adds a number into the data structure.
+			public void addNum(int num) {
+				small.add(num);
+				large.add(small.poll());
+				if (small.size() < large.size()) {
+					small.add(large.poll());
+				}
+			}
+
+			// Returns the median of current data stream
+			public double findMedian() {
+				return small.size() == large.size() ? (small.peek() + large.peek()) / 2.0d : small.peek();
+			}
+		}
+
+		// Your MedianFinder object will be instantiated and called as such:
+		// MedianFinder mf = new MedianFinder();
+		// mf.addNum(1);
+		// mf.findMedian();
+	}
+
 	public class Solution1 {
 		public class MedianFinder {
 			PriorityQueue<Integer> small;
@@ -43,7 +74,7 @@ public class FindMedianFromDataStream {
 
 			// Adds a number into the data structure.
 			public void addNum(int num) {
-				if (small.size() == 0 || num < small.peek())
+				if (small.isEmpty() || num < small.peek())
 					small.add(num);
 				else
 					large.add(num);
@@ -64,9 +95,10 @@ public class FindMedianFromDataStream {
 					return (double) large.peek();
 			}
 		}
+
+		// Your MedianFinder object will be instantiated and called as such:
+		// MedianFinder mf = new MedianFinder();
+		// mf.addNum(1);
+		// mf.findMedian();
 	}
-	// Your MedianFinder object will be instantiated and called as such:
-	// MedianFinder mf = new MedianFinder();
-	// mf.addNum(1);
-	// mf.findMedian();
 }
