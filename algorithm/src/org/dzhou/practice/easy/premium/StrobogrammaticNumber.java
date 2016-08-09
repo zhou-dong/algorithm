@@ -27,9 +27,7 @@ public class StrobogrammaticNumber {
 			map.put('9', '6');
 			map.put('8', '8');
 			for (int low = 0, high = num.length() - 1; low <= high; low++, high--) {
-				char left = num.charAt(low);
-				char right = num.charAt(high);
-				if (!map.containsKey(left) || !map.containsKey(right) || map.get(left) != right) {
+				if (!map.containsKey(num.charAt(low)) || map.get(num.charAt(low)) != num.charAt(high)) {
 					return false;
 				}
 			}
