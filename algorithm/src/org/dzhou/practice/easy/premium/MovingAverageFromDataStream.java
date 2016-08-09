@@ -21,7 +21,7 @@ public class MovingAverageFromDataStream {
 
 	public class MovingAverage {
 
-		Queue<Integer> queue = new LinkedList<>();
+		Queue<Integer> queue = null;
 
 		int size, sum;
 
@@ -29,6 +29,7 @@ public class MovingAverageFromDataStream {
 		public MovingAverage(int size) {
 			this.size = size;
 			this.sum = 0;
+			this.queue = new LinkedList<>();
 		}
 
 		public double next(int val) {
