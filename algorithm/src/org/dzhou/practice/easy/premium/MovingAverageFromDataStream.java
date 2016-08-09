@@ -23,8 +23,7 @@ public class MovingAverageFromDataStream {
 
 		Queue<Integer> queue = new LinkedList<>();
 
-		int size;
-		int sum;
+		int size, sum;
 
 		/** Initialize your data structure here. */
 		public MovingAverage(int size) {
