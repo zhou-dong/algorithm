@@ -28,7 +28,6 @@ import java.util.List;
 public class FlipGame {
 
 	public class Solution {
-
 		public List<String> generatePossibleNextMoves(String s) {
 			List<String> result = new ArrayList<>();
 			for (int i = 0; i < s.length() - 1; i++) {
@@ -38,6 +37,6 @@ public class FlipGame {
 			}
 			return result;
 		}
-
 	}
+
 }
