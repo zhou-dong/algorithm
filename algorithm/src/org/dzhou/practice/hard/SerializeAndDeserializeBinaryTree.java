@@ -38,18 +38,6 @@ public class SerializeAndDeserializeBinaryTree {
 		}
 	}
 
-	public static void main(String[] args) {
-		SerializeAndDeserializeBinaryTree s = new SerializeAndDeserializeBinaryTree();
-		s.test();
-	}
-
-	void test() {
-		Codec codec = new Codec();
-		TreeNode root = new TreeNode(1);
-		root.left = new TreeNode(2);
-		System.out.println(codec.deserialize(codec.serialize(root)));
-	}
-
 	public class Codec {
 
 		// Encodes a tree to a single string.
