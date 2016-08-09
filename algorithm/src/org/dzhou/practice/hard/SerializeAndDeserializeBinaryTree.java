@@ -51,8 +51,8 @@ public class SerializeAndDeserializeBinaryTree {
 				return null;
 			String[] vals = data.split(",");
 			TreeNode[] nodes = new TreeNode[vals.length];
-			int[] nulls = new int[vals.length]; // 节点i之前null节点的个数
-
+			// 节点i之前null节点的个数，为计算left child index, right child index做准备。
+			int[] nulls = new int[vals.length];
 			for (int i = 0; i < vals.length; i++) {
 				if ("null".equals(vals[i])) {
 					nulls[i] = nulls[i - 1] + 1;
