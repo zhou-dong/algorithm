@@ -40,15 +40,29 @@ public class ClosestBinarySearchTreeValue {
 
 	}
 
-	// traversal binary tree
 	public class Solution1 {
+
+		public int closestValue(TreeNode root, double target) {
+			int closest = root.val;
+			while (root != null) {
+				if (root.val == target)
+					return root.val;
+				closest = Math.abs(closest - target) > Math.abs(root.val - target) ? root.val : closest;
+				root = target < root.val ? root.left : root.right;
+			}
+			return closest;
+		}
+
+	}
+
+	// traversal binary tree
+	public class Solution2 {
 
 		private double min;
 		private int result;
 
 		public int closestValue(TreeNode root, double target) {
-			min = Math.abs(root.val - target);
-			result = root.val;
+			update(Math.abs(root.val - target), root.val);
 			helper(root, target);
 			return result;
 		}
@@ -64,11 +78,14 @@ public class ClosestBinarySearchTreeValue {
 		private void execute(double target, int val) {
 			double distance = Math.abs(target - val);
 			if (distance < min) {
-				min = distance;
-				result = val;
+				update(distance, val);
 			}
 		}
 
+		private void update(double distance, int val) {
+			this.min = distance;
+			this.result = val;
+		}
 	}
 
 }
