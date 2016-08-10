@@ -138,7 +138,6 @@ public class PlusOneLinkedList {
 				head.next = fakeHead.next.next;
 				fakeHead.next.next = temp;
 			}
-			head.next = null;
 			return fakeHead.next;
 		}
 
