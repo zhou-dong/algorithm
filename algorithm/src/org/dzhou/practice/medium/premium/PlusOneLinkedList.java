@@ -44,13 +44,14 @@ public class PlusOneLinkedList {
 
 		private int dfs(ListNode node) {
 			if (node.next == null) {
-				return updateReturnCarry(node, 1);
+				return update(node, 1);
 			}
 			int carry = dfs(node.next);
-			return updateReturnCarry(node, carry);
+			return update(node, carry);
 		}
 
-		private int updateReturnCarry(ListNode node, int carry) {
+		// update and return carry
+		private int update(ListNode node, int carry) {
 			int val = node.val + carry;
 			node.val = val % 10;
 			return val / 10;
