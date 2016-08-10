@@ -59,8 +59,10 @@ public class GroupShiftedStrings {
 
 		private String calculateKey(String string) {
 			StringBuilder key = new StringBuilder();
-			for (int i = 1; i < string.length(); i++)
-				key.append(distance(string.charAt(i), string.charAt(i - 1)));
+			for (int i = 1; i < string.length(); i++) {
+				int distance = distance(string.charAt(i), string.charAt(i - 1));
+				key.append(distance);
+			}
 			return key.toString();
 		}
 
