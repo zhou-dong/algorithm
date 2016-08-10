@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Two Sum III - Data structure design
+ * 
  * Design and implement a TwoSum class. It should support the following
  * operations: add and find.
  * 
@@ -18,7 +20,7 @@ import java.util.Map;
  * @author zhoudong
  *
  */
-public class TwoSumIIIDataStructureDesign {
+public class TwoSumIII {
 
 	public class TwoSum {
 
