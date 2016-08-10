@@ -65,7 +65,7 @@ public class PlusOneLinkedList {
 
 	}
 
-	// stack version
+	// Stack version
 	public class Solution1 {
 
 		public ListNode plusOne(ListNode head) {
@@ -80,10 +80,13 @@ public class PlusOneLinkedList {
 			}
 		}
 
-		private ListNode newHead(ListNode head) {
-			ListNode newHead = new ListNode(1);
-			newHead.next = head;
-			return newHead;
+		private Stack<ListNode> addNodesToStack(ListNode head) {
+			Stack<ListNode> stack = new Stack<>();
+			while (head != null) {
+				stack.add(head);
+				head = head.next;
+			}
+			return stack;
 		}
 
 		private int plus(Stack<ListNode> stack) {
@@ -98,13 +101,62 @@ public class PlusOneLinkedList {
 			return carry;
 		}
 
-		private Stack<ListNode> addNodesToStack(ListNode head) {
-			Stack<ListNode> stack = new Stack<>();
+		private ListNode newHead(ListNode head) {
+			ListNode newHead = new ListNode(1);
+			newHead.next = head;
+			return newHead;
+		}
+
+	}
+
+	// Reverse plus one reverse
+	public class Solution2 {
+
+		public ListNode plusOne(ListNode head) {
+			if (head == null)
+				return null;
+			ListNode tail = reverse(head);
+			plus(tail);
+			reverse(tail);
+			if (head.val != 0) {
+				return head;
+			} else {
+				return newHead(head);
+			}
+		}
+
+		// 1 2 3 4 5 6 7 8
+		// 2 1 3 4 5 6 7 8
+		// 3 2 1 4 5 6 7 8
+		// 4 3 2 1 5 6 7 8
+		private ListNode reverse(ListNode head) {
+			ListNode fakeHead = new ListNode(0);
+			fakeHead.next = head;
+			while (head != null && head.next != null) {
+				ListNode temp = fakeHead.next;
+				fakeHead.next = head.next;
+				head.next = fakeHead.next.next;
+				fakeHead.next.next = temp;
+			}
+			head.next = null;
+			return fakeHead.next;
+		}
+
+		private int plus(ListNode head) {
+			int carry = 1;
 			while (head != null) {
-				stack.add(head);
+				int val = head.val + carry;
+				head.val = val % 10;
+				carry = val / 10;
 				head = head.next;
 			}
-			return stack;
+			return carry;
+		}
+
+		private ListNode newHead(ListNode head) {
+			ListNode newHead = new ListNode(1);
+			newHead.next = head;
+			return newHead;
 		}
 
 	}
