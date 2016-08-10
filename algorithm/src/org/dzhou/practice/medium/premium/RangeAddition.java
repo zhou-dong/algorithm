@@ -58,20 +58,13 @@ public class RangeAddition {
 
 	/**
 	 * Just store every start index for each value and at end index plus one
-	 * minus it
-	 * 
-	 * for example it will look like:
-	 * 
-	 * [1 , 3 , 2] , [2, 3, 3] (length = 5)
-	 * 
-	 * res[ 0, 2, ,0, 0 -2 ]
-	 * 
-	 * res[ 0 ,2, 3, 0, -5]
-	 * 
-	 * sum 0, 2, 5, 5, 0
-	 * 
-	 * res[0, 2, 5, 5, 0]
-	 *
+	 * minus it <br>
+	 * for example it will look like: <br>
+	 * [1 , 3 , 2] , [2, 3, 3] (length = 5) <br>
+	 * res[ 0, 2, ,0, 0 -2 ] <br>
+	 * res[ 0 ,2, 3, 0, -5] <br>
+	 * sum 0, 2, 5, 5, 0 <br>
+	 * res[0, 2, 5, 5, 0] <br>
 	 */
 	public class Solution {
 
@@ -86,8 +79,9 @@ public class RangeAddition {
 				int end = triplet[1];
 				int value = triplet[2];
 				result[start] += value;
-				if (end + 1 < result.length)
+				if (end + 1 < result.length) {
 					result[end + 1] -= value;
+				}
 			}
 
 			for (int i = 1; i < result.length; i++) {
