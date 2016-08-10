@@ -93,9 +93,42 @@ public class NestedListWeightSumII {
 		}
 	}
 
+	public class Solution1 {
+
+		public int depthSumInverse(List<NestedInteger> nestedList) {
+			if (nestedList == null)
+				return 0;
+			LinkedList<Integer[]> sums = new LinkedList<>();
+			dfs(nestedList, 0, sums);
+			return addSums(sums);
+		}
+
+		private void dfs(List<NestedInteger> nestedList, int level, LinkedList<Integer[]> sums) {
+			if (sums.size() == level) {
+				sums.add(new Integer[] { 0 });
+			}
+			for (NestedInteger nested : nestedList) {
+				if (nested.isInteger()) {
+					sums.get(level)[0] += nested.getInteger();
+				} else {
+					dfs(nested.getList(), level + 1, sums);
+				}
+			}
+		}
+
+		private int addSums(LinkedList<Integer[]> sums) {
+			int result = 0;
+			while (!sums.isEmpty()) {
+				result += sums.peek()[0] * sums.size();
+				sums.poll();
+			}
+			return result;
+		}
+	}
+
 	// --------------------------- TEST ---------------------------
 	protected void test() {
-		System.out.println(new Solution().depthSumInverse(data()));
+		System.out.println(new Solution1().depthSumInverse(data()));
 	}
 
 	private List<NestedInteger> data() {
@@ -138,7 +171,6 @@ public class NestedListWeightSumII {
 	public static void main(String[] args) {
 		new NestedListWeightSumII().test();
 	}
-
 	// --------------------------- TEST ---------------------------
 
 }
