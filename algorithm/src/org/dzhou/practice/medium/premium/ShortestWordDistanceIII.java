@@ -26,35 +26,6 @@ public class ShortestWordDistanceIII {
 	public class Solution {
 
 		public int shortestWordDistance(String[] words, String word1, String word2) {
-			int index1 = -1, index2 = -1;
-			int min = words.length;
-			for (int i = 0; i < words.length; i++) {
-				String word = words[i];
-				if (word1.equals(word2)) {
-					if (!word.equals(word1))
-						continue;
-					if (index1 < index2)
-						index1 = i;
-					else
-						index2 = i;
-				} else {
-					if (word.equals(word1))
-						index1 = i;
-					else if (word.equals(word2))
-						index2 = i;
-				}
-				if (index1 != -1 && index2 != -1) {
-					min = Math.min(min, Math.abs(index1 - index2));
-				}
-			}
-			return min;
-		}
-
-	}
-
-	public class Solution1 {
-
-		public int shortestWordDistance(String[] words, String word1, String word2) {
 			if (word1.equals(word2))
 				return sameWord(words, word1);
 			else
@@ -96,11 +67,37 @@ public class ShortestWordDistanceIII {
 		private int updateMin(int min, int index1, int index2) {
 			if (index1 == -1 || index2 == -1)
 				return min;
-			return min(min, index1, index2);
-		}
-
-		private int min(int min, int index1, int index2) {
 			return Math.min(min, Math.abs(index1 - index2));
 		}
 	}
+
+	public class Solution1 {
+
+		public int shortestWordDistance(String[] words, String word1, String word2) {
+			int index1 = -1, index2 = -1;
+			int min = words.length;
+			for (int i = 0; i < words.length; i++) {
+				String word = words[i];
+				if (word1.equals(word2)) {
+					if (!word.equals(word1))
+						continue;
+					if (index1 < index2)
+						index1 = i;
+					else
+						index2 = i;
+				} else {
+					if (word.equals(word1))
+						index1 = i;
+					else if (word.equals(word2))
+						index2 = i;
+				}
+				if (index1 != -1 && index2 != -1) {
+					min = Math.min(min, Math.abs(index1 - index2));
+				}
+			}
+			return min;
+		}
+
+	}
+
 }
