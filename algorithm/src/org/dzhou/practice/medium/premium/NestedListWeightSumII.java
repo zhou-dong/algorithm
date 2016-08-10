@@ -46,31 +46,6 @@ public class NestedListWeightSumII {
 		public List<NestedInteger> getList();
 	}
 
-	class NestedInt implements NestedInteger {
-		private int value = 0;
-		private List<NestedInteger> children = null;
-
-		public NestedInt(int value, List<NestedInteger> children) {
-			this.value = value;
-			this.children = children;
-		}
-
-		@Override
-		public boolean isInteger() {
-			return this.children == null;
-		}
-
-		@Override
-		public Integer getInteger() {
-			return value;
-		}
-
-		@Override
-		public List<NestedInteger> getList() {
-			return this.children;
-		}
-	}
-
 	public class Solution {
 
 		public int depthSumInverse(List<NestedInteger> nestedList) {
@@ -135,9 +110,35 @@ public class NestedListWeightSumII {
 		return nestedList;
 	}
 
+	class NestedInt implements NestedInteger {
+		private int value = 0;
+		private List<NestedInteger> children = null;
+
+		public NestedInt(int value, List<NestedInteger> children) {
+			this.value = value;
+			this.children = children;
+		}
+
+		@Override
+		public boolean isInteger() {
+			return this.children == null;
+		}
+
+		@Override
+		public Integer getInteger() {
+			return value;
+		}
+
+		@Override
+		public List<NestedInteger> getList() {
+			return this.children;
+		}
+	}
+
 	public static void main(String[] args) {
 		new NestedListWeightSumII().test();
 	}
+
 	// --------------------------- TEST ---------------------------
 
 }
