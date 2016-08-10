@@ -40,6 +40,7 @@ public class ClosestBinarySearchTreeValue {
 
 	}
 
+	// iterator binary search tree
 	public class Solution1 {
 
 		public int closestValue(TreeNode root, double target) {
