@@ -1,5 +1,9 @@
 package org.dzhou.practice.medium.premium;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 /**
  * Given an array of meeting time intervals consisting of start and end times
  * [[s1,e1],[s2,e2],...] (si < ei), find the minimum number of conference rooms
@@ -28,12 +32,35 @@ public class MeetingRoomsII {
 		}
 	}
 
-	// [0, 7] [5, 8], [6, 9]
 	public class Solution {
 
 		public int minMeetingRooms(Interval[] intervals) {
 
-			return 0;
+			if (intervals == null || intervals.length == 0)
+				return 0;
+
+			Arrays.sort(intervals, new Comparator<Interval>() {
+				@Override
+				public int compare(Interval o1, Interval o2) {
+					return o1.start - o2.start;
+				}
+			});
+
+			int rooms = 1;
+			PriorityQueue<Integer> heap = new PriorityQueue<>();
+			heap.offer(intervals[0].end);
+
+			for (int i = 1; i < intervals.length; i++) {
+				Interval meeting = intervals[i];
+				if (meeting.start < heap.peek()) {
+					rooms++;
+				} else {
+					heap.poll();
+				}
+				heap.offer(meeting.end);
+			}
+
+			return rooms;
 		}
 
 	}
