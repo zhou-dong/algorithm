@@ -48,10 +48,10 @@ public class BinaryTreeUpsideDown {
 		private TreeNode upsideDownBinaryTreeHelper(TreeNode root, TreeNode parent) {
 			if (root == null)
 				return parent;
-			TreeNode newNode = upsideDownBinaryTreeHelper(root.left, root);
+			TreeNode left = upsideDownBinaryTreeHelper(root.left, root);
 			root.left = (parent == null) ? null : parent.right;
 			root.right = parent;
-			return newNode;
+			return left;
 		}
 
 	}
