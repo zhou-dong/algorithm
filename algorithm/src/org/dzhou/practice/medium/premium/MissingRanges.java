@@ -27,8 +27,9 @@ public class MissingRanges {
 				return result;
 			}
 			// lower than nums[0]
-			if (lower < nums[0])
+			if (lower < nums[0]) {
 				result.add(range(lower, nums[0] - 1));
+			}
 			// from nums[0]
 			for (int i = 0; i < nums.length; i++) {
 				int to = (i == nums.length - 1) ? upper : nums[i + 1] - 1;
