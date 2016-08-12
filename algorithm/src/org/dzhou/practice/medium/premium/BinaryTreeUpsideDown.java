@@ -21,7 +21,9 @@ public class BinaryTreeUpsideDown {
 	public class Solution {
 
 		public TreeNode upsideDownBinaryTree(TreeNode root) {
+
 			TreeNode node = root, parent = null, right = null;
+
 			while (node != null) {
 				TreeNode left = node.left;
 				node.left = right;
