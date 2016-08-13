@@ -1,7 +1,5 @@
 package org.dzhou.practice.hard.premium;
 
-import org.dzhou.practice.medium.RangeSumQueryMutable.NumArray.SegmentTreeNode;
-
 /**
  * Given a 2D matrix matrix, find the sum of the elements inside the rectangle
  * defined by its upper left corner (row1, col1) and lower right corner (row2,
@@ -30,6 +28,22 @@ import org.dzhou.practice.medium.RangeSumQueryMutable.NumArray.SegmentTreeNode;
  *
  */
 public class RangeSumQuery2DMutable {
+
+	public static void main(String[] args) {
+		new RangeSumQuery2DMutable().test();
+	}
+
+	void test() {
+		int[] first = new int[] { 3, 0, 1, 4, 2 };
+		int[] second = new int[] { 5, 6, 3, 2, 1 };
+		int[] third = new int[] { 1, 2, 0, 1, 5 };
+		int[] four = new int[] { 4, 1, 0, 1, 7 };
+		int[] five = new int[] { 1, 0, 3, 0, 5 };
+		NumMatrix matrix = new NumMatrix(new int[][] { first, second, third, four, five });
+		System.out.println(matrix.sumRegion(2, 1, 4, 3));
+		matrix.update(3, 2, 2);
+		System.out.println(matrix.sumRegion(2, 1, 4, 3));
+	}
 
 	public class NumMatrix {
 
@@ -114,7 +128,7 @@ public class RangeSumQuery2DMutable {
 			public int sumRange(SegmentTreeNode root, int i, int j) {
 				if (root == null)
 					return 0;
-				if (root.low == i || root.high == j) {
+				if (root.low == i && root.high == j) {
 					return root.value;
 				}
 				int mid = (root.low + root.high) / 2;
