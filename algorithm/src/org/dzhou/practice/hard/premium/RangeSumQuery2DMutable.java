@@ -29,22 +29,6 @@ package org.dzhou.practice.hard.premium;
  */
 public class RangeSumQuery2DMutable {
 
-	public static void main(String[] args) {
-		new RangeSumQuery2DMutable().test();
-	}
-
-	void test() {
-		int[] first = new int[] { 3, 0, 1, 4, 2 };
-		int[] second = new int[] { 5, 6, 3, 2, 1 };
-		int[] third = new int[] { 1, 2, 0, 1, 5 };
-		int[] four = new int[] { 4, 1, 0, 1, 7 };
-		int[] five = new int[] { 1, 0, 3, 0, 5 };
-		NumMatrix matrix = new NumMatrix(new int[][] { first, second, third, four, five });
-		System.out.println(matrix.sumRegion(2, 1, 4, 3));
-		matrix.update(3, 2, 2);
-		System.out.println(matrix.sumRegion(2, 1, 4, 3));
-	}
-
 	public class NumMatrix {
 
 		SegmentTree[] trees = null;
