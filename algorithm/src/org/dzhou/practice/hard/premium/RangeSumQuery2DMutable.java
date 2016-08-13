@@ -109,7 +109,7 @@ public class RangeSumQuery2DMutable {
 				return sumRange(root, i, j);
 			}
 
-			public int sumRange(SegmentTreeNode root, int i, int j) {
+			private int sumRange(SegmentTreeNode root, int i, int j) {
 				if (root == null)
 					return 0;
 				if (root.low == i && root.high == j) {
