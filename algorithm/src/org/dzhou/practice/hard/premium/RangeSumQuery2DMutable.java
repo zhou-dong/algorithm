@@ -35,9 +35,8 @@ public class RangeSumQuery2DMutable {
 
 		public NumMatrix(int[][] matrix) {
 			trees = new SegmentTree[matrix.length];
-			for (int i = 0; i < trees.length; i++) {
+			for (int i = 0; i < trees.length; i++)
 				trees[i] = new SegmentTree(matrix[i]);
-			}
 		}
 
 		public void update(int row, int col, int val) {
@@ -48,9 +47,8 @@ public class RangeSumQuery2DMutable {
 
 		public int sumRegion(int row1, int col1, int row2, int col2) {
 			int sum = 0;
-			for (int row = row1; row <= row2; row++) {
+			for (int row = row1; row <= row2; row++)
 				sum += trees[row].sumRange(col1, col2);
-			}
 			return sum;
 		}
 
@@ -93,12 +91,7 @@ public class RangeSumQuery2DMutable {
 					return old;
 				}
 				int mid = (root.low + root.high) / 2;
-				int old = 0;
-				if (index <= mid) {
-					old = update(root.left, index, val);
-				} else {
-					old = update(root.right, index, val);
-				}
+				int old = (index <= mid) ? update(root.left, index, val) : update(root.right, index, val);
 				root.value = root.value - old + val;
 				return old;
 			}
@@ -112,9 +105,9 @@ public class RangeSumQuery2DMutable {
 			private int sumRange(SegmentTreeNode root, int i, int j) {
 				if (root == null)
 					return 0;
-				if (root.low == i && root.high == j) {
+				if (root.low == i && root.high == j)
 					return root.value;
-				}
+
 				int mid = (root.low + root.high) / 2;
 				if (i <= mid && j <= mid)
 					return sumRange(root.left, i, j);
