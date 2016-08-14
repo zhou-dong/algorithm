@@ -1,5 +1,8 @@
 package org.dzhou.practice.medium.premium;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Given a binary tree, find the length of the longest consecutive sequence
  * path.
@@ -62,4 +65,40 @@ public class BinaryTreeLongestConsecutiveSequence {
 
 	}
 
+	// BFS Solution
+	public class Solution1 {
+		public int longestConsecutive(TreeNode root) {
+			if (root == null)
+				return 0;
+			return bfs(root);
+		}
+
+		private int bfs(TreeNode root) {
+			int max = 1;
+
+			Queue<TreeNode> queue = new LinkedList<>();
+			Queue<Integer> lengths = new LinkedList<>();
+			queue.add(root);
+			lengths.add(1);
+
+			while (!queue.isEmpty()) {
+				TreeNode node = queue.poll();
+				int length = lengths.poll();
+				if (node.left != null) {
+					int currLen = (node.left.val - 1 == node.val) ? length + 1 : 1;
+					queue.add(node.left);
+					lengths.add(currLen);
+					max = Math.max(max, currLen);
+				}
+				if (node.right != null) {
+					int currLen = (node.right.val - 1 == node.val) ? length + 1 : 1;
+					lengths.add(currLen);
+					queue.add(node.right);
+					max = Math.max(max, currLen);
+				}
+			}
+			return max;
+		}
+
+	}
 }
