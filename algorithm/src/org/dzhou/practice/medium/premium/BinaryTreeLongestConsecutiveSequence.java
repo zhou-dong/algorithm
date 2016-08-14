@@ -78,27 +78,18 @@ public class BinaryTreeLongestConsecutiveSequence {
 		}
 
 		private void findLongest(TreeNode root, int length) {
-			if (root.left == null && root.right == null)
-				return;
-			if (root.left != null) {
-				int leftLen = leftLength(root, length);
-				max = Math.max(max, leftLen);
-				findLongest(root.left, leftLen);
-			}
-			if (root.right != null) {
-				int rightLen = rightLength(root, length);
-				max = Math.max(max, rightLen);
-				findLongest(root.right, rightLen);
-			}
+			if (root.left != null)
+				execute(root, root.left, length);
+			if (root.right != null)
+				execute(root, root.right, length);
 		}
 
-		private int leftLength(TreeNode root, int length) {
-			return (root.left.val - root.val == 1) ? length + 1 : 1;
+		private void execute(TreeNode node, TreeNode child, int length) {
+			int childLen = child.val - node.val == 1 ? length + 1 : 1;
+			max = Math.max(max, childLen);
+			findLongest(child, childLen);
 		}
 
-		private int rightLength(TreeNode root, int length) {
-			return (root.right.val - root.val == 1) ? length + 1 : 1;
-		}
 	}
 
 	// BFS Solution
