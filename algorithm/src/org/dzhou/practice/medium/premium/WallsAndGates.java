@@ -61,8 +61,7 @@ public class WallsAndGates {
 				int size = queue.size();
 				for (int i = 0; i < size; i++) {
 					Point point = queue.poll();
-					int current = rooms[point.row][point.col];
-					rooms[point.row][point.col] = Math.min(current, distance);
+					rooms[point.row][point.col] = Math.min(rooms[point.row][point.col], distance);
 					addPointToQueue(rooms, new Point(point.row + 1, point.col), distance, queue);
 					addPointToQueue(rooms, new Point(point.row - 1, point.col), distance, queue);
 					addPointToQueue(rooms, new Point(point.row, point.col + 1), distance, queue);
