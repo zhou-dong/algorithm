@@ -56,7 +56,6 @@ public class WallsAndGates {
 		private void bfs(int[][] rooms, Point start) {
 			Queue<Point> queue = new LinkedList<>();
 			queue.add(start);
-
 			int distance = 0;
 			while (!queue.isEmpty()) {
 				int size = queue.size();
@@ -75,7 +74,6 @@ public class WallsAndGates {
 				}
 				distance++;
 			}
-
 		}
 
 		private boolean isAvailable(int[][] rooms, int row, int col, int distance) {
