@@ -54,7 +54,7 @@ public class EncodeAndDecodeStrings {
 				int sharp = s.indexOf('#', index);
 				int len = Integer.parseInt(s.substring(index, sharp));
 				result.add(s.substring(sharp + 1, sharp + 1 + len));
-				index = sharp + len + 1;
+				index = sharp + 1 + len;
 			}
 			return result;
 		}
