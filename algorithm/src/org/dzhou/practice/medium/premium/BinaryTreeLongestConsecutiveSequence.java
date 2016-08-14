@@ -46,6 +46,7 @@ public class BinaryTreeLongestConsecutiveSequence {
 		}
 	}
 
+	// DFS
 	public class Solution {
 
 		public int longestConsecutive(TreeNode root) {
@@ -65,8 +66,43 @@ public class BinaryTreeLongestConsecutiveSequence {
 
 	}
 
-	// BFS Solution
+	// DFS 2
 	public class Solution1 {
+		int max = 1;
+
+		public int longestConsecutive(TreeNode root) {
+			if (root == null)
+				return 0;
+			findLongest(root, 1);
+			return max;
+		}
+
+		private void findLongest(TreeNode root, int length) {
+			if (root.left == null && root.right == null)
+				return;
+			if (root.left != null) {
+				int leftLen = leftLength(root, length);
+				max = Math.max(max, leftLen);
+				findLongest(root.left, leftLen);
+			}
+			if (root.right != null) {
+				int rightLen = rightLength(root, length);
+				max = Math.max(max, rightLen);
+				findLongest(root.right, rightLen);
+			}
+		}
+
+		private int leftLength(TreeNode root, int length) {
+			return (root.left.val - root.val == 1) ? length + 1 : 1;
+		}
+
+		private int rightLength(TreeNode root, int length) {
+			return (root.right.val - root.val == 1) ? length + 1 : 1;
+		}
+	}
+
+	// BFS Solution
+	public class Solution2 {
 		public int longestConsecutive(TreeNode root) {
 			if (root == null)
 				return 0;
