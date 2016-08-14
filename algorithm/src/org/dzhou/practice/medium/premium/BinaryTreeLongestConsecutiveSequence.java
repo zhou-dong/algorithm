@@ -112,13 +112,13 @@ public class BinaryTreeLongestConsecutiveSequence {
 				TreeNode node = queue.poll();
 				int length = lengths.poll();
 				if (node.left != null) {
-					int currLen = (node.left.val - 1 == node.val) ? length + 1 : 1;
+					int currLen = childLen(node, node.left, length);
 					queue.add(node.left);
 					lengths.add(currLen);
 					max = Math.max(max, currLen);
 				}
 				if (node.right != null) {
-					int currLen = (node.right.val - 1 == node.val) ? length + 1 : 1;
+					int currLen = childLen(node, node.right, length);
 					lengths.add(currLen);
 					queue.add(node.right);
 					max = Math.max(max, currLen);
@@ -127,5 +127,8 @@ public class BinaryTreeLongestConsecutiveSequence {
 			return max;
 		}
 
+		private int childLen(TreeNode node, TreeNode child, int length) {
+			return (child.val - node.val == 1) ? length + 1 : 1;
+		}
 	}
 }
