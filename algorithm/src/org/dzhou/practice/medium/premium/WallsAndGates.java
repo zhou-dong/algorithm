@@ -63,17 +63,23 @@ public class WallsAndGates {
 					Point point = queue.poll();
 					int current = rooms[point.row][point.col];
 					rooms[point.row][point.col] = Math.min(current, distance);
-					if (isAvailable(rooms, point.row - 1, point.col, distance))
-						queue.add(new Point(point.row - 1, point.col));
-					if (isAvailable(rooms, point.row + 1, point.col, distance))
-						queue.add(new Point(point.row + 1, point.col));
-					if (isAvailable(rooms, point.row, point.col + 1, distance))
-						queue.add(new Point(point.row, point.col + 1));
-					if (isAvailable(rooms, point.row, point.col - 1, distance))
-						queue.add(new Point(point.row, point.col - 1));
+					addPointToQueue(rooms, new Point(point.row + 1, point.col), distance, queue);
+					addPointToQueue(rooms, new Point(point.row - 1, point.col), distance, queue);
+					addPointToQueue(rooms, new Point(point.row, point.col + 1), distance, queue);
+					addPointToQueue(rooms, new Point(point.row, point.col - 1), distance, queue);
 				}
 				distance++;
 			}
+		}
+
+		private void addPointToQueue(int[][] rooms, Point next, int distance, Queue<Point> queue) {
+			if (isAvailable(rooms, next, distance)) {
+				queue.add(next);
+			}
+		}
+
+		private boolean isAvailable(int[][] rooms, Point next, int distance) {
+			return isAvailable(rooms, next.row, next.col, distance);
 		}
 
 		private boolean isAvailable(int[][] rooms, int row, int col, int distance) {
