@@ -61,4 +61,41 @@ public class CountUnivalueSubtrees {
 
 	}
 
+	public class Solution1 {
+		int count = 0;
+
+		public int countUnivalSubtrees(TreeNode root) {
+			dfs(root);
+			return count;
+		}
+
+		private boolean dfs(TreeNode root) {
+			if (root == null)
+				return true;
+			if (root.left == null && root.right == null) {
+				count++;
+				return true;
+			}
+			boolean left = dfs(root.left);
+			boolean right = dfs(root.right);
+			if (left && right && equalChildren(root)) {
+				count++;
+				return true;
+			}
+			return false;
+		}
+
+		private boolean equalChildren(TreeNode root) {
+			return equalLeftChild(root) && equalRightChild(root);
+		}
+
+		private boolean equalRightChild(TreeNode root) {
+			return root.right == null || root.right.val == root.val;
+		}
+
+		private boolean equalLeftChild(TreeNode root) {
+			return root.left == null || root.left.val == root.val;
+		}
+	}
+
 }
