@@ -35,17 +35,6 @@ package org.dzhou.practice.medium.premium;
  */
 public class GraphValidTree {
 
-	public static void main(String[] args) {
-		new GraphValidTree().test();
-	}
-
-	void test() {
-		int[][] edges = new int[][] { new int[] { 0, 1 }, new int[] { 2, 1 }, new int[] { 2, 0 }, new int[] { 2, 4 } };
-		// int[][] edges = new int[][] { { 2, 3 }, { 1, 2 }, { 1, 3 } };
-		boolean r = new Solution().validTree(5, edges);
-		System.out.println(r);
-	}
-
 	public class Solution {
 
 		public boolean validTree(int n, int[][] edges) {
