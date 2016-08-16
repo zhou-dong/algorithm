@@ -1,5 +1,6 @@
 package org.dzhou.practice.medium.premium;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,32 +53,60 @@ import java.util.List;
  */
 public class NumberOfIslandsII {
 
+	public static void main(String[] args) {
+		new NumberOfIslandsII().test();
+	}
+
+	void test() {
+		int[][] positions = { { 0, 0 }, { 0, 1 }, { 1, 2 }, { 2, 1 } };
+		List<Integer> s = new Solution().numIslands2(3, 3, positions);
+		System.out.println(s);
+	}
+
 	public class Solution {
 
 		public List<Integer> numIslands2(int m, int n, int[][] positions) {
-
-			return null;
+			List<Integer> result = new ArrayList<>();
+			int count = 0;
+			UnionFind unionFind = new UnionFind(m * n);
+			for (int[] position : positions) {
+				int index = position[0] * m + n;
+				System.out.println(index);
+				if (unionFind.union(position[0], position[1])) {
+					result.add(++count);
+				} else {
+					result.add(count);
+				}
+			}
+			return result;
 		}
 
 		class UnionFind {
-			private int[][] roots;
-			private int count;
+			private int[] roots;
 
-			UnionFind(int row, int col) {
-				roots = new int[row][col];
-				count = row * col;
+			UnionFind(int size) {
+				initRoots(size);
 			}
 
-			private void initRoots() {
+			private void initRoots(int size) {
+				roots = new int[size];
+				for (int i = 0; i < size; i++) {
+					roots[i] = i;
+				}
 			}
 
-			public boolean connected(int x, int y) {
-				return roots[x] == roots[y];
+			public boolean union(int x, int y) {
+				if (roots[x] == roots[y])
+					return false;
+				int rootY = roots[y];
+				for (int i = 0; i < roots.length; i++) {
+					if (roots[i] == y || roots[i] == rootY) {
+						roots[i] = roots[x];
+					}
+				}
+				return true;
 			}
 
-			public int count() {
-				return count;
-			}
 		}
 
 	}
