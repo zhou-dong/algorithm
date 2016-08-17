@@ -92,23 +92,18 @@ public class AlienDictionary {
 		}
 	}
 
+	enum State {
+		UNVISIT, VISITING, VISITED;
+	}
+
 	// wrong answer
 	public class Solution1 {
 
 		public String alienOrder(String[] words) {
 			Map<Character, Set<Character>> graph = createGraph(words);
-			Stack<Character> stack = new TopologicalSort().sort(graph);
-			return charCount(words) != stack.size() ? "" : stringResult(stack);
-		}
-
-		private int charCount(String[] words) {
-			Set<Character> uniqueChar = new HashSet<>();
-			for (String word : words) {
-				for (char c : word.toCharArray()) {
-					uniqueChar.add(word.charAt(c));
-				}
-			}
-			return uniqueChar.size();
+			TopologicalSort topologicalSort = new TopologicalSort();
+			Stack<Character> stack = topologicalSort.sort(graph);
+			return topologicalSort.hasCircle ? "" : stringResult(stack);
 		}
 
 		private String stringResult(Stack<Character> stack) {
@@ -129,15 +124,18 @@ public class AlienDictionary {
 		}
 
 		private void addToMap(Map<Character, Set<Character>> map, char key, char value) {
+			if (key == value)
+				return;
 			if (!map.containsKey(key))
 				map.put(key, new HashSet<>());
 			map.get(key).add(value);
 		}
 
 		class TopologicalSort {
-			Set<Character> visited = new HashSet<>();
+			Map<Character, State> visited = new HashMap<>();
 			Stack<Character> result = new Stack<>();
 			Map<Character, Set<Character>> graph = null;
+			boolean hasCircle = false;
 
 			public Stack<Character> sort(Map<Character, Set<Character>> graph) {
 				if (graph == null)
@@ -149,19 +147,30 @@ public class AlienDictionary {
 
 			private void sort() {
 				for (char c : graph.keySet()) {
-					if (visited.contains(c))
+					if (visited.containsKey(c))
 						continue;
 					dfs(c);
 				}
 			}
 
 			private void dfs(char c) {
-				visited.add(c);
-				for (char child : graph.get(c)) {
-					if (visited.contains(child))
-						continue;
-					dfs(child);
+				visited.put(c, State.VISITING);
+				if (graph.containsKey(c)) {
+					for (char child : graph.get(c)) {
+						if (!visited.containsKey(child))
+							dfs(child);
+						else if (visited.get(child) == State.VISITED) {
+
+							System.out.println(child + " VISITED");
+							continue;
+						} else if (visited.get(child) == State.VISITING) {
+							System.out.println(child + " VISITING");
+							hasCircle = true;
+							return;
+						}
+					}
 				}
+				visited.put(c, State.VISITED);
 				result.add(c);
 			}
 		}
