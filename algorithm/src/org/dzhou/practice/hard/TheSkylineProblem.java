@@ -7,15 +7,21 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 /**
- * 
  * @author zhoudong
- *
  */
 public class TheSkylineProblem {
 
 	// reference:
 	// http://www.programcreek.com/2014/06/leetcode-the-skyline-problem-java/
 	public class Solution {
+
+		public List<int[]> getSkyline(int[][] buildings) {
+			if (buildings == null || buildings.length == 0 || buildings[0].length == 0)
+				return Collections.emptyList();
+			List<Edge> edges = getEdges(buildings);
+			sortEdges(edges);
+			return execute(edges);
+		}
 
 		abstract class Edge {
 			protected int x;
@@ -76,8 +82,8 @@ public class TheSkylineProblem {
 
 		private List<int[]> execute(List<Edge> edges) {
 			PriorityQueue<Integer> heightHeap = new PriorityQueue<Integer>(10, Collections.reverseOrder());
-
 			List<int[]> result = new ArrayList<int[]>();
+
 			for (Edge edge : edges) {
 				if (edge.isStart()) {
 					if (heightHeap.isEmpty() || edge.height > heightHeap.peek()) {
@@ -97,13 +103,6 @@ public class TheSkylineProblem {
 			return result;
 		}
 
-		public List<int[]> getSkyline(int[][] buildings) {
-			if (buildings == null || buildings.length == 0 || buildings[0].length == 0)
-				return Collections.emptyList();
-			List<Edge> edges = getEdges(buildings);
-			sortEdges(edges);
-			return execute(edges);
-		}
 	}
 
 }
