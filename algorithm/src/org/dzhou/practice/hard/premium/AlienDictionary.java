@@ -160,11 +160,8 @@ public class AlienDictionary {
 						if (!visited.containsKey(child))
 							dfs(child);
 						else if (visited.get(child) == State.VISITED) {
-
-							System.out.println(child + " VISITED");
 							continue;
 						} else if (visited.get(child) == State.VISITING) {
-							System.out.println(child + " VISITING");
 							hasCircle = true;
 							return;
 						}
