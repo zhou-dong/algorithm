@@ -1,8 +1,10 @@
 package org.dzhou.practice.hard.premium;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
@@ -100,7 +102,7 @@ public class AlienDictionary {
 	public class Solution1 {
 
 		public String alienOrder(String[] words) {
-			Map<Character, Set<Character>> graph = createGraph(words);
+			Map<Character, List<Character>> graph = createGraph(words);
 			TopologicalSort topologicalSort = new TopologicalSort();
 			Stack<Character> stack = topologicalSort.sort(graph);
 			return topologicalSort.hasCircle ? "" : stringResult(stack);
@@ -113,8 +115,8 @@ public class AlienDictionary {
 			return sb.toString();
 		}
 
-		private Map<Character, Set<Character>> createGraph(String[] words) {
-			Map<Character, Set<Character>> graph = new HashMap<>();
+		private Map<Character, List<Character>> createGraph(String[] words) {
+			Map<Character, List<Character>> graph = new HashMap<>();
 			for (String word : words) {
 				for (int i = 0; i < word.length() - 1; i++) {
 					addToMap(graph, word.charAt(i), word.charAt(i + 1));
@@ -123,21 +125,21 @@ public class AlienDictionary {
 			return graph;
 		}
 
-		private void addToMap(Map<Character, Set<Character>> map, char key, char value) {
+		private void addToMap(Map<Character, List<Character>> map, char key, char value) {
 			if (key == value)
 				return;
 			if (!map.containsKey(key))
-				map.put(key, new HashSet<>());
+				map.put(key, new ArrayList<>());
 			map.get(key).add(value);
 		}
 
 		class TopologicalSort {
 			Map<Character, State> visited = new HashMap<>();
 			Stack<Character> result = new Stack<>();
-			Map<Character, Set<Character>> graph = null;
+			Map<Character, List<Character>> graph = null;
 			boolean hasCircle = false;
 
-			public Stack<Character> sort(Map<Character, Set<Character>> graph) {
+			public Stack<Character> sort(Map<Character, List<Character>> graph) {
 				if (graph == null)
 					return result;
 				this.graph = graph;
