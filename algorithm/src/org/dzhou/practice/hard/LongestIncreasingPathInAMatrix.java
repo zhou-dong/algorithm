@@ -33,7 +33,7 @@ public class LongestIncreasingPathInAMatrix {
 
 	public class Solution {
 		public int longestIncreasingPath(int[][] matrix) {
-			if (matrix.length == 0)
+			if (matrix == null || matrix.length == 0)
 				return 0;
 			int max = 0;
 			int[][] distance = new int[matrix.length][matrix[0].length];
