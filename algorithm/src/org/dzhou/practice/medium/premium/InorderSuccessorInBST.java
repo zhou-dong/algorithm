@@ -38,4 +38,21 @@ public class InorderSuccessorInBST {
 
 	}
 
+	public class Solution1 {
+
+		public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+			return dfs(null, root, p);
+		}
+
+		private TreeNode dfs(TreeNode successor, TreeNode node, TreeNode target) {
+			if (node == null)
+				return successor;
+			if (node.val > target.val)
+				return dfs(node, node.left, target);
+			else
+				return dfs(successor, node.right, target);
+		}
+
+	}
+
 }
