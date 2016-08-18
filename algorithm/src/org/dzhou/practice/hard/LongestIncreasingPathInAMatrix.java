@@ -68,9 +68,46 @@ public class LongestIncreasingPathInAMatrix {
 		}
 	}
 
-	// Time Limit Exceeded
 	public class Solution {
+		public int longestIncreasingPath(int[][] matrix) {
+			if (matrix.length == 0)
+				return 0;
+			int max = 0;
+			int[][] distance = new int[matrix.length][matrix[0].length];
+			for (int row = 0; row < matrix.length; row++) {
+				for (int col = 0; col < matrix[row].length; col++) {
+					max = Math.max(max, dfs(matrix, distance, row, col));
+				}
+			}
+			return max;
+		}
 
+		private int dfs(int[][] matrix, int[][] distance, int row, int col) {
+			if (distance[row][col] != 0)
+				return distance[row][col];
+			for (int[] next : Direction.nexts(row, col)) {
+				int nextRow = next[0];
+				int nextCol = next[1];
+				if (!isValidLaction(matrix, nextRow, nextCol))
+					continue;
+				if (!isIncrease(matrix, row, col, nextRow, nextCol))
+					continue;
+				distance[row][col] = Math.max(distance[row][col], dfs(matrix, distance, nextRow, nextCol));
+			}
+			return ++distance[row][col];
+		}
+
+		private boolean isIncrease(int[][] matrix, int row, int col, int nextRow, int nextCol) {
+			return matrix[row][col] < matrix[nextRow][nextCol];
+		}
+
+		private boolean isValidLaction(int[][] matrix, int row, int col) {
+			return row >= 0 && col >= 0 && row < matrix.length && col < matrix[0].length;
+		}
+	}
+
+	// Time Limit Exceeded
+	public class Solution1 {
 		int max = 0;
 
 		public int longestIncreasingPath(int[][] matrix) {
@@ -108,39 +145,6 @@ public class LongestIncreasingPathInAMatrix {
 		private boolean isValidLaction(int[][] matrix, int row, int col) {
 			return row >= 0 && col >= 0 && row < matrix.length && col < matrix[0].length;
 		}
-
 	}
 
-	public class Solution1 {
-		int[] dx = { 1, -1, 0, 0 };
-		int[] dy = { 0, 0, 1, -1 };
-
-		public int longestIncreasingPath(int[][] matrix) {
-			if (matrix.length == 0)
-				return 0;
-			int m = matrix.length, n = matrix[0].length;
-			int[][] dis = new int[m][n];
-			int ans = 0;
-			for (int i = 0; i < m; i++) {
-				for (int j = 0; j < n; j++) {
-					ans = Math.max(ans, dfs(i, j, m, n, matrix, dis));
-				}
-			}
-			return ans;
-		}
-
-		int dfs(int x, int y, int m, int n, int[][] matrix, int[][] dis) {
-			if (dis[x][y] != 0)
-				return dis[x][y];
-
-			for (int i = 0; i < 4; i++) {
-				int nx = x + dx[i];
-				int ny = y + dy[i];
-				if (nx >= 0 && ny >= 0 && nx < m && ny < n && matrix[nx][ny] > matrix[x][y]) {
-					dis[x][y] = Math.max(dis[x][y], dfs(nx, ny, m, n, matrix, dis));
-				}
-			}
-			return ++dis[x][y];
-		}
-	}
 }
