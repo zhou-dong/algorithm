@@ -31,43 +31,6 @@ package org.dzhou.practice.hard;
  */
 public class LongestIncreasingPathInAMatrix {
 
-	enum Direction {
-		LEFT {
-			@Override
-			int[] next(int row, int col) {
-				return new int[] { row, col - 1 };
-			}
-		},
-		RIGHT {
-			@Override
-			int[] next(int row, int col) {
-				return new int[] { row, col + 1 };
-			}
-		},
-		UP {
-			@Override
-			int[] next(int row, int col) {
-				return new int[] { row - 1, col };
-			}
-		},
-		DOWN {
-			@Override
-			int[] next(int row, int col) {
-				return new int[] { row + 1, col };
-			}
-		};
-		abstract int[] next(int row, int col);
-
-		public static int[][] nexts(int row, int col) {
-			Direction[] directions = Direction.values();
-			int[][] result = new int[4][2];
-			for (int i = 0; i < directions.length; i++) {
-				result[i] = directions[i].next(row, col);
-			}
-			return result;
-		}
-	}
-
 	public class Solution {
 		public int longestIncreasingPath(int[][] matrix) {
 			if (matrix.length == 0)
@@ -144,6 +107,43 @@ public class LongestIncreasingPathInAMatrix {
 
 		private boolean isValidLaction(int[][] matrix, int row, int col) {
 			return row >= 0 && col >= 0 && row < matrix.length && col < matrix[0].length;
+		}
+	}
+
+	enum Direction {
+		LEFT {
+			@Override
+			int[] next(int row, int col) {
+				return new int[] { row, col - 1 };
+			}
+		},
+		RIGHT {
+			@Override
+			int[] next(int row, int col) {
+				return new int[] { row, col + 1 };
+			}
+		},
+		UP {
+			@Override
+			int[] next(int row, int col) {
+				return new int[] { row - 1, col };
+			}
+		},
+		DOWN {
+			@Override
+			int[] next(int row, int col) {
+				return new int[] { row + 1, col };
+			}
+		};
+		abstract int[] next(int row, int col);
+
+		public static int[][] nexts(int row, int col) {
+			Direction[] directions = Direction.values();
+			int[][] result = new int[directions.length][2];
+			for (int i = 0; i < directions.length; i++) {
+				result[i] = directions[i].next(row, col);
+			}
+			return result;
 		}
 	}
 
