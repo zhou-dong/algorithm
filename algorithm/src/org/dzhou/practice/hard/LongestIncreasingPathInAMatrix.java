@@ -49,8 +49,7 @@ public class LongestIncreasingPathInAMatrix {
 			if (distance[row][col] != 0)
 				return distance[row][col];
 			for (int[] next : Direction.nexts(row, col)) {
-				int nextRow = next[0];
-				int nextCol = next[1];
+				int nextRow = next[0], nextCol = next[1];
 				if (isValid(matrix, row, col, nextRow, nextCol)) {
 					distance[row][col] = Math.max(distance[row][col], dfs(matrix, distance, nextRow, nextCol));
 				}
