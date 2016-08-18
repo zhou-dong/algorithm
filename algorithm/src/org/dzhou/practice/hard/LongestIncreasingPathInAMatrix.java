@@ -51,13 +51,15 @@ public class LongestIncreasingPathInAMatrix {
 			for (int[] next : Direction.nexts(row, col)) {
 				int nextRow = next[0];
 				int nextCol = next[1];
-				if (!isValidLaction(matrix, nextRow, nextCol))
-					continue;
-				if (!isIncrease(matrix, row, col, nextRow, nextCol))
-					continue;
-				distance[row][col] = Math.max(distance[row][col], dfs(matrix, distance, nextRow, nextCol));
+				if (isValid(matrix, row, col, nextRow, nextCol)) {
+					distance[row][col] = Math.max(distance[row][col], dfs(matrix, distance, nextRow, nextCol));
+				}
 			}
 			return ++distance[row][col];
+		}
+
+		private boolean isValid(int[][] matrix, int row, int col, int nextRow, int nextCol) {
+			return isValidLaction(matrix, nextRow, nextCol) && isIncrease(matrix, row, col, nextRow, nextCol);
 		}
 
 		private boolean isIncrease(int[][] matrix, int row, int col, int nextRow, int nextCol) {
