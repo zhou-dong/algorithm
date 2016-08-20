@@ -1,6 +1,7 @@
 package org.dzhou.practice.hard.premium;
 
 import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * You want to build a house on an empty land which reaches all buildings in the
@@ -23,59 +24,76 @@ import java.util.LinkedList;
  */
 public class ShortestDistanceFromAllBuildings {
 
-	public class Solution {
-		public int shortestDistance(int[][] grid) {
-			if (grid == null || grid.length == 0 || grid[0].length == 0)
-				return -1;
-			int m = grid.length;
-			int n = grid[0].length;
-			int[][] dist = new int[m][n];
-			int[][] reach = new int[m][n];
-			int houseNum = 0;
-			int[][] directions = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
+	int[][] directions = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
 
-			for (int i = 0; i < m; i++) {
-				for (int j = 0; j < n; j++) {
-					if (grid[i][j] == 1) {
-						houseNum++;
-						int level = 0;
-						boolean[][] visited = new boolean[m][n];
-						LinkedList<Integer> queue = new LinkedList<Integer>();
-						queue.offer(i * n + j);
-						visited[i][j] = true;
-						while (!queue.isEmpty()) {
-							int size = queue.size();
-							for (int t = 0; t < size; t++) {
-								int cur = queue.poll();
-								int x = cur / n;
-								int y = cur % n;
-								for (int[] dir : directions) {
-									int xnew = x + dir[0];
-									int ynew = y + dir[1];
-									if (xnew >= 0 && xnew < m && ynew >= 0 && ynew < n && !visited[xnew][ynew]
-											&& grid[xnew][ynew] == 0) {
-										queue.offer(xnew * n + ynew);
-										visited[xnew][ynew] = true;
-										dist[xnew][ynew] += level + 1;
-										reach[xnew][ynew]++;
-									}
-								}
-							}
-							level++;
-						}
+	private int oneDimensionIndex(int row, int col, int columnLength) {
+		return row * columnLength + col;
+	}
+
+	private int[] twoDimensionIndex(int index, int columnLength) {
+		return new int[] { index / columnLength, index % columnLength };
+	}
+
+	private boolean valid(int[][] grid, boolean[][] visited, int row, int col) {
+		if (row < 0 || col < 0 || row >= grid.length || col >= grid[row].length)
+			return false;
+		return !visited[row][col] && grid[row][col] == 0;
+	}
+
+	public int shortestDistance(int[][] grid) {
+		if (grid == null || grid.length == 0 || grid[0].length == 0)
+			return -1;
+
+		int rowLength = grid.length, colLength = grid[0].length;
+
+		int[][] dist = new int[rowLength][colLength];
+		int[][] reach = new int[rowLength][colLength];
+
+		int houseNum = 0;
+		for (int row = 0; row < rowLength; row++) {
+			for (int col = 0; col < colLength; col++) {
+				if (grid[row][col] == 1) {
+					houseNum++;
+					bfs(grid, dist, reach, row, col, new boolean[rowLength][colLength]);
+				}
+			}
+		}
+
+		int minDist = Integer.MAX_VALUE;
+		for (int row = 0; row < rowLength; row++) {
+			for (int col = 0; col < colLength; col++) {
+				if (grid[row][col] == 0 && reach[row][col] == houseNum) {
+					minDist = Math.min(minDist, dist[row][col]);
+				}
+			}
+		}
+		return minDist == Integer.MAX_VALUE ? -1 : minDist;
+	}
+
+	private void bfs(int[][] grid, int[][] dist, int[][] reach, int row, int col, boolean[][] visited) {
+		int colLength = grid[row].length;
+		Queue<Integer> queue = new LinkedList<Integer>();
+		queue.offer(oneDimensionIndex(row, col, colLength));
+		visited[row][col] = true;
+		int level = 0;
+		while (!queue.isEmpty()) {
+			int size = queue.size();
+			for (int t = 0; t < size; t++) {
+				int[] indices = twoDimensionIndex(queue.poll(), colLength);
+				int x = indices[0];
+				int y = indices[1];
+				for (int[] dir : directions) {
+					int xnew = x + dir[0];
+					int ynew = y + dir[1];
+					if (valid(grid, visited, xnew, ynew)) {
+						queue.offer(oneDimensionIndex(xnew, ynew, colLength));
+						visited[xnew][ynew] = true;
+						dist[xnew][ynew] += level + 1;
+						reach[xnew][ynew]++;
 					}
 				}
 			}
-
-			int minDist = Integer.MAX_VALUE;
-			for (int i = 0; i < m; i++) {
-				for (int j = 0; j < n; j++) {
-					if (grid[i][j] == 0 && reach[i][j] == houseNum) {
-						minDist = Math.min(minDist, dist[i][j]);
-					}
-				}
-			}
-			return minDist == Integer.MAX_VALUE ? -1 : minDist;
+			level++;
 		}
 	}
 
