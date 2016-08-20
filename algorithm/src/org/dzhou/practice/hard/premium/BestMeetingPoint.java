@@ -25,6 +25,13 @@ public class BestMeetingPoint {
 			return minDistance1D(rows) + minDistance1D(cols);
 		}
 
+		public int minDistance1D(List<Integer> positions) {
+			int sum = 0;
+			for (int i = 0, j = positions.size() - 1; i < j; i++, j--)
+				sum += positions.get(j) - positions.get(i);
+			return sum;
+		}
+
 		private List<Integer> collectRows(int[][] grid) {
 			List<Integer> rows = new ArrayList<>();
 			for (int row = 0; row < grid.length; row++) {
@@ -47,13 +54,6 @@ public class BestMeetingPoint {
 				}
 			}
 			return cols;
-		}
-
-		public int minDistance1D(List<Integer> positions) {
-			int sum = 0;
-			for (int i = 0, j = positions.size() - 1; i < j; i++, j--)
-				sum += positions.get(j) - positions.get(i);
-			return sum;
 		}
 	}
 
