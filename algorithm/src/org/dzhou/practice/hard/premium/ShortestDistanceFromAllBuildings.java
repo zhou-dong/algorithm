@@ -26,14 +26,6 @@ public class ShortestDistanceFromAllBuildings {
 
 	int[][] directions = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
 
-	private int oneDimensionIndex(int row, int col, int columnLength) {
-		return row * columnLength + col;
-	}
-
-	private int[] twoDimensionIndex(int index, int columnLength) {
-		return new int[] { index / columnLength, index % columnLength };
-	}
-
 	private boolean valid(int[][] grid, boolean[][] visited, int row, int col) {
 		if (row < 0 || col < 0 || row >= grid.length || col >= grid[row].length)
 			return false;
@@ -46,15 +38,15 @@ public class ShortestDistanceFromAllBuildings {
 
 		int rowLength = grid.length, colLength = grid[0].length;
 
-		int[][] dist = new int[rowLength][colLength];
+		int[][] distance = new int[rowLength][colLength];
 		int[][] reach = new int[rowLength][colLength];
 
-		int houseNum = 0;
+		int houseCount = 0;
 		for (int row = 0; row < rowLength; row++) {
 			for (int col = 0; col < colLength; col++) {
 				if (grid[row][col] == 1) {
-					houseNum++;
-					bfs(grid, dist, reach, row, col, new boolean[rowLength][colLength]);
+					houseCount++;
+					bfs(grid, distance, reach, new boolean[rowLength][colLength], new int[] { row, col });
 				}
 			}
 		}
@@ -62,35 +54,32 @@ public class ShortestDistanceFromAllBuildings {
 		int minDist = Integer.MAX_VALUE;
 		for (int row = 0; row < rowLength; row++) {
 			for (int col = 0; col < colLength; col++) {
-				if (grid[row][col] == 0 && reach[row][col] == houseNum) {
-					minDist = Math.min(minDist, dist[row][col]);
+				if (grid[row][col] == 0 && reach[row][col] == houseCount) {
+					minDist = Math.min(minDist, distance[row][col]);
 				}
 			}
 		}
 		return minDist == Integer.MAX_VALUE ? -1 : minDist;
 	}
 
-	private void bfs(int[][] grid, int[][] dist, int[][] reach, int row, int col, boolean[][] visited) {
-		int colLength = grid[row].length;
-		Queue<Integer> queue = new LinkedList<Integer>();
-		queue.offer(oneDimensionIndex(row, col, colLength));
-		visited[row][col] = true;
+	private void bfs(int[][] grid, int[][] distance, int[][] reach, boolean[][] visited, int[] element) {
+		Queue<int[]> queue = new LinkedList<>();
+		queue.offer(element);
+		visited[element[0]][element[1]] = true;
 		int level = 0;
 		while (!queue.isEmpty()) {
 			int size = queue.size();
-			for (int t = 0; t < size; t++) {
-				int[] indices = twoDimensionIndex(queue.poll(), colLength);
-				int x = indices[0];
-				int y = indices[1];
+			for (int i = 0; i < size; i++) {
+				int[] indices = queue.poll();
 				for (int[] dir : directions) {
-					int xnew = x + dir[0];
-					int ynew = y + dir[1];
-					if (valid(grid, visited, xnew, ynew)) {
-						queue.offer(oneDimensionIndex(xnew, ynew, colLength));
-						visited[xnew][ynew] = true;
-						dist[xnew][ynew] += level + 1;
-						reach[xnew][ynew]++;
-					}
+					int row = indices[0] + dir[0];
+					int col = indices[1] + dir[1];
+					if (!valid(grid, visited, row, col))
+						continue;
+					queue.offer(new int[] { row, col });
+					visited[row][col] = true;
+					distance[row][col] += level + 1;
+					reach[row][col]++;
 				}
 			}
 			level++;
