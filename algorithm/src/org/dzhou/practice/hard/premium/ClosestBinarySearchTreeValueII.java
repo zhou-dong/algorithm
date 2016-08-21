@@ -35,7 +35,27 @@ public class ClosestBinarySearchTreeValueII {
 		}
 	}
 
+	/**
+	 * Hint:
+	 * 
+	 * 1.Consider implement these two helper functions: <br>
+	 * ---I.getPredecessor(N), which returns the next smaller node to N.<br>
+	 * ---II.getSuccessor(N), which returns the next larger node to N.<br>
+	 * 2.Try to assume that each node has a parent pointer, it makes the problem
+	 * much easier.<br>
+	 * 3.Without parent pointer we just need to keep track of the path from the
+	 * root to the current node using a stack.<br>
+	 * 4.You would need two stacks to track the path in finding predecessor and
+	 * successor node separately.<br>
+	 * 
+	 * @author zhoudong
+	 *
+	 */
 	public class Solution {
+
+	}
+
+	public class Solution1 {
 		class HeapNode implements Comparable<HeapNode> {
 			int value;
 			double distance;
