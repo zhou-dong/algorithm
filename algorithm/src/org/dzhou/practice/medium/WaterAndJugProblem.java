@@ -45,6 +45,14 @@ public class WaterAndJugProblem {
 			return b == 0 ? a : gcd(b, a % b);
 		}
 
+		int gcd2(int a, int b) {
+			while (b != 0) {
+				int r = b;
+				b = a % b;
+				a = r;
+			}
+			return a;
+		}
 	}
 
 }
