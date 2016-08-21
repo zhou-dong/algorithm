@@ -30,13 +30,7 @@ package org.dzhou.practice.medium;
  * 
  *         求最大公约数GCD（Greatest Common Divisor)。
  * 
- *         题目可以表示为如下等式: <br>
- *         mx + ny = z <br>
- *         若m,n>0说明往里面加水，若m,n <0则说明清空
- * 
- *         本题中，若mx + ny = z 有解，则一定有z为GCD(x,y) 的整数倍，否则无解。
- * 
- *         且需要满足条件 x + y >=z
+ *         https://zh.wikipedia.org/wiki/%E8%B2%9D%E7%A5%96%E7%AD%89%E5%BC%8F
  */
 public class WaterAndJugProblem {
 
