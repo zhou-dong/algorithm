@@ -1,5 +1,7 @@
 package org.dzhou.practice.medium;
 
+import java.util.Stack;
+
 /**
  * A sequence of numbers is called a wiggle sequence if the differences between
  * successive numbers strictly alternate between positive and negative. The
@@ -30,19 +32,34 @@ package org.dzhou.practice.medium;
  */
 public class WiggleSubsequence {
 
+	enum Mark {
+		POSITIVE, NEGATIVE, ZERO;
+		static Mark getMark(int value) {
+			return value == 0 ? ZERO : value > 0 ? POSITIVE : NEGATIVE;
+		}
+	}
+
 	public class Solution {
 
 		public int wiggleMaxLength(int[] nums) {
-			int p = 1, q = 1, n = nums.length;
-			for (int i = 1; i < n; ++i) {
-				if (nums[i] > nums[i - 1])
-					p = q + 1;
-				else if (nums[i] < nums[i - 1])
-					q = p + 1;
+			if (nums == null)
+				return 0;
+			if (nums.length < 2)
+				return nums.length;
+			Mark[] marks = new Mark[nums.length - 1];
+			for (int i = 1; i < nums.length; i++) {
+				marks[i - 1] = Mark.getMark(nums[i] - nums[i - 1]);
 			}
-			return Math.min(n, Math.max(p, q));
+			Stack<Mark> stack = new Stack<>();
+			for (int i = 0; i < marks.length; i++) {
+				if (marks[i] == Mark.ZERO)
+					continue;
+				if (stack.isEmpty() || marks[i] != stack.peek()) {
+					stack.add(marks[i]);
+				}
+			}
+			return stack.size() + 1;
 		}
-
 	}
 
 }
