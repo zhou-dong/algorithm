@@ -51,16 +51,6 @@ import java.util.Stack;
  */
 public class VerifyPreorderSerializationOfABinaryTree {
 
-	public static void main(String[] args) {
-		new VerifyPreorderSerializationOfABinaryTree().test();
-	}
-
-	void test() {
-		String preorder = "9,3,4,#,#,1,#,#,2,#,6,#,#";
-		boolean t = new Solution().isValidSerialization(preorder);
-		System.out.println(t);
-	}
-
 	// 栈: 这个方法简单的说就是不断的砍掉叶子节点。最后看看能不能全部砍掉。
 	public class Solution {
 
@@ -97,4 +87,30 @@ public class VerifyPreorderSerializationOfABinaryTree {
 			return "#".equals(node);
 		}
 	}
+
+	/**
+	 * 对于二叉树，我们把空的地方也作为叶子节点（如题目中的#），那么有
+	 *
+	 * - 所有的非空节点提供2个出度和1个入度（根除外） <br>
+	 * - 所有的空节点但提供0个出度和1个入度 <br>
+	 * 
+	 * 我们在遍历的时候，计算diff=outdegree–indegree.当一个节点出现的时候,diff–1，因为它提供一个入度；当节点不是#的时候，
+	 * diff+2(提供两个出度) 如果序列式合法的，那么遍历过程中diff >=0 且最后结果为0.
+	 */
+	public class Solution1 {
+
+		public boolean isValidSerialization(String preorder) {
+			String[] nodes = preorder.split(",");
+			int diff = 1;
+			for (String node : nodes) {
+				if (--diff < 0)
+					return false;
+				if (!node.equals("#"))
+					diff += 2;
+			}
+			return diff == 0;
+		}
+
+	}
+
 }
