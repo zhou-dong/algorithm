@@ -25,6 +25,7 @@ package org.dzhou.practice.medium.premium;
 public class BombEnemy {
 
 	public class Solution {
+
 		public int maxKilledEnemies(char[][] grid) {
 			int m = grid.length;
 			int n = m > 0 ? grid[0].length : 0;
@@ -52,6 +53,7 @@ public class BombEnemy {
 			}
 			return result;
 		}
+
 	}
 
 }
