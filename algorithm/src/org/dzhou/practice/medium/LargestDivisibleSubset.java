@@ -1,5 +1,7 @@
 package org.dzhou.practice.medium;
 
+import java.util.List;
+
 /**
  * 368. Largest Divisible Subset
  * 
@@ -21,5 +23,13 @@ package org.dzhou.practice.medium;
  *
  */
 public class LargestDivisibleSubset {
+
+	public class Solution {
+
+		public List<Integer> largestDivisibleSubset(int[] nums) {
+
+		}
+
+	}
 
 }
