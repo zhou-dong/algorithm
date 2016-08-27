@@ -40,5 +40,7 @@ public class LexicographicalNumbers {
 				solve(result, n, m + 1);
 			}
 		}
+
 	}
+
 }
