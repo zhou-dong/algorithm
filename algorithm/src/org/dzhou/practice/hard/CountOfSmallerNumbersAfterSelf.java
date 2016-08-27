@@ -25,17 +25,6 @@ import java.util.List;
  */
 public class CountOfSmallerNumbersAfterSelf {
 
-	public static void main(String[] args) {
-		new CountOfSmallerNumbersAfterSelf().test();
-	}
-
-	void test() {
-		// int[] nums = { 5, 2, 6, 1 };
-		// int[] nums = { 2, 1, 0 };
-		int[] nums = { -1, -1 };
-		System.out.println(new Solution().countSmaller(nums));
-	}
-
 	// BST
 	public class Solution {
 
