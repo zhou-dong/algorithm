@@ -1,10 +1,7 @@
 package org.dzhou.practice.medium;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * 386. Lexicographical Numbers QuestionEditorial Solution My Submissions
