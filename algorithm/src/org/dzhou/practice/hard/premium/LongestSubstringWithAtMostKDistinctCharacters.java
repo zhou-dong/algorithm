@@ -1,5 +1,8 @@
 package org.dzhou.practice.hard.premium;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 340. Longest Substring with At Most K Distinct Characters
  * 
@@ -18,19 +21,41 @@ public class LongestSubstringWithAtMostKDistinctCharacters {
 	public class Solution {
 
 		public int lengthOfLongestSubstringKDistinct(String s, int k) {
-			int[] count = new int[256];
-			int num = 0, i = 0, res = 0;
-			for (int j = 0; j < s.length(); j++) {
-				if (count[s.charAt(j)]++ == 0)
-					num++;
-				if (num > k) {
-					while (--count[s.charAt(i++)] > 0)
-						;
-					num--;
+			if (s == null || s.length() == 0 || k == 0)
+				return 0;
+			int max = 0, start = 0;
+			Map<Character, Integer> map = new HashMap<>();
+			for (int i = 0; i < s.length(); i++) {
+				if (map.size() == k && !map.containsKey(s.charAt(i))) {
+					while (start < i && map.size() == k) {
+						remove(map, s.charAt(start++));
+					}
 				}
-				res = Math.max(res, j - i + 1);
+				add(map, s.charAt(i));
+				max = Math.max(max, i + 1 - start);
 			}
-			return res;
+			return max;
 		}
+
+		private void remove(Map<Character, Integer> map, char c) {
+			if (!map.containsKey(c))
+				return;
+			int count = map.get(c);
+			if (count == 1) {
+				map.remove(c);
+			} else {
+				map.put(c, count - 1);
+			}
+		}
+
+		private void add(Map<Character, Integer> map, char c) {
+			if (map.containsKey(c)) {
+				map.put(c, map.get(c) + 1);
+			} else {
+				map.put(c, 1);
+			}
+		}
+
 	}
+
 }

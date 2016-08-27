@@ -28,29 +28,29 @@ public class LongestSubstringWithAtMostTwoDistinctCharacters {
 					}
 				}
 				addToMap(map, s.charAt(i));
-				max = Math.max(max, i - start + 1);
+				max = Math.max(max, i + 1 - start);
 			}
 			return max;
 		}
 
-		private int remove(Map<Character, Integer> map, char c) {
-			if (map.containsKey(c)) {
-				int count = map.get(c);
-				if (count == 1)
-					map.remove(c);
-				else
-					map.put(c, count - 1);
+		private void remove(Map<Character, Integer> map, char c) {
+			if (!map.containsKey(c)) {
+				return;
 			}
-			return map.size();
+			int count = map.get(c);
+			if (count == 1) {
+				map.remove(c);
+			} else {
+				map.put(c, count - 1);
+			}
 		}
 
-		private int addToMap(Map<Character, Integer> map, char c) {
+		private void addToMap(Map<Character, Integer> map, char c) {
 			if (map.containsKey(c)) {
 				map.put(c, map.get(c) + 1);
 			} else {
 				map.put(c, 1);
 			}
-			return map.size();
 		}
 
 	}
