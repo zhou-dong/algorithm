@@ -19,12 +19,16 @@ public class LongestSubstringWithAtMostTwoDistinctCharacters {
 	public class Solution {
 
 		public int lengthOfLongestSubstringTwoDistinct(String s) {
-			Map<String, Integer> map = new HashMap<>();
-			int max = 0, fast = 0;
+			Map<Character, Integer> map = new HashMap<>();
+			int max = 0, start = 0;
 			for (int i = 0; i < s.length(); i++) {
-				if (map.size() == 2) {
-					max = Math.max(max, fast - i);
+				if (map.size() == 2 && !map.containsKey(s.charAt(i))) {
+					while (start < i && map.size() == 2) {
+						remove(map, s.charAt(start++));
+					}
 				}
+				addToMap(map, s.charAt(i));
+				max = Math.max(max, i - start + 1);
 			}
 			return max;
 		}
