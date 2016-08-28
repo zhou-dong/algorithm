@@ -71,7 +71,6 @@ public class DungeonGame {
 					dp[row][col] = Math.min(right, down);
 				}
 			}
-
 			return dp[0][0];
 		}
 
