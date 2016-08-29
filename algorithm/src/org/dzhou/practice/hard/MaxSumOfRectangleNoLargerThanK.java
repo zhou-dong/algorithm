@@ -22,16 +22,15 @@ import java.util.TreeSet;
  * 
  * @author zhoudong
  *
+ *         refernce : https://www.youtube.com/watch?v=yCQN096CwWM
  */
 public class MaxSumOfRectangleNoLargerThanK {
 
 	public class Solution {
 		public int maxSumSubmatrix(int[][] matrix, int k) {
-			int m = matrix.length, n = 0;
-			if (m > 0)
-				n = matrix[0].length;
-			if (m * n == 0)
+			if (matrix == null || matrix.length == 0 || matrix[0].length == 0)
 				return 0;
+			int m = matrix.length, n = matrix[0].length;
 
 			int M = Math.max(m, n);
 			int N = Math.min(m, n);
