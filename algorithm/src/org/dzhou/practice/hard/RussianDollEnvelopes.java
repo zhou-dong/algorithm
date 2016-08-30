@@ -37,6 +37,7 @@ public class RussianDollEnvelopes {
 			return lengthOfLIS(envelopes);
 		}
 
+		// dynamic programming
 		private int lengthOfLIS(int[][] envelopes) {
 			int max = 0;
 			int[] dp = new int[envelopes.length];
