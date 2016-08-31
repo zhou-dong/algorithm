@@ -43,11 +43,12 @@ public class MiniParser {
 		public NestedInteger deserialize(String s) {
 			if (s == null || s.length() == 0)
 				return null;
-			if (s.charAt(0) != '[')
-				return new NestedInteger(Integer.parseInt(s));
+			if (s.charAt(0) != '[') {
+				return createNestedInteger(s);
+			}
 
-			Stack<NestedInteger> stack = new Stack<NestedInteger>();
 			StringBuilder sb = new StringBuilder();
+			Stack<NestedInteger> stack = new Stack<NestedInteger>();
 
 			for (char c : s.toCharArray()) {
 				if (c == '[') {
@@ -74,8 +75,12 @@ public class MiniParser {
 			return null;
 		}
 
+		private NestedInteger createNestedInteger(String str) {
+			return new NestedInteger(Integer.parseInt(str));
+		}
+
 		private NestedInteger createNestedInteger(StringBuilder sb) {
-			return new NestedInteger(Integer.parseInt(sb.toString()));
+			return createNestedInteger(sb.toString());
 		}
 
 	}
