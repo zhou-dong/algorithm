@@ -86,14 +86,6 @@ public class PerfectRectangle {
 		}
 	}
 
-	private void toggle(Set<Point> set, Point point) {
-		if (set.contains(point)) {
-			set.remove(point);
-		} else {
-			set.add(point);
-		}
-	}
-
 	public boolean isRectangleCover(int[][] rectangles) {
 		int left = Integer.MAX_VALUE, bottom = Integer.MAX_VALUE;
 		int right = Integer.MIN_VALUE, top = Integer.MIN_VALUE;
@@ -120,6 +112,14 @@ public class PerfectRectangle {
 		Rectangle together = new Rectangle(left, bottom, right, top);
 
 		return onlyContains(flags, together) ? (totalArea == together.area()) : false;
+	}
+
+	private void toggle(Set<Point> set, Point point) {
+		if (set.contains(point)) {
+			set.remove(point);
+		} else {
+			set.add(point);
+		}
 	}
 
 	private boolean onlyContains(Set<Point> set, Rectangle rectangle) {
