@@ -86,7 +86,7 @@ public class PerfectRectangle {
 		}
 	}
 
-	private void toggle(Point point, Set<Point> set) {
+	private void toggle(Set<Point> set, Point point) {
 		if (set.contains(point)) {
 			set.remove(point);
 		} else {
@@ -95,10 +95,8 @@ public class PerfectRectangle {
 	}
 
 	public boolean isRectangleCover(int[][] rectangles) {
-		int left = Integer.MAX_VALUE;
-		int bottom = Integer.MAX_VALUE;
-		int right = Integer.MIN_VALUE;
-		int top = Integer.MIN_VALUE;
+		int left = Integer.MAX_VALUE, bottom = Integer.MAX_VALUE;
+		int right = Integer.MIN_VALUE, top = Integer.MIN_VALUE;
 
 		Set<Point> flags = new HashSet<>();
 
@@ -113,10 +111,10 @@ public class PerfectRectangle {
 
 			totalArea += rectangle.area();
 
-			toggle(rectangle.leftBottom(), flags);
-			toggle(rectangle.leftTop(), flags);
-			toggle(rectangle.rightBottom(), flags);
-			toggle(rectangle.rightTop(), flags);
+			toggle(flags, rectangle.leftBottom());
+			toggle(flags, rectangle.leftTop());
+			toggle(flags, rectangle.rightBottom());
+			toggle(flags, rectangle.rightTop());
 		}
 
 		Rectangle together = new Rectangle(left, bottom, right, top);
