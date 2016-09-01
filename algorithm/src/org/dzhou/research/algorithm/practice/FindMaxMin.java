@@ -1,4 +1,4 @@
-package org.dzhou.research.algorithm;
+package org.dzhou.research.algorithm.practice;
 
 /**
  * @author DONG ZHOU

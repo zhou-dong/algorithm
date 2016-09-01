@@ -1,4 +1,4 @@
-package org.dzhou.research.algorithm;
+package org.dzhou.research.algorithm.practice;
 
 /**
  * 为了同时找到最大的数和最小的数
