@@ -87,10 +87,11 @@ public class PerfectRectangle {
 	}
 
 	private void toggle(Point point, Set<Point> set) {
-		if (!set.contains(point))
-			set.add(point);
-		else
+		if (set.contains(point)) {
 			set.remove(point);
+		} else {
+			set.add(point);
+		}
 	}
 
 	public boolean isRectangleCover(int[][] rectangles) {
