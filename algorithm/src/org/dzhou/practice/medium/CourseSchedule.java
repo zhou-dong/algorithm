@@ -1,9 +1,9 @@
 package org.dzhou.practice.medium;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * There are a total of n courses you have to take, labeled from 0 to n - 1.
@@ -34,46 +34,48 @@ import java.util.Map;
  */
 public class CourseSchedule {
 
-	public class Solution {
+	Set<Integer> visiting = new HashSet<>();
+	Set<Integer> visited = new HashSet<>();
 
-		public boolean canFinish(int numCourses, int[][] prerequisites) {
-
-			if (numCourses <= 0 || prerequisites == null || prerequisites.length == 0)
-				return true;
-
-			// Construct graph
-			Map<Integer, List<Integer>> adjList = new HashMap<>();
-			for (int[] edge : prerequisites) {
-				if (!adjList.containsKey(edge[1]))
-					adjList.put(edge[1], new ArrayList<>());
-				adjList.get(edge[1]).add(edge[0]);
+	public boolean canFinish(int numCourses, int[][] prerequisites) {
+		Map<Integer, Set<Integer>> graph = createGraph(prerequisites);
+		for (int vertex : graph.keySet()) {
+			if (hasCycle(graph, vertex)) {
+				return false;
 			}
-
-			int[] visited = new int[numCourses];
-			for (int i = 0; i < numCourses; i++) {
-				if (visited[i] == 0 && hasCycle(i, visited, adjList)) {
-					return false;
-				}
-			}
-			return true;
 		}
+		return true;
+	}
 
-		private boolean hasCycle(int vertexId, int[] visited, Map<Integer, List<Integer>> adjList) {
-			if (adjList.containsKey(vertexId)) {
-				visited[vertexId] = 1;
-				for (int v1 : adjList.get(vertexId)) {
-					if (visited[v1] == 1) {
-						return true;
-					}
-					if (visited[v1] == 0 && hasCycle(v1, visited, adjList)) {
-						return true;
-					}
-				}
-			}
-			visited[vertexId] = 2;
+	private boolean hasCycle(Map<Integer, Set<Integer>> graph, int vertex) {
+		if (!graph.containsKey(vertex)) {
 			return false;
 		}
+		if (visited.contains(vertex)) {
+			return false;
+		}
+		if (visiting.contains(vertex)) {
+			return true;
+		}
+		visiting.add(vertex);
+		for (int connect : graph.get(vertex)) {
+			if (hasCycle(graph, connect)) {
+				return true;
+			}
+		}
+		visiting.remove(vertex);
+		visited.add(vertex);
+		return false;
+	}
 
+	private Map<Integer, Set<Integer>> createGraph(int[][] edges) {
+		Map<Integer, Set<Integer>> graph = new HashMap<>();
+		for (int[] edge : edges) {
+			if (!graph.containsKey(edge[1]))
+				graph.put(edge[1], new HashSet<>());
+			graph.get(edge[1]).add(edge[0]);
+		}
+		return graph;
 	}
 
 }
