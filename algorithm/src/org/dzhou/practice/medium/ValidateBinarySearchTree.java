@@ -42,26 +42,46 @@ public class ValidateBinarySearchTree {
 		}
 	}
 
-	public class Solution {
-		private int lastVal = Integer.MIN_VALUE;
-		private boolean firstNode = true;
+	public class Definition_Solution {
+		public boolean isValidBST(TreeNode root) {
+			return isValidBST(root, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+		}
+
+		private boolean isValidBST(TreeNode root, double min, double max) {
+			if (root == null)
+				return true;
+			if (root.val <= min || root.val >= max)
+				return false;
+			return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
+		}
+	}
+
+	public class Inorder_Solution {
+		double previous = 0d;
+		boolean isValid = true;
 
 		public boolean isValidBST(TreeNode root) {
-			if (root == null) {
-				return true;
+			init();
+			inOrder(root);
+			return isValid;
+
+		}
+
+		private void init() {
+			previous = Double.NEGATIVE_INFINITY;
+			isValid = true;
+		}
+
+		private void inOrder(TreeNode root) {
+			if (root == null)
+				return;
+			inOrder(root.left);
+			if (root.val <= previous) {
+				isValid = false;
+				return;
 			}
-			if (!isValidBST(root.left)) {
-				return false;
-			}
-			if (!firstNode && lastVal >= root.val) {
-				return false;
-			}
-			firstNode = false;
-			lastVal = root.val;
-			if (!isValidBST(root.right)) {
-				return false;
-			}
-			return true;
+			previous = root.val;
+			inOrder(root.right);
 		}
 	}
 
