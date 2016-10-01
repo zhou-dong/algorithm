@@ -19,6 +19,16 @@
 3. 然后，优化他。 dp, hashmap, 等等。
 - 数据结构就是我的刀剑，我要用好他们。
 
+Hacker Rank input
+
+```java
+Scanner myScan = new Scanner(System.in);
+String inputString = myScan.nextLine();
+		
+String ans;
+System.out.println(ans);
+myScan.close();
+```
 reference:
 
 https://www.quora.com/How-should-I-prepare-for-my-Google-interview-if-I-have-1-month-left

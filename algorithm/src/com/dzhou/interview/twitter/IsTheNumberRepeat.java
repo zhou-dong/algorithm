@@ -4,7 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * Given an array of integers, print 2 bitstrings, one if number has occurred
+ * before in the array, the other if the number has occurred after the array.
  * 
+ * Example:
  * 
  * input：1 3 2 3 4 1
  * 
