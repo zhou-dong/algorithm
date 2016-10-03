@@ -29,6 +29,19 @@ String ans;
 System.out.println(ans);
 myScan.close();
 ```
+
+```java
+Scanner sc = new Scanner(System.in);
+int[] nums = new int[sc.nextInt()];
+for (int i = 0; i < nums.length; i++) {
+	nums[i] = sc.nextInt();
+}
+for (int num : nums) {
+	System.out.println(num);
+}
+sc.close();
+```
+
 reference:
 
 https://www.quora.com/How-should-I-prepare-for-my-Google-interview-if-I-have-1-month-left
