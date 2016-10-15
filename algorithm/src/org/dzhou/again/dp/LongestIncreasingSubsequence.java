@@ -1,11 +1,11 @@
 package org.dzhou.again.dp;
 
+import java.util.Arrays;
+
 /**
  * 300. Longest Increasing Subsequence
  * 
  * Difficulty: Medium
- * 
- * Contributors: Admin
  * 
  * Given an unsorted array of integers, find the length of longest increasing
  * subsequence.
@@ -24,5 +24,23 @@ package org.dzhou.again.dp;
  *
  */
 public class LongestIncreasingSubsequence {
+
+	public int lengthOfLIS(int[] nums) {
+		return (nums == null || nums.length == 0) ? 0 : dpHelper(nums);
+	}
+
+	private int dpHelper(int[] nums) {
+		int[] dp = new int[nums.length];
+		Arrays.fill(dp, 1);
+
+		return max(dp);
+	}
+
+	private int max(int[] nums) {
+		int max = 1;
+		for (int num : nums)
+			max = Math.max(max, num);
+		return max;
+	}
 
 }
