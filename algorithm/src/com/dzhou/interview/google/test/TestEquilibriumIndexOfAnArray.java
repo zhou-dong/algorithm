@@ -10,9 +10,10 @@ public class TestEquilibriumIndexOfAnArray {
 
 	@Test
 	public void test() {
-		int[] array = { -7, 1, 5, 2, -4, 3, 0 };
 		EquilibriumIndexOfAnArray instance = new EquilibriumIndexOfAnArray();
-		Assert.assertEquals(3, instance.equilibrium(array));
+		Assert.assertEquals(3, instance.equilibrium(new int[] { -7, 1, 5, 2, -4, 3, 0 }));
+		Assert.assertEquals(2, instance.equilibrium(new int[] { 1, 3, 5, 4, 0 }));
+		Assert.assertEquals(2, instance.equilibrium(new int[] { 1, 3, 5, 4 }));
 	}
 
 }
