@@ -1,5 +1,9 @@
 package com.dzhou.interview.google;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Stack;
+
 /**
  * You are given a listing of directories and files in a file system. Each
  * directory and file has a name, which is a non-empty string consisting of
@@ -18,7 +22,7 @@ package com.dzhou.interview.google;
  * -dir11 <br>
  * -dir12 <br>
  * --picture.jpeg <br>
- * -dir121 <br>
+ * --dir121 <br>
  * --file1.txt <br>
  * dir2 <br>
  * -file2.gif <br>
@@ -70,26 +74,62 @@ package com.dzhou.interview.google;
  * expected worst-case space complexity is O(N) (not counting the storage
  * required for input arguments).
  * 
- * 
- * 第二题依然是 找image 文件的题， 这次换成了找最长的文件夹路径。 这个题我看过很多版本： 版本一： leetcode 原题：求到image
- * 文件的最长路径。 版本二： 我这次遇到的版本， 求到 包含image文件的 文件夹的最长路径。 leetcode 版本用stack存Integer，
- * 我们这里就不能存Integer了，要存String，然后每次不进要得到当前路径，还是知道它上一层的路径。解之。. 1point 3acres 璁哄潧
- * 版本三： 包含image 文件的所有文件夹的路径之和。 这里要注意一个corner case， 如果一个文件夹下包含了 n个image
- * 文件，我记得看过的面经里写的只算一次，所以我们要用一个set，把已经算过的路径加进去，每次判断就好。解之。
- * 
  * @author zhoudong
- *
- *
- *
+ * 
  */
-public class LongestFilePath {
+public class TotalImageFilePath {
 
-	class Solution {
+	Set<String> imageExtensions = null;
 
-		public int solution(String s) {
-
+	public int solution(String s) {
+		createImageExtensions();
+		Stack<Integer> stack = new Stack<>();
+		String[] entrys = s.split("\n");
+		int total = 0;
+		for (String entry : entrys) {
+			int spaceCount = countSpace(entry);
+			while (spaceCount < stack.size()) {
+				stack.pop();
+			}
+			int noSpaceLength = entry.length() - spaceCount;
+			int preLength = stack.isEmpty() ? 1 : stack.peek();
+			if (isDirectory(entry)) {
+				stack.push(noSpaceLength + preLength + 1);
+			} else if (isImage(entry)) {
+				total += preLength + noSpaceLength;
+			}
 		}
+		return total;
+	}
 
+	private int countSpace(String entry) {
+		int count = 0;
+		for (char c : entry.toCharArray()) {
+			if (c != ' ')
+				return count;
+			else
+				count++;
+		}
+		return count;
+	}
+
+	private void createImageExtensions() {
+		imageExtensions = new HashSet<>();
+		imageExtensions.add("jpeg");
+		imageExtensions.add("png");
+		imageExtensions.add("gif");
+	}
+
+	private boolean isDirectory(String str) {
+		return str.indexOf(".") == -1;
+	}
+
+	private boolean isImage(String file) {
+		int dotIndex = file.indexOf(".");
+		if (dotIndex == -1)
+			return false;
+		String extension = file.substring(dotIndex + 1);
+		return imageExtensions.contains(extension);
 	}
 
 }

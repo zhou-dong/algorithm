@@ -5,9 +5,8 @@ import java.util.List;
 
 /**
  * You are given an integer X. You must choose two adjacent digits and replace
- * them with the larger of these two digits.
- * 
- * For example, from the integer X = 233614, you can obtain:
+ * them with the larger of these two digits. 给定一个integer X. For example, from
+ * the integer X = 233614, you can obtain:
  * 
  * 33614 (by replacing 23 with 3); <br>
  * 23614 (by replacing 33 with 3 or 36 with 6); <br>
@@ -34,22 +33,36 @@ import java.util.List;
  * In your solution, focus on correctness. The performance of your solution will
  * not be the focus of the assessment.
  * 
- * 第一题 给一个 int，范围是从10 到 100000000（减少了很多corner case的考虑）。
- * 要做的是选两个相邻的数，把这两个数换成它们平均值的round（四舍五入）使得到的新的int 的值最大。. From 1point 3acres bbs
- * 要注意的是 Math.round 输入是double 输出是long.
- * 
  * @author zhoudong
- *
- *
  *
  */
 public class ReplaceAdjacentDigitsWithTheLargerOne {
 
 	public int Solution(int x) {
+		List<Integer> list = convertIntegerToList(x);
+		int min = x;
+		for (int i = 1; i < list.size(); i++) {
+			int smallerIndex = findSmallerIndex(i, list);
+			int smallerValue = list.get(smallerIndex);
+			list.set(smallerIndex, -1);
+			min = Math.min(min, convertListToInteger(list));
+			list.set(smallerIndex, smallerValue);
+		}
+		return min;
+	}
 
-		List<Integer> list = new ArrayList<>();
+	private int findSmallerIndex(int index, List<Integer> list) {
+		return list.get(index) < list.get(index - 1) ? index : index - 1;
+	}
 
-		return 0;
+	public int convertListToInteger(List<Integer> list) {
+		int result = 0;
+		for (int num : list) {
+			if (num != -1) {
+				result = result * 10 + num;
+			}
+		}
+		return result;
 	}
 
 	public List<Integer> convertIntegerToList(int x) {
