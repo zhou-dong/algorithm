@@ -20,7 +20,7 @@ import java.util.Stack;
  * 
  * Given "cbacdcbc" Return "acdb"
  * 
- * 本题主要是来考察： stack 和 greedy
+ * 本题主要是考察： stack 和 greedy
  * 
  * @author zhoudong
  *
@@ -28,13 +28,10 @@ import java.util.Stack;
  * 
  *         上面链接中讲的很棒，看上面的讲解就够了！
  * 
- *         下面是引用他的话：
- * 
- *         首先，为什么拿Stack来做呢？他的什么特性复合这道题木呢？我们需要拿后面的字母和前面的作比较，进行操作，
+ *         下面是引用他的话：首先，为什么拿Stack来做呢？他的什么特性复合这道题木呢？我们需要拿后面的字母和前面的作比较，进行操作，
  *         而不需要拿前面的字母和后面的字母作比较。所以，栈很合适。
  * 
  */
-
 public class RemoveDuplicateLetters {
 
 	public String removeDuplicateLetters(String s) {
