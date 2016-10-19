@@ -46,7 +46,6 @@ public class RangeSumQueryMutable {
 				this(lower, upper);
 				this.value = value;
 			}
-
 		}
 
 		private SegmentTreeNode root;
