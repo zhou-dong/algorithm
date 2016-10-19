@@ -21,33 +21,20 @@ import java.util.Set;
  */
 public class LongestSubstringWithoutRepeatingCharacters {
 
-	public class Solution {
+	public int lengthOfLongestSubstring(String s) {
 
-		public int lengthOfLongestSubstring(String s) {
+		Set<Character> set = new HashSet<>();
 
-			if (s == null || s.length() == 0)
-				return 0;
-
-			Set<Character> set = new HashSet<Character>();
-
-			int left = 0, max = 0;
-			for (int i = 0; i < s.length(); i++) {
-				char curr = s.charAt(i);
-				if (set.contains(curr)) {
-					while (left < i && s.charAt(left) != curr) {
-						set.remove(s.charAt(left));
-						left++;
-					}
-					left++;
-				} else {
-					set.add(curr);
-					max = Math.max(max, i - left + 1);
-				}
+		int max = 0, left = 0;
+		for (char c : s.toCharArray()) {
+			while (set.contains(c)) {
+				set.remove(s.charAt(left++));
 			}
-
-			return max;
+			set.add(c);
+			max = Math.max(max, set.size());
 		}
 
+		return max;
 	}
 
 }
