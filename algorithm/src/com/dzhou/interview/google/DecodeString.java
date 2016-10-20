@@ -33,46 +33,74 @@ import java.util.Stack;
  */
 public class DecodeString {
 
-	public static void main(String[] args) {
-		String s = new DecodeString().decodeString("3[a]2[bc]");
-		System.out.println(s);
+	class Solution {
+		public String decodeString(String s) {
+			Stack<String> items = new Stack<>();
+			Stack<Integer> counts = new Stack<>();
+			StringBuilder item = new StringBuilder();
+			int count = 0;
+			for (char ch : s.toCharArray()) {
+				if (Character.isDigit(ch)) {
+					count = count * 10 + (ch - '0');
+					if (item.length() != 0) {
+						items.add(item.toString());
+						item = new StringBuilder();
+					}
+				} else if (ch == '[') {
+					counts.add(count);
+					count = 0;
+				} else if (ch == ']') {
+					String prev = items.isEmpty() ? "" : items.pop();
+					StringBuilder temp = new StringBuilder(prev);
+					int size = counts.pop();
+					for (int i = 0; i < size; i++) {
+						temp.append(item);
+					}
+					item = temp;
+				} else {
+					item.append(ch);
+				}
+			}
+			return item.toString();
+		}
 	}
 
-	public String decodeString(String s) {
+	class Solution1 {
+		public String decodeString(String s) {
+			StringBuilder item = new StringBuilder();
+			Stack<String> items = new Stack<>();
+			Stack<Integer> counts = new Stack<>();
 
-		StringBuilder item = new StringBuilder();
-		Stack<String> items = new Stack<>();
-		Stack<Integer> counts = new Stack<>();
-
-		int index = 0;
-		while (index < s.length()) {
-			char ch = s.charAt(index);
-			if (Character.isDigit(ch)) {
-				int count = 0;
-				while (Character.isDigit(s.charAt(index))) {
-					count = count * 10 + (s.charAt(index) - '0');
+			int index = 0;
+			while (index < s.length()) {
+				char ch = s.charAt(index);
+				if (Character.isDigit(ch)) {
+					int count = 0;
+					while (Character.isDigit(s.charAt(index))) {
+						count = count * 10 + (s.charAt(index) - '0');
+						index++;
+					}
+					counts.push(count);
+				} else if (ch == '[') {
+					items.push(item.toString());
+					item = new StringBuilder();
+					index++;
+				} else if (ch == ']') {
+					StringBuilder temp = new StringBuilder(items.pop());
+					int count = counts.pop();
+					for (int i = 0; i < count; i++) {
+						temp.append(item);
+					}
+					item = temp;
+					index++;
+				} else {
+					item.append(ch);
 					index++;
 				}
-				counts.push(count);
-			} else if (ch == '[') {
-				items.push(item.toString());
-				item = new StringBuilder();
-				index++;
-			} else if (ch == ']') {
-				StringBuilder temp = new StringBuilder(items.pop());
-				int count = counts.pop();
-				for (int i = 0; i < count; i++) {
-					temp.append(item);
-				}
-				item = temp;
-				index++;
-			} else {
-				item.append(ch);
-				index++;
 			}
-		}
 
-		return item.toString();
+			return item.toString();
+		}
 	}
 
 }
