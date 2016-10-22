@@ -18,39 +18,48 @@ package com.dzhou.interview.google;
 public class SortColors {
 
 	public void sortColors(int[] nums) {
-		if (nums == null || nums.length < 2)
+		if (nums == null || nums.length < 2) {
 			return;
+		}
 		sortRed(nums);
 		sortBlue(nums);
 	}
 
 	private void sortRed(int[] nums) {
-		for (int slow = 0; slow < nums.length; slow++) {
-			if (nums[slow] == 0) {
+		int fast = 1;
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] == 0) {
 				continue;
 			}
-			int fast = slow + 1;
+			if (fast <= i) {
+				fast = i + 1;
+			}
 			while (fast < nums.length && nums[fast] != 0) {
 				fast++;
 			}
-			if (fast == nums.length)
-				break;
-			swap(nums, slow, fast);
+			if (fast == nums.length) {
+				return;
+			}
+			swap(nums, i, fast);
 		}
 	}
 
 	private void sortBlue(int[] nums) {
-		for (int slow = nums.length - 1; slow >= 0; slow--) {
-			if (nums[slow] == 2) {
+		int fast = nums.length - 2;
+		for (int i = nums.length - 1; i >= 0; i--) {
+			if (nums[i] == 2) {
 				continue;
 			}
-			int fast = slow - 1;
+			if (fast >= i) {
+				fast = i - 1;
+			}
 			while (fast >= 0 && nums[fast] != 2) {
 				fast--;
 			}
-			if (fast < 0)
-				break;
-			swap(nums, slow, fast);
+			if (fast < 0) {
+				return;
+			}
+			swap(nums, i, fast);
 		}
 	}
 
