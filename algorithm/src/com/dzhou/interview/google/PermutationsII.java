@@ -23,12 +23,13 @@ import java.util.Map;
  * 
  * @author zhoudong
  *
+ *         backtracking solution
  */
 public class PermutationsII {
 
 	public List<List<Integer>> permuteUnique(int[] nums) {
-		Map<Integer, Integer> countMap = countMap(nums);
 		List<List<Integer>> result = new ArrayList<>();
+		Map<Integer, Integer> countMap = countMap(nums);
 		helper(result, countMap, new ArrayList<>(), nums.length);
 		return result;
 	}
