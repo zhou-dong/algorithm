@@ -31,4 +31,12 @@ package com.dzhou.interview.google;
  */
 public class AlienDictionary {
 
+	public String alienOrder(String[] words) {
+		return null;
+	}
+
+	private void helper() {
+
+	}
+
 }
