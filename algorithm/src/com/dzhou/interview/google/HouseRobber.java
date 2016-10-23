@@ -1,7 +1,5 @@
 package com.dzhou.interview.google;
 
-import java.util.Random;
-
 /**
  * 198. House Robber
  * 
