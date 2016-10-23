@@ -2,7 +2,6 @@ package com.dzhou.interview.google;
 
 import java.util.Collections;
 import java.util.PriorityQueue;
-import java.util.Random;
 
 /**
  * 295. Find Median from Data Stream
@@ -71,19 +70,5 @@ public class FindMedianFromDataStream {
 	// MedianFinder mf = new MedianFinder();
 	// mf.addNum(1);
 	// mf.findMedian();
-
-	public static void main(String[] args) {
-
-		PriorityQueue<Integer> heap = new PriorityQueue<>();
-
-		Random random = new Random();
-		for (int i = 0; i < 10; i++) {
-			int e = random.nextInt(15);
-			if (e == 0)
-				continue;
-			System.out.print(e + " ");
-		}
-
-	}
 
 }
