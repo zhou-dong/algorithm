@@ -13,40 +13,60 @@ package org.dzhou.practice.hard;
  * 
  * @author zhoudong
  *
- *         我们可以把这个问题转换成动态规划(dynamic programming)的问题
+ *         用两次动态规划: <br>
+ *         第一次：create palindrome table <br>
+ *         第二次：count minimal cuts for each length
  */
 public class PalindromePartitioningII {
 
-	public class Solution {
+	public int minCut(String s) {
+		if (s == null || s.length() == 0)
+			return -1;
+		if (s.length() == 1)
+			return 0;
+		int[] cutsTable = createCutsDpTable(s, createPalindromeDpTable(s));
+		return cutsTable[cutsTable.length - 1];
+	}
 
-		public int minCut(String s) {
-			if (s == null || s.length() == 0)
-				return 0;
-
-			// 初始化cuts里面的值为最坏情况的值
-			int len = s.length();
-			int cuts[] = new int[len + 1];
-			for (int i = 0; i < len; i++)
-				cuts[i] = len - i;
-
-			boolean[][] matrix = new boolean[len][len];
-
-			// dynamic programming 过程
-			for (int i = len - 1; i >= 0; --i) {
-				for (int j = i; j < len; ++j) {
-					if ((s.charAt(i) == s.charAt(j) && (j - i < 2))
-							|| (s.charAt(i) == s.charAt(j) && matrix[i + 1][j - 1])) {
-						matrix[i][j] = true;
-						cuts[i] = getMinValue(cuts[i], cuts[j + 1] + 1);
+	private int[] createCutsDpTable(String s, boolean[][] palindromeDpTable) {
+		int[] cuts = new int[s.length()];
+		for (int i = 0; i < s.length(); i++) {
+			if (palindromeDpTable[0][i]) {
+				cuts[i] = 0;
+			} else {
+				int temp = s.length() - 1;
+				for (int j = 1; j <= i; j++) {
+					if (palindromeDpTable[j][i]) {
+						temp = Math.min(temp, cuts[j - 1] + 1);
 					}
 				}
+				cuts[i] = temp;
 			}
-			return cuts[0] - 1;
 		}
+		return cuts;
+	}
 
-		private int getMinValue(int a, int b) {
-			return a > b ? b : a;
+	private boolean[][] createPalindromeDpTable(String s) {
+		boolean[][] dpTable = new boolean[s.length()][s.length()];
+		for (int i = 0; i < s.length(); i++) {
+			dpTable[i][i] = true;
 		}
+		for (int i = 0; i < s.length() - 1; i++) {
+			if (s.charAt(i) == s.charAt(i + 1)) {
+				dpTable[i][i + 1] = true;
+			}
+		}
+		for (int len = 2; len < s.length(); len++) {
+			for (int i = 0; i + len < s.length(); i++) {
+				if (s.charAt(i) != s.charAt(i + len)) {
+					continue;
+				}
+				if (dpTable[i + 1][i + len - 1]) {
+					dpTable[i][i + len] = true;
+				}
+			}
+		}
+		return dpTable;
 	}
 
 }
