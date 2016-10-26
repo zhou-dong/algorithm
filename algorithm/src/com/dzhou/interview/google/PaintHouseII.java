@@ -24,14 +24,13 @@ public class PaintHouseII {
 		if (costs == null || costs.length == 0 || costs[0].length == 0)
 			return 0;
 		for (int i = 1; i < costs.length; i++) {
-			int[] curr = costs[i];
 			int[] prev = costs[i - 1];
+			int[] curr = costs[i];
 			for (int j = 0; j < curr.length; j++) {
 				int min = Integer.MAX_VALUE;
 				for (int z = 0; z < prev.length; z++) {
-					if (z == j) {
+					if (z == j)
 						continue;
-					}
 					min = Math.min(min, prev[z]);
 				}
 				curr[j] += min;
@@ -42,9 +41,8 @@ public class PaintHouseII {
 
 	private int min(int[] nums) {
 		int min = Integer.MAX_VALUE;
-		for (int num : nums) {
+		for (int num : nums)
 			min = Math.min(min, num);
-		}
 		return min;
 	}
 
