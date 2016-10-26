@@ -20,7 +20,7 @@ package com.dzhou.interview.google;
  */
 public class PaintFence {
 
-	// 因为超过相邻两个颜色一致，即不能三个颜色一致,那么x的涂色不能和前一个一致【或者】不能和前前个涂色一致。
+	// 因为不能超过相邻两个颜色一致，即不能三个颜色一致,那么x的涂色不能和前一个一致【或者】不能和前前个涂色一致。
 	public int numWays(int n, int k) {
 		int[] dp = new int[n + 1];
 		if (n == 0 || k == 0) {
