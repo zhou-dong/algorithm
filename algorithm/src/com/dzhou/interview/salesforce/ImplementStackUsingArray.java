@@ -13,8 +13,8 @@ public class ImplementStackUsingArray {
 
 		public Stack(int defaultSize) {
 			this.defaultSize = defaultSize;
-			array = new int[defaultSize];
-			size = 0;
+			this.array = new int[defaultSize];
+			this.size = 0;
 		}
 
 		public void push(int value) {
@@ -58,6 +58,7 @@ public class ImplementStackUsingArray {
 		public int capacity() {
 			return array.length;
 		}
+
 	}
 
 }
