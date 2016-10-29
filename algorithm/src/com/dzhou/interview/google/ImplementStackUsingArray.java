@@ -9,7 +9,6 @@ public class ImplementStackUsingArray {
 
 		int[] array;
 		int size;
-		int capacity;
 		int defaultSize = 10;
 
 		Stack() {
