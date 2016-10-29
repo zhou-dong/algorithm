@@ -50,7 +50,7 @@ public class ImplementStackUsingArray {
 		}
 
 		private void shorter() {
-			while (this.array.length > this.size * 2 && this.array.length > defaultSize * 2) {
+			while (this.array.length > this.size * 2 && this.array.length >= defaultSize * 2) {
 				array = Arrays.copyOf(array, array.length / 2);
 			}
 		}
