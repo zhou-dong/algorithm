@@ -35,18 +35,18 @@ public class ImplementStackUsingArray {
 			return array[size - 1];
 		}
 
+		private void checkEmpty() {
+			if (size == 0) {
+				throw new EmptyStackException();
+			}
+		}
+
 		public int pop() {
 			checkEmpty();
 			int value = array[size - 1];
 			size--;
 			shorter();
 			return value;
-		}
-
-		private void checkEmpty() {
-			if (size == 0) {
-				throw new EmptyStackException();
-			}
 		}
 
 		private void shorter() {
