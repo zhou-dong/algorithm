@@ -1,6 +1,5 @@
 package com.dzhou.interview.google;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
