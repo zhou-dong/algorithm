@@ -21,12 +21,29 @@ package com.dzhou.interview.google;
  * 
  * @author zhoudong
  *
+ *         a ^ b = c -> <br>
+ *         a ^ c = b -> <br>
+ *         b ^ c = a
  */
 public class MaximumXORofTwoNumbersInAnArray {
 
 	public static void main(String[] args) {
 
 		System.out.println(2 ^ 25);
+		System.out.println(3 ^ 10);
+		System.out.println(3 ^ 5);
+		System.out.println(3 ^ 25);
+		System.out.println(3 ^ 2);
+		System.out.println(3 ^ 8);
+
+		System.out.println();
+
+		System.out.println(Integer.toBinaryString(3));
+		System.out.println(Integer.toBinaryString(10));
+		System.out.println(Integer.toBinaryString(5));
+		System.out.println(Integer.toBinaryString(25));
+		System.out.println(Integer.toBinaryString(2));
+		System.out.println(Integer.toBinaryString(8));
 
 	}
 }
