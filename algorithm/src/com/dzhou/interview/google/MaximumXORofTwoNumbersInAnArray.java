@@ -64,35 +64,36 @@ public class MaximumXORofTwoNumbersInAnArray {
 	}
 
 	public int findMaximumXOR(int[] nums) {
-
 		Trie trie = new Trie(nums);
 		int max = Integer.MIN_VALUE;
-
 		for (int num : nums) {
-			TrieNode node = trie.root;
-			int value = 0;
-			for (int i = 31; i >= 0; i--) {
-				int bit = getBit(num, i);
-				if (bit == 1) {
-					if (node.contains(0)) {
-						value |= 1 << i;
-						node = node.children[0];
-					} else {
-						node = node.children[1];
-					}
+			max = Math.max(max, doXOR(num, trie));
+		}
+		return max;
+	}
+
+	private int doXOR(int num, Trie trie) {
+		int xor = 0;
+		TrieNode node = trie.root;
+		for (int i = 31; i >= 0; i--) {
+			int bit = getBit(num, i);
+			if (bit == 1) {
+				if (node.contains(0)) {
+					xor |= 1 << i;
+					node = node.children[0];
 				} else {
-					if (node.contains(1)) {
-						value |= 1 << i;
-						node = node.children[1];
-					} else {
-						node = node.children[0];
-					}
+					node = node.children[1];
 				}
-				max = Math.max(max, value);
+			} else {
+				if (node.contains(1)) {
+					xor |= 1 << i;
+					node = node.children[1];
+				} else {
+					node = node.children[0];
+				}
 			}
 		}
-
-		return max;
+		return xor;
 	}
 
 }
