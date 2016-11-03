@@ -2,7 +2,9 @@ package com.dzhou.interview.google;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 448. Find All Numbers Disappeared in an Array
@@ -39,6 +41,17 @@ public class FindAllNumbersDisappearedInAnArray {
 			return Collections.emptyList();
 		List<Integer> result = new ArrayList<>();
 
+		Set<Integer> set = new HashSet<>();
+		for (int num : nums) {
+			set.add(num);
+		}
+
+		for (int num = 1; num <= nums.length; num++) {
+			if (!set.contains(num)) {
+				result.add(num);
+			}
+		}
 		return result;
 	}
+
 }
