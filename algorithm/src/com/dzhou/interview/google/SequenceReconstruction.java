@@ -1,5 +1,10 @@
 package com.dzhou.interview.google;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * 444. Sequence Reconstruction
  * 
@@ -52,5 +57,42 @@ package com.dzhou.interview.google;
  *
  */
 public class SequenceReconstruction {
+
+	public boolean sequenceReconstruction(int[] org, int[][] seqs) {
+		Map<Integer, Set<Integer>> graph = createGraph(seqs);
+		if (!isSolution(org, graph)) {
+			return false;
+		}
+
+		return true;
+	}
+
+	private boolean isSolution(int[] org, Map<Integer, Set<Integer>> graph) {
+		for (int i = 0; i < org.length - 1; i++) {
+			if (!graph.containsKey(org[i])) {
+				return false;
+			}
+			if (!graph.get(org[i]).contains(org[i + 1])) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private Map<Integer, Set<Integer>> createGraph(int[][] seqs) {
+		Map<Integer, Set<Integer>> map = new HashMap<>();
+		for (int[] sequence : seqs) {
+			for (int i = 0; i < sequence.length - 1; i++) {
+				add(map, sequence[i], sequence[i + 1]);
+			}
+		}
+		return map;
+	}
+
+	private void add(Map<Integer, Set<Integer>> map, int key, int value) {
+		if (!map.containsKey(key))
+			map.put(key, new HashSet<>());
+		map.get(key).add(value);
+	}
 
 }
