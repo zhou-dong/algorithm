@@ -36,13 +36,14 @@ public class PerfectRectangle {
 
 		@Override
 		public boolean equals(Object obj) {
-			if (!(obj instanceof Point)) {
+			if (!(obj instanceof Point))
 				return false;
-			}
-			if (obj == this) {
+			if (obj == this)
 				return true;
-			}
-			Point other = (Point) obj;
+			return equals((Point) obj);
+		}
+
+		public boolean equals(Point other) {
 			return this.x == other.x && this.y == other.y;
 		}
 	}
