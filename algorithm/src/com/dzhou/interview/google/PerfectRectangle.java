@@ -50,10 +50,6 @@ public class PerfectRectangle {
 	class Rectangle {
 		int left, bottom, right, top;
 
-		Rectangle(int[] rectangle) {
-			this(rectangle[0], rectangle[1], rectangle[2], rectangle[3]);
-		}
-
 		Rectangle(int left, int bottom, int right, int top) {
 			this.left = left;
 			this.bottom = bottom;
@@ -103,7 +99,7 @@ public class PerfectRectangle {
 		int sumArea = 0;
 		Set<Point> set = new HashSet<>();
 		for (int[] item : rectangles) {
-			Rectangle rectangle = new Rectangle(item);
+			Rectangle rectangle = new Rectangle(item[0], item[1], item[2], item[3]);
 			sumArea += rectangle.area();
 			together.expend(rectangle);
 			toggle(set, rectangle);
