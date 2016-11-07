@@ -38,7 +38,7 @@ public class ValidPerfectSquare {
 	// Time Limit Exceeded
 	class Binary_Search_Solution {
 		public boolean isPerfectSquare(int num) {
-			int left = 0, right = num;
+			int left = 0, right = num / 2 + 1;
 			while (left <= right) {
 				int mid = (left + right) / 2;
 				double square = mid * mid;
