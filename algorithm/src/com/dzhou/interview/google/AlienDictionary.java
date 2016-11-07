@@ -1,5 +1,13 @@
 package com.dzhou.interview.google;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Stack;
+
 /**
  * 269. Alien Dictionary
  * 
@@ -28,15 +36,129 @@ package com.dzhou.interview.google;
  * 
  * @author zhoudong
  *
+ *         https://www.youtube.com/watch?v=W0_KVkApeK4
  */
 public class AlienDictionary {
 
-	public String alienOrder(String[] words) {
-		return null;
+	class TrieNode {
+		List<Character> order;
+		Map<Character, TrieNode> children;
+
+		TrieNode() {
+			this.order = new ArrayList<>();
+			this.children = new HashMap<>();
+		}
+
+		TrieNode addChild(char ch) {
+			if (!this.children.containsKey(ch)) {
+				this.children.put(ch, new TrieNode());
+				this.order.add(ch);
+			}
+			return this.children.get(ch);
+		}
+
+		int size() {
+			return children.size();
+		}
 	}
 
-	private void helper() {
+	class Trie {
+		TrieNode root;
 
+		Trie(String[] words) {
+			root = new TrieNode();
+			for (String word : words) {
+				insert(word);
+			}
+		}
+
+		void insert(String word) {
+			TrieNode current = root;
+			for (char ch : word.toCharArray()) {
+				current = current.addChild(ch);
+			}
+		}
+	}
+
+	class TopologicalSort {
+		Stack<Character> stack;
+		Map<Character, Set<Character>> graph;
+
+		public String sort(Map<Character, Set<Character>> graph) {
+			stack = new Stack<>();
+			this.graph = graph;
+			Set<Character> visiting = new HashSet<>();
+			Set<Character> visited = new HashSet<>();
+			for (char key : graph.keySet()) {
+				if (!dfs(visiting, visited, key)) {
+					return "";
+				}
+			}
+			return result();
+		}
+
+		private boolean dfs(Set<Character> visiting, Set<Character> visited, char start) {
+			if (visited.contains(start)) {
+				return true;
+			}
+			if (visiting.contains(start)) {
+				return false;
+			}
+			if (!graph.containsKey(start)) {
+				stack.push(start);
+				visited.add(start);
+				return true;
+			}
+			visiting.add(start);
+			for (char connect : graph.get(start)) {
+				dfs(visiting, visited, connect);
+			}
+			stack.push(start);
+			visiting.remove(start);
+			visited.add(start);
+			return true;
+		}
+
+		private String result() {
+			StringBuilder sb = new StringBuilder();
+			while (!stack.isEmpty())
+				sb.append(stack.pop());
+			return sb.toString();
+		}
+	}
+
+	public String alienOrder(String[] words) {
+		if (words.length == 1) {
+			return words[0];
+		}
+		Trie trie = new Trie(words);
+		Map<Character, Set<Character>> graph = createGraph(trie);
+		return new TopologicalSort().sort(graph);
+	}
+
+	private Map<Character, Set<Character>> createGraph(Trie trie) {
+		Map<Character, Set<Character>> graph = new HashMap<>();
+		traverse(trie.root, graph);
+		return graph;
+	}
+
+	private void traverse(TrieNode trieNode, Map<Character, Set<Character>> graph) {
+		addEdges(trieNode.order, graph);
+		for (TrieNode child : trieNode.children.values()) {
+			traverse(child, graph);
+		}
+	}
+
+	private void addEdges(List<Character> order, Map<Character, Set<Character>> graph) {
+		for (int i = 0; i < order.size() - 1; i++) {
+			addToMap(graph, order.get(i), order.get(i + 1));
+		}
+	}
+
+	private void addToMap(Map<Character, Set<Character>> map, char key, char value) {
+		if (!map.containsKey(key))
+			map.put(key, new HashSet<>());
+		map.get(key).add(value);
 	}
 
 }
