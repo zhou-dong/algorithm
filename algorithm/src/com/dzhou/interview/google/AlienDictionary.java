@@ -54,6 +54,10 @@ public class AlienDictionary {
 			if (!this.children.containsKey(ch)) {
 				this.children.put(ch, new TrieNode());
 				this.order.add(ch);
+			} else {
+				if (order.get(order.size() - 1) != ch) {
+					return null;
+				}
 			}
 			return this.children.get(ch);
 		}
@@ -84,6 +88,9 @@ public class AlienDictionary {
 			TrieNode current = root;
 			for (char ch : word.toCharArray()) {
 				current = current.addChild(ch);
+				if (current == null) {
+					return false;
+				}
 				characters.add(ch);
 			}
 			return current.size() == 0;
@@ -121,7 +128,9 @@ public class AlienDictionary {
 			}
 			visiting.add(start);
 			for (char connect : graph.get(start)) {
-				dfs(visiting, visited, connect);
+				if (!dfs(visiting, visited, connect)) {
+					return false;
+				}
 			}
 			stack.push(start);
 			visiting.remove(start);
