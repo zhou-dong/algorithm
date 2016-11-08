@@ -1,6 +1,7 @@
 package com.dzhou.interview.google;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -63,20 +64,29 @@ public class AlienDictionary {
 	}
 
 	class Trie {
+		boolean isValid;
 		TrieNode root;
+		Set<Character> characters;
 
 		Trie(String[] words) {
+			this.isValid = true;
 			root = new TrieNode();
+			characters = new HashSet<>();
 			for (String word : words) {
-				insert(word);
+				if (!insert(word)) {
+					isValid = false;
+					break;
+				}
 			}
 		}
 
-		void insert(String word) {
+		boolean insert(String word) {
 			TrieNode current = root;
 			for (char ch : word.toCharArray()) {
 				current = current.addChild(ch);
+				characters.add(ch);
 			}
+			return current.size() == 0;
 		}
 	}
 
@@ -84,14 +94,14 @@ public class AlienDictionary {
 		Stack<Character> stack;
 		Map<Character, Set<Character>> graph;
 
-		public String sort(Map<Character, Set<Character>> graph) {
+		public StringBuilder sort(Map<Character, Set<Character>> graph) {
 			stack = new Stack<>();
 			this.graph = graph;
 			Set<Character> visiting = new HashSet<>();
 			Set<Character> visited = new HashSet<>();
 			for (char key : graph.keySet()) {
 				if (!dfs(visiting, visited, key)) {
-					return "";
+					return null;
 				}
 			}
 			return result();
@@ -119,11 +129,11 @@ public class AlienDictionary {
 			return true;
 		}
 
-		private String result() {
+		private StringBuilder result() {
 			StringBuilder sb = new StringBuilder();
 			while (!stack.isEmpty())
 				sb.append(stack.pop());
-			return sb.toString();
+			return sb;
 		}
 	}
 
@@ -132,8 +142,23 @@ public class AlienDictionary {
 			return words[0];
 		}
 		Trie trie = new Trie(words);
+		if (trie.isValid == false) {
+			return "";
+		}
+		Set<Character> characters = trie.characters;
 		Map<Character, Set<Character>> graph = createGraph(trie);
-		return new TopologicalSort().sort(graph);
+		StringBuilder sb = new TopologicalSort().sort(graph);
+		if (sb == null)
+			return "";
+		if (characters.size() == sb.length()) {
+			return sb.toString();
+		}
+		for (char ch : characters) {
+			if (sb.indexOf(ch + "") == -1) {
+				sb.append(ch);
+			}
+		}
+		return sb.toString();
 	}
 
 	private Map<Character, Set<Character>> createGraph(Trie trie) {
