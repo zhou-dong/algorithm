@@ -3,10 +3,8 @@ package org.dzhou.practice.hard.premium;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 
@@ -39,140 +37,158 @@ import java.util.Stack;
  */
 public class AlienDictionary {
 
-	public class Solution {
+	class TrieNode {
+		List<Character> order;
+		Map<Character, TrieNode> children;
 
-		public String alienOrder(String[] words) {
-			Map<Character, Set<Character>> map = new HashMap<Character, Set<Character>>();
-			Map<Character, Integer> degree = new HashMap<Character, Integer>();
-			String result = "";
-			if (words == null || words.length == 0)
-				return result;
-			for (String s : words) {
-				for (char c : s.toCharArray()) {
-					degree.put(c, 0);
+		TrieNode() {
+			this.order = new ArrayList<>();
+			this.children = new HashMap<>();
+		}
+
+		TrieNode addChild(char ch) {
+			if (!this.children.containsKey(ch)) {
+				this.children.put(ch, new TrieNode());
+				this.order.add(ch);
+			} else {
+				if (order.get(order.size() - 1) != ch) {
+					return null;
 				}
 			}
-			for (int i = 0; i < words.length - 1; i++) {
-				String cur = words[i];
-				String next = words[i + 1];
-				int length = Math.min(cur.length(), next.length());
-				for (int j = 0; j < length; j++) {
-					char c1 = cur.charAt(j);
-					char c2 = next.charAt(j);
-					if (c1 != c2) {
-						Set<Character> set = new HashSet<Character>();
-						if (map.containsKey(c1))
-							set = map.get(c1);
-						if (!set.contains(c2)) {
-							set.add(c2);
-							map.put(c1, set);
-							degree.put(c2, degree.get(c2) + 1);
-						}
-						break;
-					}
-				}
-			}
-			Queue<Character> q = new LinkedList<Character>();
-			for (char c : degree.keySet()) {
-				if (degree.get(c) == 0)
-					q.add(c);
-			}
-			while (!q.isEmpty()) {
-				char c = q.remove();
-				result += c;
-				if (map.containsKey(c)) {
-					for (char c2 : map.get(c)) {
-						degree.put(c2, degree.get(c2) - 1);
-						if (degree.get(c2) == 0)
-							q.add(c2);
-					}
-				}
-			}
-			if (result.length() != degree.size())
-				return "";
-			return result;
+			return this.children.get(ch);
+		}
+
+		int size() {
+			return children.size();
 		}
 	}
 
-	enum State {
-		UNVISIT, VISITING, VISITED;
-	}
+	class Trie {
+		boolean isValid;
+		TrieNode root;
+		Set<Character> characters;
 
-	// wrong answer
-	public class Solution1 {
-
-		public String alienOrder(String[] words) {
-			Map<Character, List<Character>> graph = createGraph(words);
-			TopologicalSort topologicalSort = new TopologicalSort();
-			Stack<Character> stack = topologicalSort.sort(graph);
-			return topologicalSort.hasCircle ? "" : stringResult(stack);
+		Trie(String[] words) {
+			this.isValid = true;
+			root = new TrieNode();
+			characters = new HashSet<>();
+			for (String word : words) {
+				if (!insert(word)) {
+					isValid = false;
+					break;
+				}
+			}
 		}
 
-		private String stringResult(Stack<Character> stack) {
+		boolean insert(String word) {
+			TrieNode current = root;
+			for (char ch : word.toCharArray()) {
+				current = current.addChild(ch);
+				if (current == null) {
+					return false;
+				}
+				characters.add(ch);
+			}
+			return current.size() == 0;
+		}
+	}
+
+	class TopologicalSort {
+		Stack<Character> stack;
+		Map<Character, Set<Character>> graph;
+
+		public StringBuilder sort(Map<Character, Set<Character>> graph) {
+			stack = new Stack<>();
+			this.graph = graph;
+			Set<Character> visiting = new HashSet<>();
+			Set<Character> visited = new HashSet<>();
+			for (char key : graph.keySet()) {
+				if (!dfs(visiting, visited, key)) {
+					return null;
+				}
+			}
+			return result();
+		}
+
+		private boolean dfs(Set<Character> visiting, Set<Character> visited, char start) {
+			if (visited.contains(start)) {
+				return true;
+			}
+			if (visiting.contains(start)) {
+				return false;
+			}
+			if (!graph.containsKey(start)) {
+				stack.push(start);
+				visited.add(start);
+				return true;
+			}
+			visiting.add(start);
+			for (char connect : graph.get(start)) {
+				if (!dfs(visiting, visited, connect)) {
+					return false;
+				}
+			}
+			stack.push(start);
+			visiting.remove(start);
+			visited.add(start);
+			return true;
+		}
+
+		private StringBuilder result() {
 			StringBuilder sb = new StringBuilder();
 			while (!stack.isEmpty())
 				sb.append(stack.pop());
+			return sb;
+		}
+	}
+
+	public String alienOrder(String[] words) {
+		if (words.length == 1) {
+			return words[0];
+		}
+		Trie trie = new Trie(words);
+		if (trie.isValid == false) {
+			return "";
+		}
+		Set<Character> characters = trie.characters;
+		Map<Character, Set<Character>> graph = createGraph(trie);
+		StringBuilder sb = new TopologicalSort().sort(graph);
+		if (sb == null)
+			return "";
+		if (characters.size() == sb.length()) {
 			return sb.toString();
 		}
-
-		private Map<Character, List<Character>> createGraph(String[] words) {
-			Map<Character, List<Character>> graph = new HashMap<>();
-			for (String word : words) {
-				for (int i = 0; i < word.length() - 1; i++) {
-					addToMap(graph, word.charAt(i), word.charAt(i + 1));
-				}
-			}
-			return graph;
-		}
-
-		private void addToMap(Map<Character, List<Character>> map, char key, char value) {
-			if (key == value)
-				return;
-			if (!map.containsKey(key))
-				map.put(key, new ArrayList<>());
-			map.get(key).add(value);
-		}
-
-		class TopologicalSort {
-			Map<Character, State> visited = new HashMap<>();
-			Stack<Character> result = new Stack<>();
-			Map<Character, List<Character>> graph = null;
-			boolean hasCircle = false;
-
-			public Stack<Character> sort(Map<Character, List<Character>> graph) {
-				if (graph == null)
-					return result;
-				this.graph = graph;
-				sort();
-				return result;
-			}
-
-			private void sort() {
-				for (char c : graph.keySet()) {
-					if (visited.containsKey(c))
-						continue;
-					dfs(c);
-				}
-			}
-
-			private void dfs(char c) {
-				visited.put(c, State.VISITING);
-				if (graph.containsKey(c)) {
-					for (char child : graph.get(c)) {
-						if (!visited.containsKey(child))
-							dfs(child);
-						else if (visited.get(child) == State.VISITED) {
-							continue;
-						} else if (visited.get(child) == State.VISITING) {
-							hasCircle = true;
-							return;
-						}
-					}
-				}
-				visited.put(c, State.VISITED);
-				result.add(c);
+		for (char ch : characters) {
+			if (sb.indexOf(ch + "") == -1) {
+				sb.append(ch);
 			}
 		}
+		return sb.toString();
+	}
+
+	private Map<Character, Set<Character>> createGraph(Trie trie) {
+		Map<Character, Set<Character>> graph = new HashMap<>();
+		traverse(trie.root, graph);
+		return graph;
+	}
+
+	private void traverse(TrieNode trieNode, Map<Character, Set<Character>> graph) {
+		addEdges(trieNode.order, graph);
+		for (TrieNode child : trieNode.children.values()) {
+			traverse(child, graph);
+		}
+	}
+
+	private void addEdges(List<Character> order, Map<Character, Set<Character>> graph) {
+		for (int i = 0; i < order.size() - 1; i++) {
+			addToMap(graph, order.get(i), order.get(i + 1));
+		}
+	}
+
+	private void addToMap(Map<Character, Set<Character>> map, char key, char value) {
+		if (!map.containsKey(key))
+			map.put(key, new HashSet<>());
+		map.get(key).add(value);
 	}
 
 }
