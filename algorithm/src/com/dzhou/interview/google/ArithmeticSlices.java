@@ -43,7 +43,19 @@ package com.dzhou.interview.google;
 public class ArithmeticSlices {
 
 	public int numberOfArithmeticSlices(int[] A) {
-
+		int sum = 0;
+		int tmp = 0;
+		int n = A.length;
+		for (int i = 1; i < n - 1; i++) {
+			if (A[i - 1] - A[i] == A[i] - A[i + 1]) {
+				tmp++;
+			} else {
+				sum += (tmp * (tmp + 1) / 2);
+				tmp = 0;
+			}
+		}
+		sum += (tmp * (tmp + 1) / 2);
+		return sum;
 	}
 
 }
