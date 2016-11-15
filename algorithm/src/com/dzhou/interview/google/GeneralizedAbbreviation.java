@@ -1,6 +1,8 @@
 package com.dzhou.interview.google;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,20 +24,44 @@ import java.util.List;
 public class GeneralizedAbbreviation {
 
 	public List<String> generateAbbreviations(String word) {
-		List<String> res = new ArrayList<String>();
-		backtrack(res, word, 0, "", 0);
-		return res;
+		List<int[]> patterns = new ArrayList<>();
+		backtrack(word, patterns, 0, new int[word.length()]);
+		return decode(patterns, word);
 	}
 
-	private void backtrack(List<String> res, String word, int pos, String cur, int count) {
-		if (pos == word.length()) {
-			if (count > 0)
-				cur += count;
-			res.add(cur);
-		} else {
-			backtrack(res, word, pos + 1, cur, count + 1);
-			backtrack(res, word, pos + 1, cur + (count > 0 ? count : "") + word.charAt(pos), 0);
+	public void backtrack(String word, List<int[]> patterns, int start, int[] pattern) {
+		patterns.add(Arrays.copyOf(pattern, pattern.length));
+		for (int i = start; i < word.length(); i++) {
+			pattern[i] = 1;
+			backtrack(word, patterns, i + 1, pattern);
+			pattern[i] = 0;
 		}
+	}
+
+	private List<String> decode(List<int[]> patterns, String word) {
+		List<String> result = new ArrayList<>();
+		for (int[] pattern : patterns)
+			result.add(decode(pattern, word));
+		return result;
+	}
+
+	public String decode(int[] pattern, String word) {
+		int count = 0;
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < pattern.length; i++) {
+			if (pattern[i] == 0) {
+				if (count != 0) {
+					sb.append(count);
+					count = 0;
+				}
+				sb.append(word.charAt(i));
+			} else {
+				count++;
+			}
+		}
+		if (count != 0)
+			sb.append(count);
+		return sb.toString();
 	}
 
 }
