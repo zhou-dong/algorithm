@@ -30,4 +30,8 @@ package com.dzhou.interview.google;
  */
 public class MinimumUniqueWordAbbreviation {
 
+	public String minAbbreviation(String target, String[] dictionary) {
+
+	}
+
 }
