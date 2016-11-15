@@ -42,20 +42,37 @@ package com.dzhou.interview.google;
  */
 public class ArithmeticSlices {
 
-	public int numberOfArithmeticSlices(int[] A) {
-		int sum = 0;
-		int tmp = 0;
-		int n = A.length;
-		for (int i = 1; i < n - 1; i++) {
-			if (A[i - 1] - A[i] == A[i] - A[i + 1]) {
-				tmp++;
+	public int numberOfArithmeticSlices1(int[] nums) {
+		int sum = 0, count = 2;
+		for (int i = 0; i < nums.length - 2; i++) {
+			if (isArithmeticUnit(nums, i)) {
+				count++;
 			} else {
-				sum += (tmp * (tmp + 1) / 2);
-				tmp = 0;
+				sum += count(count);
+				count = 2;
 			}
 		}
-		sum += (tmp * (tmp + 1) / 2);
+		sum += count(count);
 		return sum;
+	}
+
+	public boolean isArithmeticUnit(int[] nums, int start) {
+		if (start + 3 > nums.length)
+			return false;
+		return nums[start + 1] - nums[start] == nums[start + 2] - nums[start + 1];
+	}
+
+	public int count(int num) {
+		if (num < 3)
+			return 0;
+		int[] dp = new int[num + 1];
+		for (int i = 0; i < 3; i++) {
+			dp[i] = 0;
+		}
+		for (int i = 3; i < num + 1; i++) {
+			dp[i] = (i - 2) + dp[i - 1];
+		}
+		return dp[num];
 	}
 
 }
