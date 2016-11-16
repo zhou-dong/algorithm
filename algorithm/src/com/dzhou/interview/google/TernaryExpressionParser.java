@@ -32,24 +32,21 @@ import java.util.Stack;
 public class TernaryExpressionParser {
 
 	public String parseTernary(String expression) {
-		String result = null;
 		Stack<Character> stack = new Stack<>();
 		for (int i = expression.length() - 1; i >= 0; i--) {
 			if (expression.charAt(i) != '?') {
 				stack.push(expression.charAt(i));
 			} else {
-				char[] unit = popFromStack(stack);
-				unit[0] = expression.charAt(--i);
-				char oneUnitResult = executeOneUnit(unit);
-				stack.push(oneUnitResult);
-				result = Character.toString(oneUnitResult);
+				char[] unit = createOneUnit(stack, expression.charAt(--i));
+				stack.push(executeOneUnit(unit));
 			}
 		}
-		return result;
+		return stack.isEmpty() ? null : Character.toString(stack.pop());
 	}
 
-	private char[] popFromStack(Stack<Character> stack) {
+	private char[] createOneUnit(Stack<Character> stack, char trueOrFalse) {
 		char[] unit = new char[5];
+		unit[0] = trueOrFalse;
 		unit[1] = '?';
 		for (int i = 2; i < 5; i++)
 			unit[i] = stack.pop();
