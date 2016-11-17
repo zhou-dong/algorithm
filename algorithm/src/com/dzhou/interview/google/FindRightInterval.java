@@ -1,5 +1,8 @@
 package com.dzhou.interview.google;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -69,17 +72,69 @@ public class FindRightInterval {
 		}
 	}
 
-	public int[] findRightInterval(Interval[] intervals) {
-		int[] result = new int[intervals.length];
-		java.util.NavigableMap<Integer, Integer> map = new TreeMap<>();
-		for (int i = 0; i < intervals.length; i++) {
-			map.put(intervals[i].start, i);
+	class TreeMap_Solution {
+		public int[] findRightInterval(Interval[] intervals) {
+			int[] result = new int[intervals.length];
+			java.util.NavigableMap<Integer, Integer> map = new TreeMap<>();
+			for (int i = 0; i < intervals.length; i++) {
+				map.put(intervals[i].start, i);
+			}
+			for (int i = 0; i < intervals.length; i++) {
+				Map.Entry<Integer, Integer> entry = map.ceilingEntry(intervals[i].end);
+				result[i] = (entry != null) ? entry.getValue() : -1;
+			}
+			return result;
 		}
-		for (int i = 0; i < intervals.length; i++) {
-			Map.Entry<Integer, Integer> entry = map.ceilingEntry(intervals[i].end);
-			result[i] = (entry != null) ? entry.getValue() : -1;
+	}
+
+	class BinarySearch_Solution {
+		class Node implements Comparable<Node> {
+			int start;
+			int index;
+
+			Node(int start, int index) {
+				this.start = start;
+				this.index = index;
+			}
+
+			@Override
+			public int compareTo(Node o) {
+				return this.start - o.start;
+			}
 		}
-		return result;
+
+		public int[] findRightInterval(Interval[] intervals) {
+			List<Node> list = new ArrayList<>();
+			for (int i = 0; i < intervals.length; i++) {
+				list.add(new Node(intervals[i].start, i));
+			}
+			Collections.sort(list);
+
+			int[] result = new int[intervals.length];
+			for (int i = 0; i < intervals.length; i++) {
+				result[i] = findRightIndex(list, intervals[i].end);
+			}
+			return result;
+		}
+
+		private int findRightIndex(List<Node> list, int target) {
+			if (target > list.get(list.size() - 1).start)
+				return -1;
+			int left = 0, right = list.size() - 1;
+			while (left < right) {
+				int mid = (left + right) / 2;
+				int value = list.get(mid).start;
+				if (value == target) {
+					return list.get(mid).index;
+				} else if (value > target) {
+					right = mid - 1;
+				} else {
+					left = mid + 1;
+				}
+			}
+			Node node = list.get(left);
+			return (node.start < target) ? node.index + 1 : node.index;
+		}
 	}
 
 }
