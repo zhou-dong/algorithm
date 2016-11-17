@@ -1,5 +1,9 @@
 package com.dzhou.interview.google;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * 454. 4Sum II
  * 
@@ -32,4 +36,42 @@ package com.dzhou.interview.google;
  */
 public class FourSumII {
 
+	public int fourSumCount(int[] A, int[] B, int[] C, int[] D) {
+		int[] AB = twoSumCombination(A, B);
+		int[] CD = twoSumCombination(C, D);
+		return countZero(AB, CD);
+	}
+
+	private int countZero(int[] A, int[] B) {
+		Map<Integer, Integer> map = toHashMap(B);
+		int count = 0;
+		for (int num : A) {
+			if (map.containsKey(0 - num)) {
+				count += map.get(0 - num);
+			}
+		}
+		return count;
+	}
+
+	private Map<Integer, Integer> toHashMap(int[] nums) {
+		Map<Integer, Integer> map = new HashMap<>();
+		for (int num : nums) {
+			if (map.containsKey(num)) {
+				map.put(num, map.get(num) + 1);
+			} else {
+				map.put(num, 1);
+			}
+		}
+		return map;
+	}
+
+	private int[] twoSumCombination(int[] A, int[] B) {
+		int[] result = new int[A.length * B.length];
+		for (int i = 0; i < A.length; i++) {
+			for (int j = 0; j < B.length; j++) {
+				result[i * B.length + j] = A[i] + B[j];
+			}
+		}
+		return result;
+	}
 }
