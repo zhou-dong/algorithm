@@ -109,7 +109,6 @@ public class FindRightInterval {
 				list.add(new Node(intervals[i].start, i));
 			}
 			Collections.sort(list);
-
 			int[] result = new int[intervals.length];
 			for (int i = 0; i < intervals.length; i++) {
 				result[i] = findRightIndex(list, intervals[i].end);
