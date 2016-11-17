@@ -75,7 +75,7 @@ public class FindRightInterval {
 		for (int i = 0; i < intervals.length; i++) {
 			map.put(intervals[i].start, i);
 		}
-		for (int i = 0; i < intervals.length; ++i) {
+		for (int i = 0; i < intervals.length; i++) {
 			Map.Entry<Integer, Integer> entry = map.ceilingEntry(intervals[i].end);
 			result[i] = (entry != null) ? entry.getValue() : -1;
 		}
