@@ -31,7 +31,8 @@ import java.util.Comparator;
  * balloons).
  * 
  * @author zhoudong
- *
+ * 
+ *         所以这个题的本质是找，最小的重合区间（重叠区间）
  */
 public class MinimumNumberOfArrowsToBurstBalloons {
 
