@@ -3,6 +3,8 @@ package com.dzhou.interview.google;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.dzhou.interview.google.test.PartitionEqualSubsetSum;
+
 import junit.framework.Assert;
 
 public class PartitionEqualSubsetSumTest {
