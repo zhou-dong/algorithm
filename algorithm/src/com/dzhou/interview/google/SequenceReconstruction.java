@@ -47,7 +47,7 @@ import java.util.Set;
  * Output: true
  * 
  * Explanation: The sequences [1,2], [1,3], and [2,3] can uniquely reconstruct
- * the original sequence [1,2,3]. 
+ * the original sequence [1,2,3].
  * 
  * Example 4:
  * 
@@ -61,51 +61,12 @@ import java.util.Set;
 public class SequenceReconstruction {
 
 	public boolean sequenceReconstruction(int[] org, int[][] seqs) {
-		if (org == null || org.length < 2)
+		if (org == null || seqs == null || org.length == 0 || seqs.length == 0)
 			return false;
-		Map<Integer, Set<Integer>> graph = createGraph(seqs);
-		if (!isSolution(org, graph)) {
-			return false;
-		}
-		if (hasCycle(graph, org)) {
+		Map<Integer, Set<Integer>> graph = createGraph(seqs, org.length);
+		if (graph == null) {
 			return false;
 		}
-		return true;
-	}
-
-	private boolean hasCycle(Map<Integer, Set<Integer>> graph, int[] org) {
-		Set<Integer> visiting = new HashSet<>();
-		Set<Integer> visited = new HashSet<>();
-		for (int num : org) {
-			if (dfs(visiting, visited, graph, num)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private boolean dfs(Set<Integer> visiting, Set<Integer> visited, Map<Integer, Set<Integer>> map, int start) {
-		if (!map.containsKey(start)) {
-			return false;
-		}
-		if (visited.contains(start)) {
-			return false;
-		}
-		if (visiting.contains(start)) {
-			return true;
-		}
-		visiting.add(start);
-		for (int connect : map.get(start)) {
-			if (dfs(visiting, visited, map, connect)) {
-				return true;
-			}
-		}
-		visiting.remove(start);
-		visited.add(start);
-		return false;
-	}
-
-	private boolean isSolution(int[] org, Map<Integer, Set<Integer>> graph) {
 		for (int i = 0; i < org.length - 1; i++) {
 			if (!graph.containsKey(org[i])) {
 				return false;
@@ -114,13 +75,17 @@ public class SequenceReconstruction {
 				return false;
 			}
 		}
-		return true;
+		return !graph.containsKey(org[org.length - 1]);
 	}
 
-	private Map<Integer, Set<Integer>> createGraph(int[][] seqs) {
+	private Map<Integer, Set<Integer>> createGraph(int[][] seqs, int n) {
 		Map<Integer, Set<Integer>> map = new HashMap<>();
 		for (int[] sequence : seqs) {
-			for (int i = 0; i < sequence.length - 1; i++) {
+			for (int i = 0; i < sequence.length; i++) {
+				if (sequence[i] < 1 || sequence[i] > n)
+					return null;
+				if (i == sequence.length - 1)
+					continue;
 				add(map, sequence[i], sequence[i + 1]);
 			}
 		}
