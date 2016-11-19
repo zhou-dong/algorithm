@@ -1,9 +1,9 @@
-package com.dzhou.interview.google;
+package com.dzhou.interview.google.test;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dzhou.interview.google.test.PartitionEqualSubsetSum;
+import com.dzhou.interview.google.PartitionEqualSubsetSum;
 
 import junit.framework.Assert;
 

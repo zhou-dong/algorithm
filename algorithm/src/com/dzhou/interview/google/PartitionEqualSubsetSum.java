@@ -1,4 +1,4 @@
-package com.dzhou.interview.google.test;
+package com.dzhou.interview.google;
 
 /**
  * 416. Partition Equal Subset Sum Difficulty: Medium
