@@ -57,6 +57,7 @@ import java.util.Set;
  * 
  * @author zhoudong
  *
+ *         reference: http://www.cnblogs.com/grandyang/p/6032498.html
  */
 public class SequenceReconstruction {
 
