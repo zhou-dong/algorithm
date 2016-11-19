@@ -1,10 +1,8 @@
 package com.dzhou.interview.google;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.PriorityQueue;
 import java.util.Set;
 
 /**
@@ -37,148 +35,88 @@ import java.util.Set;
  */
 public class MinimumUniqueWordAbbreviation {
 
-	class Abbreviation {
-		int[] pattern;
-		int size;
-		int value;
-		String word;
-
-		Abbreviation(String word, int[] pattern) {
-			this.pattern = pattern;
-			this.size = pattern.length;
-			this.value = value();
-			this.word = word;
-		}
-
-		private int value() {
-			int result = 0;
-			for (int i = 0; i < size; i++)
-				result = result * 10 + pattern[i];
-			return result;
-		}
-
-		private int length() {
-			int result = 0, count = 0;
-			for (int i = 0; i < pattern.length; i++) {
-				if (pattern[i] == 0) {
-					result++;
-					if (count > 0) {
-						result++;
-						count = 0;
-					}
-				} else {
-					count++;
-				}
-			}
-			return result;
-		}
-
-		@Override
-		public int hashCode() {
-			return Objects.hash(value);
-		}
-
-		@Override
-		public boolean equals(Object other) {
-			if (this == other)
-				return true;
-			if (!(other instanceof Abbreviation))
-				return false;
-			return this.value == ((Abbreviation) other).value;
-		}
-
-		@Override
-		public String toString() {
-			int count = 0;
-			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < pattern.length; i++) {
-				if (pattern[i] == 0) {
-					if (count != 0) {
-						sb.append(count);
-						count = 0;
-					}
-					sb.append(word.charAt(i));
-				} else {
-					count++;
-				}
-			}
-			if (count != 0)
-				sb.append(count);
-			return sb.toString();
-		}
-	}
-
 	public String minAbbreviation(String target, String[] dictionary) {
 		Set<String> sameLengths = sameLengthWords(dictionary, target);
 		if (sameLengths.size() == 0)
-			return target.length() + "";
-		List<Abbreviation> abbreviations = createWordAbbreviations(target);
-		List<Abbreviation> sameAbbreviations = findSameAbbreviations(sameLengths, target);
-		return abbreviations.get(minIndex(abbreviations, sameAbbreviations)).toString();
+			return Integer.toString(target.length());
+		PriorityQueue<String> heap = new PriorityQueue<>(new Comparator<String>() {
+			@Override
+			public int compare(String o1, String o2) {
+				return o1.length() - o2.length();
+			}
+		});
+		createWordAbbreviations(target, heap);
+		while (!heap.isEmpty()) {
+			String abbr = heap.poll();
+			if (isValid(abbr, sameLengths)) {
+				return abbr;
+			}
+		}
+		return target;
 	}
 
-	private List<Abbreviation> createWordAbbreviations(String word) {
-		List<int[]> patterns = new ArrayList<>();
-		backtrack(word, patterns, 0, new int[word.length()]);
-		return decode(patterns, word);
+	private boolean isValid(String abbr, Set<String> sameLengths) {
+		for (String word : sameLengths) {
+			if (validWordAbbreviation(word, abbr)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
-	private void backtrack(String word, List<int[]> patterns, int start, int[] pattern) {
-		patterns.add(Arrays.copyOf(pattern, pattern.length));
+	private boolean validWordAbbreviation(String word, String abbr) {
+		int i = 0, j = 0;
+		while (i < word.length() && j < abbr.length()) {
+			if (Character.isDigit(abbr.charAt(j))) {
+				if ((abbr.charAt(j) - '0') == 0)
+					return false;
+				int size = 0;
+				while (j < abbr.length() && Character.isDigit(abbr.charAt(j))) {
+					size = size * 10 + (abbr.charAt(j) - '0');
+					j++;
+				}
+				i += size;
+			} else {
+				if (word.charAt(i) != abbr.charAt(j)) {
+					return false;
+				}
+				i++;
+				j++;
+			}
+		}
+		return i == word.length() && j == abbr.length();
+	}
+
+	private void createWordAbbreviations(String word, PriorityQueue<String> heap) {
+		backtrack(word, heap, 0, new int[word.length()]);
+	}
+
+	private void backtrack(String word, PriorityQueue<String> heap, int start, int[] pattern) {
+		heap.offer(decode(pattern, word));
 		for (int i = start; i < word.length(); i++) {
 			pattern[i] = 1;
-			backtrack(word, patterns, i + 1, pattern);
+			backtrack(word, heap, i + 1, pattern);
 			pattern[i] = 0;
 		}
 	}
 
-	private List<Abbreviation> decode(List<int[]> patterns, String word) {
-		List<Abbreviation> result = new ArrayList<>();
-		for (int[] pattern : patterns)
-			result.add(new Abbreviation(word, pattern));
-		return result;
-	}
-
-	private List<Abbreviation> findSameAbbreviations(Set<String> sameLengths, String target) {
-		List<Abbreviation> result = new ArrayList<>();
-		int[] pattern = new int[target.length()];
-		Arrays.fill(pattern, 1);
-		result.add(new Abbreviation(target, pattern));
-		for (String word : sameLengths) {
-			List<int[]> items = new ArrayList<>();
-			sameAbbreviations(findSameAbbreviation(target, word), items, 0);
-			for (int[] item : items) {
-				result.add(new Abbreviation(word, item));
-			}
-		}
-		return result;
-	}
-
-	private int[] findSameAbbreviation(String target, String word) {
-		int[] pattern = new int[target.length()];
+	private String decode(int[] pattern, String word) {
+		int count = 0;
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < pattern.length; i++) {
-			if (target.charAt(i) == word.charAt(i)) {
-				pattern[i] = 0;
+			if (pattern[i] == 0) {
+				if (count != 0) {
+					sb.append(count);
+					count = 0;
+				}
+				sb.append(word.charAt(i));
 			} else {
-				pattern[i] = 1;
+				count++;
 			}
 		}
-		return pattern;
-	}
-
-	private int minIndex(List<Abbreviation> abbreviations, List<Abbreviation> sameAbbreviations) {
-		int index = 0, min = Integer.MAX_VALUE;
-		for (int i = 0; i < abbreviations.size(); i++) {
-			Abbreviation abbreviation = abbreviations.get(i);
-			if (sameAbbreviations.contains(abbreviation)) {
-				continue;
-			}
-			if (min > abbreviation.length()) {
-				min = abbreviation.length();
-				index = i;
-			}
-		}
-		return index;
+		if (count != 0)
+			sb.append(count);
+		return sb.toString();
 	}
 
 	private Set<String> sameLengthWords(String[] dictionary, String target) {
@@ -189,18 +127,6 @@ public class MinimumUniqueWordAbbreviation {
 			}
 		}
 		return result;
-	}
-
-	private static void sameAbbreviations(int[] pattern, List<int[]> result, int start) {
-		result.add(Arrays.copyOf(pattern, pattern.length));
-		for (int i = start; i < pattern.length; i++) {
-			if (pattern[i] == 1) {
-				continue;
-			}
-			pattern[i] = 1;
-			sameAbbreviations(pattern, result, i + 1);
-			pattern[i] = 0;
-		}
 	}
 
 }
