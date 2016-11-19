@@ -36,18 +36,48 @@ public class PartitionEqualSubsetSum {
 
 	public boolean canPartition(int[] nums) {
 		int sum = sum(nums);
-		// Time Limit Exceeded
-		return (sum % 2 != 0) ? false : dfs(nums, sum / 2, 0, 0);
+		return (sum % 2 != 0) ? false : dpSubsetSum(nums, sum / 2);
+	}
+
+	boolean dpSubsetSum(int[] nums, int sum) {
+		boolean[][] dp = new boolean[nums.length][sum + 1];
+		if (nums[0] <= sum) {
+			dp[0][nums[0]] = true;
+		}
+		for (int row = 1; row < nums.length; row++) {
+			int num = nums[row];
+			if (num > sum) {
+				continue;
+			}
+			if (num == sum) {
+				return true;
+			}
+			for (int col = 1; col <= sum; col++) {
+				if (dp[row - 1][col] == true) {
+					dp[row][col] = true;
+					continue;
+				}
+				if (num > col) {
+					dp[row][col] = dp[row - 1][col];
+				} else if (num == col) {
+					dp[row][col] = true;
+				} else {
+					dp[row][col] = dp[row - 1][col - num];
+				}
+			}
+		}
+		return dp[nums.length - 1][sum];
 	}
 
 	// Time Limit Exceeded
-	boolean dfs(int[] nums, int sum, int start, int prev) {
+	// return (sum % 2 != 0) ? false : dfsSubsetSum(nums, sum / 2, 0, 0);
+	boolean dfsSubsetSum(int[] nums, int sum, int start, int prev) {
 		if (prev + nums[start] == sum) {
 			return true;
 		}
 		for (int i = start; i < nums.length; i++) {
 			for (int j = i + 1; j < nums.length; j++) {
-				if (dfs(nums, sum, j, prev + nums[i])) {
+				if (dfsSubsetSum(nums, sum, j, prev + nums[i])) {
 					return true;
 				}
 			}
