@@ -29,39 +29,50 @@ import java.util.Set;
  */
 public class KthSmallestInLexicographicalOrder {
 
-	public int findKthNumber(int n, int k) {
-		if (k == 1)
-			return 1;
-		List<Integer> result = new ArrayList<>();
-		Set<Integer> set = new HashSet<>();
-		for (int i = 1; i <= n; i++) {
-			backtrack(result, i, n, set);
+	class Denary_Tree_Solution {
+
+		public int findKthNumber(int n, int k) {
+
+			int cur = 1;
+			--k;
+			while (k > 0) {
+				long step = 0, first = cur, last = cur + 1;
+				while (first <= n) {
+					step += Math.min((long) n + 1, last) - first;
+					first *= 10;
+					last *= 10;
+				}
+				if (step <= k) {
+					++cur;
+					k -= step;
+				} else {
+					cur *= 10;
+					--k;
+				}
+			}
+			return cur;
+
 		}
-		return result.get(k - 1);
 	}
 
-	private void backtrack(List<Integer> result, int start, int n, Set<Integer> set) {
-		if (start > n)
-			return;
-		if (set.contains(start)) {
-			return;
-		}
-		result.add(start);
-		set.add(start);
-		for (int j = 0; j < n; j++) {
-			backtrack(result, start * 10 + j, n, set);
-		}
-	}
+	class BruteForce_Solution {
 
-	public static void main(String[] args) {
-		KthSmallestInLexicographicalOrder instance = new KthSmallestInLexicographicalOrder();
-		int k = 2, n = 13;
-		List<Integer> result = new ArrayList<>();
-		Set<Integer> set = new HashSet<>();
-		for (int i = 1; i <= n; i++)
-			instance.backtrack(result, i, n, set);
-		System.out.println(result);
-		System.out.println(instance.findKthNumber(n, k));
+		public int findKthNumber(int n, int k) {
+			List<Integer> result = new ArrayList<>();
+			backtrack(result, 1, n);
+			return result.get(k - 1);
+		}
+
+		private void backtrack(List<Integer> result, int start, int n) {
+			if (start > n)
+				return;
+			result.add(start);
+			backtrack(result, start * 10, n);
+			if (start % 10 == 9)
+				return;
+			backtrack(result, start + 1, n);
+		}
+
 	}
 
 }

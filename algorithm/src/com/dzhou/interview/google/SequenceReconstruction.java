@@ -47,7 +47,9 @@ import java.util.Set;
  * Output: true
  * 
  * Explanation: The sequences [1,2], [1,3], and [2,3] can uniquely reconstruct
- * the original sequence [1,2,3]. Example 4:
+ * the original sequence [1,2,3]. 
+ * 
+ * Example 4:
  * 
  * Input: org: [4,1,5,2,6,3], seqs: [[5,2,6,3],[4,1,5,2]]
  * 
