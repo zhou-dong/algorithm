@@ -66,4 +66,26 @@ package com.dzhou.interview.google;
  */
 public class SentenceScreenFitting {
 
+	public int wordsTyping(String[] sentence, int rows, int cols) {
+
+		StringBuilder total = new StringBuilder();
+		for (String word : sentence) {
+			total.append(word).append(" ");
+		}
+
+		int start = 0;
+		for (int i = 0; i < rows; i++) {
+			start += cols;
+			if (total.charAt(start % total.length()) == ' ') {
+				start++;
+			} else {
+				while (start > 0 && total.charAt((start - 1) % total.length()) != ' ') {
+					start--;
+				}
+			}
+		}
+
+		return start / total.length();
+	}
+
 }
