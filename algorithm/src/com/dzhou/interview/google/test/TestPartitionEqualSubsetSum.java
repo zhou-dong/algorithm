@@ -7,7 +7,7 @@ import com.dzhou.interview.google.PartitionEqualSubsetSum;
 
 import junit.framework.Assert;
 
-public class PartitionEqualSubsetSumTest {
+public class TestPartitionEqualSubsetSum {
 
 	PartitionEqualSubsetSum instance = null;
 
