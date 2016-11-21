@@ -28,26 +28,34 @@ public class IslandPerimeter {
 		Set<String> set = new HashSet<>();
 		for (int row = 0; row < grid.length; row++) {
 			for (int col = 0; col < grid[0].length; col++) {
-				if (grid[row][col] == 0)
-					continue;
-				for (String edge : cell(row, col)) {
-					if (set.contains(edge)) {
-						set.remove(edge);
-					} else {
-						set.add(edge);
-					}
+				if (grid[row][col] == 1) {
+					addCell(set, cell(row, col));
 				}
 			}
 		}
 		return set.size();
 	}
 
+	private void addCell(Set<String> set, List<String> edges) {
+		for (String edge : edges) {
+			addOrRemove(set, edge);
+		}
+	}
+
+	private void addOrRemove(Set<String> set, String edge) {
+		if (set.contains(edge)) {
+			set.remove(edge);
+		} else {
+			set.add(edge);
+		}
+	}
+
 	private List<String> cell(int row, int col) {
 		List<String> edges = new ArrayList<>(4);
 		edges.add(edge(row, col, row, col + 1));
+		edges.add(edge(row + 1, col, row + 1, col + 1));
+		edges.add(edge(row, col, row + 1, col));
 		edges.add(edge(row, col + 1, row + 1, col + 1));
-		edges.add(edge(row + 1, col + 1, row + 1, col));
-		edges.add(edge(row + 1, col, row, col));
 		return edges;
 	}
 
