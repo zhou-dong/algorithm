@@ -1,7 +1,11 @@
 package com.dzhou.interview.google;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 
 /**
  * 465. Optimal Account Balancing
@@ -61,51 +65,9 @@ import java.util.Map;
  */
 public class OptimalAccountBalancing {
 
-	Map<Integer, Map<Integer, Integer>> graph = null;
-	Map<Integer, Integer> counts = null;
-	int totalConnection = 0;
-
-	private void buildGraph(int[][] transactions) {
-		counts = new HashMap<>();
-		graph = new HashMap<>();
-		for (int[] transaction : transactions) {
-			addChild(transaction[0], transaction[1], transaction[2]);
-		}
-	}
-
-	private void addChild(int parent, int child, int value) {
-		if (!graph.containsKey(graph))
-			graph.put(parent, new HashMap<>());
-		addChild(graph.get(parent), child, value);
-	}
-
-	private void addChild(Map<Integer, Integer> children, int child, int value) {
-		if (!children.containsKey(child)) {
-			totalConnection++;
-			children.put(child, value);
-		} else {
-			children.put(child, children.get(child) + value);
-		}
-	}
-
-	private void optimize() {
-
-	}
-
-	private void optimize(int index) {
-		if (!graph.containsKey(index)) {
-			return;
-		}
-		if (graph.get(index).isEmpty()) {
-			return;
-		}
-	}
-
 	public int minTransfers(int[][] transactions) {
-		totalConnection = 0;
-		buildGraph(transactions);
-		optimize();
-		return totalConnection;
+
+		return 0;
 	}
 
 }
