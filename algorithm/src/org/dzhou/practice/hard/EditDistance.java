@@ -30,8 +30,7 @@ public class EditDistance {
 			for (int row = 1; row < table.length; row++) {
 				char c1 = word1.charAt(row - 1);
 				for (int col = 1; col < table[row].length; col++) {
-					char c2 = word2.charAt(col - 1);
-					if (c1 == c2) {
+					if (c1 == word2.charAt(col - 1)) {
 						table[row][col] = table[row - 1][col - 1];
 					} else {
 						int replace = table[row - 1][col - 1] + 1;
