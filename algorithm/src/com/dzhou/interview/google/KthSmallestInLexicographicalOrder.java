@@ -1,9 +1,7 @@
 package com.dzhou.interview.google;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * 440. K-th Smallest in Lexicographical Order
