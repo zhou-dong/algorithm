@@ -11,61 +11,61 @@ public class ReverseStringTest {
 
 	@Test
 	public void testReverseString() {
-		String answer = ReverseString.reverseString(input);
+		String answer = new ReverseString.CopyFromBackToFrontSolution().reverseString(input);
 		Assert.assertEquals(expected, answer);
 	}
 
 	@Test
 	public void testReverseStringFromBothSide() {
-		String answer = ReverseString.reverseStringFromBothSide(input);
+		String answer = new ReverseString.TwoPointerSolution().reverseString(input);
 		Assert.assertEquals(expected, answer);
 	}
 
 	@Test
 	public void testReverseStringByStack() {
-		String answer = ReverseString.reverseStringByStack(input);
+		String answer = new ReverseString.StackSolution().reverseString(input);
 		Assert.assertEquals(expected, answer);
 	}
 
 	@Test
 	public void testReverseStringByRecursionFrontEnd() {
-		String answer = ReverseString.reverseStringByRecursionFrontEnd(input);
+		String answer = new ReverseString.RecursionFrontToEndSolution().reverseString(input);
 		Assert.assertEquals(expected, answer);
 	}
 
 	@Test
 	public void testReverseStringByRecursionEndFront() {
-		String answer = ReverseString.reverseStringByRecursionEndFront(input);
+		String answer = new ReverseString.RecursionEndToFrontSolution().reverseString(input);
 		Assert.assertEquals(expected, answer);
 	}
 
 	@Test
 	public void testReverseStringByRecursionFromHalf() {
-		String answer = ReverseString.reverseStringByRecursionFromHalf(input);
+		String answer = new ReverseString.RecursionFromMiddleSolution().reverseString(input);
 		Assert.assertEquals(expected, answer);
 	}
 
 	@Test
 	public void testReverseStringByLinkedList() {
-		String answer = ReverseString.reverseStringByLinkedList(input);
+		String answer = new ReverseString.LinkedListAsStackSolution().reverseString(input);
 		Assert.assertEquals(expected, answer);
 	}
 
 	@Test
 	public void testReverseStringByLinkedList2() {
-		String answer = ReverseString.reverseStringByLinkedList2(input);
+		String answer = new ReverseString.LinkedListSolution().reverseString(input);
 		Assert.assertEquals(expected, answer);
 	}
 
 	@Test
 	public void testReverseStringByStringBuilder() {
-		String answer = ReverseString.reverseStringByStringBuilder(input);
+		String answer = new ReverseString.StringBuilderSolution().reverseString(input);
 		Assert.assertEquals(expected, answer);
 	}
 
 	@Test
 	public void testReverseStringByRecursionFromHalf2() {
-		String answer = ReverseString.reverseStringByRecursionFromHalf2(input);
+		String answer = new ReverseString.RecursionAndSwapSolution().reverseString(input);
 		Assert.assertEquals(expected, answer);
 	}
 

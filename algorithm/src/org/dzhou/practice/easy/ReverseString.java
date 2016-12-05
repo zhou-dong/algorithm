@@ -16,7 +16,7 @@ import java.util.Stack;
 public class ReverseString {
 
 	// method one
-	class CopyFromBackToFrontSolution {
+	public static class CopyFromBackToFrontSolution {
 		public String reverseString(String s) {
 			char[] result = new char[s.length()];
 			for (int i = 0; i < result.length; i++)
@@ -26,7 +26,7 @@ public class ReverseString {
 	}
 
 	// method two
-	class TwoPointerSolution {
+	public static class TwoPointerSolution {
 		public String reverseString(String s) {
 			char[] result = s.toCharArray();
 			for (int left = 0, right = result.length - 1; left < right; left++, right--)
@@ -42,7 +42,7 @@ public class ReverseString {
 	}
 
 	// method three
-	class StackSolution {
+	public static class StackSolution {
 		public String reverseString(String s) {
 			Stack<Character> stack = new Stack<>();
 			for (char c : s.toCharArray())
@@ -54,7 +54,7 @@ public class ReverseString {
 		}
 	}
 
-	class RecursionFrontToEndSolution {
+	public static class RecursionFrontToEndSolution {
 
 		public String reverseString(String s) {
 			char[] result = new char[s.length()];
@@ -71,7 +71,7 @@ public class ReverseString {
 
 	}
 
-	class RecursionEndToFrontSolution {
+	public static class RecursionEndToFrontSolution {
 
 		public String reverseString(String s) {
 			char[] result = new char[s.length()];
@@ -88,7 +88,7 @@ public class ReverseString {
 
 	}
 
-	class RecursionFromMiddleSolution {
+	public static class RecursionFromMiddleSolution {
 
 		public String reverseString(String s) {
 			char[] result = s.toCharArray();
@@ -112,7 +112,7 @@ public class ReverseString {
 	}
 
 	// method seven
-	class LinkedListAsStackSolution {
+	public static class LinkedListAsStackSolution {
 		public String reverseString(String s) {
 			LinkedList<Character> list = new LinkedList<>();
 			for (char c : s.toCharArray())
@@ -125,7 +125,7 @@ public class ReverseString {
 	}
 
 	// method eight
-	class LinkedListSolution {
+	public static class LinkedListSolution {
 		public String reverseString(String s) {
 			LinkedList<Character> list = new LinkedList<>();
 			for (char c : s.toCharArray())
@@ -138,13 +138,13 @@ public class ReverseString {
 		}
 	}
 
-	class StringBuilderSolution {
+	public static class StringBuilderSolution {
 		public String reverseString(String s) {
 			return new StringBuilder(s).reverse().toString();
 		}
 	}
 
-	class RecursionAndSwapSolution {
+	public static class RecursionAndSwapSolution {
 
 		public String reverseString(String s) {
 			char[] input = s.toCharArray();
