@@ -4,7 +4,10 @@ import java.util.Scanner;
 
 public class ChipsGame {
 
-	public ChipsGame(boolean isFirstRound) {
+	private Scanner scanner;
+
+	public ChipsGame(Scanner scanner, boolean isFirstRound) {
+		this.scanner = scanner;
 		if (!isFirstRound) {
 			print("Start a new game like before...\n");
 		}
@@ -27,10 +30,7 @@ public class ChipsGame {
 
 		boolean addChips(Scanner scanner, Pile pile) {
 			String number = scanner.nextLine();
-			if (!isDigit(number)) {
-				return false;
-			}
-			return addChips(Integer.parseInt(number), pile);
+			return (!isDigit(number)) ? false : addChips(Integer.parseInt(number), pile);
 		}
 
 		boolean addChips(int num, Pile pile) {
@@ -78,8 +78,7 @@ public class ChipsGame {
 		}
 
 		Player display(Pile pile) {
-			String message = isFirstTurn ? display(first, second, pile) : display(second, first, pile);
-			print(message);
+			print(isFirstTurn ? display(first, second, pile) : display(second, first, pile));
 			return currentPlayer();
 		}
 
@@ -171,7 +170,7 @@ public class ChipsGame {
 		System.out.print(message);
 	}
 
-	public void execute(Scanner scanner) {
+	public void execute() {
 		Players players = new Players();
 		print("What is the name of the first player?");
 		while (!players.addPlayer(scanner)) {
@@ -197,8 +196,7 @@ public class ChipsGame {
 		Scanner scanner = new Scanner(System.in);
 		boolean isFirstRound = true;
 		do {
-			ChipsGame chipsGame = new ChipsGame(isFirstRound);
-			chipsGame.execute(scanner);
+			new ChipsGame(scanner, isFirstRound).execute();
 			isFirstRound = false;
 		} while (scanner.next().equals("y"));
 		scanner.close();
