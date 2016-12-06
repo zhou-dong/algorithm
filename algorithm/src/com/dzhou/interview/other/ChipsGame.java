@@ -78,6 +78,7 @@ public class ChipsGame {
 		}
 
 		Player display(Pile pile) {
+			print("* * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
 			print(isFirstTurn ? display(first, second, pile) : display(second, first, pile));
 			return currentPlayer();
 		}
@@ -183,7 +184,6 @@ public class ChipsGame {
 		while (!pile.initSize(scanner)) {
 		}
 		while (!pile.finish()) {
-			print("* * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
 			Player current = players.display(pile);
 			while (!current.addChips(scanner, pile)) {
 			}
