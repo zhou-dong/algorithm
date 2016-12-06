@@ -78,8 +78,10 @@ public class ChipsGame {
 		}
 
 		Player display(Pile pile) {
-			print("* * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
-			print(isFirstTurn ? display(first, second, pile) : display(second, first, pile));
+			if (isFirstTurn)
+				display(first, second, pile);
+			else
+				display(second, first, pile);
 			return currentPlayer();
 		}
 
@@ -91,7 +93,8 @@ public class ChipsGame {
 			isFirstTurn = !isFirstTurn;
 		}
 
-		String display(Player a, Player b, Pile pile) {
+		void display(Player a, Player b, Pile pile) {
+			print("* * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
 			StringBuilder sb = new StringBuilder();
 			sb.append(a.display()).append("\n");
 			sb.append(b.display()).append("\n");
@@ -99,7 +102,7 @@ public class ChipsGame {
 			sb.append("There are " + pile.remain + " chips remaining.").append("\n");
 			sb.append("You may take any number of chips from 1 to ").append(pile.nextRange());
 			sb.append(". How many will you take, ").append(a.name).append("?");
-			return sb.toString();
+			print(sb.toString());
 		}
 
 		boolean addPlayer(Scanner scanner) {
