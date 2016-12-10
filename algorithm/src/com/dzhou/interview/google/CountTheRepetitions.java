@@ -29,4 +29,13 @@ package com.dzhou.interview.google;
  */
 public class CountTheRepetitions {
 
+	public static void main(String[] args) {
+
+		String fileName = "bookId";
+
+		String getIdName = "get" + Character.toUpperCase(fileName.charAt(0)) + fileName.substring(1);
+
+		System.out.println(getIdName);
+	}
+
 }
