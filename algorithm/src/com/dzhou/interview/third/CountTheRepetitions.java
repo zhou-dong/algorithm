@@ -1,4 +1,4 @@
-package com.dzhou.interview.google;
+package com.dzhou.interview.third;
 
 /**
  * 66. Count The Repetitions

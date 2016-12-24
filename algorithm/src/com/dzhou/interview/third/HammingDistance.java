@@ -1,4 +1,4 @@
-package com.dzhou.interview.google;
+package com.dzhou.interview.third;
 
 /**
  * 461. Hamming Distance   Add to List QuestionEditorial Solution  My Submissions

@@ -1,4 +1,4 @@
-package com.dzhou.interview.google;
+package com.dzhou.interview.third;
 
 /**
  * 442. Find All Duplicates in an Array
