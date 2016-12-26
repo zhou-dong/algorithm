@@ -1,10 +1,7 @@
 package com.dzhou.interview.third;
 
 /**
- * 461. Hamming Distance Add to List QuestionEditorial Solution My Submissions
- * Total Accepted: 1415 Total Submissions: 1779 Difficulty: Easy Contributors:
- * Samuri The Hamming distance between two integers is the number of positions
- * at which the corresponding bits are different.
+ * 461. Hamming Distance
  * 
  * Given two integers x and y, calculate the Hamming distance.
  * 
