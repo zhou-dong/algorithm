@@ -1,5 +1,8 @@
 package com.dzhou.interview.third;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 442. Find All Duplicates in an Array
  * 
@@ -20,5 +23,18 @@ package com.dzhou.interview.third;
  *
  */
 public class FindAllDuplicatesInAnArray {
+
+	public List<Integer> findDuplicates(int[] nums) {
+		List<Integer> result = new ArrayList<>();
+		for (int num : nums) {
+			int abs = Math.abs(num);
+			if (nums[abs - 1] < 0) {
+				result.add(abs);
+			} else {
+				nums[abs - 1] *= -1;
+			}
+		}
+		return result;
+	}
 
 }
