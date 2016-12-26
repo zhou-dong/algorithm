@@ -1,5 +1,7 @@
 package com.dzhou.interview.third;
 
+import java.util.Arrays;
+
 /**
  * 475. Heaters
  * 
@@ -42,8 +44,44 @@ package com.dzhou.interview.third;
 public class Heaters {
 
 	public int findRadius(int[] houses, int[] heaters) {
+		Arrays.sort(houses);
+		Arrays.sort(heaters);
+		int result = 0;
+		for (int house : houses) {
+			int nearestIndex = nearest(heaters, house);
+			result = Math.max(result, min(heaters, house, nearestIndex));
+		}
+		return result;
+	}
 
-		return 0;
+	private int nearest(int[] heaters, int house) {
+		if (house <= heaters[0])
+			return 0;
+		if (house >= heaters[heaters.length - 1])
+			return heaters.length - 1;
+		int left = 0, right = heaters.length - 1;
+		while (left < right) {
+			int mid = (left + right) / 2;
+			if (heaters[mid] == house) {
+				return mid;
+			} else if (heaters[mid] < house) {
+				left = mid + 1;
+			} else {
+				right = mid - 1;
+			}
+		}
+		return left;
+	}
+
+	private int min(int[] heaters, int house, int index) {
+		int len = heaters.length;
+		int left = (index == 0) ? heaters[index] - house : heaters[index - 1] - house;
+		int mid = heaters[index] - house;
+		int right = (index == len - 1) ? heaters[index] - house : heaters[index + 1] - house;
+		left = Math.abs(left);
+		mid = Math.abs(mid);
+		right = Math.abs(right);
+		return Math.min(mid, Math.min(left, right));
 	}
 
 }
