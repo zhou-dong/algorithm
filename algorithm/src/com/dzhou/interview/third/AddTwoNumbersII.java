@@ -37,20 +37,16 @@ public class AddTwoNumbersII {
 	}
 
 	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-
 		Stack<Integer> s1 = new Stack<>();
 		Stack<Integer> s2 = new Stack<>();
-
 		while (l1 != null) {
 			s1.push(l1.val);
 			l1 = l1.next;
 		}
-
 		while (l2 != null) {
 			s2.push(l2.val);
 			l2 = l2.next;
 		}
-
 		int carry = 0;
 		ListNode top = new ListNode(1);
 		while (!s1.isEmpty() || !s2.isEmpty()) {
@@ -62,9 +58,11 @@ public class AddTwoNumbersII {
 				sum += s2.pop();
 			}
 			ListNode current = new ListNode(sum % 10);
+			current.next = top.next;
+			top.next = current;
 			carry = sum / 10;
 		}
-		return top;
+		return carry == 0 ? top.next : top;
 	}
 
 }
