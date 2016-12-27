@@ -3,7 +3,6 @@ package com.dzhou.interview.third;
 /**
  * 477. Total Hamming Distance
  * 
- * 
  * Total Accepted: 2520
  * 
  * Total Submissions: 5927
@@ -37,7 +36,14 @@ package com.dzhou.interview.third;
 public class TotalHammingDistance {
 
 	public int totalHammingDistance(int[] nums) {
-
+		int total = 0;
+		for (int j = 0; j < 32; j++) {
+			int bitCount = 0;
+			for (int i = 0; i < nums.length; i++)
+				bitCount += (nums[i] >> j) & 1;
+			total += bitCount * (nums.length - bitCount);
+		}
+		return total;
 	}
 
 }
