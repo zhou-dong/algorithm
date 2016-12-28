@@ -101,14 +101,4 @@ public class SerializeAndDeserializeBST {
 	// Your Codec object will be instantiated and called as such:
 	// Codec codec = new Codec();
 	// codec.deserialize(codec.serialize(root));
-
-	public static void main(String[] args) {
-		String data = "1,2,3,";
-		String[] datas = data.split(",");
-		for (String str : datas) {
-			System.out.print(str + " ");
-		}
-		System.out.println();
-		System.out.println(datas.length);
-	}
 }
