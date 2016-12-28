@@ -1,9 +1,5 @@
 package com.dzhou.interview.third;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
-
 /**
  * 449. Serialize and Deserialize BST
  * 
@@ -50,46 +46,69 @@ public class SerializeAndDeserializeBST {
 			if (root == null)
 				return NULL;
 			StringBuilder sb = new StringBuilder();
-			Stack<TreeNode> st = new Stack<>();
-			st.push(root);
-			while (!st.empty()) {
-				root = st.pop();
-				sb.append(root.val).append(SEP);
-				if (root.right != null)
-					st.push(root.right);
-				if (root.left != null)
-					st.push(root.left);
-			}
+			preorder(root, sb);
 			return sb.toString();
+		}
+
+		private void preorder(TreeNode root, StringBuilder sb) {
+			if (root == null)
+				return;
+			sb.append(root.val).append(",");
+			preorder(root.left, sb);
+			preorder(root.right, sb);
 		}
 
 		// Decodes your encoded data to tree.
 		public TreeNode deserialize(String data) {
 			if (data.equals(NULL))
 				return null;
-			Queue<Integer> q = new LinkedList<>();
-			for (String e : data.split(SEP)) {
-				q.offer(Integer.parseInt(e));
-			}
-			return getNode(q);
+			int[] preorder = strToInt(data);
+			return deserialize(preorder, 0, preorder.length - 1);
 		}
 
-		private TreeNode getNode(Queue<Integer> q) {
-			if (q.isEmpty())
-				return null;
-			TreeNode root = new TreeNode(q.poll());
-			Queue<Integer> samllerQueue = new LinkedList<>();
-			while (!q.isEmpty() && q.peek() < root.val) {
-				samllerQueue.offer(q.poll());
+		private int[] strToInt(String data) {
+			String[] strs = data.split(SEP);
+			int[] result = new int[strs.length];
+			for (int i = 0; i < result.length; i++) {
+				result[i] = Integer.parseInt(strs[i]);
 			}
-			root.left = getNode(samllerQueue);
-			root.right = getNode(q);
+			return result;
+		}
+
+		private TreeNode deserialize(int[] preorder, int low, int high) {
+			if (low > high)
+				return null;
+			TreeNode root = new TreeNode(preorder[low]);
+			int division = findDivision(preorder, root.val, low, high);
+			root.left = deserialize(preorder, low + 1, division - 1);
+			root.right = deserialize(preorder, division, high);
 			return root;
 		}
+
+		private int findDivision(int[] preorder, int value, int low, int high) {
+			while (low <= high) {
+				if (value < preorder[low]) {
+					break;
+				} else {
+					low++;
+				}
+			}
+			return low;
+		}
+
 	}
 
 	// Your Codec object will be instantiated and called as such:
 	// Codec codec = new Codec();
 	// codec.deserialize(codec.serialize(root));
 
+	public static void main(String[] args) {
+		String data = "1,2,3,";
+		String[] datas = data.split(",");
+		for (String str : datas) {
+			System.out.print(str + " ");
+		}
+		System.out.println();
+		System.out.println(datas.length);
+	}
 }
