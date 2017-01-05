@@ -1,5 +1,7 @@
 package com.dzhou.interview.third;
 
+import java.util.Arrays;
+
 /**
  * 473. Matchsticks to Square
  * 
@@ -32,5 +34,61 @@ package com.dzhou.interview.third;
  *
  */
 public class MatchsticksToSquare {
+
+	public boolean makesquare(int[] nums) {
+		if (nums == null || nums.length < 4)
+			return false;
+		int sum = sum(nums);
+		if (sum % 4 != 0)
+			return false;
+		Arrays.sort(nums);
+		reverse(nums);
+		return dfs(nums, new int[4], 0, sum / 4);
+	}
+
+	private boolean dfs(int[] nums, int[] sides, int index, int target) {
+		if (index == nums.length) {
+			return equal(sides, target);
+		}
+
+		for (int i = 0; i < 4; i++) {
+			if (sides[i] + nums[index] > target)
+				continue;
+			sides[i] += nums[index];
+			if (dfs(nums, sides, index + 1, target))
+				return true;
+			sides[i] -= nums[index];
+		}
+
+		return false;
+	}
+
+	private boolean equal(int[] sides, int target) {
+		for (int side : sides) {
+			if (side != target) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private int sum(int[] nums) {
+		int sum = 0;
+		for (int num : nums)
+			sum += num;
+		return sum;
+	}
+
+	private void reverse(int[] nums) {
+		for (int i = 0, j = nums.length - 1; i < j; i++, j--) {
+			swap(nums, i, j);
+		}
+	}
+
+	private void swap(int[] nums, int i, int j) {
+		int temp = nums[i];
+		nums[i] = nums[j];
+		nums[j] = temp;
+	}
 
 }
