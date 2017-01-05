@@ -2,8 +2,6 @@
 
 ## 刷题
 
-01/02/2017 
-
 第一次刷完LeetCode：{'solved': 373, 'date': '09/01/2016'}
 
 ## 关于面试：
@@ -21,28 +19,7 @@
 3. 然后，优化他。 dp, hashmap, 等等。
 - 数据结构就是我的刀剑，我要用好他们。
 
-Hacker Rank input
-
-```java
-Scanner myScan = new Scanner(System.in);
-String inputString = myScan.nextLine();
-		
-String ans;
-System.out.println(ans);
-myScan.close();
-```
-
-```java
-Scanner sc = new Scanner(System.in);
-int[] nums = new int[sc.nextInt()];
-for (int i = 0; i < nums.length; i++) {
-	nums[i] = sc.nextInt();
-}
-for (int num : nums) {
-	System.out.println(num);
-}
-sc.close();
-```
+---
 
 reference:
 
