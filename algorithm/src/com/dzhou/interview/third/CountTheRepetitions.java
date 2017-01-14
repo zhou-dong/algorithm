@@ -1,7 +1,7 @@
 package com.dzhou.interview.third;
 
 /**
- * 66. Count The Repetitions
+ * 466. Count The Repetitions
  * 
  * Difficulty: Hard
  * 
@@ -38,4 +38,14 @@ public class CountTheRepetitions {
 		System.out.println(getIdName);
 	}
 
+	boolean method(int n) {
+		if (n < 2)
+			return false;
+		for (int i = 2; i < n; i++) {
+			if (n % i == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
 }
