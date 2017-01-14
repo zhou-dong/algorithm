@@ -30,11 +30,30 @@ package com.dzhou.interview.third;
 public class CountTheRepetitions {
 
 	static class Solution {
+		public int getMaxRepetitions(String s1, int n1, String s2, int n2) {
+			int count1 = 0, count2 = 0, i = 0, j = 0;
+			while (count1 < n1) {
+				if (s1.charAt(i) == s2.charAt(j)) {
+					j++;
+					if (j == s2.length()) {
+						j = 0;
+						count2++;
+					}
+				}
+				i++;
+				if (i == s1.length()) {
+					i = 0;
+					count1++;
+				}
+			}
+			return count2 / n2;
+		}
+	}
+
+	static class Time_Limit_Exceeded_Solution {
 
 		public int getMaxRepetitions(String s1, int n1, String s2, int n2) {
-
 			int len1 = s1.length() * n1, len2 = s2.length() * n2;
-
 			int repetitions = 0;
 			for (int index1 = 0, index2 = 0; index1 < len1; index1++) {
 				if (s1.charAt(index1 % s1.length()) == s2.charAt(index2 % s2.length())) {
@@ -45,7 +64,6 @@ public class CountTheRepetitions {
 					index2 = 0;
 				}
 			}
-
 			return repetitions;
 		}
 
