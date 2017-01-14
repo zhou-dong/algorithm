@@ -29,7 +29,30 @@ package com.dzhou.interview.third;
  */
 public class CountTheRepetitions {
 
-	static class Solution1 {
+	static class Solution {
+
+		public int getMaxRepetitions(String s1, int n1, String s2, int n2) {
+
+			int len1 = s1.length() * n1, len2 = s2.length() * n2;
+
+			int repetitions = 0;
+			for (int index1 = 0, index2 = 0; index1 < len1; index1++) {
+				if (s1.charAt(index1 % s1.length()) == s2.charAt(index2 % s2.length())) {
+					index2++;
+				}
+				if (index2 == len2) {
+					repetitions++;
+					index2 = 0;
+				}
+			}
+
+			return repetitions;
+		}
+
+	}
+
+	static class Memory_Limit_Exceeded_Solution {
+
 		public int getMaxRepetitions(String s1, int n1, String s2, int n2) {
 			char[] arr1 = repeat(s1, n1);
 			char[] arr2 = repeat(s2, n2);
@@ -55,13 +78,7 @@ public class CountTheRepetitions {
 				array[i] = s.charAt(i % s.length());
 			return array;
 		}
-	}
 
-	public static void main(String[] args) {
-		String s1 = "acb", s2 = "ab";
-		int n1 = 4, n2 = 2;
-		int count = new CountTheRepetitions.Solution1().getMaxRepetitions(s1, n1, s2, n2);
-		System.out.println(count);
 	}
 
 }
