@@ -29,23 +29,39 @@ package com.dzhou.interview.third;
  */
 public class CountTheRepetitions {
 
-	public static void main(String[] args) {
-
-		String fileName = "bookId";
-
-		String getIdName = "get" + Character.toUpperCase(fileName.charAt(0)) + fileName.substring(1);
-
-		System.out.println(getIdName);
-	}
-
-	boolean method(int n) {
-		if (n < 2)
-			return false;
-		for (int i = 2; i < n; i++) {
-			if (n % i == 0) {
-				return false;
+	static class Solution1 {
+		public int getMaxRepetitions(String s1, int n1, String s2, int n2) {
+			char[] arr1 = repeat(s1, n1);
+			char[] arr2 = repeat(s2, n2);
+			if (arr1.length < arr2.length) {
+				return 0;
 			}
+			int count = 0, y = 0;
+			for (int x = 0; x < arr1.length; x++) {
+				if (arr1[x] == arr2[y]) {
+					y++;
+				}
+				if (y == arr2.length) {
+					y = 0;
+					count++;
+				}
+			}
+			return count;
 		}
-		return true;
+
+		private char[] repeat(String s, int n) {
+			char[] array = new char[s.length() * n];
+			for (int i = 0; i < array.length; i++)
+				array[i] = s.charAt(i % s.length());
+			return array;
+		}
 	}
+
+	public static void main(String[] args) {
+		String s1 = "acb", s2 = "ab";
+		int n1 = 4, n2 = 2;
+		int count = new CountTheRepetitions.Solution1().getMaxRepetitions(s1, n1, s2, n2);
+		System.out.println(count);
+	}
+
 }
