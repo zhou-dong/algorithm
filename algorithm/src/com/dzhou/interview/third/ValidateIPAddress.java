@@ -129,13 +129,17 @@ public class ValidateIPAddress {
 			return false;
 		for (char ch : entry.toCharArray()) {
 			boolean isDigit = Character.isDigit(ch);
-			boolean isUppercaseAF = ch >= 65 && ch <= 70;
-			boolean isLowerCaseAF = ch >= 97 && ch <= 102;
+			boolean isUppercaseAF = isInrange('A', 'F', ch);
+			boolean isLowerCaseAF = isInrange('a', 'f', ch);
 			if (!(isDigit || isUppercaseAF || isLowerCaseAF)) {
 				return false;
 			}
 		}
 		return true;
+	}
+
+	private boolean isInrange(char front, char back, char mid) {
+		return mid - front >= 0 && back - mid >= 0;
 	}
 
 }
