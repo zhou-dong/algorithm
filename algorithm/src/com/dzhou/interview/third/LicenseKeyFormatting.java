@@ -48,6 +48,7 @@ package com.dzhou.interview.third;
 public class LicenseKeyFormatting {
 
 	public String licenseKeyFormatting(String S, int K) {
+		
 		StringBuilder sb = new StringBuilder();
 
 		int count = 0;
