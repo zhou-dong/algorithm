@@ -67,6 +67,17 @@ public interface Scheduling {
 			int nextInterval = Math.abs(node.value - next.value);
 			return prevInterval < nextInterval ? prev : next;
 		}
+
+		ListNode find(int value) {
+			ListNode current = head;
+			for (int i = 0; i < size; i++) {
+				current = current.next;
+				if (current.value == value) {
+					return current;
+				}
+			}
+			return null;
+		}
 	}
 
 	public abstract int execute(int[] range, int[] cylinders, int header, int previous);
@@ -124,8 +135,19 @@ public interface Scheduling {
 
 		@Override
 		public int execute(int[] range, int[] cylinders, int header, int previous) {
-
+			cylinders = Arrays.copyOf(cylinders, cylinders.length + 1);
+			cylinders[cylinders.length - 1] = header;
+			Arrays.sort(cylinders);
+			List list = new List(cylinders);
+			ListNode start = list.find(header);
+			int direction = direction(header, previous);
+			System.out.println(start);
+			System.out.println(direction);
 			return 0;
+		}
+
+		private int direction(int header, int previous) {
+			return header - previous > 0 ? 1 : -1;
 		}
 
 	}
