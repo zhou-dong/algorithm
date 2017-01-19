@@ -30,11 +30,6 @@ public interface Scheduling {
 			ListNode(int value) {
 				this.value = value;
 			}
-
-			void remove() {
-				this.prev.next = this.next;
-				this.next.prev = this.prev;
-			}
 		}
 
 		private class List {
@@ -61,9 +56,8 @@ public interface Scheduling {
 			}
 
 			void remove(ListNode node) {
-				if (node == null)
-					return;
-				node.remove();
+				node.prev.next = node.next;
+				node.next.prev = node.prev;
 				this.size--;
 			}
 
@@ -84,7 +78,6 @@ public interface Scheduling {
 				int nextInterval = Math.abs(node.value - next.value);
 				return prevInterval < nextInterval ? prev : next;
 			}
-
 		}
 
 		@Override
