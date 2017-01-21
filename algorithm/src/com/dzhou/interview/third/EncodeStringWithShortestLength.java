@@ -44,11 +44,14 @@ package com.dzhou.interview.third;
  * 
  * @author zhoudong
  *
+ *         看到题就感觉应该是用DP来解，但是转移方程怎么怎么都想不出来，最后没办法了看了答案。
+ *         原来DP数组中存的不是每个char的index，而是整个substring。
+ * 
  */
 public class EncodeStringWithShortestLength {
 
-	// dynamic programming
 	public String encode(String s) {
+
 		String[][] dp = new String[s.length()][s.length()];
 
 		for (int l = 0; l < s.length(); l++) {
