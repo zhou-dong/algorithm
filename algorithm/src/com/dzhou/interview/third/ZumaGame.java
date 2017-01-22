@@ -1,5 +1,9 @@
 package com.dzhou.interview.third;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * 488. Zuma Game
  * 
@@ -17,16 +21,18 @@ package com.dzhou.interview.third;
  * 
  * Examples:
  * 
- * Input: "WRRBBW", "RB" Output: -1 Explanation: WRRBBW -> WRR[R]BBW -> WBBW ->
- * WBB[B]W -> WW
+ * Input: "WRRBBW", "RB" Output: -1 <br>
+ * Explanation: WRRBBW -> WRR[R]BBW -> WBBW -> WBB[B]W -> WW
  * 
- * Input: "WWRRBBWW", "WRBRW" Output: 2 Explanation: WWRRBBWW -> WWRR[R]BBWW ->
- * WWBBWW -> WWBB[B]WW -> WWWW -> empty
+ * Input: "WWRRBBWW", "WRBRW" Output: 2 <br>
+ * Explanation: WWRRBBWW -> WWRR[R]BBWW -> WWBBWW -> WWBB[B]WW -> WWWW -> empty
  * 
- * Input:"G", "GGGGG" Output: 2 Explanation: G -> G[G] -> GG[G] -> empty
+ * Input:"G", "GGGGG" Output: 2 <br>
+ * Explanation: G -> G[G] -> GG[G] -> empty
  * 
- * Input: "RBYYBBRRB", "YRBGB" Output: 3 Explanation: RBYYBBRRB -> RBYY[Y]BBRRB
- * -> RBBBRRB -> RRRB -> B -> B[B] -> BB[B] -> empty
+ * Input: "RBYYBBRRB", "YRBGB" Output: 3 <br>
+ * Explanation: RBYYBBRRB -> RBYY[Y]BBRRB -> RBBBRRB -> RRRB -> B -> B[B] ->
+ * BB[B] -> empty
  * 
  * Note:
  * 
@@ -48,8 +54,15 @@ package com.dzhou.interview.third;
 public class ZumaGame {
 
 	public int findMinStep(String board, String hand) {
-
+		Map<Character, Integer> map = new HashMap<>();
+		for (char ch : hand.toCharArray()) {
+			map.put(ch, map.getOrDefault(ch, 0) + 1);
+		}
 		return -1;
 	}
 
+	private boolean clean(List<Character> board) {
+
+		return false;
+	}
 }
