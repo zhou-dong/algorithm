@@ -1,8 +1,10 @@
 package com.dzhou.interview.third;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 /**
  * 488. Zuma Game
@@ -58,6 +60,7 @@ public class ZumaGame {
 		for (char ch : hand.toCharArray()) {
 			map.put(ch, map.getOrDefault(ch, 0) + 1);
 		}
+
 		return -1;
 	}
 
@@ -65,4 +68,5 @@ public class ZumaGame {
 
 		return false;
 	}
+
 }
