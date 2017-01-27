@@ -36,8 +36,10 @@ package com.dzhou.interview.third;
 public class ConstructTheRectangle {
 
 	public int[] constructRectangle(int area) {
-
-		return null;
+		int w = (int) Math.sqrt(area);
+		while (area % w != 0)
+			w--;
+		return new int[] { area / w, w };
 	}
 
 }
