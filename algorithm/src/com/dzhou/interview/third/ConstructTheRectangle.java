@@ -35,4 +35,9 @@ package com.dzhou.interview.third;
  */
 public class ConstructTheRectangle {
 
+	public int[] constructRectangle(int area) {
+
+		return null;
+	}
+
 }
