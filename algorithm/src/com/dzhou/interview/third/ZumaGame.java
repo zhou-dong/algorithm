@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
 
 /**
  * 488. Zuma Game
@@ -54,19 +53,82 @@ import java.util.PriorityQueue;
  *
  */
 public class ZumaGame {
-
 	public int findMinStep(String board, String hand) {
-		Map<Character, Integer> map = new HashMap<>();
-		for (char ch : hand.toCharArray()) {
-			map.put(ch, map.getOrDefault(ch, 0) + 1);
+		List<Character> boardList = new ArrayList<Character>();
+		for (char c : board.toCharArray()) {
+			boardList.add(c);
 		}
-
-		return -1;
+		Map<Character, Integer> handMap = new HashMap<>();
+		handMap.put('R', 0);
+		handMap.put('Y', 0);
+		handMap.put('B', 0);
+		handMap.put('G', 0);
+		handMap.put('W', 0);
+		for (char h : hand.toCharArray()) {
+			handMap.put(h, handMap.get(h) + 1);
+		}
+		return find(boardList, handMap);
 	}
 
-	private boolean clean(List<Character> board) {
+	private int find(List<Character> board, Map<Character, Integer> hand) {
+		cleanupBoard(board);
+		if (board.size() == 0)
+			return 0;
+		if (empty(hand))
+			return -1;
+		int count = 0;
+		int min = Integer.MAX_VALUE;
+		for (int i = 0; i < board.size(); i++) {
+			char c = board.get(i);
+			count++;
+			if (i == board.size() - 1 || board.get(i + 1) != c) {
+				int missing = 3 - count;
+				if (hand.get(c) >= missing) {
+					hand.put(c, hand.get(c) - missing);
+					List<Character> smallerBoard = new ArrayList<>(board);
+					for (int j = 0; j < count; j++) {
+						smallerBoard.remove(i - j);
+					}
+					int smallerFind = find(smallerBoard, hand);
+					if (smallerFind != -1) {
+						min = Math.min(smallerFind + missing, min);
+					}
+					hand.put(c, hand.get(c) + missing);
+				}
+				count = 0;
+			}
+		}
+		return (min == Integer.MAX_VALUE) ? -1 : min;
+	}
 
-		return false;
+	private void cleanupBoard(List<Character> board) {
+		int count = 0;
+		boolean cleaned = false;
+		for (int i = 0; i < board.size(); i++) {
+			char c = board.get(i);
+			count++;
+			if (i == board.size() - 1 || board.get(i + 1) != c) {
+				if (count >= 3) {
+					for (int j = 0; j < count; j++) {
+						board.remove(i - j);
+					}
+					cleaned = true;
+					break;
+				}
+				count = 0;
+			}
+		}
+		if (cleaned) {
+			cleanupBoard(board);
+		}
+	}
+
+	private boolean empty(Map<Character, Integer> hand) {
+		for (int val : hand.values()) {
+			if (val > 0)
+				return false;
+		}
+		return true;
 	}
 
 }
