@@ -1,5 +1,7 @@
 package com.dzhou.interview.third;
 
+import java.util.PriorityQueue;
+
 /**
  * 506. Relative Ranks
  * 
@@ -26,9 +28,41 @@ package com.dzhou.interview.third;
  */
 public class RelativeRanks {
 
+	class Node {
+		int value;
+		int index;
+
+		Node(int value, int index) {
+			this.value = value;
+			this.index = index;
+		}
+	}
+
 	public String[] findRelativeRanks(int[] nums) {
 
-		return null;
+		PriorityQueue<Node> heap = new PriorityQueue<>((Node n1, Node n2) -> {
+			return n2.value - n1.value;
+		});
+
+		for (int i = 0; i < nums.length; i++) {
+			heap.add(new Node(nums[i], i));
+		}
+		String[] result = new String[nums.length];
+
+		for (int i = 0; i < nums.length; i++) {
+			Node curr = heap.poll();
+			String content = String.valueOf(i + 1);
+			if (i == 0) {
+				content = "Gold Medal";
+			} else if (i == 1) {
+				content = "Silver Medal";
+			} else if (i == 2) {
+				content = "Bronze Medal";
+			}
+			result[curr.index] = content;
+		}
+
+		return result;
 	}
 
 }
