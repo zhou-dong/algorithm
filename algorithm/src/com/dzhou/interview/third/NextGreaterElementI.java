@@ -1,5 +1,8 @@
 package com.dzhou.interview.third;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * You are given two arrays (without duplicates) nums1 and nums2 where nums1’s
  * elements are subset of nums2. Find all the next greater numbers for nums1's
@@ -43,5 +46,29 @@ package com.dzhou.interview.third;
  *
  */
 public class NextGreaterElementI {
+
+	public int[] nextGreaterElement(int[] findNums, int[] nums) {
+
+		// memo the index of number in second array
+		Map<Integer, Integer> map = new HashMap<>();
+		for (int i = 0; i < nums.length; i++) {
+			map.put(nums[i], i);
+		}
+
+		int[] result = new int[findNums.length];
+		for (int i = 0; i < findNums.length; i++) {
+			int num = findNums[i];
+			int entry = -1;
+			for (int j = map.get(num) + 1; j < nums.length; j++) {
+				if (nums[j] > num) {
+					entry = nums[j];
+					break;
+				}
+			}
+			result[i] = entry;
+		}
+
+		return result;
+	}
 
 }
