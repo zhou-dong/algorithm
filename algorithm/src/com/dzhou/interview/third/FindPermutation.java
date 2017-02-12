@@ -1,6 +1,8 @@
 package com.dzhou.interview.third;
 
 /**
+ * 484. Find Permutation
+ * 
  * By now, you are given a secret signature consisting of character 'D' and 'I'.
  * 'D' represents a decreasing relationship between two numbers, 'I' represents
  * an increasing relationship between two numbers. And our secret signature was
@@ -37,6 +39,7 @@ package com.dzhou.interview.third;
  *
  */
 public class FindPermutation {
+
 	public int[] findPermutation(String s) {
 		int n = s.length(), arr[] = new int[n + 1];
 		for (int i = 0; i <= n; i++)
@@ -52,13 +55,12 @@ public class FindPermutation {
 		return arr;
 	}
 
-	void reverse(int[] arr, int l, int h) {
-		while (l < h) {
-			arr[l] ^= arr[h];
-			arr[h] ^= arr[l];
-			arr[l] ^= arr[h];
-			l++;
-			h--;
+	private void reverse(int[] array, int low, int high) {
+		for (; low < high; low++, high--) {
+			int temp = array[low];
+			array[low] = array[high];
+			array[high] = temp;
 		}
 	}
+
 }
