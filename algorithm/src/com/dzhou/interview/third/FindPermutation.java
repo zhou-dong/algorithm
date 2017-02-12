@@ -41,18 +41,25 @@ package com.dzhou.interview.third;
 public class FindPermutation {
 
 	public int[] findPermutation(String s) {
-		int n = s.length(), arr[] = new int[n + 1];
-		for (int i = 0; i <= n; i++)
-			arr[i] = i + 1; // sorted
-		for (int h = 0; h < n; h++) {
-			if (s.charAt(h) == 'D') {
-				int l = h;
-				while (h < n && s.charAt(h) == 'D')
-					h++;
-				reverse(arr, l, h);
+		int len = s.length();
+		int[] array = createSortedArray(len + 1);
+		for (int i = 0; i < len; i++) {
+			if (s.charAt(i) == 'D') {
+				int temp = i;
+				while (i < len && s.charAt(i) == 'D')
+					i++;
+				reverse(array, temp, i);
 			}
 		}
-		return arr;
+		return array;
+	}
+
+	private int[] createSortedArray(int length) {
+		int[] array = new int[length];
+		for (int i = 0; i < length; i++) {
+			array[i] = i + 1;
+		}
+		return array;
 	}
 
 	private void reverse(int[] array, int low, int high) {
