@@ -26,17 +26,35 @@ public class FindLargestValueInEachTreeRow {
 		}
 	}
 
-	public class Solution {
+	public class DFS_Solution {
+		public List<Integer> largestValues(TreeNode root) {
+			List<Integer> result = new LinkedList<>();
+			traverse(root, 0, result);
+			return result;
+		}
 
+		private void traverse(TreeNode node, int currHeight, List<Integer> result) {
+			if (node == null)
+				return;
+			if (currHeight >= result.size()) {
+				result.add(node.val);
+			}
+			if (node.val > result.get(currHeight)) {
+				result.set(currHeight, node.val);
+			}
+			traverse(node.left, currHeight + 1, result);
+			traverse(node.right, currHeight + 1, result);
+		}
+	}
+
+	public class BFS_Solution {
 		public List<Integer> largestValues(TreeNode root) {
 			if (root == null) {
 				return Collections.emptyList();
 			}
-
 			List<Integer> result = new LinkedList<>();
 			Queue<TreeNode> queue = new LinkedList<>();
 			queue.add(root);
-
 			while (!queue.isEmpty()) {
 				int size = queue.size();
 				int max = Integer.MIN_VALUE;
@@ -54,10 +72,8 @@ public class FindLargestValueInEachTreeRow {
 				}
 				result.add(max);
 			}
-
 			return result;
 		}
-
 	}
 
 }
