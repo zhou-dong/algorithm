@@ -16,13 +16,13 @@ public class IncreasingSubsequences {
 		Set<List<Integer>> res = new HashSet<List<Integer>>();
 		List<Integer> holder = new ArrayList<Integer>();
 		findSequence(res, holder, 0, nums);
-		List result = new ArrayList(res);
+		List<List<Integer>> result = new ArrayList<>(res);
 		return result;
 	}
 
 	public void findSequence(Set<List<Integer>> res, List<Integer> holder, int index, int[] nums) {
 		if (holder.size() >= 2) {
-			res.add(new ArrayList(holder));
+			res.add(new ArrayList<>(holder));
 		}
 		for (int i = index; i < nums.length; i++) {
 			if (holder.size() == 0 || holder.get(holder.size() - 1) <= nums[i]) {
